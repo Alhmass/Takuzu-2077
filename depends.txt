@@ -1,2 +1,0 @@
-game_aux.o: game_aux.c game_aux.h game.h
-game_text.o: game_text.c game.h game_aux.h
