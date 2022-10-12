@@ -6,7 +6,7 @@
   </a>
 
   <h2 align="center">README</h2>
-  <h3 align="center">TAKUZU</h3>
+  <h3 align="center">TAKUZU PROJECT</h3>
 
 </p>
 
@@ -29,7 +29,7 @@
 ## About The Project
 <p align="center">
     <a href="https://gitlab.emi.u-bordeaux.fr/pt2/teams/tm01/takuzu-01c">
-        <img src="img/banner.png" width="1800" height="200">
+        <img src="img/banner.png" width="1800" height="150">
     </a>
 </p>
 
@@ -71,7 +71,7 @@ C implementation of the Takuzu game.
 <!-- CONTACT -->
 ## Contact
 
-* <strong>Tim Lacault - contact@dev-tlacault.eu</strong>
+* <strong>Tim Lacault - tim.lacault@etu.u-bordeaux.fr</strong>
 * <strong>Hugo Lumet - hugo.lumet@etu.u-bordeaux.fr</strong>
 * <strong>Alexandre Lou-Poueyou - alexandre.lou-poueyou@etu.u-bordeaux.fr</strong>
 
