@@ -60,12 +60,14 @@ C implementation of the Takuzu game.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-* <strong>Usage</strong>
+* <strong>Build the project</strong>
     ```sh
-    cmake .
-    make
+    mkdir build; cd build; cmake ..; make
+    ```
+
+* <strong>Run the game</strong>
+    ```sh
     ./game_text
-    h
     ```
 
 <!-- CONTACT -->
@@ -75,4 +77,4 @@ C implementation of the Takuzu game.
 * <strong>Hugo Lumet - hugo.lumet@etu.u-bordeaux.fr</strong>
 * <strong>Alexandre Lou-Poueyou - alexandre.lou-poueyou@etu.u-bordeaux.fr</strong>
 
-* <strong>Project Link : </strong>[Takuzu](https://gitlab.emi.u-bordeaux.fr/pt2/teams/tm01/takuzu-01c)
+* <strong>Project Link : [Takuzu](https://gitlab.emi.u-bordeaux.fr/pt2/teams/tm01/takuzu-01c)</strong>
