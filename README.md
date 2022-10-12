@@ -29,7 +29,7 @@
 ## About The Project
 <p align="center">
     <a href="https://gitlab.emi.u-bordeaux.fr/pt2/teams/tm01/takuzu-01c">
-        <img src="img/banner.png" width="1800" height="150">
+        <img src="img/banner.png" width="1800" height="100">
     </a>
 </p>
 
