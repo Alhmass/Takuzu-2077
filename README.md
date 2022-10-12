@@ -14,6 +14,7 @@
         <strong>
         <ol>
             <li><a href="#about-the-project">About The Project</a></li>
+            <li><a href="#technologies">Technologies</a></li>
             <li><a href="#clone-the-repository">Clone The Repository</a></li>
             <li><a href="#usage">Usage</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -23,11 +24,19 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project :
+## About The Project
 * <strong>C implementation of the Takuzu game.</strong>
 * <strong>Made by [Tim Lacault](https://github.com/TLacault), [Hugo Lumet](https://github.com/Alhmass) and [Alexandre Lou-Poueyou](https://github.com/AlexLoup33)</strong>
 
-<br />
+
+<!-- TECHNOLOGIES -->
+## Technologies
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
+![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white)
+
+![GitLab](https://img.shields.io/badge/gitlab-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
 
 <!-- Clone The Repository -->
@@ -56,6 +65,7 @@
     ```sh
     ./game_text
     ```
+
 
 <!-- CONTACT -->
 ## Contact
