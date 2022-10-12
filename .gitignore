@@ -1,0 +1,9 @@
+# Folders
+.vscode/
+build/
+
+# Files
+*.o
+*.gdca
+*.gcno
+*~*
