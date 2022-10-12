@@ -1,44 +1,31 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://gitlab.emi.u-bordeaux.fr/pt2/teams/tm01/takuzu-01c">
-    <img src="img/logo.png" width="100" height="100">
-  </a>
-
-  <h2 align="center">README</h2>
-  <h3 align="center">TAKUZU PROJECT</h3>
-
+    <a href="https://gitlab.emi.u-bordeaux.fr/pt2/teams/tm01/takuzu-01c">
+        <img src="img/banner.png" width="1800" height="100">
+    </a>
+    <h2 align="center">README  -  TAKUZU PROJECT</h2>
 </p>
 
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary><strong>Table of Contents</strong></summary>
-    <strong>
-      <ol>
-        <li><a href="#about-the-project">About The Project</a></li>
-        <li><a href="#clone-the-repository">Clone The Repository</a></li>
-        <li><a href="#usage">Usage</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ol>
-  </strong>
+    <summary><strong>Table of Contents</strong></summary>
+        <strong>
+        <ol>
+            <li><a href="#about-the-project">About The Project</a></li>
+            <li><a href="#clone-the-repository">Clone The Repository</a></li>
+            <li><a href="#usage">Usage</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ol>
+    </strong>
 </details>
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
-<p align="center">
-    <a href="https://gitlab.emi.u-bordeaux.fr/pt2/teams/tm01/takuzu-01c">
-        <img src="img/banner.png" width="1800" height="100">
-    </a>
-</p>
-
-<br />
-
-## RULES :
-<strong>
-C implementation of the Takuzu game.
-</strong>
+## About The Project :
+* <strong>C implementation of the Takuzu game.</strong>
+* <strong>Made by [Tim Lacault](https://github.com/TLacault), [Hugo Lumet](https://github.com/Alhmass) and [Alexandre Lou-Poueyou](https://github.com/AlexLoup33)</strong>
 
 <br />
 
@@ -76,5 +63,3 @@ C implementation of the Takuzu game.
 * <strong>Tim Lacault - tim.lacault@etu.u-bordeaux.fr</strong>
 * <strong>Hugo Lumet - hugo.lumet@etu.u-bordeaux.fr</strong>
 * <strong>Alexandre Lou-Poueyou - alexandre.lou-poueyou@etu.u-bordeaux.fr</strong>
-
-* <strong>Project Link : [Takuzu](https://gitlab.emi.u-bordeaux.fr/pt2/teams/tm01/takuzu-01c)</strong>
