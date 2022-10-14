@@ -1,9 +1,10 @@
 #include <stdlib.h>
-#include "game.h"
-#include "game_aux.h"
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
+
+#include "game.h"
+#include "game_aux.h"
 
 static void display_help(void)
 {
@@ -15,15 +16,14 @@ static void display_help(void)
     printf("- press 'q' to quit\n");
 }
 
-static void command(char c, game *g)
+static void command(game *g, char c)
 {
     if (c == 'r') {
         printf("> action: restart\n");
         game_restart(*g);
-    }
-    else if (c == 'h')
+    } else if (c == 'h') {
         display_help();
-    else {
+    } else {
         printf("> action: quit\n");
         printf("What a shame you gave up :-(\n");
         game_delete(*g);
@@ -33,14 +33,10 @@ static void command(char c, game *g)
 
 static void display_errors(const game *g)
 {
-    int status = 0;
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < 6; j++) {
-            status = game_has_error(*g, i, j);
-            if (status != 0) {
+    for (int i = 0; i < DEFAULT_SIZE; i++) {
+        for (int j = 0; j < DEFAULT_SIZE; j++) {
+            if (game_has_error(*g, i, j))
                 printf("Game has error at square(%d,%d)\n", i, j);
-                status = 0;
-            }
         }
     }
 }
@@ -52,7 +48,7 @@ static square char_to_square(char c)
     else if (c == 'b')
         return (S_ONE);
     else
-        return (S_EMPTY); 
+        return (S_EMPTY);
 }
 
 static void try_play_move(game *g, char c, int i, int j)
@@ -68,25 +64,25 @@ static void try_play_move(game *g, char c, int i, int j)
 int main(void)
 {
     game g = game_default();
-    char c;
+    char user_input;
+    int scanf_return = 0;
     int i = 0;
     int j = 0;
-    int r = 0;
 
     assert(g != NULL);
     while (!game_is_over(g)) {
         game_print(g);
         display_errors(&g);
         printf("> ? [h for help]\n");
-        if (r == EOF)
+        if (scanf_return == EOF)
             exit(EXIT_SUCCESS);
-        r = scanf(" %c", &c);
-        if (strchr("rhq", c))
-            command(c, &g);
-        else if (strchr("wbe", c)) {
-            r = scanf("%d %d", &i, &j);
-            if (r == 2)
-                try_play_move(&g, c, i, j);
+        scanf_return = scanf(" %c", &user_input);
+        if (strchr("rhq", user_input)) {
+            command(&g, user_input);
+        } else if (strchr("wbe", user_input)) {
+            scanf_return = scanf("%d %d", &i, &j);
+            if (scanf_return == 2)
+                try_play_move(&g, user_input, i, j);
         }
     }
     game_print(g);
