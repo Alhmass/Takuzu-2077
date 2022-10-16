@@ -7,6 +7,8 @@ file(GLOB_RECURSE game_text_src src/*.c)
 
 include_directories(include)
 
-add_executable(game_text ${game_text_src})
+link_directories(${CMAKE_SOURCE_DIR}/lib)
 
-target_link_libraries(game_text ${CMAKE_SOURCE_DIR}/lib/libgame.a)
+link_libraries(game)
+
+add_executable(game_text ${game_text_src})
