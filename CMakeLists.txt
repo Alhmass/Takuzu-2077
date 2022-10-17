@@ -19,3 +19,6 @@ add_test(game_test_tim.lacault@etu.u-bordeaux.fr_dummy ./game_test_tim.lacault@e
 
 add_executable(game_test_hugo.lumet@etu.u-bordeaux.fr ${CMAKE_SOURCE_DIR}/tests/game_test_hugo.lumet@etu.u-bordeaux.fr)
 add_test(test_hugo.lumet@etu.u-bordeaux.fr_dummy ./game_test_hugo.lumet@etu.u-bordeaux.fr dummy)
+
+add_executable(game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr tests/game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr.c)
+add_test(game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr_dummy ./game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr dummy)
