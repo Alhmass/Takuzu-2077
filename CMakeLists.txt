@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 project(game_text C)
+enable_testing()
 
 set(CMAKE_C_FLAGS "-std=c99 -Wall -g")
 
@@ -12,3 +13,6 @@ link_directories(${CMAKE_SOURCE_DIR}/lib)
 link_libraries(game)
 
 add_executable(game_text ${game_text_src})
+
+add_executable(game_test_tim.lacault@etu.u-bordeaux.fr tests/game_test_tim.lacault@etu.u-bordeaux.fr.c)
+add_test(game_test_tim.lacault@etu.u-bordeaux.fr_dummy ./game_test_tim.lacault@etu.u-bordeaux.fr dummy)
