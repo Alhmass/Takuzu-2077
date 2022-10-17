@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 void usage(int argc, char* argv[]){
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
