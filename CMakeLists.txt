@@ -20,5 +20,5 @@ add_test(test_tlacault_dummy ./game_test_tlacault dummy)
 add_executable(game_test_hlumet tests/game_test_hlumet.c)
 add_test(test_hlumet_dummy ./game_test_hlumet dummy)
 
-add_executable(game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr tests/game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr.c)
-add_test(game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr_dummy ./game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr dummy)
+add_executable(game_test_aloupoueyou tests/game_test_aloupoueyou.c)
+add_test(test_aloupoueyou_dummy ./game_test_aloupoueyou dummy)
