@@ -15,7 +15,7 @@ add_executable(game_text ${game_text_src})
 
 # ---- Tests Generation ---- #
 add_executable(game_test_tlacault tests/game_test_tlacault.c)
-add_test(game_test_tlacault_dummy ./game_test_tlacault dummy)
+add_test(test_tlacault_dummy ./game_test_tlacault dummy)
 
 add_executable(game_test_hugo.lumet@etu.u-bordeaux.fr ${CMAKE_SOURCE_DIR}/tests/game_test_hugo.lumet@etu.u-bordeaux.fr)
 add_test(test_hugo.lumet@etu.u-bordeaux.fr_dummy ./game_test_hugo.lumet@etu.u-bordeaux.fr dummy)
