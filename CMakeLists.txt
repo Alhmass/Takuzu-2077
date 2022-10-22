@@ -17,8 +17,8 @@ add_executable(game_text ${game_text_src})
 add_executable(game_test_tlacault tests/game_test_tlacault.c)
 add_test(test_tlacault_dummy ./game_test_tlacault dummy)
 
-add_executable(game_test_hugo.lumet@etu.u-bordeaux.fr ${CMAKE_SOURCE_DIR}/tests/game_test_hugo.lumet@etu.u-bordeaux.fr)
-add_test(test_hugo.lumet@etu.u-bordeaux.fr_dummy ./game_test_hugo.lumet@etu.u-bordeaux.fr dummy)
+add_executable(game_test_hlumet tests/game_test_hlumet.c)
+add_test(test_hlumet_dummy ./game_test_hlumet dummy)
 
 add_executable(game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr tests/game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr.c)
 add_test(game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr_dummy ./game_test_alexandre.lou-poueyou@etu.u-bordeaux.fr dummy)
