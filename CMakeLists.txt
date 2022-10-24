@@ -15,10 +15,17 @@ add_executable(game_text ${game_text_src})
 
 # ---- Tests Generation ---- #
 add_executable(game_test_tlacault tests/game_test_tlacault.c)
-add_test(test_tlacault_dummy ./game_test_tlacault dummy)
+add_test(test_tlacault_dummy ./game_test_tlacault game_new)
+add_test(test_tlacault_dummy ./game_test_tlacault game_new_empty)
+add_test(test_tlacault_dummy ./game_test_tlacault game_copy)
+add_test(test_tlacault_dummy ./game_test_tlacault game_equal)
+add_test(test_tlacault_dummy ./game_test_tlacault game_delete)
+add_test(test_tlacault_dummy ./game_test_tlacault game_is_empty)
+add_test(test_tlacault_dummy ./game_test_tlacault game_restart)
 
 add_executable(game_test_hlumet tests/game_test_hlumet.c)
 add_test(test_hlumet_dummy ./game_test_hlumet dummy)
 
 add_executable(game_test_aloupoueyou tests/game_test_aloupoueyou.c)
 add_test(test_aloupoueyou_dummy ./game_test_aloupoueyou dummy)
+
