@@ -7,9 +7,11 @@
 #include "game_aux.h"
 
 /*  TEST  */
-bool test_game_new(square* squares) {
-    game g = game_new()
-
+bool test_game_new(void) {
+    square *squares = {S_ZERO, S_ZERO, S_ZERO, S_ZERO};
+    game g = game_new(squares);
+    if (g == NULL)
+        return false;
 }
 
 bool test_game_new_empty(void) {
@@ -51,9 +53,7 @@ int main(int argc, char *argv[]) {
 
     fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
     bool ok = false;
-    if (strcmp("dummy", argv[1]) == 0)
-        ok = test_dummy();
-    else if (strcmp("game_new", argv[1]) == 0)
+    if (strcmp("game_new", argv[1]) == 0)
         ok = test_game_new_empty();
     else if (strcmp("game_new_empty", argv[1]) == 0)
         ok = test_game_new_empty();
