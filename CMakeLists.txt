@@ -28,4 +28,8 @@ add_test(test_hlumet_dummy ./game_test_hlumet dummy)
 
 add_executable(game_test_aloupoueyou tests/game_test_aloupoueyou.c)
 add_test(test_aloupoueyou_dummy ./game_test_aloupoueyou dummy)
-
+add_test(test_aloupoueyou_game_is_immutable ./game_test_aloupoueyou game_is_immutable)
+add_test(test_aloupoueyou_game_has_error ./game_test_aloupoueyou game_has_error)
+add_test(test_aloupoueyou_game_check_move ./game_test_aloupoueyou_game_check_move)
+add_test(test_aloupoueyou_game_play_move ./game_test_aloupoueyou_game_play_move)
+add_test(test_aloupoueyou_game_is_over ./game_test_game_is_over)
