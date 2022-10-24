@@ -5,8 +5,18 @@
 #include "game.h"
 #include "game_aux.h"
 
-bool test_dummy(int argc, char *argv[])
+bool test_game_set_square()
 {
+    game g = game_default();
+
+    if (!g)
+        return (false);
+    game_set_square(g, 0, 0, S_ZERO);
+    if (game_get_square(g, 0, 0) != S_ZERO) {
+        game_delete(g);
+        return (false);
+    }
+    game_delete(g);
     return (true);
 }
 
@@ -23,8 +33,8 @@ int main(int argc, char *argv[])
     // start test
     fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
     bool ok = false;
-    if (strcmp("dummy", argv[1]) == 0)
-        ok = test_dummy(argc, argv);
+    if (strcmp("game_set_square", argv[1]) == 0)
+        ok = test_game_set_square();
     else {
         fprintf(stderr, "Test not found!\n");
         exit(EXIT_FAILURE);

@@ -18,7 +18,7 @@ add_executable(game_test_tlacault tests/game_test_tlacault.c)
 add_test(test_tlacault_dummy ./game_test_tlacault dummy)
 
 add_executable(game_test_hlumet tests/game_test_hlumet.c)
-add_test(test_hlumet_dummy ./game_test_hlumet dummy)
+add_test(test_hlumet_game_set_square ./game_test_hlumet game_set_square)
 
 add_executable(game_test_aloupoueyou tests/game_test_aloupoueyou.c)
 add_test(test_aloupoueyou_dummy ./game_test_aloupoueyou dummy)
