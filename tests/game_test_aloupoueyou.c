@@ -20,12 +20,16 @@ bool test_game_has_error() {
     return false;
 }
 
+bool test_game_check_move() {
+    return false;
+}
+
 bool test_game_play_move() {
     return false;
 }
 
 bool test_game_is_over() {
-    return false; 
+    return false;
 }
 
 int main(int argc, char *argv[]) {
@@ -35,7 +39,7 @@ int main(int argc, char *argv[]) {
     if (strcmp(argv[1], "dummy") == 0) {
         ok = test_dummy();
     }else if (strcmp(argv[1], "game_is_immutable") == 0) {
-        ok = test_game_is_immutable(); 
+        ok = test_game_is_immutable();
     }else if (strcmp(argv[1], "game_has_error") == 0) {
         ok = test_game_has_error();
     }else if(strcmp(argv[1], "game_check_move") == 0) {
@@ -49,7 +53,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Error: test \"%s\" not found\n", argv[1]);
         exit(EXIT_FAILURE);
     }
-    if (ok){        
+    if (ok){
     fprintf(stderr, "Test: \"%s\" finished: SUCCESS\n", argv[1]);
     return EXIT_SUCCESS;
     } else{
