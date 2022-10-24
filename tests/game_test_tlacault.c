@@ -8,10 +8,11 @@
 
 /*  TEST  */
 bool test_game_new(void) {
-    square *squares = {S_ZERO, S_ZERO, S_ZERO, S_ZERO};
+    square *squares = {S_ZERO};
     game g = game_new(squares);
     if (g == NULL)
         return false;
+    return true;
 }
 
 bool test_game_new_empty(void) {
@@ -37,8 +38,6 @@ bool test_game_is_empty(cgame g, uint i, uint j) {
 bool test_game_restart(game g) {
     return false;
 }
-
-
 
 /*  USAGE  */
 void usage(int argc, char *argv[]) {
