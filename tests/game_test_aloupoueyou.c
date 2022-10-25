@@ -36,13 +36,13 @@ int main(int argc, char *argv[]) {
     if (strcmp(argv[1], "game_is_immutable") == 0) {
         ok = test_game_is_immutable();
     } else if (strcmp(argv[1], "game_has_error") == 0) {
-         ok = test_game_has_error();
+        ok = test_game_has_error();
     } else if(strcmp(argv[1], "game_check_move") == 0) {
-         ok = test_game_check_move();
+        ok = test_game_check_move();
     } else if (strcmp(argv[1], "game_play_move") == 0) {
-         ok = test_game_play_move();
+        ok = test_game_play_move();
     } else if (strcmp(argv[1], "game_is_over") == 0) {
-         ok = test_game_is_over();
+        ok = test_game_is_over();
     } else {
         fprintf(stderr, "Error: test \"%s\" not found\n", argv[1]);
         exit(EXIT_FAILURE);
