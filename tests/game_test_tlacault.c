@@ -106,8 +106,24 @@ bool test_game_is_empty(void) {
 }
 
 bool test_game_restart(void) {
-    // game g
-    return false;
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 4, 3, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 3, 0, 0, 3, 0},
+        {0, 3, 4, 0, 0, 0},
+        {0, 0, 4, 0, 0, 3},
+        {0, 0, 0, 0, 0, 3}};
+    game g = game_new((square *)squares);
+
+    game_set_square(g, 0, 0, S_ZERO);
+    game_set_square(g, 3, 5, S_ONE);
+    game_restart(g);
+
+    for (uint i = 0; i < DEFAULT_SIZE; i++)
+        for (uint j = 0; j < DEFAULT_SIZE; j++)
+            if (game_get_square(g, i, j) != squares[i][j])
+                return false;
+    return true;
 }
 
 /*  USAGE  */
