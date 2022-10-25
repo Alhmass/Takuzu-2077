@@ -8,16 +8,27 @@
 bool test_game_set_square()
 {
     game g = game_default();
+    bool status = true;
 
     if (!g)
         return (false);
     game_set_square(g, 0, 0, S_ZERO);
-    if (game_get_square(g, 0, 0) != S_ZERO) {
-        game_delete(g);
-        return (false);
-    }
+    game_set_square(g, 1, 0, S_ONE);
+    game_set_square(g, 0, 3, S_IMMUTABLE_ZERO);
+    game_set_square(g, 1, 5, S_IMMUTABLE_ONE);
+    game_set_square(g, 0, 1, S_EMPTY);
+    if (game_get_square(g, 0, 0) != S_ZERO)
+        status = false;
+    else if (game_get_square(g, 1, 0) != S_ONE)
+        status = false;
+    else if (game_get_square(g, 0, 3) != S_IMMUTABLE_ZERO)
+        status = false;
+    else if (game_get_square(g, 1, 5) != S_IMMUTABLE_ONE)
+        status = false;
+    else if (game_get_square(g, 0, 1) != S_EMPTY)
+        status = false;
     game_delete(g);
-    return (true);
+    return (status);
 }
 
 void usage(int argc, char *argv[])
