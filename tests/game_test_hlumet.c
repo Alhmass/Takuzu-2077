@@ -57,6 +57,21 @@ bool test_game_get_square()
     return (status);
 }
 
+bool test_game_get_number()
+{
+    return (true);
+}
+
+bool test_game_get_next_square()
+{
+    return (true);
+}
+
+bool test_game_get_next_number()
+{
+    return (true);
+}
+
 void usage(int argc, char *argv[])
 {
   fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
@@ -74,6 +89,12 @@ int main(int argc, char *argv[])
         ok = test_game_set_square();
     else if (strcmp("game_get_square", argv[1]) == 0)
         ok = test_game_get_square();
+    else if (strcmp("game_get_number", argv[1]) == 0)
+        ok = test_game_get_number();
+    else if (strcmp("game_get_next_square", argv[1]) == 0)
+        ok = test_game_get_next_square();
+    else if (strcmp("game_get_next_number", argv[1]) == 0)
+        ok = test_game_get_next_number();
     else {
         fprintf(stderr, "Test not found!\n");
         exit(EXIT_FAILURE);
