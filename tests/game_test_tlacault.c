@@ -60,8 +60,28 @@ bool test_game_copy(void) {
 }
 
 bool test_game_equal(void) {
-    // cgame g1, cgame g2
-    return false;
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 2, 1, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 1, 0, 0, 1, 0},
+        {0, 1, 2, 0, 0, 0},
+        {0, 0, 2, 0, 0, 1},
+        {0, 0, 0, 0, 0, 1}};
+    game g1 = game_new((square *)squares);
+    game g2 = game_copy(g1);
+
+    int squares_other[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 2, 1, 0, 0, 0},
+        {0, 0, 0, 0, 4, 0},
+        {0, 1, 0, 0, 1, 0},
+        {0, 1, 2, 1, 0, 0},
+        {0, 0, 2, 0, 0, 1},
+        {3, 0, 0, 0, 0, 2}};
+    game g3 = game_new((square *)squares_other);
+
+    if (!game_equal(g1, g2) && game_equal(g1, g3))
+        return false;
+    return true;
 }
 
 bool test_game_delete(void) {
