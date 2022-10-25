@@ -22,26 +22,36 @@ bool test_game_new(void) {
 }
 
 bool test_game_new_empty(void) {
+    game g = game_new_empty();
+    for (uint i = 0; i < DEFAULT_SIZE; i++)
+        for (uint j = 0; j < DEFAULT_SIZE; j++)
+            if (game_get_square(g, i, j) != 0)
+                return false;
+    return true;
+}
+
+bool test_game_copy(void) {
+    // cgame g
     return false;
 }
 
-bool test_game_copy(cgame g) {
+bool test_game_equal(void) {
+    // cgame g1, cgame g2
     return false;
 }
 
-bool test_game_equal(cgame g1, cgame g2) {
+bool test_game_delete(void) {
+    // game g
     return false;
 }
 
-bool test_game_delete(game g) {
+bool test_game_is_empty(void) {
+    // cgame g, uint i, uint j
     return false;
 }
 
-bool test_game_is_empty(cgame g, uint i, uint j) {
-    return false;
-}
-
-bool test_game_restart(game g) {
+bool test_game_restart(void) {
+    // game g
     return false;
 }
 
@@ -59,25 +69,25 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
     bool ok = false;
     if (strcmp("game_new", argv[1]) == 0)
-        ok = test_game_new_empty();
+        ok = test_game_new();
     else if (strcmp("game_new_empty", argv[1]) == 0)
         ok = test_game_new_empty();
     else if (strcmp("game_copy", argv[1]) == 0)
-        ok = test_game_new_empty();
+        ok = test_game_copy();
     else if (strcmp("game_equal", argv[1]) == 0)
-        ok = test_game_new_empty();
+        ok = test_game_equal();
     else if (strcmp("game_delete", argv[1]) == 0)
-        ok = test_game_new_empty();
+        ok = test_game_delete();
     else if (strcmp("game_is_empty", argv[1]) == 0)
-        ok = test_game_new_empty();
+        ok = test_game_is_empty();
     else if (strcmp("game_restart", argv[1]) == 0)
-        ok = test_game_new_empty();
+        ok = test_game_restart();
     else {
         fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
         exit(EXIT_FAILURE);
     }
 
-    if (!ok) {
+    if (ok) {
         fprintf(stderr, "Test \"%s\" finished: SUCCESS\n", argv[1]);
         return EXIT_SUCCESS;
     } else {
