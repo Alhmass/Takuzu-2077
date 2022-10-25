@@ -82,7 +82,29 @@ bool test_game_get_number()
 
 bool test_game_get_next_square()
 {
-    return (true);
+    game g = game_default();
+    bool status = true;
+
+    if (!g)
+        return (false);
+    game_set_square(g, 0, 3, S_ZERO);
+    game_set_square(g, 0, 4, S_ONE);
+    if (game_get_next_square(g, 0, 0, RIGHT, 1) != S_IMMUTABLE_ONE)
+        status = false;
+    else if (game_get_next_square(g, 0, 0, RIGHT, 2) != S_IMMUTABLE_ZERO)
+        status = false;
+    else if (game_get_next_square(g, 0, 0, DOWN, 1) != S_EMPTY)
+        status = false;
+    else if (game_get_next_square(g, 3, 0, LEFT, 2) != -1)
+        status = false;
+    else if (game_get_next_square(g, 2, 1, UP, 2) != S_IMMUTABLE_ONE)
+        status = false;
+    else if (game_get_next_square(g, 0, 1, RIGHT, 2) != S_ZERO)
+        status = false;
+    else if (game_get_next_square(g, 0, 5, LEFT, 1) != S_ONE)
+        status = false;
+    game_delete(g);
+    return (status);
 }
 
 bool test_game_get_next_number()
