@@ -8,8 +8,14 @@
 
 /*  TEST  */
 bool test_game_new(void) {
-    square *squares = {S_ZERO};
-    game g = game_new(squares);
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 2, 1, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 1, 0, 0, 1, 0},
+        {0, 1, 2, 0, 0, 0},
+        {0, 0, 2, 0, 0, 1},
+        {0, 0, 0, 0, 0, 1}};
+    game g = game_new((square *)squares);
     if (g == NULL)
         return false;
     return true;
