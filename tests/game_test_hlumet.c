@@ -109,7 +109,29 @@ bool test_game_get_next_square()
 
 bool test_game_get_next_number()
 {
-    return (true);
+    game g = game_default();
+    bool status = true;
+
+    if (!g)
+        return (false);
+    game_set_square(g, 0, 3, S_ZERO);
+    game_set_square(g, 0, 4, S_ONE);
+    if (game_get_next_number(g, 0, 0, RIGHT, 1) != 1)
+        status = false;
+    else if (game_get_next_number(g, 0, 0, RIGHT, 2) != 0)
+        status = false;
+    else if (game_get_next_number(g, 0, 0, DOWN, 1) != -1)
+        status = false;
+    else if (game_get_next_number(g, 3, 0, LEFT, 2) != -1)
+        status = false;
+    else if (game_get_next_number(g, 2, 1, UP, 2) != 1)
+        status = false;
+    else if (game_get_next_number(g, 0, 1, RIGHT, 2) != 0)
+        status = false;
+    else if (game_get_next_number(g, 0, 5, LEFT, 1) != 1)
+        status = false;
+    game_delete(g);
+    return (status);
 }
 
 void usage(int argc, char *argv[])
