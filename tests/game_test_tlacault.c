@@ -42,7 +42,7 @@ bool test_game_new_empty(void) {
 
     if (g1 == NULL || g2 == NULL)
         return false;
-    if (!game_equals(g1, g2))
+    if (!game_equal(g1, g2))
         return false;
     return true;
 }
