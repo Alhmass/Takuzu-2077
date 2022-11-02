@@ -33,19 +33,109 @@ bool test_game_is_immutable() {
 }
 
 bool test_game_has_error() {
-    return false;
+    int squares1[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {2, 2, 2, 2, 2, 2},
+        {2, 2, 2, 2, 2, 2},
+        {3, 3, 3, 3, 3, 3},
+        {3, 3, 3, 3, 3, 3},
+        {1, 1, 1, 1, 1, 1},
+        {4, 4, 4, 4, 4, 4}};
+    game g1 = game_new((square *)squares1);
+    int squares2[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {1, 4, 3, 2, 1, 2},
+        {1, 2, 2, 1, 2, 1},
+        {2, 3, 1, 2, 3, 2},
+        {2, 3, 4, 1, 1, 2},
+        {1, 2, 4, 1, 2, 3},
+        {2, 1, 1, 2, 2, 3}};
+    game g2 = game_new((square *)squares2);
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            if (!game_has_error(g1, i, j) || game_has_error(g2, i, j)) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 bool test_game_check_move() {
-    return false;
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 4, 3, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 3, 0, 0, 3, 0},
+        {0, 3, 4, 0, 0, 0},
+        {0, 0, 4, 0, 0, 3},
+        {0, 0, 0, 0, 0, 3}};
+    game g = game_new((square *)squares);
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            if (game_check_move(g, i, j, S_EMPTY) && (game_get_square(g, i, j) == S_IMMUTABLE_ONE || game_get_square(g, i, j) == S_IMMUTABLE_ZERO)) {
+                return false;
+            } else if (!(game_check_move(g, i, j, S_EMPTY)) && (game_get_square(g, i, j) != S_IMMUTABLE_ONE && game_get_square(g, i, j) != S_IMMUTABLE_ZERO)) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 bool test_game_play_move() {
-    return false;
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 4, 3, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 3, 0, 0, 3, 0},
+        {0, 3, 4, 0, 0, 0},
+        {0, 0, 4, 0, 0, 3},
+        {0, 0, 0, 0, 0, 3}};
+    game g = game_new((square *)squares);
+    square q; 
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            q = game_get_square(g, i, j);
+            if (q == S_IMMUTABLE_ONE || q == S_IMMUTABLE_ZERO) {
+                break;
+            }else {
+                game_play_move(g, i, j, S_ONE);
+            }
+            if ( (q == S_IMMUTABLE_ONE || q == S_IMMUTABLE_ZERO) && q != game_get_square(g, i, j)) {
+                return false;
+            }
+            if ((q != S_IMMUTABLE_ONE && q != S_IMMUTABLE_ZERO) && q == game_get_square(g, i, j)) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 bool test_game_is_over() {
-    return false;
+    int squares1[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {1, 4, 3, 2, 1, 2},
+        {1, 2, 2, 1, 2, 1},
+        {2, 3, 1, 2, 3, 2},
+        {2, 3, 4, 1, 1, 2},
+        {1, 2, 4, 1, 2, 3},
+        {2, 1, 1, 2, 2, 3}};
+    game g1 = game_new((square *)squares1);
+    int squares2[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {2, 2, 2, 2, 2, 2},
+        {2, 2, 2, 2, 2, 2},
+        {3, 3, 3, 3, 3, 3},
+        {3, 3, 3, 3, 3, 3},
+        {1, 1, 1, 1, 1, 1},
+        {4, 4, 4, 4, 4, 4}};
+    game g2 = game_new((square *)squares2);
+    bool over1 = game_is_over(g1);
+    bool over2 = game_is_over(g2);
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            if ((over1 && game_has_error(g1, i, j)) || (over2 && !game_has_error(g2, i, j))) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 int main(int argc, char *argv[]) {
