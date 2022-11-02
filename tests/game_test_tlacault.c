@@ -29,7 +29,6 @@ bool test_game_new(void) {
 bool test_game_new_empty(void) {
     game g = game_new_empty();
 
-
     if (g == NULL)
         return false;
     for (uint i = 0; i < DEFAULT_SIZE; i++)

@@ -1,16 +1,3 @@
-/*
-  ╭────────────────────────────────────────────────────────╮
-    > File:           game_test_tlacault.c
-    > Created Date:   25-10-2022 17:10
-    > Author:         Tim Lacault
-    ──────────────────────────────────────────────────────
-    > Last Modified:  25-10-2022 17:10
-    > Modified By:    Tim Lacault
-    ──────────────────────────────────────────────────────
-    > Description:
-  ╰────────────────────────────────────────────────────────╯
-*/
-
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,7 +28,6 @@ bool test_game_new(void) {
 
 bool test_game_new_empty(void) {
     game g = game_new_empty();
-
 
     if (g == NULL)
         return false;
