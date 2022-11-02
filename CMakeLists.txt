@@ -7,7 +7,7 @@ enable_testing()
 set(CMAKE_C_FLAGS "-std=c99 -Wall -g")
 file(GLOB_RECURSE game_text_src src/*.c)
 include_directories(include)
-link_directories(${CMAKE_SOURCE_DIR}/lib)
+link_directories(${CMAKE_SOURCE_DIR})
 link_libraries(game)
 
 # ---- Binary Generation ---- #
