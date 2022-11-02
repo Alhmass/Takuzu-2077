@@ -7,28 +7,35 @@
 
 bool test_game_set_square()
 {
-    game g = game_default();
-    bool status = true;
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 4, 3, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 3, 0, 0, 3, 0},
+        {0, 3, 4, 0, 0, 0},
+        {0, 0, 4, 0, 0, 3},
+        {0, 0, 0, 0, 0, 3}};
+    game g = game_new((square *)squares);
 
     if (!g)
         return (false);
     game_set_square(g, 0, 0, S_ZERO);
+    squares[0][0] = S_ZERO;
     game_set_square(g, 1, 0, S_ONE);
+    squares[1][0] = S_ONE;
     game_set_square(g, 0, 3, S_IMMUTABLE_ZERO);
+    squares[0][3] = S_IMMUTABLE_ZERO;
     game_set_square(g, 1, 5, S_IMMUTABLE_ONE);
+    squares[1][5] = S_IMMUTABLE_ONE;
     game_set_square(g, 0, 1, S_EMPTY);
-    if (game_get_square(g, 0, 0) != S_ZERO)
-        status = false;
-    else if (game_get_square(g, 1, 0) != S_ONE)
-        status = false;
-    else if (game_get_square(g, 0, 3) != S_IMMUTABLE_ZERO)
-        status = false;
-    else if (game_get_square(g, 1, 5) != S_IMMUTABLE_ONE)
-        status = false;
-    else if (game_get_square(g, 0, 1) != S_EMPTY)
-        status = false;
+    squares[0][1] = S_EMPTY;
+    for (int i = 0; i < DEFAULT_SIZE; i++) {
+        for (int k = 0; k < DEFAULT_SIZE; k++) {
+            if (game_get_square(g, i, k) != squares[i][k])
+                return (false);
+        }
+    }
     game_delete(g);
-    return (status);
+    return (true);
 }
 
 bool test_game_get_square()
