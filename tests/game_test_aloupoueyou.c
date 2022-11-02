@@ -110,7 +110,32 @@ bool test_game_play_move() {
 }
 
 bool test_game_is_over() {
-    return false;
+    int squares1[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {1, 4, 3, 2, 1, 2},
+        {1, 2, 2, 1, 2, 1},
+        {2, 3, 1, 2, 3, 2},
+        {2, 3, 4, 1, 1, 2},
+        {1, 2, 4, 1, 2, 3},
+        {2, 1, 1, 2, 2, 3}};
+    game g1 = game_new((square *)squares1);
+    int squares2[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {2, 2, 2, 2, 2, 2},
+        {2, 2, 2, 2, 2, 2},
+        {3, 3, 3, 3, 3, 3},
+        {3, 3, 3, 3, 3, 3},
+        {1, 1, 1, 1, 1, 1},
+        {4, 4, 4, 4, 4, 4}};
+    game g2 = game_new((square *)squares2);
+    bool over1 = game_is_over(g1);
+    bool over2 = game_is_over(g2);
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            if ((over1 && game_has_error(g1, i, j)) || (over2 && !game_has_error(g2, i, j))) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 int main(int argc, char *argv[]) {
