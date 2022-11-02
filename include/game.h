@@ -57,7 +57,7 @@ typedef const struct game_s* cgame;
 game game_new(square* squares);
 
 /**
- * @brief Creates a new empty game with defaut size.
+ * @brief Creates a new empty game with default size.
  * @details All squares are initialized with empty squares.
  * @return the created game
  **/
