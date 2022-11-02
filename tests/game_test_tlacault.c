@@ -134,6 +134,42 @@ bool test_game_restart(void) {
     return true;
 }
 
+bool test_game_default(void) {
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 4, 3, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 3, 0, 0, 3, 0},
+        {0, 3, 4, 0, 0, 0},
+        {0, 0, 4, 0, 0, 3},
+        {0, 0, 0, 0, 0, 3}};
+    game g = game_new((square *)squares);
+    game g2 = game_default();
+
+    if (g == NULL || g2 == NULL)
+        return false;
+    if (!game_equal(g, g2))
+        return false;
+    return true;
+}
+
+bool test_game_default_solution(void) {
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {1, 4, 3, 2, 1, 2},
+        {1, 2, 2, 1, 2, 1},
+        {2, 3, 1, 2, 3, 2},
+        {2, 3, 4, 1, 1, 2},
+        {1, 2, 4, 1, 2, 3},
+        {2, 1, 1, 2, 2, 3}};
+    game g = game_new((square *)squares);
+    game g2 = game_default_solution();
+
+    if (g == NULL || g2 == NULL)
+        return false;
+    if (!game_equal(g, g2))
+        return false;
+    return true;
+}
+
 /*  USAGE  */
 void usage(int argc, char *argv[]) {
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
@@ -161,6 +197,10 @@ int main(int argc, char *argv[]) {
         ok = test_game_is_empty();
     else if (strcmp("game_restart", argv[1]) == 0)
         ok = test_game_restart();
+    else if (strcmp("game_default", argv[1]) == 0)
+        ok = test_game_default();
+    else if (strcmp("game_default_solution", argv[1]) == 0)
+        ok = test_game_default_solution();
     else {
         fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
         exit(EXIT_FAILURE);
