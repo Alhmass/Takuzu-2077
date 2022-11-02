@@ -11,7 +11,7 @@ README - TAKUZU PROJECT
 5.  **[Contact](#contact)**
 
 ## About The Project
-* **C implementation of the Takuzu game.** 
+* **C implementation of the Takuzu game.**
 * **Made by [Tim Lacault](https://github.com/TLacault), [Hugo Lumet](https://github.com/Alhmass) and [Alexandre Lou-Poueyou](https://github.com/AlexLoup33)**
 
 ## Technologies
@@ -41,7 +41,7 @@ git clone git@gitlab.emi.u-bordeaux.fr:pt2/teams/tm01/takuzu-01c.git
 mkdir build; cd build; cmake ..; make
 ```
 
-* **Run the game** 
+* **Run the game**
 
 ```
 ./game_text
