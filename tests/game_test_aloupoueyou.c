@@ -33,29 +33,20 @@ bool test_game_is_immutable() {
 }
 
 bool test_game_has_error() {
-    int squares1[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {2, 2, 2, 2, 2, 2},
-        {2, 2, 2, 2, 2, 2},
-        {3, 3, 3, 3, 3, 3},
-        {3, 3, 3, 3, 3, 3},
-        {1, 1, 1, 1, 1, 1},
-        {4, 4, 4, 4, 4, 4}};
-    game g1 = game_new((square *)squares1);
-    int squares2[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {1, 4, 3, 2, 1, 2},
-        {1, 2, 2, 1, 2, 1},
-        {2, 3, 1, 2, 3, 2},
-        {2, 3, 4, 1, 1, 2},
-        {1, 2, 4, 1, 2, 3},
-        {2, 1, 1, 2, 2, 3}};
-    game g2 = game_new((square *)squares2);
-    for (uint i = 0; i < DEFAULT_SIZE; i++) {
-        for (uint j = 0; j < DEFAULT_SIZE; j++) {
-            if (!game_has_error(g1, i, j) || game_has_error(g2, i, j)) {
+    game g1 = game_default_solution();
+    int squares_2[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {1, 1, 1, 2, 2, 2},
+        {1, 1, 1, 2, 2, 2},
+        {1, 1, 1, 2, 2, 2},
+        {4, 4, 4, 3, 3, 3},
+        {4, 4, 4, 3, 3, 3},
+        {4, 4, 4, 3, 3, 3}};
+    game g2 = game_new((square *)squares_2);
+
+    for (uint i = 0; i < DEFAULT_SIZE; i++)
+        for (uint j = 0; j < DEFAULT_SIZE; j++)
+            if (game_has_error(g1, i, j) || !game_has_error(g2, i, j))
                 return false;
-            }
-        }
-    }
     return true;
 }
 
@@ -120,17 +111,32 @@ bool test_game_is_over() {
         {4, 4, 1, 1, 2, 2}};
     game g2 = game_new((square *)squares_2);
     int squares_3[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {1, 1, 1, 2, 2, 2},
+        {1, 1, 1, 2, 2, 2},
+        {1, 1, 1, 2, 2, 2},
+        {4, 4, 4, 3, 3, 3},
+        {4, 4, 4, 3, 3, 3},
+        {4, 4, 4, 3, 3, 3}};
+    game g3 = game_new((square *)squares_3);
+    int squares_4[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {1, 2, 3, 4, 1, 2},
+        {3, 4, 1, 2, 3, 4},
+        {2, 3, 4, 1, 2, 3},
+        {4, 1, 2, 3, 4, 1},
+        {3, 4, 1, 2, 3, 4},
+        {1, 2, 3, 4, 1, 2}};
+    game g4 = game_new((square *)squares_4);
+    int squares_5[DEFAULT_SIZE][DEFAULT_SIZE] = {
         {0, 1, 0, 1, 0, 1},
         {1, 0, 1, 0, 1, 0},
         {0, 1, 0, 1, 0, 1},
         {1, 0, 1, 0, 1, 0},
         {0, 1, 0, 1, 0, 1},
         {1, 0, 1, 0, 1, 0}};
-    game g3 = game_new((square *)squares_3);
+    game g5 = game_new((square *)squares_5);
 
-    if (!game_is_over(g1) || game_is_over(g2) || game_is_over(g3))
+    if (!game_is_over(g1) || game_is_over(g2) || game_is_over(g3) || game_is_over(g4) || game_is_over(g5))
         return false;
-
     return true;
 }
 
