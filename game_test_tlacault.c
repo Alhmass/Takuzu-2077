@@ -51,7 +51,7 @@ bool test_game_copy(void) {
     game g = game_default();
     game copy = game_copy(g);
 
-    if (copy == NULL)
+    if (copy == NULL && &g == &copy)
         return false;
     for (uint i = 0; i < DEFAULT_SIZE; i++)
         for (uint j = 0; j < DEFAULT_SIZE; j++)
