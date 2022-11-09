@@ -16,37 +16,39 @@ bool test_game_new(void) {
         {0, 0, 4, 0, 0, 3},
         {0, 0, 0, 0, 0, 3}};
     game g = game_new((square *)squares);
+    game g2 = game_default();
 
     if (g == NULL)
         return false;
     for (uint i = 0; i < DEFAULT_SIZE; i++)
         for (uint j = 0; j < DEFAULT_SIZE; j++)
-            if (game_get_square(g, i, j) != squares[i][j])
+            if (game_get_square(g, i, j) != squares[i][j] || game_get_square(g, i, j) != game_get_square(g2, i, j))
                 return false;
+    if (!game_equal(g, g2))
+        return false;
     return true;
 }
 
 bool test_game_new_empty(void) {
-    game g = game_new_empty();
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0}};
+    game g1 = game_new((square *)squares);
+    game g2 = game_new_empty();
 
-    if (g == NULL)
+    if (g1 == NULL || g2 == NULL)
         return false;
-    for (uint i = 0; i < DEFAULT_SIZE; i++)
-        for (uint j = 0; j < DEFAULT_SIZE; j++)
-            if (game_get_square(g, i, j) != 0)
-                return false;
+    if (!game_equal(g1, g2))
+        return false;
     return true;
 }
 
 bool test_game_copy(void) {
-    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {0, 4, 3, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0},
-        {0, 3, 0, 0, 3, 0},
-        {0, 3, 4, 0, 0, 0},
-        {0, 0, 4, 0, 0, 3},
-        {0, 0, 0, 0, 0, 3}};
-    game g = game_new((square *)squares);
+    game g = game_default();
     game copy = game_copy(g);
 
     if (copy == NULL)
@@ -59,26 +61,44 @@ bool test_game_copy(void) {
 }
 
 bool test_game_equal(void) {
-    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {0, 4, 3, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0},
-        {0, 3, 0, 0, 3, 0},
-        {0, 3, 4, 0, 0, 0},
-        {0, 0, 4, 0, 0, 3},
-        {0, 0, 0, 0, 0, 3}};
-    game g1 = game_new((square *)squares);
+    game g1 = game_default();
     game g2 = game_copy(g1);
-
-    int squares_other[DEFAULT_SIZE][DEFAULT_SIZE] = {
+    int g1_states[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {-1,  1,  1, -1, -1, -1},
+        {-1, -1, -1, -1, -1, -1},
+        {-1,  1, -1, -1,  1, -1},
+        {-1,  1,  1, -1, -1, -1},
+        {-1, -1,  1, -1, -1,  1},
+        {-1, -1, -1, -1, -1,  1}};
+    game g3 = game_new((square *)g1_states);
+    int g4_squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 3, 1, 3, 1, 0},
+        {1, 0, 0, 0, 0, 3},
+        {3, 0, 2, 4, 0, 1},
+        {1, 0, 4, 2, 0, 3},
+        {3, 0, 0, 0, 0, 1},
+        {0, 1, 3, 1, 3, 0}};
+    game g4 = game_new((square *)g4_squares);
+    int g4_states[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {-1,  1,  0,  1,  0, -1},
+        { 0, -1, -1, -1, -1,  1},
+        { 1, -1,  0,  1, -1,  0},
+        { 0, -1,  1,  0, -1,  1},
+        { 1, -1, -1, -1, -1,  0},
+        {-1,  0,  1,  0,  1, -1}};
+    game g5 = game_new((square *)g4_states);
+    int g1_false[DEFAULT_SIZE][DEFAULT_SIZE] = {
         {0, 4, 3, 0, 0, 0},
         {0, 0, 0, 2, 4, 0},
         {0, 3, 0, 0, 3, 0},
         {0, 3, 4, 3, 0, 0},
         {0, 0, 2, 0, 0, 3},
         {3, 0, 0, 1, 0, 4}};
-    game g3 = game_new((square *)squares_other);
+    game g6 = game_new((square *)g1_false);
 
-    if (!game_equal(g1, g2) && game_equal(g1, g3))
+    if (g1 == NULL || g2 == NULL || g3 == NULL || g4 == NULL || g5 == NULL || g6 == NULL)
+        return false;
+    if (!game_equal(g1, g2) || game_equal(g1, g3) || game_equal(g4, g5) || game_equal(g1, g6) || game_equal(g4, g6))
         return false;
     return true;
 }
@@ -125,6 +145,42 @@ bool test_game_restart(void) {
     return true;
 }
 
+bool test_game_default(void) {
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 4, 3, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 3, 0, 0, 3, 0},
+        {0, 3, 4, 0, 0, 0},
+        {0, 0, 4, 0, 0, 3},
+        {0, 0, 0, 0, 0, 3}};
+    game g = game_new((square *)squares);
+    game g2 = game_default();
+
+    if (g == NULL || g2 == NULL)
+        return false;
+    if (!game_equal(g, g2))
+        return false;
+    return true;
+}
+
+bool test_game_default_solution(void) {
+    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {1, 4, 3, 2, 1, 2},
+        {1, 2, 2, 1, 2, 1},
+        {2, 3, 1, 2, 3, 2},
+        {2, 3, 4, 1, 1, 2},
+        {1, 2, 4, 1, 2, 3},
+        {2, 1, 1, 2, 2, 3}};
+    game g = game_new((square *)squares);
+    game g2 = game_default_solution();
+
+    if (g == NULL || g2 == NULL)
+        return false;
+    if (!game_equal(g, g2))
+        return false;
+    return true;
+}
+
 /*  USAGE  */
 void usage(int argc, char *argv[]) {
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
@@ -152,6 +208,10 @@ int main(int argc, char *argv[]) {
         ok = test_game_is_empty();
     else if (strcmp("game_restart", argv[1]) == 0)
         ok = test_game_restart();
+    else if (strcmp("game_default", argv[1]) == 0)
+        ok = test_game_default();
+    else if (strcmp("game_default_solution", argv[1]) == 0)
+        ok = test_game_default_solution();
     else {
         fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
         exit(EXIT_FAILURE);
