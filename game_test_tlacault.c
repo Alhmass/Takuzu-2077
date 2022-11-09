@@ -109,12 +109,12 @@ bool test_game_delete(void) {
 
 bool test_game_is_empty(void) {
     int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {0, 4, 3, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0},
-        {0, 3, 0, 0, 3, 0},
-        {0, 3, 4, 0, 0, 0},
-        {0, 0, 4, 0, 0, 3},
-        {0, 0, 0, 0, 0, 3}};
+        {0, 4, 3, 0, 0, 1},
+        {0, 0, 1, 0, 0, 0},
+        {1, 3, 0, 0, 3, 0},
+        {0, 3, 4, 1, 0, 0},
+        {0, 0, 4, 0, 1, 3},
+        {0, 1, 0, 0, 0, 3}};
     game g = game_new((square *)squares);
 
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
