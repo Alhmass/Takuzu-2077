@@ -111,16 +111,24 @@ bool test_game_play_move() {
 
 bool test_game_is_over() {
     game g1 = game_default_solution();
-    int squares2[DEFAULT_SIZE][DEFAULT_SIZE] = {
+    int squares_2[DEFAULT_SIZE][DEFAULT_SIZE] = {
         {1, 1, 2, 2, 3, 3},
         {4, 4, 1, 1, 2, 2},
         {3, 3, 4, 4, 1, 1},
         {2, 2, 3, 3, 4, 4},
         {1, 1, 2, 2, 3, 3},
         {4, 4, 1, 1, 2, 2}};
-    game g2 = game_new((square *)squares2);
+    game g2 = game_new((square *)squares_2);
+    int squares_3[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 1, 0, 1, 0, 1},
+        {1, 0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0, 1},
+        {1, 0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0, 1},
+        {1, 0, 1, 0, 1, 0}};
+    game g3 = game_new((square *)squares_3);
 
-    if (!game_is_over(g1) || game_is_over(g2))
+    if (!game_is_over(g1) || game_is_over(g2) || game_is_over(g3))
         return false;
 
     return true;
