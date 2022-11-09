@@ -117,10 +117,14 @@ bool test_game_is_empty(void) {
         {0, 0, 0, 0, 0, 3}};
     game g = game_new((square *)squares);
 
-    for (uint i = 0; i < DEFAULT_SIZE; i++)
-        for (uint j = 0; j < DEFAULT_SIZE; j++)
-            if (squares[i][j] == 0 && game_is_empty(g, i, j) == false)
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            if (squares[i][j] == 0 && !game_is_empty(g, i, j))
                 return false;
+            if (squares[i][j] == 1 && game_is_empty(g, i, j))
+                return false;
+        }
+    }
     return true;
 }
 
