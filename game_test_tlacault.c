@@ -55,6 +55,10 @@ bool test_game_copy(void) {
         return false;
     if (!game_equal(g, copy))
         return false;
+    square square_g = game_get_square(g, 0, 0);
+    square square_copy = game_get_square(copy, 0, 0);
+    if (square_g != square_copy || &square_g == &square_copy)
+        return false;
     for (uint i = 0; i < DEFAULT_SIZE; i++)
         for (uint j = 0; j < DEFAULT_SIZE; j++)
             if (game_get_square(copy, i, j) != game_get_square(g, i, j))
