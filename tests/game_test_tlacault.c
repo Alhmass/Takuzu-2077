@@ -62,45 +62,20 @@ bool test_game_copy(void) {
 }
 
 bool test_game_equal(void) {
-    game g1 = game_default();
-    game g2 = game_copy(g1);
-    int g1_states[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {-1,  1,  1, -1, -1, -1},
-        {-1, -1, -1, -1, -1, -1},
-        {-1,  1, -1, -1,  1, -1},
-        {-1,  1,  1, -1, -1, -1},
-        {-1, -1,  1, -1, -1,  1},
-        {-1, -1, -1, -1, -1,  1}};
-    game g3 = game_new((square *)g1_states);
-    int g4_squares[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {0, 3, 1, 3, 1, 0},
-        {1, 0, 0, 0, 0, 3},
-        {3, 0, 2, 4, 0, 1},
-        {1, 0, 4, 2, 0, 3},
-        {3, 0, 0, 0, 0, 1},
-        {0, 1, 3, 1, 3, 0}};
-    game g4 = game_new((square *)g4_squares);
-    int g4_states[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {-1,  1,  0,  1,  0, -1},
-        { 0, -1, -1, -1, -1,  1},
-        { 1, -1,  0,  1, -1,  0},
-        { 0, -1,  1,  0, -1,  1},
-        { 1, -1, -1, -1, -1,  0},
-        {-1,  0,  1,  0,  1, -1}};
-    game g5 = game_new((square *)g4_states);
-    int g1_false[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {0, 4, 3, 0, 0, 0},
-        {0, 0, 0, 2, 4, 0},
-        {0, 3, 0, 0, 3, 0},
-        {0, 3, 4, 3, 0, 0},
-        {0, 0, 2, 0, 0, 3},
-        {3, 0, 0, 1, 0, 4}};
-    game g6 = game_new((square *)g1_false);
+    int squares_1[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {0, 4},
+        {1, 3}};
+    game g1 = game_new((square *)squares_1);
+    int squares_2[DEFAULT_SIZE][DEFAULT_SIZE] = {
+        {-1, 0},
+        { 1, 0}};
+    game g2 = game_new((square *)squares_2);
 
-    if (g1 == NULL || g2 == NULL || g3 == NULL || g4 == NULL || g5 == NULL || g6 == NULL)
+    if (g1 == NULL || g2 == NULL)
         return false;
-    if (!game_equal(g1, g2) || game_equal(g1, g3) || game_equal(g4, g5) || game_equal(g1, g6) || game_equal(g4, g6))
+    if (game_equal(g1, g2))
         return false;
+
     return true;
 }
 
