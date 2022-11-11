@@ -48,21 +48,16 @@ bool test_game_new_empty(void) {
 }
 
 bool test_game_copy(void) {
-    game g = game_default();
-    game copy = game_copy(g);
+    game g1 = game_default();
+    game g1_copy = game_copy(g1);
 
-    if (g == NULL || copy == NULL || &g == &copy)
+    if (g1 == NULL || g1_copy == NULL)
         return false;
-    if (!game_equal(g, copy))
+    if (!game_equal(g1, g1_copy))
         return false;
-    square square_g = game_get_square(g, 0, 0);
-    square square_copy = game_get_square(copy, 0, 0);
-    if (square_g != square_copy || &square_g == &square_copy)
+    game_set_square(g1, 0, 0, 1);
+    if (game_equal(g1, g1_copy))
         return false;
-    for (uint i = 0; i < DEFAULT_SIZE; i++)
-        for (uint j = 0; j < DEFAULT_SIZE; j++)
-            if (game_get_square(copy, i, j) != game_get_square(g, i, j))
-                return false;
     return true;
 }
 
