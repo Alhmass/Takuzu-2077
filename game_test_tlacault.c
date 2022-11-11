@@ -63,19 +63,26 @@ bool test_game_copy(void) {
 
 bool test_game_equal(void) {
     int squares_1[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {0, 4},
-        {1, 3}};
+        {0, 4, 3, 0, 1, 0},
+        {1, 0, 2, 0, 0, 0},
+        {0, 3, 0, 2, 3, 0},
+        {0, 3, 4, 0, 1, 0},
+        {0, 1, 4, 0, 2, 3},
+        {0, 0, 0, 2, 0, 3}};
     game g1 = game_new((square *)squares_1);
     int squares_2[DEFAULT_SIZE][DEFAULT_SIZE] = {
-        {-1, 0},
-        { 1, 0}};
+        {-1,  0,  0, -1,  1, -1},
+        { 1, -1,  1, -1, -1, -1},
+        {-1,  0, -1,  1,  0, -1},
+        {-1,  0,  0, -1,  1, -1},
+        {-1,  1,  0, -1,  1,  0},
+        {-1, -1, -1,  1, -1,  0}};
     game g2 = game_new((square *)squares_2);
 
     if (g1 == NULL || g2 == NULL)
         return false;
     if (game_equal(g1, g2))
         return false;
-
     return true;
 }
 
