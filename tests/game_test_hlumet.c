@@ -7,25 +7,25 @@
 #include "game_aux.h"
 
 bool test_game_set_square() {
-    int squares[DEFAULT_SIZE][DEFAULT_SIZE] = {{0, 4, 3, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 3, 0, 0, 3, 0},
-                                               {0, 3, 4, 0, 0, 0}, {0, 0, 4, 0, 0, 3}, {0, 0, 0, 0, 0, 3}};
-    game g = game_new((square *)squares);
+    int squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+                                                0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+    game g = game_new(squares);
 
     if (!g)
         return (false);
     game_set_square(g, 0, 0, S_ZERO);
-    squares[0][0] = S_ZERO;
+    squares[DEFAULT_SIZE * 0 + 0] = S_ZERO;
     game_set_square(g, 1, 0, S_ONE);
-    squares[1][0] = S_ONE;
+    squares[DEFAULT_SIZE * 1 + 0] = S_ONE;
     game_set_square(g, 0, 3, S_IMMUTABLE_ZERO);
-    squares[0][3] = S_IMMUTABLE_ZERO;
+    squares[DEFAULT_SIZE * 0 + 3] = S_IMMUTABLE_ZERO;
     game_set_square(g, 1, 5, S_IMMUTABLE_ONE);
-    squares[1][5] = S_IMMUTABLE_ONE;
+    squares[DEFAULT_SIZE * 1 + 5] = S_IMMUTABLE_ONE;
     game_set_square(g, 0, 1, S_EMPTY);
-    squares[0][1] = S_EMPTY;
+    squares[DEFAULT_SIZE * 0 + 1] = S_EMPTY;
     for (int i = 0; i < DEFAULT_SIZE; i++) {
-        for (int k = 0; k < DEFAULT_SIZE; k++) {
-            if (game_get_square(g, i, k) != squares[i][k])
+        for (int j = 0; j < DEFAULT_SIZE; j++) {
+            if (game_get_square(g, i, j) != squares[DEFAULT_SIZE * i + j])
                 return (false);
         }
     }
@@ -133,75 +133,36 @@ bool test_game_get_next_number() {
 }
 
 void usage(int argc, char *argv[]) {
-    fprintf(stderr,
-            "Usage: %s "
-            "<testname> "
-            "[<...>]\n",
-            argv[0]);
+    fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
     exit(EXIT_FAILURE);
 }
 
 int main(int argc, char *argv[]) {
     if (argc == 1)
         usage(argc, argv);
-    // start test
-    fprintf(stderr,
-            "=> Start "
-            "test "
-            "\"%s\"\n",
-            argv[1]);
+
+    fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
     bool ok = false;
-    if (strcmp("game_"
-               "set_"
-               "square",
-               argv[1]) == 0)
+    if (strcmp("game_set_square", argv[1]) == 0)
         ok = test_game_set_square();
-    else if (strcmp("game_"
-                    "get_"
-                    "square",
-                    argv[1]) == 0)
+    else if (strcmp("game_get_square", argv[1]) == 0)
         ok = test_game_get_square();
-    else if (strcmp("game_"
-                    "get_"
-                    "number",
-                    argv[1]) == 0)
+    else if (strcmp("game_get_number", argv[1]) == 0)
         ok = test_game_get_number();
-    else if (strcmp("game_"
-                    "get_"
-                    "next_"
-                    "square",
-                    argv[1]) == 0)
+    else if (strcmp("game_get_next_square", argv[1]) == 0)
         ok = test_game_get_next_square();
-    else if (strcmp("game_"
-                    "get_"
-                    "next_"
-                    "number",
-                    argv[1]) == 0)
+    else if (strcmp("game_get_next_number", argv[1]) == 0)
         ok = test_game_get_next_number();
     else {
-        fprintf(stderr,
-                "Test not "
-                "found!\n");
+        fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
         exit(EXIT_FAILURE);
     }
-    // print test
-    // result
+
     if (ok) {
-        fprintf(stderr,
-                "Test "
-                "\"%s\" "
-                "finished: "
-                "SUCCESS\n",
-                argv[1]);
-        return (EXIT_SUCCESS);
+        fprintf(stderr, "Test \"%s\" finished: SUCCESS\n", argv[1]);
+        return EXIT_SUCCESS;
     } else {
-        fprintf(stderr,
-                "Test "
-                "\"%s\" "
-                "finished: "
-                "FAILURE\n",
-                argv[1]);
-        return (EXIT_FAILURE);
+        fprintf(stderr, "Test \"%s\" finished: FAILURE\n", argv[1]);
+        return EXIT_FAILURE;
     }
-    return (EXIT_SUCCESS);
 }
