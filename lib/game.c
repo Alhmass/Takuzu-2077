@@ -2,8 +2,8 @@
 #include "game.h"
 
 struct game_s {
-    int **init;
-    int **tab;
+    square *init;
+    square *game;
 };
 
 game game_new(square* squares) {
