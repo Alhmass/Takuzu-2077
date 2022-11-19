@@ -18,6 +18,7 @@ link_libraries(game)
 
 # ---- Binary Generation ---- #
 add_executable(game_text ${game_text_src})
+add_custom_command(TARGET game_text POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib ${CMAKE_SOURCE_DIR})
 
 # ---- Tests Generation ---- #
 add_executable(game_test_tlacault               tests/game_test_tlacault.c)
