@@ -79,7 +79,21 @@ void game_set_square(game g, uint i, uint j, square s) {
 
 square game_get_square(cgame g, uint i, uint j) { return g->game[game_index(g, i, j)]; }
 
-int game_get_number(cgame g, uint i, uint j) { return 0; }
+int game_get_number(cgame g, uint i, uint j) {
+    int index = 0;
+
+    if (!g)
+        throw_error("g is not initialized!\n");
+    if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
+        throw_error("i or j value is out of bounds!\n");
+    index = game_index(g, i, j);
+    if (g->game[index] == S_EMPTY)
+        return (-1);
+    else if (g->game[index] == S_ZERO || g->game[index] == S_IMMUTABLE_ZERO)
+        return (0);
+    else
+        return (1);
+}
 
 int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) { return 0; }
 
