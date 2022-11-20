@@ -41,13 +41,11 @@ game game_copy(cgame g) { return NULL; }
 bool game_equal(cgame g1, cgame g2) {
     if (g1 == NULL || g2 == NULL)
         return false;
-    uint i = 0;
-    uint j = 0;
-    while (g1 != NULL && g2 != NULL) {
-        if (g1->game[game_index(g1, i, j)] != g2->game[game_index(g2, i, j)])
-            return false;
-        i++;
-        j++;
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            if (game_get_square(g1, i, j) != game_get_square(g2, i, j))
+                return false;
+        }
     }
     return true;
 }
