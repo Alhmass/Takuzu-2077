@@ -92,10 +92,22 @@ int game_get_number(cgame g, uint i, uint j) {
     else if (g->game[index] == S_ZERO || g->game[index] == S_IMMUTABLE_ZERO)
         return (0);
     else
-        return (1); 
+        return (1);
 }
 
-int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) { return 0; }
+int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
+    if (dist > 2)
+        throw_error("the distance value must be <=2!\n");
+    if (dir == LEFT &&  dist <= j)
+        return (game_get_square(g, i, j - dist));
+    else if (dir == RIGHT && (j + dist) < DEFAULT_SIZE)
+        return (game_get_square(g, i, j + dist));
+    else if (dir == UP && dist <= i)
+        return (game_get_square(g, i - dist, j));
+    else if (dir == DOWN && (i + dist) < DEFAULT_SIZE)
+        return (game_get_square(g, i + dist, j));
+    return (-1);
+}
 
 int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) { return 0; }
 
