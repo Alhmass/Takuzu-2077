@@ -62,8 +62,12 @@ bool game_equal(cgame g1, cgame g2) {
 }
 
 void game_delete(game g) {
-    free(g->init);
-    free(g->game);
+    if (g == NULL)
+        return;
+    if (g->init != NULL)
+        free(g->init);
+    if (g->game != NULL)
+        free(g->game);
     free(g);
 }
 
