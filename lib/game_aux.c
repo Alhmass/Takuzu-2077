@@ -37,4 +37,8 @@ game game_default(void) {
     return game_new(squares);
 }
 
-game game_default_solution(void) { return NULL; }
+game game_default_solution(void) {
+    square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
+                                                   2, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
+    return game_new(squares);
+}
