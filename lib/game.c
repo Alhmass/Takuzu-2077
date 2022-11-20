@@ -61,7 +61,11 @@ bool game_equal(cgame g1, cgame g2) {
     return true;
 }
 
-void game_delete(game g) { return; }
+void game_delete(game g) {
+    free(g->init);
+    free(g->game);
+    free(g);
+}
 
 void game_set_square(game g, uint i, uint j, square s) {
     if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
