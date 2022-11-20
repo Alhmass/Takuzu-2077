@@ -32,7 +32,9 @@ game game_new(square *squares) {
     return g;
 }
 
-game game_new_empty(void) { return NULL; }
+game game_new_empty(void) {
+    return game_new((square *)calloc(DEFAULT_SIZE * DEFAULT_SIZE, sizeof(square)));
+}
 
 game game_copy(cgame g) { return NULL; }
 
