@@ -63,7 +63,11 @@ bool game_equal(cgame g1, cgame g2) {
 
 void game_delete(game g) { return; }
 
-void game_set_square(game g, uint i, uint j, square s) { return; }
+void game_set_square(game g, uint i, uint j, square s) {
+    if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
+        return;
+    g->game[game_index(g, i, j)] = s;
+}
 
 square game_get_square(cgame g, uint i, uint j) { return g->game[game_index(g, i, j)]; }
 
