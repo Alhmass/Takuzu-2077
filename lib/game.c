@@ -93,4 +93,6 @@ void game_play_move(game g, uint i, uint j, square s) { return; }
 
 bool game_is_over(cgame g) { return false; }
 
-void game_restart(game g) { return; }
+void game_restart(game g) {
+    memcpy(g->game, g->init, sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
+}
