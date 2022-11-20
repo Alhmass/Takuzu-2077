@@ -66,8 +66,8 @@ int main(void)
     game g = game_default();
     char user_input;
     int scanf_return = 0;
-    int i = 0;
-    int j = 0;
+    uint i = 0;
+    uint j = 0;
 
     assert(g != NULL);
     while (!game_is_over(g)) {
