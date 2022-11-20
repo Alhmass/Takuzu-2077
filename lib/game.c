@@ -32,11 +32,22 @@ game game_new(square *squares) {
     return g;
 }
 
-game game_new_empty(void) {
-    return game_new((square *)calloc(DEFAULT_SIZE * DEFAULT_SIZE, sizeof(square)));
-}
+game game_new_empty(void) { return game_new((square *)calloc(DEFAULT_SIZE * DEFAULT_SIZE, sizeof(square))); }
 
-game game_copy(cgame g) { return NULL; }
+game game_copy(cgame g) {
+    game copy = memcpy(malloc(sizeof(struct game_s)), g, sizeof(struct game_s));
+    if (copy == NULL)
+        throw_error("malloc failed");
+    copy->init = memcpy(malloc(sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE), g->init,
+                        sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
+    if (copy->init == NULL)
+        throw_error("malloc failed");
+    copy->game = memcpy(malloc(sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE), g->game,
+                        sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
+    if (copy->game == NULL)
+        throw_error("malloc failed");
+    return copy;
+}
 
 bool game_equal(cgame g1, cgame g2) {
     if (g1 == NULL || g2 == NULL)
