@@ -125,7 +125,16 @@ int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
 
 bool game_is_empty(cgame g, uint i, uint j) { return false; }
 
-bool game_is_immutable(cgame g, uint i, uint j) { return false; }
+bool game_is_immutable(cgame g, uint i, uint j) {
+    if (!g){
+        throw_error("game g is not initialized");
+    }
+    square s = game_get_square(g, i, j);
+    if (s == 3 || s == 4) {
+        return true;
+    }
+    return false;
+}
 
 int game_has_error(cgame g, uint i, uint j) { return 0; }
 
