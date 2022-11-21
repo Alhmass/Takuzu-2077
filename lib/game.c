@@ -129,6 +129,7 @@ bool game_is_immutable(cgame g, uint i, uint j) {
     if (!g){
         throw_error("game g is not initialized");
     }
+    assert(((i <= 0 && i < DEFAULT_SIZE) && (j <= 0 && j < DEFAULT_SIZE)));
     square s = game_get_square(g, i, j);
     if (s == 3 || s == 4) {
         return true;
