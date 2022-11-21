@@ -150,7 +150,20 @@ bool game_is_immutable(cgame g, uint i, uint j) {
 
 int game_has_error(cgame g, uint i, uint j) { return 0; }
 
-bool game_check_move(cgame g, uint i, uint j, square s) { return false; }
+bool game_check_move(cgame g, uint i, uint j, square s) { 
+    if (!g){
+        throw_error("game g is not initialized");
+    }
+    assert(((i >= 0 && i < DEFAULT_SIZE) && (j >= 0 && j < DEFAULT_SIZE)));
+    if (s == S_IMMUTABLE_ONE || s == S_IMMUTABLE_ZERO){
+        throw_error("Invalid parameter : square must not be immutable");
+    }
+    square c = game_get_square(g, i, j);
+    if (c == S_IMMUTABLE_ONE || c == S_IMMUTABLE_ZERO){
+        return false;
+    } 
+    return true;
+}
 
 void game_play_move(game g, uint i, uint j, square s) { return; }
 
