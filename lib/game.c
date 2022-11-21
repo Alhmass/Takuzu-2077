@@ -167,7 +167,19 @@ bool game_check_move(cgame g, uint i, uint j, square s) {
 
 void game_play_move(game g, uint i, uint j, square s) { return; }
 
-bool game_is_over(cgame g) { return false; }
+bool game_is_over(cgame g) { 
+    if (!g){
+        throw_error("game g is not initialized");
+    }
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            if (game_is_empty(g, i, j) || game_has_error(g, i, j)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 void game_restart(game g) {
     memcpy(g->game, g->init, sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
