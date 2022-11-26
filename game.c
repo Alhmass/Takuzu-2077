@@ -153,7 +153,7 @@ void game_play_move(game g, uint i, uint j, square s) {
     if (!g) {
         throw_error("game g is not initialized");
     }
-    assert(((i >= 0 && i < DEFAULT_SIZE) && (j >= 0 && j < DEFAULT_SIZE)));
+    assert(((i >= 0 && i < DEFAULT_SIZE) && (j >= 0 && j < DEFAULT_SIZE))); //Check if (i, j) are in the grid
     if (game_check_move(g, i, j, s)) {
         game_set_square(g, i, j, s);
     }
