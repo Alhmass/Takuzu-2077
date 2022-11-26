@@ -125,15 +125,10 @@ int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
 }
 
 bool game_is_empty(cgame g, uint i, uint j) {
-    if (!g) {
+    if (g == NULL)
         throw_error("game g is not initialized");
-    }
     assert(((i >= 0 && i < DEFAULT_SIZE) && (j >= 0 && j < DEFAULT_SIZE)));
-    square s = game_get_square(g, i, j);
-    if (s == S_EMPTY) {
-        return true;
-    }
-    return false;
+    return (game_get_square(g, i, j) == S_EMPTY);
 }
 
 bool game_is_immutable(cgame g, uint i, uint j) {
@@ -165,7 +160,7 @@ bool game_check_move(cgame g, uint i, uint j, square s) {
     return true;
 }
 
-void game_play_move(game g, uint i, uint j, square s) { 
+void game_play_move(game g, uint i, uint j, square s) {
     if (!g){
         throw_error("game g is not initialized");
     }

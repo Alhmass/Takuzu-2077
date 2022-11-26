@@ -70,12 +70,15 @@ bool test_game_is_empty(void) {
                                                    0, 3, 4, 1, 0, 0, 0, 0, 4, 0, 1, 3, 0, 1, 0, 0, 0, 3};
     game g = game_new(squares);
 
-    for (uint i = 0; i < DEFAULT_SIZE; i++) {
-        for (uint j = 0; j < DEFAULT_SIZE; j++) {
-            if (squares[DEFAULT_SIZE * j + i] == 0 && !game_is_empty(g, i, j))
+    for (uint j = 0; j < DEFAULT_SIZE; j++) {
+        for (uint i = 0; i < DEFAULT_SIZE; i++) {
+            if (game_get_square(g, i, j) == 0 && !game_is_empty(g, i, j)) {
+                printf("square (%d, %d) is empty but game_is_empty() returns false\n", i, j);
                 return false;
-            if (squares[DEFAULT_SIZE * j + i] == 1 && game_is_empty(g, i, j))
+            } if (game_get_square(g, i, j) == 1 && game_is_empty(g, i, j)) {
+                printf("square (%d, %d) is not empty but game_is_empty() returns true\n", i, j);
                 return false;
+            }
         }
     }
     return true;
@@ -92,7 +95,7 @@ bool test_game_restart(void) {
 
     for (uint i = 0; i < DEFAULT_SIZE; i++)
         for (uint j = 0; j < DEFAULT_SIZE; j++)
-            if (game_get_square(g, i, j) != squares[DEFAULT_SIZE * j + i])
+            if (game_get_square(g, i, j) != game_get_square(g, i, j))
                 return false;
     return true;
 }
