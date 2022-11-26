@@ -11,9 +11,7 @@ bool test_game_new(void) {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
-    game_print(g);
     game g2 = game_default();
-    game_print(g2);
 
     if (g == NULL || g2 == NULL)
         return false;
