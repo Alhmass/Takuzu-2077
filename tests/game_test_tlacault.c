@@ -11,15 +11,12 @@ bool test_game_new(void) {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
+    game_print(g);
     game g2 = game_default();
+    game_print(g2);
 
-    if (g == NULL)
+    if (g == NULL || g2 == NULL)
         return false;
-    for (uint i = 0; i < DEFAULT_SIZE; i++)
-        for (uint j = 0; j < DEFAULT_SIZE; j++)
-            if (game_get_square(g, i, j) != squares[DEFAULT_SIZE * j + i] ||
-                game_get_square(g, i, j) != game_get_square(g2, i, j))
-                return false;
     if (!game_equal(g, g2))
         return false;
     return true;

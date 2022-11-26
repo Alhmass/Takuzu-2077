@@ -1,10 +1,10 @@
 #include "game.h"
 
+#include <assert.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <assert.h>
 
 struct game_s {
     square *init;
@@ -99,7 +99,7 @@ int game_get_number(cgame g, uint i, uint j) {
 int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
     if (dist > 2)
         throw_error("the distance value must be <=2!\n");
-    if (dir == LEFT &&  dist <= j)
+    if (dir == LEFT && dist <= j)
         return (game_get_square(g, i, j - dist));
     else if (dir == RIGHT && (j + dist) < DEFAULT_SIZE)
         return (game_get_square(g, i, j + dist));
@@ -110,10 +110,10 @@ int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
     return (-1);
 }
 
-int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) { 
+int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
     if (dist > 2)
         throw_error("the distance value must be <=2!\n");
-    if (dir == LEFT &&  dist <= j)
+    if (dir == LEFT && dist <= j)
         return (game_get_number(g, i, j - dist));
     else if (dir == RIGHT && (j + dist) < DEFAULT_SIZE)
         return (game_get_number(g, i, j + dist));
@@ -124,20 +124,20 @@ int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
     return (-1);
 }
 
-bool game_is_empty(cgame g, uint i, uint j) { 
-    if (!g){
+bool game_is_empty(cgame g, uint i, uint j) {
+    if (!g) {
         throw_error("game g is not initialized");
     }
     assert(((i >= 0 && i < DEFAULT_SIZE) && (j >= 0 && j < DEFAULT_SIZE)));
     square s = game_get_square(g, i, j);
-    if (s == S_EMPTY){
-        return true; 
+    if (s == S_EMPTY) {
+        return true;
     }
     return false;
 }
 
 bool game_is_immutable(cgame g, uint i, uint j) {
-    if (!g){
+    if (!g) {
         throw_error("game g is not initialized");
     }
     assert(((i >= 0 && i < DEFAULT_SIZE) && (j >= 0 && j < DEFAULT_SIZE)));
@@ -150,25 +150,25 @@ bool game_is_immutable(cgame g, uint i, uint j) {
 
 int game_has_error(cgame g, uint i, uint j) { return 0; }
 
-bool game_check_move(cgame g, uint i, uint j, square s) { 
-    if (!g){
+bool game_check_move(cgame g, uint i, uint j, square s) {
+    if (!g) {
         throw_error("game g is not initialized");
     }
     assert(((i >= 0 && i < DEFAULT_SIZE) && (j >= 0 && j < DEFAULT_SIZE)));
-    if (s == S_IMMUTABLE_ONE || s == S_IMMUTABLE_ZERO){
+    if (s == S_IMMUTABLE_ONE || s == S_IMMUTABLE_ZERO) {
         throw_error("Invalid parameter : square must not be immutable");
     }
     square c = game_get_square(g, i, j);
-    if (c == S_IMMUTABLE_ONE || c == S_IMMUTABLE_ZERO){
+    if (c == S_IMMUTABLE_ONE || c == S_IMMUTABLE_ZERO) {
         return false;
-    } 
+    }
     return true;
 }
 
 void game_play_move(game g, uint i, uint j, square s) { return; }
 
-bool game_is_over(cgame g) { 
-    if (!g){
+bool game_is_over(cgame g) {
+    if (!g) {
         throw_error("game g is not initialized");
     }
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
@@ -181,6 +181,4 @@ bool game_is_over(cgame g) {
     return true;
 }
 
-void game_restart(game g) {
-    memcpy(g->game, g->init, sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
-}
+void game_restart(game g) { memcpy(g->game, g->init, sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE); }
