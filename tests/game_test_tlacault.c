@@ -128,7 +128,7 @@ bool test_game_default_solution(void) {
 }
 
 /*  USAGE  */
-void usage(int argc, char *argv[]) {
+void usage(char *argv[]) {
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
     exit(EXIT_FAILURE);
 }
@@ -136,7 +136,7 @@ void usage(int argc, char *argv[]) {
 /*  MAIN ROUTINE  */
 int main(int argc, char *argv[]) {
     if (argc == 1)
-        usage(argc, argv);
+        usage(argv);
 
     fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
     bool ok = false;

@@ -132,14 +132,14 @@ bool test_game_get_next_number() {
     return (status);
 }
 
-void usage(int argc, char *argv[]) {
+void usage(char *argv[]) {
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
     exit(EXIT_FAILURE);
 }
 
 int main(int argc, char *argv[]) {
     if (argc == 1)
-        usage(argc, argv);
+        usage(argv);
 
     fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
     bool ok = false;

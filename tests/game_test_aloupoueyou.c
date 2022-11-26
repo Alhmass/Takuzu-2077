@@ -6,7 +6,7 @@
 #include "game.h"
 #include "game_aux.h"
 
-void usage(int argc, char *argv[]) {
+void usage(char *argv[]) {
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
     exit(EXIT_FAILURE);
 }
@@ -106,7 +106,7 @@ bool test_game_is_over() {
 
 int main(int argc, char *argv[]) {
     if (argc == 1)
-        usage(argc, argv);
+        usage(argv);
 
     bool ok = false;
     if (strcmp(argv[1], "game_is_immutable") == 0) {
