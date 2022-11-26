@@ -24,11 +24,11 @@ typedef unsigned int uint;
  * @brief The different squares used in the game.
  **/
 typedef enum {
-  S_EMPTY,          /**< an empty square */
-  S_ZERO,           /**< a zero square */
-  S_ONE,            /**< a one square */
-  S_IMMUTABLE_ZERO, /**< an immutable zero square */
-  S_IMMUTABLE_ONE,  /**< an immutable one square */
+    S_EMPTY,          /**< an empty square */
+    S_ZERO,           /**< a zero square */
+    S_ONE,            /**< a one square */
+    S_IMMUTABLE_ZERO, /**< an immutable zero square */
+    S_IMMUTABLE_ONE,  /**< an immutable one square */
 } square;
 
 /**

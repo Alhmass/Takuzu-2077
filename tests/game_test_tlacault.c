@@ -75,7 +75,8 @@ bool test_game_is_empty(void) {
             if (game_get_square(g, i, j) == 0 && !game_is_empty(g, i, j)) {
                 printf("square (%d, %d) is empty but game_is_empty() returns false\n", i, j);
                 return false;
-            } if (game_get_square(g, i, j) == 1 && game_is_empty(g, i, j)) {
+            }
+            if (game_get_square(g, i, j) == 1 && game_is_empty(g, i, j)) {
                 printf("square (%d, %d) is not empty but game_is_empty() returns true\n", i, j);
                 return false;
             }

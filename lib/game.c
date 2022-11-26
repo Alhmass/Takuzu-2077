@@ -161,11 +161,11 @@ bool game_check_move(cgame g, uint i, uint j, square s) {
 }
 
 void game_play_move(game g, uint i, uint j, square s) {
-    if (!g){
+    if (!g) {
         throw_error("game g is not initialized");
     }
     assert(((i >= 0 && i < DEFAULT_SIZE) && (j >= 0 && j < DEFAULT_SIZE)));
-    if (game_check_move(g, i, j,s)){
+    if (game_check_move(g, i, j, s)) {
         game_set_square(g, i, j, s);
     }
 }

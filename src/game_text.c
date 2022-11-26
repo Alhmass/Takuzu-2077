@@ -1,13 +1,12 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "game.h"
 #include "game_aux.h"
 
-static void display_help(void)
-{
+static void display_help(void) {
     printf("> action: help\n");
     printf("- press 'w <i> <j>' to put a zero/white at square (i,j)\n");
     printf("- press 'b <i> <j>' to put a one/black at square (i,j)\n");
@@ -16,8 +15,7 @@ static void display_help(void)
     printf("- press 'q' to quit\n");
 }
 
-static void command(game *g, char c)
-{
+static void command(game *g, char c) {
     if (c == 'r') {
         printf("> action: restart\n");
         game_restart(*g);
@@ -31,8 +29,7 @@ static void command(game *g, char c)
     }
 }
 
-static void display_errors(const game *g)
-{
+static void display_errors(const game *g) {
     for (int i = 0; i < DEFAULT_SIZE; i++) {
         for (int j = 0; j < DEFAULT_SIZE; j++) {
             if (game_has_error(*g, i, j))
@@ -41,8 +38,7 @@ static void display_errors(const game *g)
     }
 }
 
-static square char_to_square(char c)
-{
+static square char_to_square(char c) {
     if (c == 'w')
         return (S_ZERO);
     else if (c == 'b')
@@ -51,8 +47,7 @@ static square char_to_square(char c)
         return (S_EMPTY);
 }
 
-static void try_play_move(game *g, char c, int i, int j)
-{
+static void try_play_move(game *g, char c, int i, int j) {
     square s = char_to_square(c);
 
     if (game_check_move(*g, i, j, s)) {
@@ -61,8 +56,7 @@ static void try_play_move(game *g, char c, int i, int j)
     }
 }
 
-int main(void)
-{
+int main(void) {
     game g = game_default();
     char user_input;
     int scanf_return = 0;
