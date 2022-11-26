@@ -7,7 +7,6 @@
 #include <string.h>
 
 struct game_s {
-    square *init;
     square *game;
 };
 
@@ -22,13 +21,9 @@ game game_new(square *squares) {
     game g = malloc(sizeof(struct game_s));
     if (g == NULL)
         throw_error("malloc failed");
-    g->init = malloc(sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
-    if (g->init == NULL)
-        throw_error("malloc failed");
     g->game = malloc(sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
     if (g->game == NULL)
         throw_error("malloc failed");
-    memcpy(g->init, squares, sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
     memcpy(g->game, squares, sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
     return g;
 }
@@ -38,10 +33,6 @@ game game_new_empty(void) { return game_new((square *)calloc(DEFAULT_SIZE * DEFA
 game game_copy(cgame g) {
     game copy = memcpy(malloc(sizeof(struct game_s)), g, sizeof(struct game_s));
     if (copy == NULL)
-        throw_error("malloc failed");
-    copy->init = memcpy(malloc(sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE), g->init,
-                        sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
-    if (copy->init == NULL)
         throw_error("malloc failed");
     copy->game = memcpy(malloc(sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE), g->game,
                         sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
@@ -65,8 +56,6 @@ bool game_equal(cgame g1, cgame g2) {
 void game_delete(game g) {
     if (g == NULL)
         return;
-    if (g->init != NULL)
-        free(g->init);
     if (g->game != NULL)
         free(g->game);
     free(g);
@@ -184,4 +173,13 @@ bool game_is_over(cgame g) {
     return true;
 }
 
-void game_restart(game g) { memcpy(g->game, g->init, sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE); }
+void game_restart(game g) {
+    if (g == NULL)
+        throw_error("game g is not initialized");
+
+    for (uint i = 0; i < DEFAULT_SIZE; i++)
+        for (uint j = 0; j < DEFAULT_SIZE; j++)
+            if (!game_is_immutable(g, i, j))
+                game_set_square(g, i, j, S_EMPTY);
+}
+
