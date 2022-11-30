@@ -10,7 +10,7 @@ struct game_s {
     square *game;
 };
 
-uint game_index(uint i, uint j) { return DEFAULT_SIZE * i + j; }
+static uint game_index(uint i, uint j) { return DEFAULT_SIZE * i + j; }
 
 void throw_error(char *msg) {
     fprintf(stderr, "[error] %s\n", msg);
@@ -67,16 +67,20 @@ void game_set_square(game g, uint i, uint j, square s) {
     g->game[game_index(i, j)] = s;
 }
 
-square game_get_square(cgame g, uint i, uint j) { return g->game[game_index(i, j)]; }
+square game_get_square(cgame g, uint i, uint j) {
+    if (g == NULL)
+        throw_error("game is NULL");
+    if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
+        throw_error("invalid index");
+    return g->game[game_index(i, j)];
+}
 
 int game_get_number(cgame g, uint i, uint j) {
-    int index = 0;
-
     if (!g)
         throw_error("g is not initialized!\n");
     if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
         throw_error("i or j value is out of bounds!\n");
-    index = game_index(i, j);
+    uint index = game_index(i, j);
     if (g->game[index] == S_EMPTY)
         return (-1);
     else if (g->game[index] == S_ZERO || g->game[index] == S_IMMUTABLE_ZERO)
@@ -135,8 +139,20 @@ bool game_is_immutable(cgame g, uint i, uint j) {
 int game_has_error(cgame g, uint i, uint j) {
     if (g == NULL)
         throw_error("game g is not initialized");
-    (void)i;
-    (void)j;
+    if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
+        throw_error("i or j value is out of bounds!\n");
+
+    int number = game_get_number(g, i, j);
+    int vertical = 0;
+    for (uint vi = 0; vi < DEFAULT_SIZE; vi++)
+        if (game_get_number(g, vi, j) == number)
+            vertical++;
+    int horizontal = 0;
+    for (uint hj = 0; hj < DEFAULT_SIZE; hj++)
+        if (game_get_number(g, i, hj) == number)
+            horizontal++;
+    if (vertical > 2 || horizontal > 2)
+        return 1;
     return 0;
 }
 
