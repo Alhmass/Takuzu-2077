@@ -15,17 +15,23 @@ bool test_game_is_immutable() {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
+
+    if (!g)
+        return false;
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
             if (game_is_immutable(g, i, j) &&
                 (game_get_square(g, i, j) != S_IMMUTABLE_ONE && game_get_square(g, i, j) != S_IMMUTABLE_ZERO)) {
+                game_delete(g);
                 return false;
             } else if (!(game_is_immutable(g, i, j)) &&
                        (game_get_square(g, i, j) == S_IMMUTABLE_ONE || game_get_square(g, i, j) == S_IMMUTABLE_ZERO)) {
+                game_delete(g);
                 return false;
             }
         }
     }
+    game_delete(g);
     return true;
 }
 
@@ -35,10 +41,20 @@ bool test_game_has_error() {
                                                      4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3};
     game g2 = game_new(squares_2);
 
-    for (uint i = 0; i < DEFAULT_SIZE; i++)
-        for (uint j = 0; j < DEFAULT_SIZE; j++)
-            if (game_has_error(g1, i, j) || !game_has_error(g2, i, j))
+    if (!g1 || !g2)
+        return false;
+
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            if (game_has_error(g1, i, j) || !game_has_error(g2, i, j)) {
+                game_delete(g1);
+                game_delete(g2);
                 return false;
+            }
+        }
+    }
+    game_delete(g1);
+    game_delete(g2);
     return true;
 }
 
@@ -46,17 +62,23 @@ bool test_game_check_move() {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
+    
+    if (!g)
+        return false;
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
             if (game_check_move(g, i, j, S_EMPTY) &&
                 (game_get_square(g, i, j) == S_IMMUTABLE_ONE || game_get_square(g, i, j) == S_IMMUTABLE_ZERO)) {
+                game_delete(g);
                 return false;
             } else if (!(game_check_move(g, i, j, S_EMPTY)) &&
                        (game_get_square(g, i, j) != S_IMMUTABLE_ONE && game_get_square(g, i, j) != S_IMMUTABLE_ZERO)) {
+                game_delete(g);
                 return false;
             }
         }
     }
+    game_delete(g);
     return true;
 }
 
@@ -64,6 +86,9 @@ bool test_game_play_move() {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
+
+    if (!g)
+        return (false);
     square q;
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
@@ -74,13 +99,16 @@ bool test_game_play_move() {
                 game_play_move(g, i, j, S_ONE);
             }
             if ((q == S_IMMUTABLE_ONE || q == S_IMMUTABLE_ZERO) && q != game_get_square(g, i, j)) {
+                game_delete(g);
                 return false;
             }
             if ((q != S_IMMUTABLE_ONE && q != S_IMMUTABLE_ZERO) && q == game_get_square(g, i, j)) {
+                game_delete(g);
                 return false;
             }
         }
     }
+    game_delete(g);
     return true;
 }
 
@@ -99,8 +127,22 @@ bool test_game_is_over() {
                                                      1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0};
     game g5 = game_new(squares_5);
 
-    if (!game_is_over(g1) || game_is_over(g2) || game_is_over(g3) || game_is_over(g4) || game_is_over(g5))
+    if (!g1 || !g2 || !g3 || !g4 || !g5)
         return false;
+
+    if (!game_is_over(g1) || game_is_over(g2) || game_is_over(g3) || game_is_over(g4) || game_is_over(g5)) {
+        game_delete(g1);
+        game_delete(g2);
+        game_delete(g3);
+        game_delete(g4);
+        game_delete(g5);
+        return false;
+    }
+    game_delete(g1);
+    game_delete(g2);
+    game_delete(g3);
+    game_delete(g4);
+    game_delete(g5);
     return true;
 }
 

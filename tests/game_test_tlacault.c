@@ -15,8 +15,13 @@ bool test_game_new(void) {
 
     if (g == NULL || g2 == NULL)
         return false;
-    if (!game_equal(g, g2))
+    if (!game_equal(g, g2)) {
+        game_delete(g);
+        game_delete(g2);
         return false;
+    }
+    game_delete(g);
+    game_delete(g2);
     return true;
 }
 
@@ -28,8 +33,13 @@ bool test_game_new_empty(void) {
 
     if (g1 == NULL || g2 == NULL)
         return false;
-    if (!game_equal(g1, g2))
+    if (!game_equal(g1, g2)) {
+        game_delete(g1);
+        game_delete(g2);
         return false;
+    }
+    game_delete(g1);
+    game_delete(g2);
     return true;
 }
 
@@ -39,12 +49,20 @@ bool test_game_copy(void) {
 
     if (g1 == NULL || g1_copy == NULL)
         return false;
-    if (!game_equal(g1, g1_copy))
+    if (!game_equal(g1, g1_copy)) {
+        game_delete(g1);
+        game_delete(g1_copy);
         return false;
+    }
     game_set_square(g1, 0, 0, 1);
     printf("PASS\n");
-    if (game_equal(g1, g1_copy))
+    if (game_equal(g1, g1_copy)) {
+        game_delete(g1);
+        game_delete(g1_copy);
         return false;
+    }
+    game_delete(g1);
+    game_delete(g1_copy);
     return true;
 }
 
@@ -58,8 +76,13 @@ bool test_game_equal(void) {
 
     if (g1 == NULL || g2 == NULL)
         return false;
-    if (game_equal(g1, g2))
+    if (game_equal(g1, g2)) {
+        game_delete(g1);
+        game_delete(g2);
         return false;
+    }
+    game_delete(g1);
+    game_delete(g2);
     return true;
 }
 
@@ -70,18 +93,24 @@ bool test_game_is_empty(void) {
                                                    0, 3, 4, 1, 0, 0, 0, 0, 4, 0, 1, 3, 0, 1, 0, 0, 0, 3};
     game g = game_new(squares);
 
+    if (!g)
+        return false;
+
     for (uint j = 0; j < DEFAULT_SIZE; j++) {
         for (uint i = 0; i < DEFAULT_SIZE; i++) {
             if (game_get_square(g, i, j) == 0 && !game_is_empty(g, i, j)) {
                 printf("square (%d, %d) is empty but game_is_empty() returns false\n", i, j);
+                 game_delete(g);
                 return false;
             }
             if (game_get_square(g, i, j) == 1 && game_is_empty(g, i, j)) {
                 printf("square (%d, %d) is not empty but game_is_empty() returns true\n", i, j);
+                 game_delete(g);
                 return false;
             }
         }
     }
+    game_delete(g);
     return true;
 }
 
@@ -90,14 +119,22 @@ bool test_game_restart(void) {
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
 
+    if (!g)
+        return false;
+
     game_set_square(g, 0, 0, S_ZERO);
     game_set_square(g, 3, 5, S_ONE);
     game_restart(g);
 
-    for (uint i = 0; i < DEFAULT_SIZE; i++)
-        for (uint j = 0; j < DEFAULT_SIZE; j++)
-            if (game_get_square(g, i, j) != game_get_square(g, i, j))
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            if (game_get_square(g, i, j) != game_get_square(g, i, j)) {
+                game_delete(g);
                 return false;
+            }
+        }
+    }
+    game_delete(g);
     return true;
 }
 
@@ -109,8 +146,13 @@ bool test_game_default(void) {
 
     if (g == NULL || g2 == NULL)
         return false;
-    if (!game_equal(g, g2))
+    if (!game_equal(g, g2)) {
+        game_delete(g);
+        game_delete(g2);
         return false;
+    }
+    game_delete(g);
+    game_delete(g2);
     return true;
 }
 
@@ -122,8 +164,13 @@ bool test_game_default_solution(void) {
 
     if (g == NULL || g2 == NULL)
         return false;
-    if (!game_equal(g, g2))
+    if (!game_equal(g, g2)) {
+        game_delete(g);
+        game_delete(g2);
         return false;
+    }
+    game_delete(g);
+    game_delete(g2);
     return true;
 }
 
