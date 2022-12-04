@@ -154,14 +154,27 @@ int game_has_error(cgame g, uint i, uint j) {
         throw_error("i or j value is out of bounds!\n");
 
     int number = game_get_number(g, i, j);
-    int vertical = 0;
-    for (uint vi = 0; vi < DEFAULT_SIZE; vi++)
+
+    if (number == -1)
+        return 0;
+    uint vertical = 0;
+    for (uint vi = 0; vi < DEFAULT_SIZE; vi++) {
+        if (vertical > 2)
+            break;
         if (game_get_number(g, vi, j) == number)
             vertical++;
-    int horizontal = 0;
-    for (uint hj = 0; hj < DEFAULT_SIZE; hj++)
+        else
+            vertical = 0;
+    }
+    uint horizontal = 0;
+    for (uint hj = 0; hj < DEFAULT_SIZE; hj++) {
+        if (horizontal > 2)
+            break;
         if (game_get_number(g, i, hj) == number)
             horizontal++;
+        else
+            horizontal = 0;
+    }
     if (vertical > 2 || horizontal > 2)
         return 1;
     return 0;
