@@ -28,7 +28,19 @@ game game_new(square *squares) {
     return g;
 }
 
-game game_new_empty(void) { return game_new((square *)calloc(DEFAULT_SIZE * DEFAULT_SIZE, sizeof(square))); }
+game game_new_empty(void) 
+{
+    square *squares = (square *)calloc(DEFAULT_SIZE * DEFAULT_SIZE, sizeof(square));
+
+    if (!squares)
+        throw_error("malloc failed");
+    game g = game_new(squares);
+
+    if (!g)
+        throw_error("malloc failed");
+    free(squares); 
+    return g;
+}
 
 game game_copy(cgame g) {
     game copy = memcpy(malloc(sizeof(struct game_s)), g, sizeof(struct game_s));
