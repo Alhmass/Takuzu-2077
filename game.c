@@ -28,8 +28,7 @@ game game_new(square *squares) {
     return g;
 }
 
-game game_new_empty(void) 
-{
+game game_new_empty(void) {
     square *squares = (square *)calloc(DEFAULT_SIZE * DEFAULT_SIZE, sizeof(square));
 
     if (!squares)
@@ -38,7 +37,7 @@ game game_new_empty(void)
 
     if (!g)
         throw_error("malloc failed");
-    free(squares); 
+    free(squares);
     return g;
 }
 

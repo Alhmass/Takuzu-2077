@@ -62,7 +62,7 @@ bool test_game_check_move() {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
-    
+
     if (!g)
         return false;
     for (uint i = 0; i < DEFAULT_SIZE; i++) {

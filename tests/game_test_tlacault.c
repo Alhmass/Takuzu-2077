@@ -100,12 +100,12 @@ bool test_game_is_empty(void) {
         for (uint i = 0; i < DEFAULT_SIZE; i++) {
             if (game_get_square(g, i, j) == 0 && !game_is_empty(g, i, j)) {
                 printf("square (%d, %d) is empty but game_is_empty() returns false\n", i, j);
-                 game_delete(g);
+                game_delete(g);
                 return false;
             }
             if (game_get_square(g, i, j) == 1 && game_is_empty(g, i, j)) {
                 printf("square (%d, %d) is not empty but game_is_empty() returns true\n", i, j);
-                 game_delete(g);
+                game_delete(g);
                 return false;
             }
         }
