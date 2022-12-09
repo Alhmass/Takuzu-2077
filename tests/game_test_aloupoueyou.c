@@ -40,7 +40,6 @@ bool test_game_has_error() {
     square squares_2[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 2,
                                                      4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3};
     game g2 = game_new(squares_2);
-
     if (!g1 || !g2)
         return false;
 
@@ -55,6 +54,24 @@ bool test_game_has_error() {
     }
     game_delete(g1);
     game_delete(g2);
+
+    square squares_3[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
+                                                     1, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
+    game g3 = game_new(squares_3);
+    int i_index[4] = {0, 1, 3, 4};
+    int j_index[4] = {0, 1, 3, 4};
+    for (uint i = 0; i < 4; i++) {
+        if (!game_has_error(g3, i_index[i], 0)) {
+            game_delete(g3);
+            return false;
+        }
+    }
+    for (uint j = 0; j < 4; j++) {
+        if (!game_has_error(g3, 3, j_index[j])) {
+            game_delete(g3);
+            return false;
+        }
+    }
     return true;
 }
 

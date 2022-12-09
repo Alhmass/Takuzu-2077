@@ -1,4 +1,5 @@
 #include "game.h"
+#include "game_aux.h" // REMOVE !
 
 #include <assert.h>
 #include <stddef.h>
@@ -149,6 +150,32 @@ int game_has_error(cgame g, uint i, uint j) {
     if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
         throw_error("i or j value is out of bounds!\n");
 
+    int current = game_get_number(g, i, j);
+    if (current == -1)
+        return 0;
+
+    int vertical = 0;
+    int consecutive = 0;
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        if (game_get_number(g, i, j) == current) {
+            vertical++;
+            if (++consecutive > 2 || vertical > (DEFAULT_SIZE / 2))
+                return 1;
+        } else
+            consecutive = 0;
+    }
+
+    int horizontal = 0;
+    consecutive = 0;
+    for (uint j = 0; j < DEFAULT_SIZE; j++) {
+        if (game_get_number(g, i, j) == current) {
+            horizontal++;
+            if (++consecutive > 2 || horizontal > (DEFAULT_SIZE / 2))
+                return 1;
+        } else
+            consecutive = 0;
+    }
+
     return 0;
 }
 
@@ -170,7 +197,6 @@ void game_play_move(game g, uint i, uint j, square s) {
     assert(((i < DEFAULT_SIZE) && (j < DEFAULT_SIZE)));
     if (game_check_move(g, i, j, s))
         game_set_square(g, i, j, s);
-
 }
 
 bool game_is_over(cgame g) {
