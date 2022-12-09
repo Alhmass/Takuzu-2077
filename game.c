@@ -1,11 +1,12 @@
 #include "game.h"
-#include "game_aux.h" // REMOVE !
 
 #include <assert.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "game_aux.h"  // REMOVE !
 
 struct game_s {
     square *game;
