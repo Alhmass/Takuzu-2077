@@ -159,8 +159,7 @@ int game_has_error(cgame g, uint i, uint j) {
     int consecutive = 0;
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         if (game_get_number(g, i, j) == current) {
-            vertical++;
-            if (++consecutive > 2 || vertical > (DEFAULT_SIZE / 2))
+            if (++consecutive > 2 || ++vertical > (DEFAULT_SIZE / 2))
                 return 1;
         } else
             consecutive = 0;
@@ -170,8 +169,7 @@ int game_has_error(cgame g, uint i, uint j) {
     consecutive = 0;
     for (uint j = 0; j < DEFAULT_SIZE; j++) {
         if (game_get_number(g, i, j) == current) {
-            horizontal++;
-            if (++consecutive > 2 || horizontal > (DEFAULT_SIZE / 2))
+            if (++consecutive > 2 || ++horizontal > (DEFAULT_SIZE / 2))
                 return 1;
         } else
             consecutive = 0;
