@@ -1,10 +1,11 @@
 #include "game_aux.h"
-#include "game_struct.h"
 
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "game_struct.h"
 
 static void throw_error(char *msg) {
     fprintf(stderr, "[error] %s\n", msg);
