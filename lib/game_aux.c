@@ -1,4 +1,5 @@
 #include "game_aux.h"
+#include "game_struct.h"
 
 #include <stddef.h>
 #include <stdio.h>

@@ -1,4 +1,5 @@
 #include "game.h"
+#include "game_struct.h"
 
 #include <assert.h>
 #include <stddef.h>
@@ -7,10 +8,6 @@
 #include <string.h>
 
 #include "game_aux.h"  // REMOVE !
-
-struct game_s {
-    square *game;
-};
 
 static uint game_index(uint i, uint j) { return DEFAULT_SIZE * i + j; }
 
