@@ -174,6 +174,22 @@ bool test_game_default_solution(void) {
     return true;
 }
 
+bool test_game_new_ext(void) {
+    return false;
+}
+
+bool test_game_new_empty_ext(void) {
+    return false;
+}
+
+bool test_game_undo(void) {
+    return false;
+}
+
+bool test_game_redo(void) {
+    return false;
+}
+
 /*  USAGE  */
 void usage(char *argv[]) {
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
@@ -205,6 +221,14 @@ int main(int argc, char *argv[]) {
         ok = test_game_default();
     else if (strcmp("game_default_solution", argv[1]) == 0)
         ok = test_game_default_solution();
+    else if (strcmp("game_new_ext", argv[1]) == 0)
+        ok = test_game_new_ext();
+    else if (strcmp("game_new_empty_ext", argv[1]) == 0)
+        ok = test_game_new_empty_ext();
+    else if (strcmp("game_undo", argv[1]) == 0)
+        ok = test_game_undo();
+    else if (strcmp("game_redo", argv[1]) == 0)
+        ok = test_game_redo();
     else {
         fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
         exit(EXIT_FAILURE);

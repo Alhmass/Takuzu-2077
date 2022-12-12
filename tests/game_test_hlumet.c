@@ -132,6 +132,14 @@ bool test_game_get_next_number() {
     return (status);
 }
 
+bool test_game_nb_rows(void) {
+    return false;
+}
+
+bool test_game_nb_cols(void) {
+    return false;
+}
+
 void usage(char *argv[]) {
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
     exit(EXIT_FAILURE);
@@ -153,6 +161,10 @@ int main(int argc, char *argv[]) {
         ok = test_game_get_next_square();
     else if (strcmp("game_get_next_number", argv[1]) == 0)
         ok = test_game_get_next_number();
+    else if (strcmp("game_nb_rows", argv[1]) == 0)
+        ok = test_game_nb_rows();
+    else if (strcmp("game_nb_cols", argv[1]) == 0)
+        ok = test_game_nb_cols();
     else {
         fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
         exit(EXIT_FAILURE);

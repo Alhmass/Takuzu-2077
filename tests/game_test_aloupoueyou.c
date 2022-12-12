@@ -163,25 +163,38 @@ bool test_game_is_over() {
     return true;
 }
 
+bool test_game_is_unique(void) {
+    return false;
+}
+
+bool test_game_is_wrapping(void) {
+    return false;
+}
+
 int main(int argc, char *argv[]) {
     if (argc == 1)
         usage(argv);
 
     bool ok = false;
-    if (strcmp(argv[1], "game_is_immutable") == 0) {
+    if (strcmp(argv[1], "game_is_immutable") == 0)
         ok = test_game_is_immutable();
-    } else if (strcmp(argv[1], "game_has_error") == 0) {
+    else if (strcmp(argv[1], "game_has_error") == 0)
         ok = test_game_has_error();
-    } else if (strcmp(argv[1], "game_check_move") == 0) {
+    else if (strcmp(argv[1], "game_check_move") == 0)
         ok = test_game_check_move();
-    } else if (strcmp(argv[1], "game_play_move") == 0) {
+    else if (strcmp(argv[1], "game_play_move") == 0)
         ok = test_game_play_move();
-    } else if (strcmp(argv[1], "game_is_over") == 0) {
+    else if (strcmp(argv[1], "game_is_over") == 0)
         ok = test_game_is_over();
-    } else {
+    else if (strcmp(argv[1], "game_is_unique") == 0)
+        ok = test_game_is_unique();
+    else if (strcmp(argv[1], "game_is_wraping") == 0)
+        ok = test_game_is_wrapping();
+    else {
         fprintf(stderr, "Error: test \"%s\" not found\n", argv[1]);
         exit(EXIT_FAILURE);
     }
+
     if (ok) {
         fprintf(stderr, "Test: \"%s\" finished: SUCCESS\n", argv[1]);
         return EXIT_SUCCESS;
