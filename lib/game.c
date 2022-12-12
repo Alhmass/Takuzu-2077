@@ -1,5 +1,4 @@
 #include "game.h"
-#include "game_struct.h"
 
 #include <assert.h>
 #include <stddef.h>
@@ -8,6 +7,7 @@
 #include <string.h>
 
 #include "game_aux.h"  // REMOVE !
+#include "game_struct.h"
 
 static uint game_index(uint i, uint j) { return DEFAULT_SIZE * i + j; }
 
