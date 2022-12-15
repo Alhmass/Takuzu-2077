@@ -6,10 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "game_aux.h"  // REMOVE !
 #include "game_struct.h"
-
-static uint game_index(uint i, uint j) { return DEFAULT_SIZE * i + j; }
 
 static void throw_error(char *msg) {
     fprintf(stderr, "[error] %s\n", msg);
@@ -23,6 +20,8 @@ static void cgame_test(cgame g, char *msg) {
     if (g == NULL)
         throw_error(msg);
 }
+
+static uint game_index(uint i, uint j) { return DEFAULT_SIZE * i + j; }
 
 game game_new(square *squares) {
     game g = malloc(sizeof(struct game_s));
