@@ -38,12 +38,17 @@ game game_new_ext(uint nb_rows, uint nb_cols, square *squares, bool wrapping, bo
 }
 
 game game_new_empty_ext(uint nb_rows, uint nb_cols, bool wrapping, bool unique) {
-    (void)nb_rows;
-    (void)nb_cols;
-    (void)wrapping;
-    (void)unique;
-
-    return (NULL);
+    game g = malloc(sizeof(struct game_s));
+    test_pointer(g, "game_nex_ext: game_ext malloc failed");
+    g->game = malloc(sizeof(square) * (nb_rows * nb_cols));
+    test_pointer(g->game, "game_nex_ext: game malloc failed");
+    memset(g->game, 0, sizeof(square) * (nb_rows * nb_cols));
+    g->history = ms_create(1);
+    g->nb_rows = nb_rows;
+    g->nb_cols = nb_cols;
+    g->wrapping = wrapping;
+    g->unique = unique;
+    return g;
 }
 
 uint game_nb_rows(cgame g) {
