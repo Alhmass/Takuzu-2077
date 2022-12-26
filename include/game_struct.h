@@ -7,7 +7,7 @@
 
 struct game_s {
     square *game;
-    moves *history;
+    moves history;
     uint nb_rows;
     uint nb_cols;
     bool wrapping;
