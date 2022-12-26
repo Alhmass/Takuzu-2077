@@ -7,16 +7,11 @@
 
 struct game_s {
     square *game;
-};
-
-struct game_ext_s {
-    game *g;
+    moves *history;
     uint nb_rows;
     uint nb_cols;
     bool wrapping;
     bool unique;
-    moves *history;
-    moves *backup;
 };
 
 #endif // __GAME_STRUCT_H__
