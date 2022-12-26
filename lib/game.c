@@ -7,6 +7,7 @@
 #include <string.h>
 
 #include "game_struct.h"
+#include "game_ext.h"
 
 static void throw_error(char *msg) {
     fprintf(stderr, "[error] %s\n", msg);
@@ -21,14 +22,12 @@ static void cgame_test(cgame g, char *msg) {
         throw_error(msg);
 }
 
-static uint game_index(uint i, uint j) { return DEFAULT_SIZE * i + j; }
-
 game game_new(square *squares) {
     game g = malloc(sizeof(struct game_s));
     test_pointer(g, "malloc failed");
-    g->game = malloc(sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
+    g->game = malloc(sizeof(square) * game_nb_rows(g) * game_nb_cols(g));
     test_pointer(g->game, "malloc failed");
-    memcpy(g->game, squares, sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
+    memcpy(g->game, squares, sizeof(square) * game_nb_rows(g) * game_nb_cols(g));
     return g;
 }
 
@@ -44,17 +43,19 @@ game game_new_empty(void) {
 game game_copy(cgame g) {
     game copy = memcpy(malloc(sizeof(struct game_s)), g, sizeof(struct game_s));
     cgame_test(copy, "malloc failed");
-    copy->game = memcpy(malloc(sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE), g->game,
-                        sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
+    copy->game = memcpy(malloc(sizeof(square) * game_nb_rows(g) * game_nb_cols(g)), g->game,
+                        sizeof(square) * game_nb_rows(g) * game_nb_cols(g));
     test_pointer(copy->game, "malloc failed");
     return copy;
 }
 
 bool game_equal(cgame g1, cgame g2) {
-    if (g1 == NULL || g2 == NULL)
+    if (g1 == NULL || g2 == NULL || g1->game == NULL || g2->game == NULL)
         return false;
-    for (uint i = 0; i < DEFAULT_SIZE; i++) {
-        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+    if (game_nb_rows(g1) != game_nb_rows(g2) || game_nb_cols(g1) != game_nb_cols(g2))
+        return false;
+    for (uint i = 0; i < game_nb_rows(g1); i++) {
+        for (uint j = 0; j < game_nb_cols(g1); j++) {
             if (game_get_square(g1, i, j) != game_get_square(g2, i, j))
                 return false;
         }
@@ -71,23 +72,23 @@ void game_delete(game g) {
 }
 
 void game_set_square(game g, uint i, uint j, square s) {
-    if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
+    if (i >= game_nb_rows(g) || j >= game_nb_cols(g))
         return;
-    g->game[game_index(i, j)] = s;
+    g->game[game_nb_rows(g) * i + j] = s;
 }
 
 square game_get_square(cgame g, uint i, uint j) {
     cgame_test(g, "g is not initialized\n");
-    if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
+    if (i >= game_nb_rows(g) || j >= game_nb_cols(g))
         throw_error("invalid index");
-    return g->game[game_index(i, j)];
+    return g->game[game_nb_rows(g) * i + j];
 }
 
 int game_get_number(cgame g, uint i, uint j) {
     cgame_test(g, "g is not initialized\n");
-    if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
+    if (i >= game_nb_rows(g) || j >= game_nb_cols(g))
         throw_error("i or j value is out of bounds!\n");
-    uint index = game_index(i, j);
+    uint index = game_nb_rows(g) * i + j;
     if (g->game[index] == S_EMPTY)
         return (-1);
     else if (g->game[index] == S_ZERO || g->game[index] == S_IMMUTABLE_ZERO)
@@ -102,11 +103,11 @@ int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
         throw_error("the distance value must be <=2!\n");
     if (dir == LEFT && dist <= j)
         return (game_get_square(g, i, j - dist));
-    else if (dir == RIGHT && (j + dist) < DEFAULT_SIZE)
+    else if (dir == RIGHT && (j + dist) < game_nb_cols(g))
         return (game_get_square(g, i, j + dist));
     else if (dir == UP && dist <= i)
         return (game_get_square(g, i - dist, j));
-    else if (dir == DOWN && (i + dist) < DEFAULT_SIZE)
+    else if (dir == DOWN && (i + dist) < game_nb_rows(g))
         return (game_get_square(g, i + dist, j));
     return (-1);
 }
@@ -117,24 +118,24 @@ int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
         throw_error("the distance value must be <=2!\n");
     if (dir == LEFT && dist <= j)
         return (game_get_number(g, i, j - dist));
-    else if (dir == RIGHT && (j + dist) < DEFAULT_SIZE)
+    else if (dir == RIGHT && (j + dist) < game_nb_cols(g))
         return (game_get_number(g, i, j + dist));
     else if (dir == UP && dist <= i)
         return (game_get_number(g, i - dist, j));
-    else if (dir == DOWN && (i + dist) < DEFAULT_SIZE)
+    else if (dir == DOWN && (i + dist) < game_nb_rows(g))
         return (game_get_number(g, i + dist, j));
     return (-1);
 }
 
 bool game_is_empty(cgame g, uint i, uint j) {
     cgame_test(g, "g is not initialized\n");
-    assert(((i < DEFAULT_SIZE) && (j < DEFAULT_SIZE)));
+    assert(((i < game_nb_rows(g)) && (j < game_nb_cols(g))));
     return (game_get_square(g, i, j) == S_EMPTY);
 }
 
 bool game_is_immutable(cgame g, uint i, uint j) {
     cgame_test(g, "g is not initialized\n");
-    assert(((i < DEFAULT_SIZE) && (j < DEFAULT_SIZE)));
+    assert(((i < game_nb_rows(g)) && (j < game_nb_cols(g))));
     square s = game_get_square(g, i, j);
     if (s == 3 || s == 4) {
         return true;
@@ -144,28 +145,28 @@ bool game_is_immutable(cgame g, uint i, uint j) {
 
 int game_has_error(cgame g, uint i, uint j) {
     cgame_test(g, "g is not initialized\n");
-    if (i >= DEFAULT_SIZE || j >= DEFAULT_SIZE)
+    if (i >= game_nb_rows(g) || j >= game_nb_cols(g))
         throw_error("i or j value is out of bounds!\n");
 
     int current = game_get_number(g, i, j);
     if (current == -1)
         return 0;
 
-    int vertical = 0;
-    int consecutive = 0;
-    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+    uint vertical = 0;
+    uint consecutive = 0;
+    for (uint i = 0; i < game_nb_rows(g); i++) {
         if (game_get_number(g, i, j) == current) {
-            if (++consecutive > 2 || ++vertical > (DEFAULT_SIZE / 2))
+            if (++consecutive > 2 || ++vertical > (game_nb_rows(g) / 2))
                 return 1;
         } else
             consecutive = 0;
     }
 
-    int horizontal = 0;
+    uint horizontal = 0;
     consecutive = 0;
-    for (uint j = 0; j < DEFAULT_SIZE; j++) {
+    for (uint j = 0; j < game_nb_cols(g); j++) {
         if (game_get_number(g, i, j) == current) {
-            if (++consecutive > 2 || ++horizontal > (DEFAULT_SIZE / 2))
+            if (++consecutive > 2 || ++horizontal > (game_nb_cols(g) / 2))
                 return 1;
         } else
             consecutive = 0;
@@ -176,7 +177,7 @@ int game_has_error(cgame g, uint i, uint j) {
 
 bool game_check_move(cgame g, uint i, uint j, square s) {
     cgame_test(g, "g is not initialized\n");
-    assert(((i < DEFAULT_SIZE) && (j < DEFAULT_SIZE)));
+    assert(((i < game_nb_rows(g)) && (j < game_nb_cols(g))));
     if (s == S_IMMUTABLE_ONE || s == S_IMMUTABLE_ZERO)
         throw_error("[invalid parameter] square must not be immutable");
 
@@ -189,15 +190,15 @@ bool game_check_move(cgame g, uint i, uint j, square s) {
 
 void game_play_move(game g, uint i, uint j, square s) {
     cgame_test(g, "g is not initialized\n");
-    assert(((i < DEFAULT_SIZE) && (j < DEFAULT_SIZE)));
+    assert(((i < game_nb_rows(g)) && (j < game_nb_cols(g))));
     if (game_check_move(g, i, j, s))
         game_set_square(g, i, j, s);
 }
 
 bool game_is_over(cgame g) {
     cgame_test(g, "g is not initialized\n");
-    for (uint i = 0; i < DEFAULT_SIZE; i++)
-        for (uint j = 0; j < DEFAULT_SIZE; j++)
+    for (uint i = 0; i < game_nb_rows(g); i++)
+        for (uint j = 0; j < game_nb_cols(g); j++)
             if (game_is_empty(g, i, j) || game_has_error(g, i, j))
                 return false;
     return true;
@@ -206,8 +207,8 @@ bool game_is_over(cgame g) {
 void game_restart(game g) {
     test_pointer(g, "g is not initialized\n");
 
-    for (uint i = 0; i < DEFAULT_SIZE; i++)
-        for (uint j = 0; j < DEFAULT_SIZE; j++)
+    for (uint i = 0; i < game_nb_rows(g); i++)
+        for (uint j = 0; j < game_nb_cols(g); j++)
             if (!game_is_immutable(g, i, j))
                 game_set_square(g, i, j, S_EMPTY);
 }

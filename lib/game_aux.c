@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "game_struct.h"
+#include "game_ext.h"
 
 static void throw_error(char *msg) {
     fprintf(stderr, "[error] %s\n", msg);
@@ -21,11 +22,18 @@ static void cgame_test(cgame g, char *msg) {
 }
 
 void game_print(cgame g) {
+    printf("cold: %d, row: %d\n", game_nb_cols(g), game_nb_rows(g));
     cgame_test(g, "g is not initialized\n");
-    printf("   012345\n   ------\n");
-    for (int i = 0; i < DEFAULT_SIZE; i++) {
+    printf("   ");
+    for (uint i = 0;  i < game_nb_rows(g); i++)
+        printf("%d", i);
+    printf("\n   ");
+    for (uint i = 0;  i < game_nb_rows(g); i++)
+        printf("-");
+    printf("\n");
+    for (uint i = 0; i < game_nb_rows(g); i++) {
         printf("%d |", i);
-        for (int j = 0; j < DEFAULT_SIZE; j++) {
+        for (uint j = 0; j < game_nb_cols(g); j++) {
             square s = game_get_square(g, i, j);
             if (s == S_EMPTY)
                 printf(" ");
@@ -40,7 +48,10 @@ void game_print(cgame g) {
         }
         printf("|\n");
     }
-    printf("   ------\n");
+    printf("   ");
+    for (uint i = 0;  i < game_nb_rows(g); i++)
+        printf("-");
+    printf("\n");
 }
 
 game game_default(void) {
