@@ -23,11 +23,17 @@ static void command(game *g, char c) {
         game_restart(*g);
     } else if (c == 'h') {
         display_help();
-    } else {
+    } else if (c == 'q') {
         printf("> action: quit\n");
         printf("What a shame you gave up :-(\n");
         game_delete(*g);
         exit(EXIT_SUCCESS);
+    } else if (c == 'z') {
+        printf("> action: undo\n");
+        game_undo(*g);
+    } else if (c == 'y') {
+        printf("> action: redo\n");
+        game_redo(*g);
     }
 }
 
@@ -76,7 +82,7 @@ int main(void) {
         if (scanf_return == EOF)
             exit(EXIT_SUCCESS);
         scanf_return = scanf(" %c", &user_input);
-        if (strchr("rhq", user_input)) {
+        if (strchr("rhqzy", user_input)) {
             command(&g, user_input);
         } else if (strchr("wbe", user_input)) {
             scanf_return = scanf("%d %d", &i, &j);

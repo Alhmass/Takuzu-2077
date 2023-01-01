@@ -75,16 +75,22 @@ bool game_is_unique(cgame g) {
 
 void game_undo(game g) {
     cgame_test(g, "g is NULL");
-    if (ms_is_empty(g->history))
+    if (ms_is_empty(g->history)) {
+        printf("game_undo: history is empty\n");
         return;
-    g->backup = ms_push(g->backup, ms_top(g->history));
-    g->history = ms_pop(g->history);
+    }
+    game_set_square(g, ms_top_row(g->history), ms_top_col(g->history), ms_top_p(g->history));
+    ms_push(g->backup, ms_top(g->history));
+    ms_pop(g->history);
 }
 
 void game_redo(game g) {
     cgame_test(g, "g is NULL");
-    if (ms_is_empty(g->backup))
+    if (ms_is_empty(g->backup)) {
+        printf("game_redo: backup is empty\n");
         return;
-    g->history = ms_push(g->history, ms_top(g->backup));
-    g->backup = ms_pop(g->backup);
+    }
+    game_set_square(g, ms_top_row(g->backup), ms_top_col(g->backup), ms_top_s(g->backup));
+    ms_push(g->history, ms_top(g->backup));
+    ms_pop(g->backup);
 }

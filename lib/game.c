@@ -27,9 +27,9 @@ static void cgame_test(cgame g, char *msg) {
 game game_new(square *squares) {
     game g = malloc(sizeof(struct game_s));
     test_pointer(g, "malloc failed");
-    g->game = malloc(sizeof(square) * game_nb_rows(g) * game_nb_cols(g));
+    g->game = malloc(sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
     test_pointer(g->game, "malloc failed");
-    memcpy(g->game, squares, sizeof(square) * game_nb_rows(g) * game_nb_cols(g));
+    memcpy(g->game, squares, sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
     return g;
 }
 
@@ -128,7 +128,7 @@ int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
 }
 
 int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
-   cgame_test(g, "g is not initialized\n");
+    cgame_test(g, "g is not initialized\n");
     if (dist > 2)
         throw_error("the distance value must be <=2!\n");
     if (game_is_wrapping(g)) {
@@ -187,11 +187,12 @@ bool game_check_move(cgame g, uint i, uint j, square s) {
 void game_play_move(game g, uint i, uint j, square s) {
     cgame_test(g, "g is not initialized\n");
     assert(((i < game_nb_rows(g)) && (j < game_nb_cols(g))));
-    if (game_check_move(g, i, j, s))
+    if (game_check_move(g, i, j, s)) {
+        move m = move_create(i, j, s, game_get_square(g, i, j));
+        ms_push(g->history, m);
+        ms_clear(g->backup);
         game_set_square(g, i, j, s);
-    move m = move_create(i, j, s);
-    g->history = ms_push(g->history, m);
-    g->backup = ms_clear(g->backup);
+    }
 }
 
 bool game_is_over(cgame g) {
@@ -210,7 +211,6 @@ void game_restart(game g) {
         for (uint j = 0; j < game_nb_cols(g); j++)
             if (!game_is_immutable(g, i, j))
                 game_set_square(g, i, j, S_EMPTY);
-
-    g->history = ms_clear(g->history);
-    g->backup = ms_clear(g->backup);
+    ms_clear(g->history);
+    ms_clear(g->backup);
 }

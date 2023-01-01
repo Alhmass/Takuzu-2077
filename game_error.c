@@ -1,11 +1,10 @@
-#include "game.h"
-
 #include <assert.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include "game.h"
 #include "game_ext.h"
 #include "game_struct.h"
 #include "move.h"
@@ -28,8 +27,7 @@ static square *get_row(cgame g, uint i) {
     cgame_test(g, "g is NULL");
     square *row = malloc(sizeof(square) * game_nb_cols(g));
     test_pointer(row, "malloc failed");
-    for (uint j = 0; j < game_nb_cols(g); j++)
-        row[j] = game_get_square(g, i, j);
+    for (uint j = 0; j < game_nb_cols(g); j++) row[j] = game_get_square(g, i, j);
     return row;
 }
 
@@ -37,8 +35,7 @@ static square *get_col(cgame g, uint j) {
     cgame_test(g, "g is NULL");
     square *col = malloc(sizeof(square) * game_nb_rows(g));
     test_pointer(col, "malloc failed");
-    for (uint i = 0; i < game_nb_rows(g); i++)
-        col[i] = game_get_square(g, i, j);
+    for (uint i = 0; i < game_nb_rows(g); i++) col[i] = game_get_square(g, i, j);
     return col;
 }
 
@@ -46,8 +43,7 @@ static square *rotate_array(square *array, uint size) {
     square *rotated = malloc(sizeof(square) * size);
     test_pointer(rotated, "malloc failed");
     square start = array[0];
-    for (uint i = 0; i < size - 1; i++)
-        rotated[i] = array[i + 1];
+    for (uint i = 0; i < size - 1; i++) rotated[i] = array[i + 1];
     rotated[size - 1] = start;
     return rotated;
 }
@@ -75,13 +71,13 @@ static bool is_consecutive_grid(cgame g, uint i, uint j) {
     // tu get_row(i) et tu l'envoies dans is_consecutive
     is_consecutive(get_row(g, i), game_nb_cols(g), game_get_square(g, i, j));
     // si WRAPPING tu fais les rotations (game_nb_row(i) fois) et à chaque fois t'envoie l'array dans is_consecutive
-    rotate_array(get_row(g, i), game_nb_cols(g)); // tu fais ca game_nb_row(i) fois mais sur la meme array
+    rotate_array(get_row(g, i), game_nb_cols(g));  // tu fais ca game_nb_row(i) fois mais sur la meme array
 
     // deuxieme boucle pour les colonnes
     // tu get_col(j) et tu l'envoies dans is_consecutive
     is_consecutive(get_col(g, j), game_nb_rows(g), game_get_square(g, i, j));
     // si WRAPPING tu fais les rotations (game_nb_col(j) fois) et à chaque fois t'envoie l'array dans is_consecutive
-    rotate_array(get_col(g, j), game_nb_rows(g)); // tu fais ca game_nb_col(j) fois mais sur la meme array
+    rotate_array(get_col(g, j), game_nb_rows(g));  // tu fais ca game_nb_col(j) fois mais sur la meme array
 
     return false;
 }

@@ -26,11 +26,10 @@ void ms_delete(ms stack) {
     }
 }
 
-static ms ms_double_capacity(ms stack) {
+static void ms_double_capacity(ms stack) {
     stack->capacity *= 2;
     stack->data = realloc(stack->data, sizeof(move) * stack->capacity);
     test_pointer(stack->data, "ms_double_capacity: realloc failed");
-    return stack;
 }
 
 move ms_top(ms stack) {
@@ -38,28 +37,51 @@ move ms_top(ms stack) {
         return NULL;
     return stack->data[stack->size - 1];
 }
-
-ms ms_push(ms stack, move m) {
+void ms_push(ms stack, move m) {
     if (ms_is_full(stack))
-        stack = ms_double_capacity(stack);
-    stack->data[stack->size] = m;
+        ms_double_capacity(stack);
+    move new = move_create(move_row(m), move_col(m), move_s(m), move_p(m));
+    stack->data[stack->size] = new;
     stack->size++;
-    return stack;
 }
-
-ms ms_pop(ms stack) {
+void ms_pop(ms stack) {
     if (ms_is_empty(stack))
-        return stack;
+        return;
+    move_delete(ms_top(stack));
     stack->size--;
-    move_delete(stack->data[stack->size]);
-    return stack;
+}
+void ms_clear(ms stack) {
+    while (!ms_is_empty(stack)) ms_pop(stack);
 }
 
-ms ms_clear(ms stack) {
-    while (!ms_is_empty(stack)) stack = ms_pop(stack);
-    return stack;
+uint ms_top_row(ms stack) {
+    if (ms_is_empty(stack))
+        return -1;
+    return move_row(ms_top(stack));
+}
+uint ms_top_col(ms stack) {
+    if (ms_is_empty(stack))
+        return -1;
+    return move_col(ms_top(stack));
+}
+square ms_top_s(ms stack) {
+    if (ms_is_empty(stack))
+        return -1;
+    return move_s(ms_top(stack));
+}
+square ms_top_p(ms stack) {
+    if (ms_is_empty(stack))
+        return -1;
+    return move_p(ms_top(stack));
 }
 
 bool ms_is_empty(ms stack) { return stack->size == 0; }
-
 bool ms_is_full(ms stack) { return stack->size == stack->capacity; }
+
+void ms_print(ms stack) {
+    printf("move_stack: size=%d, capacity=%d\n", stack->size, stack->capacity);
+    for (uint i = 0; i < stack->size; i++) {
+        printf("[%d] [%d] [%d] [%d]\n", move_row(stack->data[i]), move_col(stack->data[i]), move_s(stack->data[i]),
+               move_p(stack->data[i]));
+    }
+}
