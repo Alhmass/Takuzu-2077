@@ -63,12 +63,12 @@ uint game_nb_cols(cgame g) {
 
 bool game_is_wrapping(cgame g) {
     cgame_test(g, "g is NULL");
-    return (true);
+    return g->wrapping;
 }
 
 bool game_is_unique(cgame g) {
     cgame_test(g, "g is NULL");
-    return (true);
+    return g->unique;
 }
 
 void game_undo(game g) {
