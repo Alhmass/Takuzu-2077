@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "game_struct.h"
 #include "game_ext.h"
+#include "game_struct.h"
 #include "move.h"
 #include "move_stack.h"
 
@@ -103,15 +103,28 @@ int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
     cgame_test(g, "g is not initialized\n");
     if (dist > 2)
         throw_error("the distance value must be <=2!\n");
-    if (dir == LEFT && dist <= j)
-        return (game_get_square(g, i, j - dist));
-    else if (dir == RIGHT && (j + dist) < game_nb_cols(g))
-        return (game_get_square(g, i, j + dist));
-    else if (dir == UP && dist <= i)
-        return (game_get_square(g, i - dist, j));
-    else if (dir == DOWN && (i + dist) < game_nb_rows(g))
-        return (game_get_square(g, i + dist, j));
-    return (-1);
+    if (game_is_wrapping(g)) {
+        if (dir == LEFT)
+            j -= dist % game_nb_cols(g);
+        else if (dir == RIGHT)
+            j += dist % game_nb_cols(g);
+        else if (dir == UP)
+            i -= dist % game_nb_rows(g);
+        else
+            i += dist % game_nb_rows(g);
+    } else {
+        if (dir == LEFT && dist <= j)
+            j -= dist;
+        else if (dir == RIGHT && (j + dist) < game_nb_cols(g))
+            j += dist;
+        else if (dir == UP && dist <= i)
+            i -= dist;
+        else if (dir == DOWN && (i + dist) < game_nb_rows(g))
+            i += dist;
+        else
+            return (-1);
+    }
+    return (game_get_square(g, i, j));
 }
 
 int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
