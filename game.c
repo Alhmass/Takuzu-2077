@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "game_struct.h"
 #include "game_ext.h"
+#include "game_struct.h"
 #include "move.h"
 #include "move_stack.h"
 
@@ -103,15 +103,28 @@ int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
     cgame_test(g, "g is not initialized\n");
     if (dist > 2)
         throw_error("the distance value must be <=2!\n");
-    if (dir == LEFT && dist <= j)
-        return (game_get_square(g, i, j - dist));
-    else if (dir == RIGHT && (j + dist) < game_nb_cols(g))
-        return (game_get_square(g, i, j + dist));
-    else if (dir == UP && dist <= i)
-        return (game_get_square(g, i - dist, j));
-    else if (dir == DOWN && (i + dist) < game_nb_rows(g))
-        return (game_get_square(g, i + dist, j));
-    return (-1);
+    if (game_is_wrapping(g)) {
+        if (dir == LEFT)
+            j -= dist % game_nb_cols(g);
+        else if (dir == RIGHT)
+            j += dist % game_nb_cols(g);
+        else if (dir == UP)
+            i -= dist % game_nb_rows(g);
+        else
+            i += dist % game_nb_rows(g);
+    } else {
+        if (dir == LEFT && dist <= j)
+            j -= dist;
+        else if (dir == RIGHT && (j + dist) < game_nb_cols(g))
+            j += dist;
+        else if (dir == UP && dist <= i)
+            i -= dist;
+        else if (dir == DOWN && (i + dist) < game_nb_rows(g))
+            i += dist;
+        else
+            return (-1);
+    }
+    return (game_get_square(g, i, j));
 }
 
 int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
@@ -143,38 +156,6 @@ bool game_is_immutable(cgame g, uint i, uint j) {
         return true;
     }
     return false;
-}
-
-int game_has_error(cgame g, uint i, uint j) {
-    cgame_test(g, "g is not initialized\n");
-    if (i >= game_nb_rows(g) || j >= game_nb_cols(g))
-        throw_error("i or j value is out of bounds!\n");
-
-    int current = game_get_number(g, i, j);
-    if (current == -1)
-        return 0;
-
-    uint vertical = 0;
-    uint consecutive = 0;
-    for (uint i = 0; i < game_nb_rows(g); i++) {
-        if (game_get_number(g, i, j) == current) {
-            if (++consecutive > 2 || ++vertical > (game_nb_rows(g) / 2))
-                return 1;
-        } else
-            consecutive = 0;
-    }
-
-    uint horizontal = 0;
-    consecutive = 0;
-    for (uint j = 0; j < game_nb_cols(g); j++) {
-        if (game_get_number(g, i, j) == current) {
-            if (++consecutive > 2 || ++horizontal > (game_nb_cols(g) / 2))
-                return 1;
-        } else
-            consecutive = 0;
-    }
-
-    return 0;
 }
 
 bool game_check_move(cgame g, uint i, uint j, square s) {

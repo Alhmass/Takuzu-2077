@@ -20,8 +20,7 @@ ms ms_create(uint capacity) {
 }
 void ms_delete(ms stack) {
     if (stack != NULL) {
-        for (uint i = 0; i < stack->size; i++)
-            move_delete(stack->data[i]);
+        for (uint i = 0; i < stack->size; i++) move_delete(stack->data[i]);
         free(stack->data);
         free(stack);
     }
@@ -57,15 +56,10 @@ ms ms_pop(ms stack) {
 }
 
 ms ms_clear(ms stack) {
-    while (!ms_is_empty(stack))
-        stack = ms_pop(stack);
+    while (!ms_is_empty(stack)) stack = ms_pop(stack);
     return stack;
 }
 
-bool ms_is_empty(ms stack) {
-    return stack->size == 0;
-}
+bool ms_is_empty(ms stack) { return stack->size == 0; }
 
-bool ms_is_full(ms stack) {
-    return stack->size == stack->capacity;
-}
+bool ms_is_full(ms stack) { return stack->size == stack->capacity; }

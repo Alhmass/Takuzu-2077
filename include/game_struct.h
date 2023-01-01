@@ -15,4 +15,4 @@ struct game_s {
     ms backup;
 };
 
-#endif // __GAME_STRUCT_H__
+#endif  // __GAME_STRUCT_H__

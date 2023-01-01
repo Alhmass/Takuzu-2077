@@ -158,38 +158,6 @@ bool game_is_immutable(cgame g, uint i, uint j) {
     return false;
 }
 
-int game_has_error(cgame g, uint i, uint j) {
-    cgame_test(g, "g is not initialized\n");
-    if (i >= game_nb_rows(g) || j >= game_nb_cols(g))
-        throw_error("i or j value is out of bounds!\n");
-
-    int current = game_get_number(g, i, j);
-    if (current == -1)
-        return 0;
-
-    uint vertical = 0;
-    uint consecutive = 0;
-    for (uint i = 0; i < game_nb_rows(g); i++) {
-        if (game_get_number(g, i, j) == current) {
-            if (++consecutive > 2 || ++vertical > (game_nb_rows(g) / 2))
-                return 1;
-        } else
-            consecutive = 0;
-    }
-
-    uint horizontal = 0;
-    consecutive = 0;
-    for (uint j = 0; j < game_nb_cols(g); j++) {
-        if (game_get_number(g, i, j) == current) {
-            if (++consecutive > 2 || ++horizontal > (game_nb_cols(g) / 2))
-                return 1;
-        } else
-            consecutive = 0;
-    }
-
-    return 0;
-}
-
 bool game_check_move(cgame g, uint i, uint j, square s) {
     cgame_test(g, "g is not initialized\n");
     assert(((i < game_nb_rows(g)) && (j < game_nb_cols(g))));

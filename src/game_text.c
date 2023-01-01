@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "game.h"
-#include "game_struct.h"
 #include "game_aux.h"
 #include "game_ext.h"
+#include "game_struct.h"
 
 static void display_help(void) {
     printf("> action: help\n");
