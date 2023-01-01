@@ -5,6 +5,7 @@
 
 #include "game.h"
 #include "game_aux.h"
+#include "game_ext.h"
 
 void usage(char *argv[]) {
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
@@ -164,11 +165,30 @@ bool test_game_is_over() {
 }
 
 bool test_game_is_unique(void) {
-    return false;
+    game g1 = game_new_empty_ext(8, 8, false, true);
+    game g2 = game_new_empty_ext(8, 8, false, false);
+    if (!game_is_unique(g1) || game_is_unique(g2)){
+        game_delete(g1);
+        game_delete(g2);
+        return false;
+    }
+    game_delete(g1);
+    game_delete(g2);
+    return true;
+    
 }
 
 bool test_game_is_wrapping(void) {
-    return false;
+    game g1 = game_new_empty_ext(8, 8, true, false);
+    game g2 = game_new_empty_ext(8, 8, false, false);
+    if (!game_is_wrapping(g1) || game_is_wrapping(g2)){
+        game_delete(g1);
+        game_delete(g2);
+        return false;
+    }
+    game_delete(g1);
+    game_delete(g2);
+    return true;
 }
 
 int main(int argc, char *argv[]) {
@@ -188,7 +208,7 @@ int main(int argc, char *argv[]) {
         ok = test_game_is_over();
     else if (strcmp(argv[1], "game_is_unique") == 0)
         ok = test_game_is_unique();
-    else if (strcmp(argv[1], "game_is_wraping") == 0)
+    else if (strcmp(argv[1], "game_is_wrapping") == 0)
         ok = test_game_is_wrapping();
     else {
         fprintf(stderr, "Error: test \"%s\" not found\n", argv[1]);
