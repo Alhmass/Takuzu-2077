@@ -9,17 +9,16 @@ static void test_pointer(void *p, char *msg) {
         throw_error(msg);
 }
 
-moves ms_create(uint capacity) {
-    moves stack = malloc(sizeof(struct move_stack_s));
+ms ms_create(uint capacity) {
+    ms stack = malloc(sizeof(struct move_stack_s));
     test_pointer(stack, "ms_create: stack malloc failed");
-    stack->capacity = capacity;
-    stack->size = 0;
     stack->data = malloc(sizeof(move) * capacity);
     test_pointer(stack->data, "ms_create: data malloc failed");
+    stack->size = 0;
+    stack->capacity = capacity;
     return stack;
 }
-
-void ms_delete(moves stack) {
+void ms_delete(ms stack) {
     if (stack != NULL) {
         for (uint i = 0; i < stack->size; i++)
             move_delete(stack->data[i]);
@@ -28,42 +27,45 @@ void ms_delete(moves stack) {
     }
 }
 
-moves ms_double_capacity(moves stack) {
+static ms ms_double_capacity(ms stack) {
     stack->capacity *= 2;
     stack->data = realloc(stack->data, sizeof(move) * stack->capacity);
     test_pointer(stack->data, "ms_double_capacity: realloc failed");
     return stack;
 }
 
-move ms_top(moves stack) {
-    if (stack->size == 0)
+move ms_top(ms stack) {
+    if (ms_is_empty(stack))
         return NULL;
     return stack->data[stack->size - 1];
 }
 
-moves ms_push(moves stack, move m) {
-    if (stack->size == stack->capacity)
+ms ms_push(ms stack, move m) {
+    if (ms_is_full(stack))
         stack = ms_double_capacity(stack);
     stack->data[stack->size] = m;
     stack->size++;
     return stack;
 }
 
-moves ms_pop(moves stack) {
-    if (stack->size != 0)
-        stack->size--;
+ms ms_pop(ms stack) {
+    if (ms_is_empty(stack))
+        return stack;
+    stack->size--;
+    move_delete(stack->data[stack->size]);
     return stack;
 }
 
-moves ms_clear(moves stack) {
-    stack->size = 0;
+ms ms_clear(ms stack) {
+    while (!ms_is_empty(stack))
+        stack = ms_pop(stack);
     return stack;
 }
 
-bool ms_is_empty(moves stack) {
+bool ms_is_empty(ms stack) {
     return stack->size == 0;
 }
 
-bool ms_is_full(moves stack) {
+bool ms_is_full(ms stack) {
     return stack->size == stack->capacity;
 }

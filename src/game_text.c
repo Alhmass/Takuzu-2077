@@ -4,7 +4,9 @@
 #include <string.h>
 
 #include "game.h"
+#include "game_struct.h"
 #include "game_aux.h"
+#include "game_ext.h"
 
 static void display_help(void) {
     printf("> action: help\n");
@@ -29,10 +31,10 @@ static void command(game *g, char c) {
     }
 }
 
-static void display_errors(const game *g) {
-    for (int i = 0; i < DEFAULT_SIZE; i++) {
-        for (int j = 0; j < DEFAULT_SIZE; j++) {
-            if (game_has_error(*g, i, j))
+static void display_errors(cgame g) {
+    for (uint i = 0; i < game_nb_cols(g); i++) {
+        for (uint j = 0; j < game_nb_rows(g); j++) {
+            if (game_has_error(g, i, j))
                 printf("Game has error at square(%d,%d)\n", i, j);
         }
     }
@@ -57,7 +59,8 @@ static void try_play_move(game *g, char c, int i, int j) {
 }
 
 int main(void) {
-    game g = game_default();
+    game g = game_new_empty_ext(4, 4, false, false);
+
     char user_input;
     int scanf_return = 0;
     uint i = 0;
@@ -66,7 +69,7 @@ int main(void) {
     assert(g != NULL);
     while (!game_is_over(g)) {
         game_print(g);
-        display_errors(&g);
+        display_errors(g);
         printf("> ? [h for help]\n");
         if (scanf_return == EOF)
             exit(EXIT_SUCCESS);

@@ -9,13 +9,12 @@ static void test_pointer(void *p, char *msg) {
         throw_error(msg);
 }
 
-move move_create(uint row, uint col, square s, game g) {
+move move_create(uint row, uint col, square s) {
     move m = malloc(sizeof(struct move_s));
     test_pointer(m, "move_create: malloc failed");
     m->row = row;
     m->col = col;
     m->s = s;
-    m->prev = game_get_square(g, row, col);
     return m;
 }
 

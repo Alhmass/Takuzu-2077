@@ -8,6 +8,8 @@
 
 #include "game_struct.h"
 #include "game_ext.h"
+#include "move.h"
+#include "move_stack.h"
 
 static void throw_error(char *msg) {
     fprintf(stderr, "[error] %s\n", msg);
@@ -193,6 +195,9 @@ void game_play_move(game g, uint i, uint j, square s) {
     assert(((i < game_nb_rows(g)) && (j < game_nb_cols(g))));
     if (game_check_move(g, i, j, s))
         game_set_square(g, i, j, s);
+    move m = move_create(i, j, s);
+    g->history = ms_push(g->history, m);
+    g->backup = ms_clear(g->backup);
 }
 
 bool game_is_over(cgame g) {
@@ -211,4 +216,7 @@ void game_restart(game g) {
         for (uint j = 0; j < game_nb_cols(g); j++)
             if (!game_is_immutable(g, i, j))
                 game_set_square(g, i, j, S_EMPTY);
+
+    g->history = ms_clear(g->history);
+    g->backup = ms_clear(g->backup);
 }
