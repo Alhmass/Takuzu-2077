@@ -59,7 +59,9 @@ static void try_play_move(game *g, char c, int i, int j) {
 }
 
 int main(void) {
-    game g = game_new_empty_ext(4, 4, false, false);
+    square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+                                                   0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+    game g = game_new_ext(6, 6, squares, false, false);
 
     char user_input;
     int scanf_return = 0;
