@@ -27,9 +27,11 @@ static void cgame_test(cgame g, char *msg) {
 game game_new(square *squares) {
     game g = malloc(sizeof(struct game_s));
     test_pointer(g, "malloc failed");
-    g->game = malloc(sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
+    g->game = malloc(sizeof(square) * (DEFAULT_SIZE * DEFAULT_SIZE));
     test_pointer(g->game, "malloc failed");
-    memcpy(g->game, squares, sizeof(square) * DEFAULT_SIZE * DEFAULT_SIZE);
+    memcpy(g->game, squares, sizeof(square) * (DEFAULT_SIZE * DEFAULT_SIZE));
+    g->nb_cols = DEFAULT_SIZE;
+    g->nb_rows = DEFAULT_SIZE;
     return g;
 }
 
