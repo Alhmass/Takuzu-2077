@@ -154,9 +154,15 @@ int game_has_error(cgame g, uint i, uint j) {
             return 1;
         }
     }
-    if (is_consecutive(get_row(g, i), game_nb_cols(g), game_get_number(g, i, j)) ||
-        is_consecutive(get_col(g, j), game_nb_rows(g), game_get_number(g, i, j))) {
+    square *row = get_row(g, i);
+    square *col = get_col(g, j);
+    if (is_consecutive(row, game_nb_cols(g), game_get_number(g, i, j)) ||
+        is_consecutive(col, game_nb_rows(g), game_get_number(g, i, j))) {
+            free(row);
+            free(col);
             return 1;
     }
+    free(row);
+    free(col);
     return 0;
 }
