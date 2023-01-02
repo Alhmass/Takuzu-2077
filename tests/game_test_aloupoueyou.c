@@ -40,7 +40,7 @@ bool test_game_has_error() {
     game g1 = game_default_solution();
     square squares_2[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 2,
                                                      4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3};
-    game g2 = game_new(squares_2);
+    game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_2, false, false);
     if (!g1 || !g2)
         return false;
 
@@ -56,24 +56,23 @@ bool test_game_has_error() {
     game_delete(g1);
     game_delete(g2);
 
-    square squares_3[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
-                                                     1, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
-    game g3 = game_new(squares_3);
-    int i_index[4] = {0, 1, 3, 4};
-    int j_index[4] = {0, 1, 3, 4};
-    for (uint i = 0; i < 4; i++) {
-        if (!game_has_error(g3, i_index[i], 0)) {
-            game_delete(g3);
-            return false;
-        }
-    }
-    for (uint j = 0; j < 4; j++) {
-        if (!game_has_error(g3, 3, j_index[j])) {
-            game_delete(g3);
-            return false;
+    square squares_3[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+                                                     0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+    game g3 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_3, true, false);
+    square squares_4[DEFAULT_SIZE * DEFAULT_SIZE] = {2, 4, 3, 1, 1, 2, 2, 4, 3, 1, 1, 2, 2, 4, 3, 1, 1, 2,
+                                                     2, 4, 3, 1, 1, 2, 2, 4, 3, 1, 1, 2, 2, 4, 3, 1, 1, 2};
+    game g4 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_4, false, true);
+    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+        for (uint j = 0; j < DEFAULT_SIZE; j++) {
+            if (!game_has_error(g3, i, j) || !game_has_error(g4, i, j)) {
+                game_delete(g3);
+                game_delete(g4);
+                return false;
+            }
         }
     }
     game_delete(g3);
+    game_delete(g4);
     return true;
 }
 

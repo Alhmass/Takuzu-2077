@@ -80,14 +80,14 @@ static bool is_consecutive(square *array, uint size, int current) {
 static bool is_consecutive_grid(cgame g, uint i, uint j) {
     square *tabRows = get_row(g, i);
     for (uint x = 0; x < game_nb_cols(g); x++) {
-        if (is_consecutive(tabRows, game_nb_cols(g), game_get_square(g, i, j))) {
+        if (is_consecutive(tabRows, game_nb_cols(g), game_get_number(g, i, j))) {
             return true;
         }
         tabRows = rotate_array(tabRows, game_nb_cols(g));
     }
-    square *tabCols = get_col(g, i);
+    square *tabCols = get_col(g, j);
     for (uint y = 0; y < game_nb_rows(g); y++) {
-        if (is_consecutive(tabCols, game_nb_rows(g), game_get_square(g, i, j))) {
+        if (is_consecutive(tabCols, game_nb_rows(g), game_get_number(g, i, j))) {
             return true;
         }
         tabCols = rotate_array(tabCols, game_nb_rows(g));
@@ -120,23 +120,6 @@ static bool is_unique_array(cgame g, uint i, uint j) {
         }
     }
     return true;
-    // 2 boucle une en parcourant les rows avec i et un autre en parcourant les cols avec j
-    //  PAS OUBLIER de skip la colonne et la ligne ou on est !!
-    // is_array_same(get_row(g, i), get_row(g, i), game_nb_cols(g));
-    // is_array_same(get_col(g, j), get_col(g, j), game_nb_rows(g));
-    // return false;
-}
-
-static bool is_unique_grid(cgame g) {
-    (void)g;
-    for (uint i = 0; i < game_nb_rows(g); i++){
-        for (uint j = 0; j < game_nb_cols(g); j++){
-            if (!is_unique_array(g, i, j)){
-                return false;
-            }
-        }
-    }
-    return true;
 }
 
 int game_has_error(cgame g, uint i, uint j) {
@@ -150,7 +133,7 @@ int game_has_error(cgame g, uint i, uint j) {
         }
     }
     if (game_is_unique(g)) {
-        if (!is_unique_grid(g)){
+        if (!is_unique_array(g, i, j)){
             return 1;
         }
     }
