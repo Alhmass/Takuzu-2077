@@ -15,7 +15,7 @@ void usage(char *argv[]) {
 bool test_game_is_immutable() {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
-    game g = game_new(squares);
+    game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
 
     if (!g)
         return false;
@@ -79,7 +79,7 @@ bool test_game_has_error() {
 bool test_game_check_move() {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
-    game g = game_new(squares);
+    game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
 
     if (!g)
         return false;
@@ -103,7 +103,7 @@ bool test_game_check_move() {
 bool test_game_play_move() {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
-    game g = game_new(squares);
+    game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
 
     if (!g)
         return (false);
@@ -134,16 +134,16 @@ bool test_game_is_over() {
     game g1 = game_default_solution();
     square squares_2[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 1, 2, 2, 3, 3, 4, 4, 1, 1, 2, 2, 3, 3, 4, 4, 1, 1,
                                                      2, 2, 3, 3, 4, 4, 1, 1, 2, 2, 3, 3, 4, 4, 1, 1, 2, 2};
-    game g2 = game_new(squares_2);
+    game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_2, false, false);
     square squares_3[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 2,
                                                      4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3};
-    game g3 = game_new(squares_3);
+    game g3 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_3, false, false);
     square squares_4[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 2, 3, 4, 1, 2, 3,
                                                      4, 1, 2, 3, 4, 1, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
-    game g4 = game_new(squares_4);
+    game g4 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_4, false, false);
     square squares_5[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1,
                                                      1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0};
-    game g5 = game_new(squares_5);
+    game g5 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_5, false, false);
 
     if (!g1 || !g2 || !g3 || !g4 || !g5)
         return false;
