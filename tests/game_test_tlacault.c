@@ -5,6 +5,8 @@
 
 #include "game.h"
 #include "game_aux.h"
+#include "game_ext.h"
+#include "move_stack.h"
 
 /*  TEST  */
 bool test_game_new(void) {
@@ -175,20 +177,29 @@ bool test_game_default_solution(void) {
 }
 
 bool test_game_new_ext(void) {
-    return false;
+    square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
+                                                   2, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
+    game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, 1, 1);
+    if (g == NULL)
+        return false;
+    if (game_nb_rows(g) != DEFAULT_SIZE || game_nb_cols(g) != DEFAULT_SIZE || !game_is_wrapping(g) ||
+        !game_is_unique(g)) {
+        game_delete(g);
+        return false;
+    }
+    if (!game_equal(g, game_default_solution())) {
+        game_delete(g);
+        return false;
+    }
+    game_delete(g);
+    return true;
 }
 
-bool test_game_new_empty_ext(void) {
-    return false;
-}
+bool test_game_new_empty_ext(void) { return false; }
 
-bool test_game_undo(void) {
-    return false;
-}
+bool test_game_undo(void) { return false; }
 
-bool test_game_redo(void) {
-    return false;
-}
+bool test_game_redo(void) { return false; }
 
 /*  USAGE  */
 void usage(char *argv[]) {
