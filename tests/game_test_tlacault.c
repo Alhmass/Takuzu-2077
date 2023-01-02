@@ -241,7 +241,40 @@ bool test_game_undo(void) {
     return true;
 }
 
-bool test_game_redo(void) { return false; }
+bool test_game_redo(void) {
+    game g = game_new_empty();
+    game_play_move(g, 0, 0, S_ONE);
+    game_play_move(g, 0, 1, S_ONE);
+    game_play_move(g, 0, 2, S_ONE);
+    game_undo(g);
+    game_undo(g);
+    square before = game_get_square(g, 0, 1);
+    square before2 = game_get_square(g, 0, 2);
+    game_redo(g);
+    game_redo(g);
+    square after = game_get_square(g, 0, 1);
+    square after2 = game_get_square(g, 0, 2);
+    if (before != after || before2 != after2) {
+        game_delete(g);
+        return false;
+    }
+
+    game_play_move(g, 1, 0, S_ONE);
+    game_play_move(g, 1, 1, S_ONE);
+    game_play_move(g, 1, 2, S_ONE);
+    game_undo(g);
+    game_undo(g);
+    game_play_move(g, 2, 0, S_ONE);
+    square before3 = game_get_square(g, 1, 1);
+    game_redo(g);
+    square after3 = game_get_square(g, 1, 1);
+    if (before3 != after3) {
+        game_delete(g);
+        return false;
+    }
+    game_delete(g);
+    return true;
+}
 
 /*  USAGE  */
 void usage(char *argv[]) {
