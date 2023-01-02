@@ -5,6 +5,7 @@
 
 #include "game.h"
 #include "game_aux.h"
+#include "game_ext.h"
 
 bool test_game_set_square() {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
@@ -133,11 +134,47 @@ bool test_game_get_next_number() {
 }
 
 bool test_game_nb_rows(void) {
-    return false;
+    bool status = true;
+    square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+                                                   0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+
+    square squares2[12 * 12] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0,
+                                0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+    square squares3[7 * 4] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0};
+    game g = game_new(squares);
+    game g2 = game_new_ext(12, 12, squares2, false, false);
+    game g3 = game_new_ext(7, 4, squares3, false, false);
+    if (!g || !g2 || !g3)
+        return false;
+    if (game_nb_rows(g) != 6 || game_nb_rows(g2) != 12 || game_nb_rows(g3) != 7)
+        status = false;
+    game_delete(g);
+    game_delete(g2);
+    game_delete(g3);
+    return status;
 }
 
 bool test_game_nb_cols(void) {
-    return false;
+    bool status = true;
+    square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+                                                   0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+
+    square squares2[12 * 12] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0,
+                                0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+    square squares3[7 * 4] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0};
+    game g = game_new(squares);
+    game g2 = game_new_ext(12, 12, squares2, false, false);
+    game g3 = game_new_ext(7, 4, squares3, false, false);
+    if (!g || !g2 || !g3)
+        return false;
+    if (game_nb_cols(g) != 6 || game_nb_cols(g2) != 12 || game_nb_cols(g3) != 4)
+        status = false;
+    game_delete(g);
+    game_delete(g2);
+    game_delete(g3);
+    return status;
 }
 
 void usage(char *argv[]) {
