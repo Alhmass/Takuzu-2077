@@ -195,7 +195,21 @@ bool test_game_new_ext(void) {
     return true;
 }
 
-bool test_game_new_empty_ext(void) { return false; }
+bool test_game_new_empty_ext(void) {
+    game g = game_new_empty_ext(DEFAULT_SIZE, DEFAULT_SIZE, 1, 1);
+    if (g == NULL)
+        return false;
+    if (game_nb_rows(g) != DEFAULT_SIZE || game_nb_cols(g) != DEFAULT_SIZE || !game_is_wrapping(g) || !game_is_unique(g)) {
+        game_delete(g);
+        return false;
+    }
+    if (!game_equal(g, game_new_empty())) {
+        game_delete(g);
+        return false;
+    }
+    game_delete(g);
+    return true;
+}
 
 bool test_game_undo(void) { return false; }
 
