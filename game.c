@@ -32,6 +32,10 @@ game game_new(square *squares) {
     memcpy(g->game, squares, sizeof(square) * (DEFAULT_SIZE * DEFAULT_SIZE));
     g->nb_cols = DEFAULT_SIZE;
     g->nb_rows = DEFAULT_SIZE;
+    g->backup = NULL;
+    g->history = NULL;
+    g->unique = false;
+    g->wrapping = false;
     return g;
 }
 
@@ -70,11 +74,12 @@ bool game_equal(cgame g1, cgame g2) {
 void game_delete(game g) {
     if (g == NULL)
         return;
-    if (g->game != NULL) {
-        ms_delete(g->history);
-        ms_delete(g->backup);
+    if (g->game != NULL)
         free(g->game);
-    }
+    if (g->history != NULL)
+        ms_delete(g->history);
+    if (g->backup != NULL)
+        ms_delete(g->backup);
     free(g);
 }
 
@@ -193,9 +198,12 @@ void game_play_move(game g, uint i, uint j, square s) {
     cgame_test(g, "g is not initialized\n");
     assert(((i < game_nb_rows(g)) && (j < game_nb_cols(g))));
     if (game_check_move(g, i, j, s)) {
-        move m = move_create(i, j, s, game_get_square(g, i, j));
-        ms_push(g->history, m);
-        ms_clear(g->backup);
+        if (g->backup != NULL && g->history != NULL) {
+            move m = move_create(i, j, s, game_get_square(g, i, j));
+            ms_push(g->history, m);
+            ms_clear(g->backup);
+            free(m);
+        }
         game_set_square(g, i, j, s);
     }
 }
@@ -216,6 +224,8 @@ void game_restart(game g) {
         for (uint j = 0; j < game_nb_cols(g); j++)
             if (!game_is_immutable(g, i, j))
                 game_set_square(g, i, j, S_EMPTY);
-    ms_clear(g->history);
-    ms_clear(g->backup);
+    if (g->history != NULL)
+        ms_clear(g->history);
+    if (g->backup != NULL)
+        ms_clear(g->backup);
 }
