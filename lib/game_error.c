@@ -121,26 +121,6 @@ static bool is_unique_array(cgame g, uint i, uint j) {
         }
     }
     return true;
-<<<<<<< HEAD
-    // 2 boucle une en parcourant les rows avec i et un autre en parcourant les cols avec j
-    //  PAS OUBLIER de skip la colonne et la ligne ou on est !!
-    // is_array_same(get_row(g, i), get_row(g, i), game_nb_cols(g));
-    // is_array_same(get_col(g, j), get_col(g, j), game_nb_rows(g));
-    // return false;
-}
-
-static bool is_unique_grid(cgame g) {
-    (void)g;
-    for (uint i = 0; i < game_nb_rows(g); i++) {
-        for (uint j = 0; j < game_nb_cols(g); j++) {
-            if (!is_unique_array(g, i, j)) {
-                return false;
-            }
-        }
-    }
-    return true;
-=======
->>>>>>> c20e922035cef2e97a915987d8b23743c16b3669
 }
 
 int game_has_error(cgame g, uint i, uint j) {
@@ -154,11 +134,7 @@ int game_has_error(cgame g, uint i, uint j) {
         }
     }
     if (game_is_unique(g)) {
-<<<<<<< HEAD
-        if (!is_unique_grid(g)) {
-=======
         if (!is_unique_array(g, i, j)){
->>>>>>> c20e922035cef2e97a915987d8b23743c16b3669
             return 1;
         }
     }
