@@ -115,13 +115,13 @@ int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
         throw_error("the distance value must be <=2!\n");
     if (game_is_wrapping(g)) {
         if (dir == LEFT)
-            j -= dist % game_nb_cols(g);
+            j = (j - dist) % game_nb_cols(g);
         else if (dir == RIGHT)
-            j += dist % game_nb_cols(g);
+            j = (j + dist) % game_nb_cols(g);
         else if (dir == UP)
-            i -= dist % game_nb_rows(g);
+            i = (i - dist) % game_nb_rows(g);
         else
-            i += dist % game_nb_rows(g);
+            i = (i + dist) % game_nb_rows(g);
     } else {
         if (dir == LEFT && dist <= j)
             j -= dist;
@@ -143,13 +143,13 @@ int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
         throw_error("the distance value must be <=2!\n");
     if (game_is_wrapping(g)) {
         if (dir == LEFT)
-            j -= dist % game_nb_cols(g);
+            j = (j - dist) % game_nb_cols(g);
         else if (dir == RIGHT)
-            j += dist % game_nb_cols(g);
+            j = (j + dist) % game_nb_cols(g);
         else if (dir == UP)
-            i -= dist % game_nb_rows(g);
+            i = (i - dist) % game_nb_rows(g);
         else
-            i += dist % game_nb_rows(g);
+            i = (i + dist) % game_nb_rows(g);
     } else {
         if (dir == LEFT && dist <= j)
             j -= dist;
