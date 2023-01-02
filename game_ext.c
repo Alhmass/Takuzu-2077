@@ -82,7 +82,6 @@ void game_undo(game g) {
     game_set_square(g, ms_top_row(g->history), ms_top_col(g->history), ms_top_p(g->history));
     ms_push(g->backup, ms_top(g->history));
     ms_pop(g->history);
-
 }
 
 void game_redo(game g) {

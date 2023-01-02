@@ -70,8 +70,11 @@ bool game_equal(cgame g1, cgame g2) {
 void game_delete(game g) {
     if (g == NULL)
         return;
-    if (g->game != NULL)
+    if (g->game != NULL) {
+        ms_delete(g->history);
+        ms_delete(g->backup);
         free(g->game);
+    }
     free(g);
 }
 
