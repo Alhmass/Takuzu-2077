@@ -75,8 +75,16 @@ square ms_top_p(ms stack) {
     return move_p(ms_top(stack));
 }
 
-bool ms_is_empty(ms stack) { return stack->size == 0; }
-bool ms_is_full(ms stack) { return stack->size == stack->capacity; }
+bool ms_is_empty(ms stack) {
+    if (stack == NULL)
+        return true;
+    return stack->size == 0;
+}
+bool ms_is_full(ms stack) {
+    if (stack == NULL)
+        return false;
+    return stack->size == stack->capacity;
+}
 
 void ms_print(ms stack) {
     printf("move_stack: size=%d, capacity=%d\n", stack->size, stack->capacity);
