@@ -187,27 +187,38 @@ bool test_game_new_ext(void) {
         game_delete(g);
         return false;
     }
-    if (!game_equal(g, game_default_solution())) {
+    game def_solution = game_default_solution();
+    if (def_solution == NULL) {
         game_delete(g);
         return false;
     }
+    if (!game_equal(g, def_solution)) {
+        game_delete(def_solution);
+        game_delete(g);
+        return false;
+    }
+    game_delete(def_solution);
     game_delete(g);
     return true;
 }
 
 bool test_game_new_empty_ext(void) {
     game g = game_new_empty_ext(DEFAULT_SIZE, DEFAULT_SIZE, 1, 1);
-    if (g == NULL)
+    game empty = game_new_empty();
+    if (g == NULL || empty == NULL)
         return false;
     if (game_nb_rows(g) != DEFAULT_SIZE || game_nb_cols(g) != DEFAULT_SIZE || !game_is_wrapping(g) ||
         !game_is_unique(g)) {
+        game_delete(empty);
         game_delete(g);
         return false;
     }
-    if (!game_equal(g, game_new_empty())) {
+    if (!game_equal(g, empty)) {
+        game_delete(empty);
         game_delete(g);
         return false;
     }
+    game_delete(empty);
     game_delete(g);
     return true;
 }

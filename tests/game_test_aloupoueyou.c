@@ -73,6 +73,7 @@ bool test_game_has_error() {
             return false;
         }
     }
+    game_delete(g3);
     return true;
 }
 
@@ -167,7 +168,7 @@ bool test_game_is_over() {
 bool test_game_is_unique(void) {
     game g1 = game_new_empty_ext(8, 8, false, true);
     game g2 = game_new_empty_ext(8, 8, false, false);
-    if (!game_is_unique(g1) || game_is_unique(g2)){
+    if (!game_is_unique(g1) || game_is_unique(g2)) {
         game_delete(g1);
         game_delete(g2);
         return false;
@@ -175,13 +176,12 @@ bool test_game_is_unique(void) {
     game_delete(g1);
     game_delete(g2);
     return true;
-    
 }
 
 bool test_game_is_wrapping(void) {
     game g1 = game_new_empty_ext(8, 8, true, false);
     game g2 = game_new_empty_ext(8, 8, false, false);
-    if (!game_is_wrapping(g1) || game_is_wrapping(g2)){
+    if (!game_is_wrapping(g1) || game_is_wrapping(g2)) {
         game_delete(g1);
         game_delete(g2);
         return false;
