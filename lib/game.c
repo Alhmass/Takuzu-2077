@@ -247,8 +247,10 @@ void game_restart(game g) {
         for (uint j = 0; j < cols_g; j++)
             if (!game_is_immutable(g, i, j))
                 game_set_square(g, i, j, S_EMPTY);
-    if (g->history != NULL)
-        ms_clear(g->history);
-    if (g->backup != NULL)
-        ms_clear(g->backup);
+    if (g->version == 2) {
+        if (g->history != NULL)
+            ms_clear(g->history);
+        if (g->backup != NULL)
+            ms_clear(g->backup);
+    }
 }
