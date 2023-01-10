@@ -158,7 +158,7 @@ bool test_game_nb_rows(void) {
                                 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     square squares3[7 * 4] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0};
-    game g = game_new(squares);
+    game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
     game g2 = game_new_ext(12, 12, squares2, false, false);
     game g3 = game_new_ext(7, 4, squares3, false, false);
     if (!g || !g2 || !g3)
@@ -180,7 +180,7 @@ bool test_game_nb_cols(void) {
                                 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     square squares3[7 * 4] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0};
-    game g = game_new(squares);
+    game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
     game g2 = game_new_ext(12, 12, squares2, false, false);
     game g3 = game_new_ext(7, 4, squares3, false, false);
     if (!g || !g2 || !g3)
