@@ -57,7 +57,6 @@ bool test_game_copy(void) {
         return false;
     }
     game_set_square(g1, 0, 0, 1);
-    printf("PASS\n");
     if (game_equal(g1, g1_copy)) {
         game_delete(g1);
         game_delete(g1_copy);
@@ -101,12 +100,10 @@ bool test_game_is_empty(void) {
     for (uint j = 0; j < DEFAULT_SIZE; j++) {
         for (uint i = 0; i < DEFAULT_SIZE; i++) {
             if (game_get_square(g, i, j) == 0 && !game_is_empty(g, i, j)) {
-                printf("square (%d, %d) is empty but game_is_empty() returns false\n", i, j);
                 game_delete(g);
                 return false;
             }
             if (game_get_square(g, i, j) == 1 && game_is_empty(g, i, j)) {
-                printf("square (%d, %d) is not empty but game_is_empty() returns true\n", i, j);
                 game_delete(g);
                 return false;
             }

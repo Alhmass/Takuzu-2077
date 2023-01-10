@@ -25,17 +25,19 @@ static void cgame_test(cgame g, char *msg) {
 
 static square *get_row(cgame g, uint i) {
     cgame_test(g, "g is NULL");
-    square *row = malloc(sizeof(square) * game_nb_cols(g));
+    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+    square *row = malloc(sizeof(square) * cols_g);
     test_pointer(row, "malloc failed");
-    for (uint j = 0; j < game_nb_cols(g); j++) row[j] = game_get_square(g, i, j);
+    for (uint j = 0; j < cols_g; j++) row[j] = game_get_square(g, i, j);
     return row;
 }
 
 static square *get_col(cgame g, uint j) {
     cgame_test(g, "g is NULL");
-    square *col = malloc(sizeof(square) * game_nb_rows(g));
+    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+    square *col = malloc(sizeof(square) * rows_g);
     test_pointer(col, "malloc failed");
-    for (uint i = 0; i < game_nb_rows(g); i++) col[i] = game_get_square(g, i, j);
+    for (uint i = 0; i < rows_g; i++) col[i] = game_get_square(g, i, j);
     return col;
 }
 
@@ -79,18 +81,20 @@ static bool is_consecutive(square *array, uint size, int current) {
 
 static bool is_consecutive_grid(cgame g, uint i, uint j) {
     square *tabRows = get_row(g, i);
-    for (uint x = 0; x < game_nb_cols(g); x++) {
-        if (is_consecutive(tabRows, game_nb_cols(g), game_get_number(g, i, j))) {
+    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+    for (uint x = 0; x < cols_g; x++) {
+        if (is_consecutive(tabRows, cols_g, game_get_number(g, i, j))) {
             return true;
         }
-        tabRows = rotate_array(tabRows, game_nb_cols(g));
+        tabRows = rotate_array(tabRows, cols_g);
     }
     square *tabCols = get_col(g, j);
-    for (uint y = 0; y < game_nb_rows(g); y++) {
-        if (is_consecutive(tabCols, game_nb_rows(g), game_get_number(g, i, j))) {
+    for (uint y = 0; y < rows_g; y++) {
+        if (is_consecutive(tabCols, rows_g, game_get_number(g, i, j))) {
             return true;
         }
-        tabCols = rotate_array(tabCols, game_nb_rows(g));
+        tabCols = rotate_array(tabCols, rows_g);
     }
     return false;
 }
@@ -106,16 +110,18 @@ static bool is_array_same(square *array1, square *array2, uint size) {
 }
 
 static bool is_unique_array(cgame g, uint i, uint j) {
-    for (uint x = 0; x < game_nb_rows(g); x++) {
+    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+    for (uint x = 0; x < rows_g; x++) {
         if (x != i) {
-            if (is_array_same(get_row(g, i), get_row(g, x), game_nb_cols(g))) {
+            if (is_array_same(get_row(g, i), get_row(g, x), cols_g)) {
                 return false;
             }
         }
     }
-    for (uint y = 0; y < game_nb_cols(g); y++) {
+    for (uint y = 0; y < cols_g; y++) {
         if (y != j) {
-            if (is_array_same(get_col(g, j), get_col(g, y), game_nb_rows(g))) {
+            if (is_array_same(get_col(g, j), get_col(g, y), rows_g)) {
                 return false;
             }
         }
@@ -125,7 +131,10 @@ static bool is_unique_array(cgame g, uint i, uint j) {
 
 int game_has_error(cgame g, uint i, uint j) {
     cgame_test(g, "g is not initialized\n");
-    if (i >= game_nb_rows(g) || j >= game_nb_cols(g))
+
+    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+    if (i >= rows_g || j >= cols_g)
         throw_error("i or j value is out of bounds!\n");
 
     if (game_is_wrapping(g)) {
@@ -134,14 +143,14 @@ int game_has_error(cgame g, uint i, uint j) {
         }
     }
     if (game_is_unique(g)) {
-        if (!is_unique_array(g, i, j)){
+        if (!is_unique_array(g, i, j)) {
             return 1;
         }
     }
     square *row = get_row(g, i);
     square *col = get_col(g, j);
-    if (is_consecutive(row, game_nb_cols(g), game_get_number(g, i, j)) ||
-        is_consecutive(col, game_nb_rows(g), game_get_number(g, i, j))) {
+    if (is_consecutive(row, cols_g, game_get_number(g, i, j)) ||
+        is_consecutive(col, rows_g, game_get_number(g, i, j))) {
         free(row);
         free(col);
         return 1;

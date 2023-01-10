@@ -13,6 +13,7 @@ struct game_s {
     bool unique;
     ms history;
     ms backup;
+    uint version;
 };
 
 #endif  // __GAME_STRUCT_H__

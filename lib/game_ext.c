@@ -35,6 +35,7 @@ game game_new_ext(uint nb_rows, uint nb_cols, square *squares, bool wrapping, bo
     g->unique = unique;
     g->history = ms_create(1);
     g->backup = ms_create(1);
+    g->version = 2;
     return g;
 }
 
@@ -50,6 +51,7 @@ game game_new_empty_ext(uint nb_rows, uint nb_cols, bool wrapping, bool unique) 
     g->unique = unique;
     g->history = ms_create(1);
     g->backup = ms_create(1);
+    g->version = 2;
     return g;
 }
 
