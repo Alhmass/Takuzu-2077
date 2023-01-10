@@ -187,15 +187,20 @@ bool test_game_new_ext(void) {
         game_delete(g2);
         return false;
     }
-    if (game_nb_rows(2) != DEFAULT_SIZE || game_nb_cols(2) != DEFAULT_SIZE || game_is_wrapping(g2) ||
+    if (game_nb_rows(g2) != DEFAULT_SIZE || game_nb_cols(g2) != DEFAULT_SIZE || game_is_wrapping(g2) ||
         game_is_unique(g2)) {
+        game_delete(g1);
+        game_delete(g2);
+        return false;
+    }
+    if (!game_equal(g1, g2)) {
         game_delete(g1);
         game_delete(g2);
         return false;
     }
     game_delete(g1);
     game_delete(g2);
-    return (game_equal(g1, g2)) ? true : false;
+    return true;
 }
 
 bool test_game_new_empty_ext(void) {
