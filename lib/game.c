@@ -210,7 +210,6 @@ bool game_check_move(cgame g, uint i, uint j, square s) {
     assert(((i < rows_g) && (j < cols_g)));
     if (s == S_IMMUTABLE_ONE || s == S_IMMUTABLE_ZERO)
         throw_error("[invalid parameter] square must not be immutable");
-
     square c = game_get_square(g, i, j);
     if (c == S_IMMUTABLE_ONE || c == S_IMMUTABLE_ZERO)
         return false;
