@@ -6,15 +6,13 @@ include(CTest)
 
 # ---- Pre Processor Intructions ---- #
 include_directories(include)
-include(CTest)
-enable_testing()
 
 # ---- Library Generation ---- #
 file(GLOB_RECURSE game_lib_src lib/*.c)
 add_library(game ${game_lib_src})
 
 # ---- Compilation Rules ---- #
-set(CMAKE_C_FLAGS "-std=c99 -Wall -Wextra -Werror -g --coverage")
+set(CMAKE_C_FLAGS "-std=c99 -Wall -Wextra -Werror -g")
 file(GLOB_RECURSE game_text_src src/*.c)
 link_directories(${CMAKE_SOURCE_DIR})
 link_libraries(game)
