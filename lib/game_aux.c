@@ -1,25 +1,4 @@
-#include "game_aux.h"
-
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "game_ext.h"
-#include "game_struct.h"
-
-static void throw_error(char *msg) {
-    fprintf(stderr, "[error] %s\n", msg);
-    exit(EXIT_FAILURE);
-}
-static void game_test(game g, char *msg) {
-    if (g == NULL)
-        throw_error(msg);
-}
-static void cgame_test(cgame g, char *msg) {
-    if (g == NULL)
-        throw_error(msg);
-}
+#include "takuzu.h"
 
 void game_print(cgame g) {
     printf("cold: %d, row: %d\n", game_nb_cols(g), game_nb_rows(g));

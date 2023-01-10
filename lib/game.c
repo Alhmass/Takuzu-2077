@@ -1,34 +1,10 @@
-#include "game.h"
-
-#include <assert.h>
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "game_ext.h"
-#include "game_struct.h"
-#include "move.h"
-#include "move_stack.h"
-
-static void throw_error(char *msg) {
-    fprintf(stderr, "[error] %s\n", msg);
-    exit(EXIT_FAILURE);
-}
-static void test_pointer(void *p, char *msg) {
-    if (p == NULL)
-        throw_error(msg);
-}
-static void cgame_test(cgame g, char *msg) {
-    if (g == NULL)
-        throw_error(msg);
-}
+#include "takuzu.h"
 
 game game_new(square *squares) {
     game g = malloc(sizeof(struct game_s));
-    test_pointer(g, "malloc failed");
+    pointer_test(g, "malloc failed");
     g->game = malloc(sizeof(square) * (DEFAULT_SIZE * DEFAULT_SIZE));
-    test_pointer(g->game, "malloc failed");
+    pointer_test(g->game, "malloc failed");
     memcpy(g->game, squares, sizeof(square) * (DEFAULT_SIZE * DEFAULT_SIZE));
     g->version = 1;
     return g;
@@ -36,7 +12,7 @@ game game_new(square *squares) {
 
 game game_new_empty(void) {
     square *squares = (square *)calloc(DEFAULT_SIZE * DEFAULT_SIZE, sizeof(square));
-    test_pointer(squares, "malloc failed");
+    pointer_test(squares, "malloc failed");
     game g = game_new(squares);
     cgame_test(g, "malloc failed");
     free(squares);
@@ -49,9 +25,8 @@ game game_copy(cgame g) {
     cgame_test(copy, "malloc failed");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    copy->game = memcpy(malloc(sizeof(square) * rows_g * cols_g), g->game,
-                        sizeof(square) * rows_g * cols_g);
-    test_pointer(copy->game, "malloc failed");
+    copy->game = memcpy(malloc(sizeof(square) * rows_g * cols_g), g->game, sizeof(square) * rows_g * cols_g);
+    pointer_test(copy->game, "malloc failed");
     return copy;
 }
 
@@ -197,6 +172,37 @@ bool game_is_immutable(cgame g, uint i, uint j) {
     return false;
 }
 
+int game_has_error(cgame g, uint i, uint j) {
+    cgame_test(g, "g is not initialized\n");
+
+    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+    if (i >= rows_g || j >= cols_g)
+        throw_error("i or j value is out of bounds!\n");
+
+    if (game_is_wrapping(g)) {
+        if (is_consecutive_grid(g, i, j)) {
+            return 1;
+        }
+    }
+    if (game_is_unique(g)) {
+        if (!is_unique_array(g, i, j)) {
+            return 1;
+        }
+    }
+    square *row = get_row(g, i);
+    square *col = get_col(g, j);
+    if (is_consecutive(row, cols_g, game_get_number(g, i, j)) ||
+        is_consecutive(col, rows_g, game_get_number(g, i, j))) {
+        free(row);
+        free(col);
+        return 1;
+    }
+    free(row);
+    free(col);
+    return 0;
+}
+
 bool game_check_move(cgame g, uint i, uint j, square s) {
     cgame_test(g, "g is not initialized\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
@@ -240,7 +246,7 @@ bool game_is_over(cgame g) {
 }
 
 void game_restart(game g) {
-    test_pointer(g, "g is not initialized\n");
+    pointer_test(g, "g is not initialized\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
     for (uint i = 0; i < rows_g; i++)

@@ -1,33 +1,11 @@
-#include "game_ext.h"
-
-#include <assert.h>
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "game_struct.h"
-#include "move_stack.h"
-
-static void throw_error(char *msg) {
-    fprintf(stderr, "[error] %s\n", msg);
-    exit(EXIT_FAILURE);
-}
-static void test_pointer(void *p, char *msg) {
-    if (p == NULL)
-        throw_error(msg);
-}
-static void cgame_test(cgame g, char *msg) {
-    if (g == NULL)
-        throw_error(msg);
-}
+#include "takuzu.h"
 
 game game_new_ext(uint nb_rows, uint nb_cols, square *squares, bool wrapping, bool unique) {
     game g = malloc(sizeof(struct game_s));
-    test_pointer(g, "game_nex_ext: game_ext malloc failed");
-    test_pointer(squares, "game_nex_ext: squares is NULL");
+    pointer_test(g, "game_nex_ext: game_ext malloc failed");
+    pointer_test(squares, "game_nex_ext: squares is NULL");
     g->game = malloc(sizeof(square) * (nb_rows * nb_cols));
-    test_pointer(g->game, "game_nex_ext: game malloc failed");
+    pointer_test(g->game, "game_nex_ext: game malloc failed");
     memcpy(g->game, squares, sizeof(square) * (nb_rows * nb_cols));
     g->nb_rows = nb_rows;
     g->nb_cols = nb_cols;
@@ -41,9 +19,9 @@ game game_new_ext(uint nb_rows, uint nb_cols, square *squares, bool wrapping, bo
 
 game game_new_empty_ext(uint nb_rows, uint nb_cols, bool wrapping, bool unique) {
     game g = malloc(sizeof(struct game_s));
-    test_pointer(g, "game_nex_ext: game_ext malloc failed");
+    pointer_test(g, "game_nex_ext: game_ext malloc failed");
     g->game = malloc(sizeof(square) * (nb_rows * nb_cols));
-    test_pointer(g->game, "game_nex_ext: game malloc failed");
+    pointer_test(g->game, "game_nex_ext: game malloc failed");
     memset(g->game, 0, sizeof(square) * (nb_rows * nb_cols));
     g->nb_rows = nb_rows;
     g->nb_cols = nb_cols;

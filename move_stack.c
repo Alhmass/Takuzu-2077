@@ -1,19 +1,10 @@
-#include "move_stack.h"
-
-static void throw_error(char *msg) {
-    fprintf(stderr, "[error] %s\n", msg);
-    exit(EXIT_FAILURE);
-}
-static void test_pointer(void *p, char *msg) {
-    if (p == NULL)
-        throw_error(msg);
-}
+#include "takuzu.h"
 
 ms ms_create(uint capacity) {
     ms stack = malloc(sizeof(struct move_stack_s));
-    test_pointer(stack, "ms_create: stack malloc failed");
+    pointer_test(stack, "ms_create: stack malloc failed");
     stack->data = malloc(sizeof(move) * capacity);
-    test_pointer(stack->data, "ms_create: data malloc failed");
+    pointer_test(stack->data, "ms_create: data malloc failed");
     stack->size = 0;
     stack->capacity = capacity;
     return stack;
@@ -29,7 +20,7 @@ void ms_delete(ms stack) {
 static void ms_double_capacity(ms stack) {
     stack->capacity *= 2;
     stack->data = realloc(stack->data, sizeof(move) * stack->capacity);
-    test_pointer(stack->data, "ms_double_capacity: realloc failed");
+    pointer_test(stack->data, "ms_double_capacity: realloc failed");
 }
 
 move ms_top(ms stack) {

@@ -1,6 +1,7 @@
 #ifndef _MOVE_STACK_H_
 #define _MOVE_STACK_H_
 
+#include "game.h"
 #include "move.h"
 
 struct move_stack_s {

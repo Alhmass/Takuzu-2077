@@ -105,34 +105,3 @@ bool is_unique_array(cgame g, uint i, uint j) {
     }
     return true;
 }
-
-int game_has_error(cgame g, uint i, uint j) {
-    cgame_test(g, "g is not initialized\n");
-
-    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
-    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    if (i >= rows_g || j >= cols_g)
-        throw_error("i or j value is out of bounds!\n");
-
-    if (game_is_wrapping(g)) {
-        if (is_consecutive_grid(g, i, j)) {
-            return 1;
-        }
-    }
-    if (game_is_unique(g)) {
-        if (!is_unique_array(g, i, j)) {
-            return 1;
-        }
-    }
-    square *row = get_row(g, i);
-    square *col = get_col(g, j);
-    if (is_consecutive(row, cols_g, game_get_number(g, i, j)) ||
-        is_consecutive(col, rows_g, game_get_number(g, i, j))) {
-        free(row);
-        free(col);
-        return 1;
-    }
-    free(row);
-    free(col);
-    return 0;
-}

@@ -1,13 +1,6 @@
 #ifndef _MOVE_H_
 #define _MOVE_H_
 
-#include <assert.h>
-#include <stdbool.h>
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "game.h"
 
 struct move_s {
