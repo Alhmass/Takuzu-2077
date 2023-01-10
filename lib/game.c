@@ -199,13 +199,12 @@ bool game_is_immutable(cgame g, uint i, uint j) {
 
 bool game_check_move(cgame g, uint i, uint j, square s) {
     cgame_test(g, "g is not initialized\n");
-    // uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
-    // uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    // assert(((i < rows_g) && (j < cols_g)));
-    assert(((i < DEFAULT_SIZE) && (j < DEFAULT_SIZE)));
+    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+    if ((i > rows_g) || (j > cols_g))
+        throw_error("[invalid parameter] the move must be in the range of the grid");
     if (s == S_IMMUTABLE_ONE || s == S_IMMUTABLE_ZERO)
         throw_error("[invalid parameter] square must not be immutable");
-
     square c = game_get_square(g, i, j);
     if (c == S_IMMUTABLE_ONE || c == S_IMMUTABLE_ZERO)
         return false;
