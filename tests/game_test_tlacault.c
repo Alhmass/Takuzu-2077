@@ -176,27 +176,26 @@ bool test_game_default_solution(void) {
 bool test_game_new_ext(void) {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
                                                    2, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
-    game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, 1, 1);
-    if (g == NULL)
+    game g1 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, true, true);
+    game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
+    if (g1 == NULL || g2 == NULL)
         return false;
-    if (game_nb_rows(g) != DEFAULT_SIZE || game_nb_cols(g) != DEFAULT_SIZE || !game_is_wrapping(g) ||
-        !game_is_unique(g)) {
-        game_delete(g);
-        return false;
-    }
-    game def_solution = game_default_solution();
-    if (def_solution == NULL) {
-        game_delete(g);
+
+    if (game_nb_rows(g1) != DEFAULT_SIZE || game_nb_cols(g1) != DEFAULT_SIZE || !game_is_wrapping(g1) ||
+        !game_is_unique(g1)) {
+        game_delete(g1);
+        game_delete(g2);
         return false;
     }
-    if (!game_equal(g, def_solution)) {
-        game_delete(def_solution);
-        game_delete(g);
+    if (game_nb_rows(2) != DEFAULT_SIZE || game_nb_cols(2) != DEFAULT_SIZE || game_is_wrapping(g2) ||
+        game_is_unique(g2)) {
+        game_delete(g1);
+        game_delete(g2);
         return false;
     }
-    game_delete(def_solution);
-    game_delete(g);
-    return true;
+    game_delete(g1);
+    game_delete(g2);
+    return (game_equal(g1, g2)) ? true : false;
 }
 
 bool test_game_new_empty_ext(void) {
