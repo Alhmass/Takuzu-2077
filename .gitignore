@@ -8,8 +8,5 @@ build/
 *.gcno
 *~*
 
-# Coverage
-coverage/
-
 # Solution Inputs
 moves.txt
