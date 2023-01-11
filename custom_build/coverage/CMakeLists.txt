@@ -1,13 +1,11 @@
 # ---- Project Settings ---- #
 cmake_minimum_required(VERSION 2.6)
 project(game_text C)
-enable_testing()
 include(CTest)
+enable_testing()
 
 # ---- Pre Processor Intructions ---- #
 include_directories(include)
-include(CTest)
-enable_testing()
 
 # ---- Library Generation ---- #
 file(GLOB_RECURSE game_lib_src lib/*.c)

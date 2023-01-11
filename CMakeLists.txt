@@ -1,8 +1,8 @@
 # ---- Project Settings ---- #
 cmake_minimum_required(VERSION 2.6)
 project(game_text C)
-enable_testing()
 include(CTest)
+enable_testing()
 
 # ---- Pre Processor Intructions ---- #
 include_directories(include)
