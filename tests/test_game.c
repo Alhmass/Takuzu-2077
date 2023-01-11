@@ -234,8 +234,8 @@ bool test_game_get_next_square() {
         status = false;
     // else if (game_get_next_square(g2, 0, 12, RIGHT, 2) != S_ONE)
     //     status = false;
-    // else if (game_get_next_square(g2, 12, 2, DOWN, 1) != S_ONE)
-    //     status = false;
+    else if (game_get_next_square(g2, 12, 2, DOWN, 1) != S_ONE)
+        status = false;
     game_delete(g);
     game_delete(g2);
     return (status);
