@@ -4,7 +4,7 @@ bool test_throw_error() {
     char *msg = NULL;
     if (!throw_error(msg)) {
         return true;
-	}
+    }
     // Never executed
     return false;
 }
@@ -13,7 +13,7 @@ bool test_game_test() {
     game g = game_new_empty();
     char *msg = NULL;
     if (game_test(g, msg)) {
-        free(g);
+        game_delete(g);
         return true;
     }
     // Never executed
@@ -24,7 +24,7 @@ bool test_cgame_test() {
     game g = game_new_empty();
     char *msg = NULL;
     if (cgame_test(g, msg)) {
-        free(g);
+        game_delete(g);
         return true;
     }
     // Never executed
