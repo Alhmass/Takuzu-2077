@@ -17,7 +17,6 @@ bool test_game_test() {
         return true;
     }
     // Never executed
-    free(g);
     return false;
 }
 
@@ -29,7 +28,6 @@ bool test_cgame_test() {
         return true;
     }
     // Never executed
-    free(g);
     return false;
 }
 
@@ -41,7 +39,6 @@ bool test_pointer_test() {
         return true;
     }
     // Never executed
-    free(ptr);
     return false;
 }
 
