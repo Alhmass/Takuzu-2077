@@ -5,7 +5,7 @@
 
 square *get_row(cgame g, uint i);
 square *get_col(cgame g, uint j);
-square *rotate_array(square *array, uint size);
+void rotate_array(square *array, uint size);
 int get_number(int s);
 bool is_consecutive(square *array, uint size, int current);
 bool is_consecutive_grid(cgame g, uint i, uint j);
