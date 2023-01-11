@@ -9,8 +9,9 @@ build/
 *~*
 
 # Coverage
-coverage/history.txt
-coverage/CoverageInfo/
+custom_build/coverage/history.txt
+custom_build/coverage/CoverageInfo/
+custom_build/memcheck/
 
 # Solution Inputs
 moves.txt
