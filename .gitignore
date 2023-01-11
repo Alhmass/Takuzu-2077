@@ -1,17 +1,13 @@
 # Folders
 .vscode/
 build/
+custom_build/
 
 # Files
 *.o
 *.gdca
 *.gcno
 *~*
-
-# Coverage
-custom_build/coverage/history.txt
-custom_build/coverage/CoverageInfo/
-custom_build/memcheck/
 
 # Solution Inputs
 moves.txt

@@ -17,7 +17,7 @@ void ms_delete(ms stack) {
     }
 }
 
-static void ms_double_capacity(ms stack) {
+void ms_double_capacity(ms stack) {
     stack->capacity *= 2;
     stack->data = realloc(stack->data, sizeof(move) * stack->capacity);
     pointer_test(stack->data, "ms_double_capacity: realloc failed");

@@ -1,60 +1,103 @@
 #include "takuzu.h"
 
 bool test_ms_create() {
-    return false;
+    bool pass = true;
+    ms stack = ms_create(5);
+    if (stack == NULL || stack->data == NULL || stack->size != 0 || stack->capacity != 5)
+        pass = false;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
 }
 
 bool test_ms_delete() {
-    return false;
+    bool pass = true;
+    ms stack = ms_create(5);
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
 }
 
 bool test_ms_double_capacity() {
-    return false;
+    bool pass = true;
+    ms stack = ms_create(2);
+    ms_double_capacity(stack);
+    if (stack->capacity != 4)
+        pass = false;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
 }
 
 bool test_ms_top() {
-    return false;
+    bool pass = true;
+    ms stack = ms_create(2);
+    move m = move_create(1, 2, S_ONE, S_ZERO);
+    ms_push(stack, m);
+    move m2 = ms_top(stack);
+    if (m2->row != 1 || m2->col != 2 || m2->s != S_ONE || m2->p != S_ZERO)
+        pass = false;
+    ms_delete(stack);
+    stack = NULL;
+    move_delete(m);
+    m = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
 }
 
 bool test_ms_push() {
-    return false;
+    bool pass = true;
+    ms stack = ms_create(2);
+    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+    move m2 = ms_top(stack);
+    if (m2 != NULL)
+        pass = false;
+    ms_push(stack, m1);
+    if (ms_top_row(stack) != 1 || ms_top_col(stack) != 2 || ms_top_s(stack) != S_ONE || ms_top_p(stack) != S_ZERO)
+        pass = false;
+    move_delete(m1);
+    m1 = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
 }
 
 bool test_ms_pop() {
-    return false;
+    bool pass = true;
+    ms stack = ms_create(2);
+    ms_pop(stack);
+    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+    ms_push(stack, m1);
+    ms_push(stack, m2);
+    ms_pop(stack);
+    if (ms_top_row(stack) != 1 || ms_top_col(stack) != 2 || ms_top_s(stack) != S_ONE || ms_top_p(stack) != S_ZERO)
+        pass = false;
+    move_delete(m1);
+    m1 = NULL;
+    move_delete(m2);
+    m2 = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
 }
 
-bool test_ms_clear() {
-    return false;
-}
+bool test_ms_clear() { return false; }
 
-bool test_ms_top_row() {
-    return false;
-}
+bool test_ms_top_row() { return false; }
 
-bool test_ms_top_col() {
-    return false;
-}
+bool test_ms_top_col() { return false; }
 
-bool test_ms_top_s() {
-    return false;
-}
+bool test_ms_top_s() { return false; }
 
-bool test_ms_top_p() {
-    return false;
-}
+bool test_ms_top_p() { return false; }
 
-bool test_ms_is_empty() {
-    return false;
-}
+bool test_ms_is_empty() { return false; }
 
-bool test_ms_is_full() {
-    return false;
-}
+bool test_ms_is_full() { return false; }
 
-bool test_ms_print() {
-    return false;
-}
+bool test_ms_print() { return false; }
 
 /*  USAGE  */
 void usage(char *argv[]) {

@@ -14,6 +14,7 @@ typedef struct move_stack_s *ms;
 
 ms ms_create(uint capacity);
 void ms_delete(ms stack);
+void ms_double_capacity(ms stack);
 
 move ms_top(ms stack);
 void ms_push(ms stack, move m);
