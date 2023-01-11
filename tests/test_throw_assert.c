@@ -10,7 +10,7 @@ bool test_throw_error() {
 }
 
 bool test_game_test() {
-    game g = malloc(sizeof g);
+    game g = game_new_empty();
     char *msg = NULL;
     if (game_test(g, msg)) {
         free(g);
@@ -22,7 +22,7 @@ bool test_game_test() {
 }
 
 bool test_cgame_test() {
-    game g = malloc(sizeof g);
+    game g = game_new_empty();
     char *msg = NULL;
     if (cgame_test(g, msg)) {
         free(g);
