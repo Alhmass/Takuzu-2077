@@ -121,8 +121,8 @@ bool test_game_nb_rows(void) {
     game g2 = game_new_empty_ext(8, 4, false, false);
     if (!g || !g2)
         return false;
-    // if (game_nb_rows(g) != 12 || game_nb_rows(g2) != 8)
-    //     status = false;
+    if (game_nb_rows(g) != 12 || game_nb_rows(g2) != 8)
+        status = false;
     game_delete(g);
     game_delete(g2);
     return status;
