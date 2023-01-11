@@ -52,7 +52,7 @@ void game_delete(game g) {
     if (g == NULL)
         return;
     if (g->game != NULL)
-            free(g->game);
+        free(g->game);
     if (g->version == 2) {
         if (g->history != NULL)
             ms_delete(g->history);
