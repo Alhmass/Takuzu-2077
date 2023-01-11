@@ -203,11 +203,8 @@ bool test_game_get_number() {
 }
 
 bool test_game_get_next_square() {
-    square squares[12 * 12] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0,
-                               0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                               0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_default();
-    game g2 = game_new_ext(12, 12, squares, true, false);
+    game g2 = game_new_empty_ext(12, 12, true, false);
     bool status = true;
 
     if (!g)

@@ -117,45 +117,27 @@ bool test_game_redo(void) {
 
 bool test_game_nb_rows(void) {
     bool status = true;
-    square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
-                                                   0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
-
-    square squares2[12 * 12] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0,
-                                0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
-    square squares3[7 * 4] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0};
-    game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
-    game g2 = game_new_ext(12, 12, squares2, false, false);
-    game g3 = game_new_ext(7, 4, squares3, false, false);
-    if (!g || !g2 || !g3)
+    game g = game_new_empty_ext(12, 12, false, false);
+    game g2 = game_new_empty_ext(7, 4, false, false);
+    if (!g || !g2)
         return false;
-    if (game_nb_rows(g) != 6 || game_nb_rows(g2) != 12 || game_nb_rows(g3) != 7)
+    if (game_nb_rows(g) != 12 || game_nb_rows(g2) != 7)
         status = false;
     game_delete(g);
     game_delete(g2);
-    game_delete(g3);
     return status;
 }
 
 bool test_game_nb_cols(void) {
     bool status = true;
-    square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
-                                                   0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
-
-    square squares2[12 * 12] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0,
-                                0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
-    square squares3[7 * 4] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 3, 4, 0, 0, 0, 0, 0, 4, 0};
-    game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
-    game g2 = game_new_ext(12, 12, squares2, false, false);
-    game g3 = game_new_ext(7, 4, squares3, false, false);
-    if (!g || !g2 || !g3)
+    game g = game_new_empty_ext(12, 12, false, false);
+    game g2 = game_new_empty_ext(7, 4, false, false);
+    if (!g || !g2)
         return false;
-    if (game_nb_cols(g) != 6 || game_nb_cols(g2) != 12 || game_nb_cols(g3) != 4)
+    if (game_nb_cols(g) != 12 || game_nb_cols(g2) != 4)
         status = false;
     game_delete(g);
     game_delete(g2);
-    game_delete(g3);
     return status;
 }
 
