@@ -10,6 +10,7 @@ build/
 
 # Coverage
 coverage/history.txt
+coverage/CoverageInfo/
 
 # Solution Inputs
 moves.txt
