@@ -19,10 +19,10 @@
 /* Headers */
 #include "game.h"
 #include "game_struct.h"
-#include "move.h"
-#include "move_stack.h"
 #include "game_aux.h"
 #include "game_ext.h"
+#include "move.h"
+#include "move_stack.h"
 #include "mode_error.h"
 #include "throw_assert.h"
 

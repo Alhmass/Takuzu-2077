@@ -182,12 +182,12 @@ int game_has_error(cgame g, uint i, uint j) {
     if (i >= rows_g || j >= cols_g)
         throw_error("i or j value is out of bounds!\n");
 
-    if (game_is_wrapping(g)) {
+    if (g->version == 2 && game_is_wrapping(g)) {
         if (is_consecutive_grid(g, i, j)) {
             return 1;
         }
     }
-    if (game_is_unique(g)) {
+    if (g->version == 2 && game_is_unique(g)) {
         if (!is_unique_array(g, i, j)) {
             return 1;
         }
@@ -225,11 +225,13 @@ void game_play_move(game g, uint i, uint j, square s) {
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
     assert(((i < rows_g) && (j < cols_g)));
     if (game_check_move(g, i, j, s)) {
-        if (g->backup != NULL && g->history != NULL) {
-            move m = move_create(i, j, s, game_get_square(g, i, j));
-            ms_push(g->history, m);
-            ms_clear(g->backup);
-            free(m);
+        if (g->version == 2) {
+            if (g->backup != NULL && g->history != NULL) {
+                move m = move_create(i, j, s, game_get_square(g, i, j));
+                ms_push(g->history, m);
+                ms_clear(g->backup);
+                free(m);
+            }
         }
         game_set_square(g, i, j, s);
     }
