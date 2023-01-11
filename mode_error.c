@@ -18,12 +18,11 @@ square *get_col(cgame g, uint j) {
     return col;
 }
 
-square *rotate_array(square *array, uint size) {
+void rotate_array(square *array, uint size) {
     pointer_test(array, "array is NULL");
     square start = array[0];
     for (uint i = 0; i < size - 1; i++) array[i] = array[i + 1];
     array[size - 1] = start;
-    return array;
 }
 
 int get_number(int s) {
@@ -60,7 +59,7 @@ bool is_consecutive_grid(cgame g, uint i, uint j) {
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
     for (uint x = 0; x < cols_g; x++) {
-        tabRows = rotate_array(tabRows, cols_g);
+        rotate_array(tabRows, cols_g);
         if (is_consecutive(tabRows, cols_g, game_get_number(g, i, j))) {
             return true;
         }
@@ -68,7 +67,7 @@ bool is_consecutive_grid(cgame g, uint i, uint j) {
     free(tabRows);
     square *tabCols = get_col(g, j);
     for (uint y = 0; y < rows_g; y++) {
-        tabCols = rotate_array(tabCols, rows_g);
+        rotate_array(tabCols, rows_g);
         if (is_consecutive(tabCols, rows_g, game_get_number(g, i, j))) {
             return true;
         }
