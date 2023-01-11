@@ -1,18 +1,47 @@
 #include "takuzu.h"
 
 bool test_throw_error() {
+    char *msg = NULL;
+    if (!throw_error(msg)) {
+        return true;
+	}
+    // Never executed
     return false;
 }
 
 bool test_game_test() {
+    game g = malloc(sizeof g);
+    char *msg = NULL;
+    if (game_test(g, msg)) {
+        free(g);
+        return true;
+    }
+    // Never executed
+    free(g);
     return false;
 }
 
 bool test_cgame_test() {
+    game g = malloc(sizeof g);
+    char *msg = NULL;
+    if (cgame_test(g, msg)) {
+        free(g);
+        return true;
+    }
+    // Never executed
+    free(g);
     return false;
 }
 
 bool test_pointer_test() {
+    char *ptr = malloc(sizeof *ptr);
+    char *msg = NULL;
+    if (pointer_test(ptr, msg)) {
+        free(ptr);
+        return true;
+    }
+    // Never executed
+    free(ptr);
     return false;
 }
 

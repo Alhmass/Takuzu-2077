@@ -1,21 +1,26 @@
 #include "takuzu.h"
 
-void throw_error(char *msg) {
+bool throw_error(char *msg) {
+    if (msg == NULL)
+        return false;
     fprintf(stderr, "[error] %s\n", msg);
     exit(EXIT_FAILURE);
 }
 
-void game_test(game g, char *msg) {
+bool game_test(game g, char *msg) {
     if (g == NULL)
         throw_error(msg);
+    return true;
 }
 
-void cgame_test(cgame g, char *msg) {
+bool cgame_test(cgame g, char *msg) {
     if (g == NULL)
         throw_error(msg);
+    return true;
 }
 
-void pointer_test(void *ptr, char *msg) {
+bool pointer_test(void *ptr, char *msg) {
     if (ptr == NULL)
         throw_error(msg);
+    return true;
 }

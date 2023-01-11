@@ -3,9 +3,9 @@
 
 #include "game.h"
 
-void throw_error(char *msg);
-void game_test(game g, char *msg);
-void cgame_test(cgame g, char *msg);
-void pointer_test(void *ptr, char *msg);
+bool throw_error(char *msg);
+bool game_test(game g, char *msg);
+bool cgame_test(cgame g, char *msg);
+bool pointer_test(void *ptr, char *msg);
 
 #endif /* _ASSERT_H_ */
