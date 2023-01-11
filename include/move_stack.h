@@ -21,10 +21,10 @@ void ms_push(ms stack, move m);
 void ms_pop(ms stack);
 void ms_clear(ms stack);
 
-uint ms_top_row(ms stack);
-uint ms_top_col(ms stack);
-square ms_top_s(ms stack);
-square ms_top_p(ms stack);
+int ms_top_row(ms stack);
+int ms_top_col(ms stack);
+int ms_top_s(ms stack);
+int ms_top_p(ms stack);
 
 bool ms_is_empty(ms stack);
 bool ms_is_full(ms stack);

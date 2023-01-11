@@ -105,6 +105,10 @@ bool test_ms_clear() {
 bool test_ms_top_row() {
     bool pass = true;
     ms stack = ms_create(2);
+    printf("size: %d\n", stack->size);
+    if (ms_top_row(stack) != -1)
+        pass = false;
+    printf("ms_top_row(stack) : %d\n", ms_top_row(stack));
     move m1 = move_create(1, 2, S_ONE, S_ZERO);
     move m2 = move_create(3, 4, S_ZERO, S_ONE);
     ms_push(stack, m1);
@@ -126,6 +130,8 @@ bool test_ms_top_row() {
 bool test_ms_top_col() {
     bool pass = true;
     ms stack = ms_create(2);
+    if (ms_top_col(stack) != -1)
+        pass = false;
     move m1 = move_create(1, 2, S_ONE, S_ZERO);
     move m2 = move_create(3, 4, S_ZERO, S_ONE);
     ms_push(stack, m1);
@@ -147,6 +153,8 @@ bool test_ms_top_col() {
 bool test_ms_top_s() {
     bool pass = true;
     ms stack = ms_create(2);
+    if (ms_top_s(stack) != -2)
+        pass = false;
     move m1 = move_create(1, 2, S_ONE, S_ZERO);
     move m2 = move_create(3, 4, S_ZERO, S_ONE);
     ms_push(stack, m1);
@@ -168,6 +176,8 @@ bool test_ms_top_s() {
 bool test_ms_top_p() {
     bool pass = true;
     ms stack = ms_create(2);
+    if (ms_top_p(stack) != -2)
+        pass = false;
     move m1 = move_create(1, 2, S_ONE, S_ZERO);
     move m2 = move_create(3, 4, S_ZERO, S_ONE);
     ms_push(stack, m1);
@@ -189,7 +199,7 @@ bool test_ms_top_p() {
 bool test_ms_is_empty() {
     bool pass = true;
     ms stack = ms_create(2);
-    if (!ms_is_empty(stack))
+    if (!ms_is_empty(stack) && ms_is_empty(NULL))
         pass = false;
     move m1 = move_create(1, 2, S_ONE, S_ZERO);
     ms_push(stack, m1);
@@ -209,6 +219,8 @@ bool test_ms_is_full() {
     bool pass = true;
     ms stack = ms_create(2);
     if (ms_is_full(stack))
+        pass = false;
+    if (ms_is_full(NULL))
         pass = false;
     move m1 = move_create(1, 2, S_ONE, S_ZERO);
     move m2 = move_create(3, 4, S_ZERO, S_ONE);

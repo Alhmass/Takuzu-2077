@@ -45,24 +45,24 @@ void ms_clear(ms stack) {
     while (!ms_is_empty(stack)) ms_pop(stack);
 }
 
-uint ms_top_row(ms stack) {
+int ms_top_row(ms stack) {
     if (ms_is_empty(stack))
         return -1;
     return move_row(ms_top(stack));
 }
-uint ms_top_col(ms stack) {
+int ms_top_col(ms stack) {
     if (ms_is_empty(stack))
         return -1;
     return move_col(ms_top(stack));
 }
-square ms_top_s(ms stack) {
+int ms_top_s(ms stack) {
     if (ms_is_empty(stack))
-        return -1;
+        return -2;
     return move_s(ms_top(stack));
 }
-square ms_top_p(ms stack) {
+int ms_top_p(ms stack) {
     if (ms_is_empty(stack))
-        return -1;
+        return -2;
     return move_p(ms_top(stack));
 }
 
