@@ -83,21 +83,169 @@ bool test_ms_pop() {
     return pass;
 }
 
-bool test_ms_clear() { return false; }
+bool test_ms_clear() {
+    bool pass = true;
+    ms stack = ms_create(2);
+    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+    ms_push(stack, m1);
+    ms_push(stack, m2);
+    ms_clear(stack);
+    if (stack->size != 0 || ms_top(stack) != NULL)
+        pass = false;
+    move_delete(m1);
+    m1 = NULL;
+    move_delete(m2);
+    m2 = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
+}
 
-bool test_ms_top_row() { return false; }
+bool test_ms_top_row() {
+    bool pass = true;
+    ms stack = ms_create(2);
+    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+    ms_push(stack, m1);
+    ms_push(stack, m2);
+    if (ms_top_row(stack) != 3)
+        pass = false;
+    ms_pop(stack);
+    if (ms_top_row(stack) != 1)
+        pass = false;
+    move_delete(m1);
+    m1 = NULL;
+    move_delete(m2);
+    m2 = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
+}
 
-bool test_ms_top_col() { return false; }
+bool test_ms_top_col() {
+    bool pass = true;
+    ms stack = ms_create(2);
+    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+    ms_push(stack, m1);
+    ms_push(stack, m2);
+    if (ms_top_col(stack) != 4)
+        pass = false;
+    ms_pop(stack);
+    if (ms_top_col(stack) != 2)
+        pass = false;
+    move_delete(m1);
+    m1 = NULL;
+    move_delete(m2);
+    m2 = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
+}
 
-bool test_ms_top_s() { return false; }
+bool test_ms_top_s() {
+    bool pass = true;
+    ms stack = ms_create(2);
+    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+    ms_push(stack, m1);
+    ms_push(stack, m2);
+    if (ms_top_s(stack) != S_ZERO)
+        pass = false;
+    ms_pop(stack);
+    if (ms_top_s(stack) != S_ONE)
+        pass = false;
+    move_delete(m1);
+    m1 = NULL;
+    move_delete(m2);
+    m2 = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
+}
 
-bool test_ms_top_p() { return false; }
+bool test_ms_top_p() {
+    bool pass = true;
+    ms stack = ms_create(2);
+    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+    ms_push(stack, m1);
+    ms_push(stack, m2);
+    if (ms_top_p(stack) != S_ONE)
+        pass = false;
+    ms_pop(stack);
+    if (ms_top_p(stack) != S_ZERO)
+        pass = false;
+    move_delete(m1);
+    m1 = NULL;
+    move_delete(m2);
+    m2 = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
+}
 
-bool test_ms_is_empty() { return false; }
+bool test_ms_is_empty() {
+    bool pass = true;
+    ms stack = ms_create(2);
+    if (!ms_is_empty(stack))
+        pass = false;
+    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+    ms_push(stack, m1);
+    if (ms_is_empty(stack))
+        pass = false;
+    ms_pop(stack);
+    if (!ms_is_empty(stack))
+        pass = false;
+    move_delete(m1);
+    m1 = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
+}
 
-bool test_ms_is_full() { return false; }
+bool test_ms_is_full() {
+    bool pass = true;
+    ms stack = ms_create(2);
+    if (ms_is_full(stack))
+        pass = false;
+    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+    ms_push(stack, m1);
+    if (ms_is_full(stack))
+        pass = false;
+    ms_push(stack, m2);
+    if (!ms_is_full(stack))
+        pass = false;
+    ms_pop(stack);
+    if (ms_is_full(stack))
+        pass = false;
+    move_delete(m1);
+    m1 = NULL;
+    move_delete(m2);
+    m2 = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
+}
 
-bool test_ms_print() { return false; }
+bool test_ms_print() {
+    bool pass = true;
+    ms stack = ms_create(2);
+    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+    ms_push(stack, m1);
+    ms_push(stack, m2);
+    ms_print(stack);
+    move_delete(m1);
+    m1 = NULL;
+    move_delete(m2);
+    m2 = NULL;
+    ms_delete(stack);
+    stack = NULL;
+    return pass;
+}
 
 /*  USAGE  */
 void usage(char *argv[]) {
