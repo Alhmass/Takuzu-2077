@@ -13,6 +13,7 @@ move move_create(uint row, uint col, square s, square p) {
 void move_delete(move m) {
     if (m != NULL)
         free(m);
+    m = NULL;
 }
 
 uint move_row(move m) {

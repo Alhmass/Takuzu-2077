@@ -1,31 +1,91 @@
 #include "takuzu.h"
 
 bool test_move_create() {
-    return false;
+    move m = move_create(0, 0, S_ONE, S_EMPTY);
+    if (m == NULL)
+        return false;
+    if (m->row != 0 || m->col != 0 || m->s != S_ONE || m->p != S_EMPTY)
+        return false;
+    free(m);
+    m = NULL;
+    return true;
 }
 
 bool test_move_delete() {
-    return false;
+    move m = move_create(0, 0, S_ONE, S_EMPTY);
+    move_delete(m);
+    m = NULL;
+    if (m != NULL)
+        return false;
+    return true;
 }
 
 bool test_move_row() {
-    return false;
+    move m1 = move_create(0, 0, S_ONE, S_EMPTY);
+    if (move_row(m1) != 0)
+        return false;
+    move_delete(m1);
+    m1 = NULL;
+    move m2 = move_create(10, 10, S_ONE, S_EMPTY);
+    if (move_row(m2) != 10)
+        return false;
+    move_delete(m2);
+    m2 = NULL;
+    return true;
 }
 
 bool test_move_col() {
-    return false;
+    move m1 = move_create(0, 0, S_ONE, S_EMPTY);
+    if (move_col(m1) != 0)
+        return false;
+    move_delete(m1);
+    m1 = NULL;
+    move m2 = move_create(10, 10, S_ONE, S_EMPTY);
+    if (move_col(m2) != 10)
+        return false;
+    move_delete(m2);
+    m2 = NULL;
+    return true;
 }
 
 bool test_move_s() {
-    return false;
+    move m1 = move_create(0, 0, S_ONE, S_EMPTY);
+    if (move_s(m1) != (square)S_ONE)
+        return false;
+    move_delete(m1);
+    m1 = NULL;
+    move m2 = move_create(10, 10, S_ZERO, S_EMPTY);
+    if (move_s(m2) != (square)S_ZERO)
+        return false;
+    move_delete(m2);
+    m2 = NULL;
+    return true;
 }
 
 bool test_move_p() {
-    return false;
+    move m1 = move_create(0, 0, S_ONE, S_EMPTY);
+    if (move_p(m1) != (square)S_EMPTY)
+        return false;
+    move_delete(m1);
+    m1 = NULL;
+    move m2 = move_create(10, 10, S_ZERO, S_IMMUTABLE_ONE);
+    if (move_p(m2) != (square)S_IMMUTABLE_ONE)
+        return false;
+    move_delete(m2);
+    m2 = NULL;
+    return true;
 }
 
 bool test_move_print() {
-    return false;
+    move m1 = move_create(0, 0, S_ONE, S_EMPTY);
+    move_print(m1);
+    move_delete(m1);
+    m1 = NULL;
+    move m2 = move_create(10, 10, S_ZERO, S_IMMUTABLE_ONE);
+    move_print(m2);
+    move_delete(m2);
+    m2 = NULL;
+    return true;
 }
 
 /*  USAGE  */
@@ -53,7 +113,7 @@ int main(int argc, char *argv[]) {
         pass = test_move_s();
     else if (strcmp("move_p", argv[1]) == 0)
         pass = test_move_p();
-    else if (strcmp("", argv[1]) == 0)
+    else if (strcmp("move_print", argv[1]) == 0)
         pass = test_move_print();
     else {
         fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
