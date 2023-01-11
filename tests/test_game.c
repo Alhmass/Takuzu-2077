@@ -203,13 +203,18 @@ bool test_game_get_number() {
 }
 
 bool test_game_get_next_square() {
+    square squares[12 * 12] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+                               0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3,
+                               0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+                               0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_default();
-    game g2 = game_new_empty_ext(14, 14, true, false);
+    game g2 = game_new_ext(12, 12, squares, true, false);
     bool status = true;
 
-    if (!g || !g2)
+    if (!g)
         return (false);
-    
+    if (!g2)
+        return (false);
     game_set_square(g, 0, 3, S_ZERO);
     game_set_square(g, 0, 4, S_ONE);
     game_set_square(g2, 0, 2, S_ONE);
@@ -228,9 +233,9 @@ bool test_game_get_next_square() {
         status = false;
     else if (game_get_next_square(g, 0, 5, LEFT, 1) != S_ONE)
         status = false;
-    else if (game_get_next_square(g2, 0, 14, RIGHT, 2) != S_ONE)
+    else if (game_get_next_square(g2, 0, 12, RIGHT, 2) != S_ONE)
         status = false;
-    else if (game_get_next_square(g2, 14, 2, DOWN, 1) != S_ONE)
+    else if (game_get_next_square(g2, 12, 2, DOWN, 1) != S_ONE)
         status = false;
     game_delete(g);
     game_delete(g2);
