@@ -250,8 +250,8 @@ bool test_game_get_next_square() {
         return (false);
     game_set_square(g, 0, 3, S_ZERO);
     game_set_square(g, 0, 4, S_ONE);
+    game_set_square(g2, 0, 1, S_ONE);
     game_set_square(g2, 0, 2, S_ONE);
-    game_set_square(g2, 1, 2, S_ONE);
     if (game_get_next_square(g, 0, 0, RIGHT, 1) != S_IMMUTABLE_ONE)
         status = false;
     else if (game_get_next_square(g, 0, 0, RIGHT, 2) != S_IMMUTABLE_ZERO)
@@ -266,9 +266,9 @@ bool test_game_get_next_square() {
         status = false;
     else if (game_get_next_square(g, 0, 5, LEFT, 1) != S_ONE)
         status = false;
-    // else if (game_get_next_square(g2, 0, 12, RIGHT, 2) != S_ONE)
-    //     status = false;
-    else if (game_get_next_square(g2, 12, 2, DOWN, 1) != S_ONE)
+    else if (game_get_next_square(g2, 0, 11, RIGHT, 2) != S_ONE)
+        status = false;
+    else if (game_get_next_square(g2, 11, 2, DOWN, 1) != S_ONE)
         status = false;
     game_delete(g);
     game_delete(g2);
@@ -276,16 +276,18 @@ bool test_game_get_next_square() {
 }
 
 bool test_game_get_next_number() {
-    game g = game_default();
-    game g2 = game_new_empty_ext(7, 14, true, false);
+       game g = game_default();
+    game g2 = game_new_empty_ext(12, 12, true, false);
     bool status = true;
 
-    if (!g || !g2)
+    if (!g)
+        return (false);
+    if (!g2)
         return (false);
     game_set_square(g, 0, 3, S_ZERO);
     game_set_square(g, 0, 4, S_ONE);
+    game_set_square(g2, 0, 1, S_ONE);
     game_set_square(g2, 0, 2, S_ONE);
-    game_set_square(g2, 1, 2, S_ONE);
     if (game_get_next_number(g, 0, 0, RIGHT, 1) != 1)
         status = false;
     else if (game_get_next_number(g, 0, 0, RIGHT, 2) != 0)
@@ -300,9 +302,9 @@ bool test_game_get_next_number() {
         status = false;
     else if (game_get_next_number(g, 0, 5, LEFT, 1) != 1)
         status = false;
-    else if (game_get_next_number(g2, 0, 14, RIGHT, 2) != 1)
+    else if (game_get_next_number(g2, 0, 11, RIGHT, 2) != 1)
         status = false;
-    else if (game_get_next_number(g2, 7, 2, DOWN, 1) != 1)
+    else if (game_get_next_number(g2, 11, 2, DOWN, 1) != 1)
         status = false;
     game_delete(g);
     game_delete(g2);
@@ -396,6 +398,7 @@ bool test_game_play_move() {
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
+    //game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
 
     if (!g)
         return (false);
