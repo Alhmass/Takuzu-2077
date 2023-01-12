@@ -65,6 +65,7 @@ add_test(test_get_number                    ./test_mode_error get_number)
 add_test(test_rotate_array                  ./test_mode_error rotate_array)
 add_test(test_get_col                       ./test_mode_error get_col)
 add_test(test_get_row                       ./test_mode_error get_row)
+add_test(test_is_array_full                 ./test_mode_error is_array_full)
 
 add_executable(test_move                    tests/test_move.c)
 add_test(test_move_create                   ./test_move move_create)

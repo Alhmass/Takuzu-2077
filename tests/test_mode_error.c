@@ -1,8 +1,6 @@
 #include "takuzu.h"
 
-bool test_game_has_error() { return false; }
-
-bool test_is_unique_array() {
+bool test_is_unique_array() { 
     bool pass = true;
     square array1[4 * 4] = {1, 3, 2, 2, 1, 1, 2, 4, 1, 4, 1, 3, 3, 2, 1, 4};
     square array2[4 * 4] = {1, 0, 0, 3, 4, 0, 0, 2, 2, 0, 0, 4, 1, 0, 0, 3};
@@ -43,15 +41,28 @@ bool test_is_array_same() {
 
 bool test_is_consecutive_grid() {
     bool pass = true;
-    // square square_1[DEFAULT_SIZE * DEFAULT_SIZE] = {};
-    // game g1 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_1, false, false);
-    // square square_2[DEFAULT_SIZE * DEFAULT_SIZE] = {};
-    // game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_2, false, false);
-    // square square_3[DEFAULT_SIZE * DEFAULT_SIZE] = {};
-    // game g3 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_3, false, false);
-    // square square_4[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
-    //                                                 2, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
-    // game g4 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_4, false, false);
+    square square_1[4 * 4] = {3, 1, 1, 2, 4, 3, 2, 1, 4, 2, 3, 1, 1, 2, 2, 2};
+    game g1 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_1, false, false);
+    square square_2[4 * 4] = {1, 1, 2, 3, 2, 1, 2, 1, 2, 2, 1, 1, 1, 2, 2, 2};
+    game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_2, false, false);
+    square square_3[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 2, 1, 2, 1, 2, 1, 3, 4, 2, 1, 1, 2, 2, 1, 
+                                                    2, 1, 3, 4, 4, 1, 1, 2, 3, 1, 3, 2, 3, 3, 2, 1, 4, 2};
+    game g3 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_3, false, false);
+    square square_4[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
+                                                    2, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
+    game g4 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_4, false, false);
+    if (!is_consecutive_grid(g1, 0, 0))
+        pass = false;
+    if (!is_consecutive_grid(g2, 0, 0))
+        pass = false;
+    if (!is_consecutive_grid(g3, 0, 0))
+        pass = false; 
+    if (is_consecutive_grid(g4, 0, 0))
+        pass = false; 
+    game_delete(g1);
+    game_delete(g2);
+    game_delete(g3);
+    game_delete(g4);
     return pass;
 }
 
@@ -162,6 +173,17 @@ bool test_get_row() {
     return pass;
 }
 
+bool test_is_array_full(){
+    bool pass = true;
+    square array1[DEFAULT_SIZE] = {1, 2, 3, 1, 2, 3};
+    square array2[DEFAULT_SIZE] = {1, 0, 3, 1, 2, 3};
+    if (!is_array_full(array1, DEFAULT_SIZE))
+        pass = false;
+    if (is_array_full(array2, DEFAULT_SIZE))
+        pass = false;
+    return pass;
+}
+
 /*  USAGE  */
 void usage(char *argv[]) {
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
@@ -175,9 +197,7 @@ int main(int argc, char *argv[]) {
 
     fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
     bool pass = false;
-    if (strcmp("game_has_error", argv[1]) == 0)
-        pass = test_game_has_error();
-    else if (strcmp("is_unique_array", argv[1]) == 0)
+    if (strcmp("is_unique_array", argv[1]) == 0)
         pass = test_is_unique_array();
     else if (strcmp("is_array_same", argv[1]) == 0)
         pass = test_is_array_same();
@@ -193,6 +213,8 @@ int main(int argc, char *argv[]) {
         pass = test_get_col();
     else if (strcmp("get_row", argv[1]) == 0)
         pass = test_get_row();
+    else if (strcmp("is_array_full", argv[1]) == 0)
+        pass = test_is_array_full();
     else {
         fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
         exit(EXIT_FAILURE);
