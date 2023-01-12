@@ -268,7 +268,9 @@ void game_restart(game g) {
             if (!game_is_immutable(g, i, j))
                 game_set_square(g, i, j, S_EMPTY);
     if (g->version == 2) {
-        ms_clear(g->history);
-        ms_clear(g->backup);
+        if (g->history != NULL)
+            ms_clear(g->history);
+        if (g->backup != NULL)
+            ms_clear(g->backup);
     }
 }
