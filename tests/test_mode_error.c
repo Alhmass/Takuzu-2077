@@ -96,16 +96,15 @@ bool test_get_col() {
 }
 
 bool test_get_row() {
+    bool pass = false; 
     square square_1[DEFAULT_SIZE * 2] = {1, 2, 1, 1, 2, 1, 3, 4, 3, 4, 3, 4};
     game g = game_new_ext(2, DEFAULT_SIZE, square_1, true, false);
     square square_2[DEFAULT_SIZE] = {1, 2, 1, 1, 2, 1};
     square square_3[DEFAULT_SIZE] = {3, 4, 3, 4, 3, 4};
     square square_4[DEFAULT_SIZE] = {1, 2, 3, 1, 2, 0};
-    if (!is_array_same(get_row(g, 1), square_2, 6) || !is_array_same(get_row(g, 2), square_3, 6) ||
-        is_array_same(get_row(g, 1), square_4, 6)) {
-        return false;
-    }
-    return true;
+    square *col_0 = get_row(g, 0);
+    square *col_1 = get_row(g, 1);
+    if (!is_array_same(col_0, ))
 }
 
 /*  USAGE  */

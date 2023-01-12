@@ -76,7 +76,7 @@ square game_get_square(cgame g, uint i, uint j) {
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
     if (i >= rows_g || j >= cols_g)
         throw_error("invalid index");
-    return g->game[rows_g * i + j];
+    return g->game[cols_g * i + j];
 }
 
 int game_get_number(cgame g, uint i, uint j) {
