@@ -21,12 +21,14 @@ game game_new_empty(void) {
 }
 
 game game_copy(cgame g) {
-    game copy = memcpy(malloc(sizeof(struct game_s)), g, sizeof(struct game_s));
-    cgame_test(copy, "malloc failed");
-    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
-    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    copy->game = memcpy(malloc(sizeof(square) * rows_g * cols_g), g->game, sizeof(square) * rows_g * cols_g);
-    pointer_test(copy->game, "malloc failed");
+    cgame_test(g, "g is NULL");
+    if (g->version == 2) {
+        game copy = game_new_ext(game_nb_rows(g), game_nb_cols(g), g->game, g->wrapping, g->unique);
+        game_test(copy, "malloc failed");
+        return copy;
+    }
+    game copy = game_new(g->game);
+    game_test(copy, "malloc failed");
     return copy;
 }
 
