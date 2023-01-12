@@ -100,14 +100,19 @@ int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
         throw_error("the distance value must be <=2!\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+    int findex = 0;
     if (g->version == 2 && game_is_wrapping(g)) {
-        if (dir == LEFT)
-            j = (j - dist) % cols_g;
-        else if (dir == RIGHT)
+        if (i >= rows_g || j >= cols_g)
+            return (-1);
+        if (dir == LEFT) {
+            findex = (j - dist);
+            j = findex <= 0 ? (cols_g + findex) : (j - dist) % cols_g;
+        } else if (dir == RIGHT)
             j = (j + dist) % cols_g;
-        else if (dir == UP)
-            i = (i - dist) % rows_g;
-        else
+        else if (dir == UP) {
+            findex = (i - dist);
+            i = findex <= 0 ? (rows_g + findex) : (i - dist) % rows_g;
+        } else
             i = (i + dist) % rows_g;
     } else {
         if (dir == LEFT && dist <= j)
@@ -130,14 +135,19 @@ int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
         throw_error("the distance value must be <=2!\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+    int findex = 0;
     if (g->version == 2 && game_is_wrapping(g)) {
-        if (dir == LEFT)
-            j = (j - dist) % cols_g;
-        else if (dir == RIGHT)
+        if (i >= rows_g || j >= cols_g)
+            return (-1);
+        if (dir == LEFT) {
+            findex = (j - dist);
+            j = findex <= 0 ? (cols_g + findex) : (j - dist) % cols_g;
+        } else if (dir == RIGHT)
             j = (j + dist) % cols_g;
-        else if (dir == UP)
-            i = (i - dist) % rows_g;
-        else
+        else if (dir == UP) {
+            findex = (i - dist);
+            i = findex <= 0 ? (rows_g + findex) : (i - dist) % rows_g;
+        } else
             i = (i + dist) % rows_g;
     } else {
         if (dir == LEFT && dist <= j)
