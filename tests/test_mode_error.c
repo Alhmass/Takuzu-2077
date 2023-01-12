@@ -72,23 +72,14 @@ bool test_get_col() {
     square square_4[DEFAULT_SIZE] = {3, 2, 1, 3, 2, 1};
     square *col_0 = get_col(g, 0);
     square *col_1 = get_col(g, 1);
-    print_array(col_0, 6);
-    print_array(col_1, 6);
-
-
     if (!is_array_same(col_0, square_2, 2))
         pass = false;
-    printf("pass: %d\n", pass);
     if (!is_array_same(col_1, square_3, 2))
         pass = false;
-    printf("pass: %d\n", pass);
     if (is_array_same(col_0, square_4, 2))
         pass = false;
-    printf("pass: %d\n", pass);
     if (is_array_same(col_1, square_4, 2))
         pass = false;
-    printf("pass: %d\n", pass);
-
     free(col_0);
     free(col_1);
     game_delete(g);
@@ -96,15 +87,26 @@ bool test_get_col() {
 }
 
 bool test_get_row() {
-    bool pass = false; 
+    bool pass = true; 
     square square_1[DEFAULT_SIZE * 2] = {1, 2, 1, 1, 2, 1, 3, 4, 3, 4, 3, 4};
     game g = game_new_ext(2, DEFAULT_SIZE, square_1, true, false);
     square square_2[DEFAULT_SIZE] = {1, 2, 1, 1, 2, 1};
     square square_3[DEFAULT_SIZE] = {3, 4, 3, 4, 3, 4};
     square square_4[DEFAULT_SIZE] = {1, 2, 3, 1, 2, 0};
-    square *col_0 = get_row(g, 0);
-    square *col_1 = get_row(g, 1);
-    if (!is_array_same(col_0, ))
+    square *row_0 = get_row(g, 0);
+    square *row_1 = get_row(g, 1);
+    if (!is_array_same(row_0, square_2, 6))
+        pass = false; 
+    if (!is_array_same(row_1, square_3, 6))
+        pass = false;
+    if (is_array_same(row_0, square_4, 6))
+        pass = false;
+    if (is_array_same(row_1, square_4, 6))
+        pass = false;
+    free(row_0);
+    free(row_1);
+    game_delete(g);
+    return pass;
 }
 
 /*  USAGE  */
