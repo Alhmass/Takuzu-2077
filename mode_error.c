@@ -21,7 +21,10 @@ square *get_col(cgame g, uint j) {
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     square *col = malloc(sizeof(square) * rows_g);
     pointer_test(col, "malloc failed");
-    for (uint i = 0; i < rows_g; i++) col[i] = game_get_square(g, i, j);
+    for (uint i = 0; i < rows_g; i++) {
+        // printf("square : %d\n", game_get_square(g, i, j));
+        col[i] = game_get_square(g, i, j);
+    }
     return col;
 }
 
@@ -85,7 +88,7 @@ bool is_consecutive_grid(cgame g, uint i, uint j) {
 
 bool is_array_same(square *array1, square *array2, uint size) {
     for (uint i = 0; i < size; i++) {
-        if (get_number(array1[i]) != get_number(array2[i])){
+        if (get_number(array1[i]) != get_number(array2[i])) {
             return false;
         }
     }

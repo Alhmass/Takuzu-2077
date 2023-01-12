@@ -22,7 +22,7 @@ square *get_col(cgame g, uint j) {
     square *col = malloc(sizeof(square) * rows_g);
     pointer_test(col, "malloc failed");
     for (uint i = 0; i < rows_g; i++) {
-        printf("square : %d\n", game_get_square(g, i, j));
+        // printf("square : %d\n", game_get_square(g, i, j));
         col[i] = game_get_square(g, i, j);
     }
     return col;
