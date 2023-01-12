@@ -3,6 +3,7 @@
 
 #include "game.h"
 
+void print_array(square *array, uint size);
 square *get_row(cgame g, uint i);
 square *get_col(cgame g, uint j);
 void rotate_array(square *array, uint size);
