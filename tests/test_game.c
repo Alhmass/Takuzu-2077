@@ -142,27 +142,45 @@ bool test_game_is_empty(void) {
 }
 
 bool test_game_restart(void) {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
-
-    if (!g)
-        return false;
-
-    game_set_square(g, 0, 0, S_ZERO);
-    game_set_square(g, 3, 5, S_ONE);
+    game_test(g, "malloc failed");
+    game_play_move(g, 0, 0, S_ZERO);
+    game_play_move(g, 3, 5, S_ONE);
     game_restart(g);
-
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
-            if (game_get_square(g, i, j) != game_get_square(g, i, j)) {
-                game_delete(g);
-                return false;
-            }
+            if (game_get_square(g, i, j) != game_get_square(g, i, j))
+                pass = false;
         }
     }
     game_delete(g);
-    return true;
+
+    game g_ext = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
+    game_test(g, "malloc failed");
+    game_play_move(g_ext, 0, 0, S_ZERO);
+    game_play_move(g_ext, 3, 5, S_ONE);
+    square m1_before = game_get_square(g_ext, 0, 0);
+    square m2_before = game_get_square(g_ext, 3, 5);
+    game_undo(g_ext);
+    game_undo(g_ext);
+    game_restart(g_ext);
+    game_redo(g_ext);
+    game_redo(g_ext);
+    square m1_after = game_get_square(g_ext, 0, 0);
+    square m2_after = game_get_square(g_ext, 3, 5);
+    if (m1_before == m1_after || m2_before == m2_after)
+        pass = false;
+    game_play_move(g_ext, 5, 2, S_ZERO);
+    game_play_move(g_ext, 5, 2, S_ONE);
+    game_restart(g_ext);
+    game_undo(g_ext);
+    if (game_get_square(g_ext, 5, 2) != S_EMPTY)
+        pass = false;
+    game_delete(g_ext);
+    return pass;
 }
 
 bool test_game_set_square() {
