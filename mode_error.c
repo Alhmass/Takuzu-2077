@@ -22,7 +22,6 @@ square *get_col(cgame g, uint j) {
     square *col = malloc(sizeof(square) * rows_g);
     pointer_test(col, "malloc failed");
     for (uint i = 0; i < rows_g; i++) {
-        // printf("square : %d\n", game_get_square(g, i, j));
         col[i] = game_get_square(g, i, j);
     }
     return col;
@@ -97,32 +96,49 @@ bool is_array_same(square *array1, square *array2, uint size) {
     return true;
 }
 
+bool is_array_full(square *array, uint size) {
+    for (uint i = 0; i < size; i++) {
+        if (get_number(array[i]) == -1)
+            return false;
+    }
+    return true;
+}
+
 bool is_unique_array(cgame g, uint i, uint j) {
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
     square *row_i = get_row(g, i);
-    for (uint x = 0; x < rows_g; x++) {
-        if (x != i) {
-            square *row_x = get_row(g, x);
-            if (is_array_same(row_i, row_x, cols_g)) {
+    if (is_array_full(row_i, cols_g)) {
+        for (uint x = 0; x < rows_g; x++) {
+            if (x != i) {
+                square *row_x = get_row(g, x);
+                if (is_array_full(row_x, cols_g)) {
+                    if (is_array_same(row_i, row_x, cols_g)) {
+                        free(row_x);
+                        free(row_i);
+                        return false;
+                    }
+                }
                 free(row_x);
-                free(row_i);
-                return false;
             }
-            free(row_x);
         }
     }
     free(row_i);
+
     square *col_j = get_col(g, j);
-    for (uint y = 0; y < cols_g; y++) {
-        if (y != j) {
-            square *col_y = get_col(g, y);
-            if (is_array_same(col_j, col_y, rows_g)) {
+    if (is_array_full(col_j, rows_g)) {
+        for (uint y = 0; y < cols_g; y++) {
+            if (y != j) {
+                square *col_y = get_col(g, y);
+                if (is_array_full(col_y, rows_g)) {
+                    if (is_array_same(col_j, col_y, rows_g)) {
+                        free(col_y);
+                        free(col_j);
+                        return false;
+                    }
+                }
                 free(col_y);
-                free(col_j);
-                return false;
             }
-            free(col_y);
         }
     }
     free(col_j);

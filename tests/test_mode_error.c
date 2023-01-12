@@ -2,7 +2,7 @@
 
 bool test_game_has_error() { return false; }
 
-bool test_is_unique_array() { 
+bool test_is_unique_array() {
     bool pass = true;
     square array1[4 * 4] = {1, 3, 2, 2, 1, 1, 2, 4, 1, 4, 1, 3, 3, 2, 1, 4};
     square array2[4 * 4] = {1, 0, 0, 3, 4, 0, 0, 2, 2, 0, 0, 4, 1, 0, 0, 3};
@@ -140,7 +140,7 @@ bool test_get_col() {
 }
 
 bool test_get_row() {
-    bool pass = true; 
+    bool pass = true;
     square square_1[DEFAULT_SIZE * 2] = {1, 2, 1, 1, 2, 1, 3, 4, 3, 4, 3, 4};
     game g = game_new_ext(2, DEFAULT_SIZE, square_1, true, false);
     square square_2[DEFAULT_SIZE] = {1, 2, 1, 1, 2, 1};
@@ -149,7 +149,7 @@ bool test_get_row() {
     square *row_0 = get_row(g, 0);
     square *row_1 = get_row(g, 1);
     if (!is_array_same(row_0, square_2, 6))
-        pass = false; 
+        pass = false;
     if (!is_array_same(row_1, square_3, 6))
         pass = false;
     if (is_array_same(row_0, square_4, 6))
