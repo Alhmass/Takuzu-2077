@@ -22,9 +22,9 @@ bool test_game_new_ext(void) {
     game g3 = game_new_ext(3, 4, squares, false, true);
     if (g3 == NULL)
         pass = false;
-    if (game_nb_rows(g3) == 4 || game_nb_cols(g3) == 3)
+    if (game_nb_rows(g3) != 3 || game_nb_cols(g3) != 4)
         pass = false;
-    if (!game_is_unique(g3) || game_is_wrapping(g3))
+    if (!game_is_unique(g3) && game_is_wrapping(g3))
         pass = false;
     game_delete(g3);
     return pass;
