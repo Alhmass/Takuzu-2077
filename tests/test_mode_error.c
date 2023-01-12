@@ -2,7 +2,25 @@
 
 bool test_game_has_error() { return false; }
 
-bool test_is_unique_array() { return false; }
+bool test_is_unique_array() { 
+    bool pass = true;
+    square array1[4 * 4] = {1, 3, 2, 2, 1, 1, 2, 4, 1, 4, 1, 3, 3, 2, 1, 4};
+    square array2[4 * 4] = {1, 0, 0, 3, 4, 0, 0, 2, 2, 0, 0, 4, 1, 0, 0, 3};
+    square array3[4 * 4] = {1, 4, 2, 3, 2, 1, 1, 2, 4, 4, 1, 3, 1, 3, 4, 2};
+    game g1 = game_new_ext(4, 4, array1, true, false);
+    game g2 = game_new_ext(4, 4, array2, true, false);
+    game g3 = game_new_ext(4, 4, array3, true, false);
+    if (is_unique_array(g1, 0, 0))
+        pass = false;
+    if (is_unique_array(g2, 0, 0))
+        pass = false;
+    if (!is_unique_array(g3, 0, 0))
+        pass = false;
+    game_delete(g1);
+    game_delete(g2);
+    game_delete(g3);
+    return pass;
+}
 
 bool test_is_array_same() {
     bool pass = true;
@@ -23,9 +41,44 @@ bool test_is_array_same() {
     return pass;
 }
 
-bool test_is_consecutive_grid() { return false; }
+bool test_is_consecutive_grid() {
+    bool pass = true;
+    // square square_1[DEFAULT_SIZE * DEFAULT_SIZE] = {};
+    // game g1 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_1, false, false);
+    // square square_2[DEFAULT_SIZE * DEFAULT_SIZE] = {};
+    // game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_2, false, false);
+    // square square_3[DEFAULT_SIZE * DEFAULT_SIZE] = {};
+    // game g3 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_3, false, false);
+    // square square_4[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
+    //                                                 2, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
+    // game g4 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_4, false, false);
+    return pass;
+}
 
-bool test_is_consecutive() { return false; }
+bool test_is_consecutive() {
+    bool pass = true;
+    square square_1[DEFAULT_SIZE] = {1, 1, 3, 2, 4, 3};
+    game g1 = game_new_ext(1, DEFAULT_SIZE, square_1, false, false);
+    square square_2[DEFAULT_SIZE] = {4, 2, 4, 1, 2, 3};
+    game g2 = game_new_ext(1, DEFAULT_SIZE, square_2, false, false);
+    square square_3[DEFAULT_SIZE] = {1, 1, 2, 2, 1, 1};
+    game g3 = game_new_ext(1, DEFAULT_SIZE, square_3, false, false);
+    square square_4[DEFAULT_SIZE] = {1, 3, 2, 4, 1, 2};
+    game g4 = game_new_ext(1, DEFAULT_SIZE, square_4, false, false);
+    if(!is_consecutive(square_1, DEFAULT_SIZE, game_get_number(g1, 0, 0)))
+        pass = false;
+    if(!is_consecutive(square_2, DEFAULT_SIZE, game_get_number(g2, 0, 0)))
+        pass = false;
+    if(!is_consecutive(square_3, DEFAULT_SIZE, game_get_number(g3, 0, 0)))
+        pass = false;
+    if(is_consecutive(square_4, DEFAULT_SIZE, game_get_number(g4, 0, 0)))
+        pass = false;
+    game_delete(g1);
+    game_delete(g2);
+    game_delete(g3);
+    game_delete(g4);
+    return pass;
+}
 
 bool test_get_number() {
     bool pass = true;

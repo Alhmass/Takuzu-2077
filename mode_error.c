@@ -71,6 +71,7 @@ bool is_consecutive_grid(cgame g, uint i, uint j) {
     for (uint x = 0; x < cols_g; x++) {
         rotate_array(tabRows, cols_g);
         if (is_consecutive(tabRows, cols_g, game_get_number(g, i, j))) {
+            free(tabRows);
             return true;
         }
     }
@@ -79,6 +80,7 @@ bool is_consecutive_grid(cgame g, uint i, uint j) {
     for (uint y = 0; y < rows_g; y++) {
         rotate_array(tabCols, rows_g);
         if (is_consecutive(tabCols, rows_g, game_get_number(g, i, j))) {
+            free(tabCols);
             return true;
         }
     }
@@ -98,19 +100,31 @@ bool is_array_same(square *array1, square *array2, uint size) {
 bool is_unique_array(cgame g, uint i, uint j) {
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+    square *row_i = get_row(g, i);
     for (uint x = 0; x < rows_g; x++) {
         if (x != i) {
-            if (is_array_same(get_row(g, i), get_row(g, x), cols_g)) {
+            square *row_x = get_row(g, x);
+            if (is_array_same(row_i, row_x, cols_g)) {
+                free(row_x);
+                free(row_i);
                 return false;
             }
+            free(row_x);
         }
     }
+    free(row_i);
+    square *col_j = get_col(g, j);
     for (uint y = 0; y < cols_g; y++) {
         if (y != j) {
-            if (is_array_same(get_col(g, j), get_col(g, y), rows_g)) {
+            square *col_y = get_col(g, y);
+            if (is_array_same(col_j, col_y, rows_g)) {
+                free(col_y);
+                free(col_j);
                 return false;
             }
+            free(col_y);
         }
     }
+    free(col_j);
     return true;
 }
