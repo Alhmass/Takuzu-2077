@@ -35,9 +35,9 @@ void rotate_array(square *array, uint size) {
 }
 
 int get_number(int s) {
-    if (s == 0) {
+    if (s == S_EMPTY) {
         return -1;
-    } else if (s == 1 || s == 3) {
+    } else if (s == S_ZERO || s == S_IMMUTABLE_ZERO) {
         return 0;
     }
     return 1;
@@ -49,16 +49,18 @@ bool is_consecutive(square *array, uint size, int current) {
 
     uint consecutive = 0;
     uint current_counter = 0;
+    print_array(array, size);
     for (uint i = 0; i < size; i++) {
         if (get_number(array[i]) == current) {
-            if (++current_counter > (size / 2) + (size % 2)) {
+            current_counter++;
+            if (current_counter > size / 2)
                 return true;
-            }
-            if (++consecutive >= size / 2) {
+            consecutive++;
+            if (consecutive >= 3)
                 return true;
-            }
-        } else
+        } else {
             consecutive = 0;
+        }
     }
     return false;
 }

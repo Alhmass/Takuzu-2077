@@ -13,19 +13,21 @@ bool test_get_next_square_wrapping() { return true; }
 bool test_get_next_number_wrapping() { return true; }
 
 bool test_has_error_wrapping() {
-    bool status = true;
+    bool pass = true;
     square squares[4 * 8] = {3, 1, 2, 2, 1, 2, 2, 1, 1, 1, 2, 2, 1, 2, 2, 1,
                              2, 2, 1, 1, 2, 1, 1, 2, 2, 2, 1, 1, 2, 1, 1, 2};
     game g1 = game_new_ext(4, 8, squares, false, false);
     game g2 = game_new_ext(4, 8, squares, true, false);
-
+    game_print(g1);
     if (!g1 || !g2)
         return false;
-    if (!game_has_error(g2, 0, 0) || game_has_error(g1, 0, 0))
-        status = false;
+    if (game_has_error(g1, 0, 0))
+        pass = false;
+    if (!game_has_error(g2, 0, 0))
+        pass = false;
     game_delete(g1);
     game_delete(g2);
-    return status;
+    return pass;
 }
 
 bool test_is_over_wrapping() {
