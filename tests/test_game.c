@@ -155,38 +155,37 @@ bool test_game_restart(void) {
 
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
-            if (game_get_square(g, i, j) != game_get_square(g, i, j)) {
+            if (game_get_square(g, i, j) != squares[DEFAULT_SIZE * i + j]) {
                 game_delete(g);
                 return false;
             }
         }
     }
     game_delete(g);
-    return true;
 
-    // game g_ext = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
-    // game_test(g, "malloc failed");
-    // game_play_move(g_ext, 0, 0, S_ZERO);
-    // game_play_move(g_ext, 3, 5, S_ONE);
-    // square m1_before = game_get_square(g_ext, 0, 0);
-    // square m2_before = game_get_square(g_ext, 3, 5);
-    // game_undo(g_ext);
-    // game_undo(g_ext);
-    // game_restart(g_ext);
-    // game_redo(g_ext);
-    // game_redo(g_ext);
-    // square m1_after = game_get_square(g_ext, 0, 0);
-    // square m2_after = game_get_square(g_ext, 3, 5);
-    // if (m1_before == m1_after || m2_before == m2_after)
-    //     pass = false;
-    // game_play_move(g_ext, 5, 2, S_ZERO);
-    // game_play_move(g_ext, 5, 2, S_ONE);
-    // game_restart(g_ext);
-    // game_undo(g_ext);
-    // if (game_get_square(g_ext, 5, 2) != S_EMPTY)
-    //     pass = false;
-    // game_delete(g_ext);
-    // return pass;
+    game g_ext = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
+    game_test(g, "malloc failed");
+    game_play_move(g_ext, 0, 0, S_ZERO);
+    game_play_move(g_ext, 3, 5, S_ONE);
+    square m1_before = game_get_square(g_ext, 0, 0);
+    square m2_before = game_get_square(g_ext, 3, 5);
+    game_undo(g_ext);
+    game_undo(g_ext);
+    game_restart(g_ext);
+    game_redo(g_ext);
+    game_redo(g_ext);
+    square m1_after = game_get_square(g_ext, 0, 0);
+    square m2_after = game_get_square(g_ext, 3, 5);
+    if (m1_before == m1_after || m2_before == m2_after)
+        return false;
+    game_play_move(g_ext, 5, 2, S_ZERO);
+    game_play_move(g_ext, 5, 2, S_ONE);
+    game_restart(g_ext);
+    game_undo(g_ext);
+    if (game_get_square(g_ext, 5, 2) != S_EMPTY)
+        return false;
+    game_delete(g_ext);
+    return true;
 }
 
 bool test_game_set_square() {
@@ -276,11 +275,6 @@ bool test_game_get_next_square() {
     game_set_square(g, 0, 4, S_ONE);
     game_set_square(g2, 0, 1, S_ONE);
     game_set_square(g2, 0, 2, S_ONE);
-    // game_set_square(g2, 0, 10, S_ZERO);
-    // game_set_square(g2, 0, 5, S_ZERO);
-    // game_set_square(g2, 10, 0, S_ZERO);
-    // game_set_square(g2, 5, 0, S_ZERO);
-    // game_set_square(g2, 0, 11, S_ZERO);
     if (game_get_next_square(g, 0, 0, RIGHT, 1) != S_IMMUTABLE_ONE)
         status = false;
     else if (game_get_next_square(g, 0, 0, RIGHT, 2) != S_IMMUTABLE_ZERO)
@@ -299,18 +293,6 @@ bool test_game_get_next_square() {
         status = false;
     else if (game_get_next_square(g2, 11, 2, DOWN, 1) != S_ONE)
         status = false;
-    // else if (game_get_next_square(g2, 0, 0, UP, 2) != S_ZERO)
-    //     status = false;
-    // else if (game_get_next_square(g2, 0, 0, LEFT, 2) != S_ZERO)
-    //     status = false;
-    // else if (game_get_next_square(g2, 0, 6, LEFT, 1) != S_ZERO)
-    //     status = false;
-    // else if (game_get_next_square(g2, 6, 0, UP, 1) != S_ZERO)
-    //     status = false;
-    // else if (game_get_next_square(g2, 0, 1, LEFT, 2) != S_ZERO)
-    //     status = false;
-    // else if (game_get_next_square(g2, 13, 2, DOWN, 1) != -1)
-    //     status = false;
     game_delete(g);
     game_delete(g2);
     return (status);
@@ -329,11 +311,6 @@ bool test_game_get_next_number() {
     game_set_square(g, 0, 4, S_ONE);
     game_set_square(g2, 0, 1, S_ONE);
     game_set_square(g2, 0, 2, S_ONE);
-    // game_set_square(g2, 0, 10, S_ZERO);
-    // game_set_square(g2, 0, 5, S_ZERO);
-    // game_set_square(g2, 10, 0, S_ZERO);
-    // game_set_square(g2, 5, 0, S_ZERO);
-    // game_set_square(g2, 0, 11, S_ZERO);
     if (game_get_next_number(g, 0, 0, RIGHT, 1) != 1)
         status = false;
     else if (game_get_next_number(g, 0, 0, RIGHT, 2) != 0)
@@ -352,18 +329,6 @@ bool test_game_get_next_number() {
         status = false;
     else if (game_get_next_number(g2, 11, 2, DOWN, 1) != 1)
         status = false;
-    // else if (game_get_next_number(g2, 0, 0, UP, 2) != 0)
-    //     status = false;
-    // else if (game_get_next_number(g2, 0, 0, LEFT, 2) != 0)
-    //     status = false;
-    // else if (game_get_next_number(g2, 0, 6, LEFT, 1) != 0)
-    //     status = false;
-    // else if (game_get_next_number(g2, 6, 0, UP, 1) != 0)
-    //     status = false;
-    // else if (game_get_next_number(g2, 0, 1, LEFT, 2) != 0)
-    //     status = false;
-    // else if (game_get_next_number(g2, 13, 2, DOWN, 1) != -1)
-    //     status = false;
     game_delete(g);
     game_delete(g2);
     return (status);
