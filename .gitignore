@@ -9,7 +9,7 @@ build/
 *~*
 
 # custom_build
-custom_build
+custom_build/
 
 # Solution Inputs
 moves.txt
