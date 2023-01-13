@@ -36,9 +36,7 @@ bool test_game_default_solution(void) {
     return true;
 }
 
-bool test_game_print(void) {
-    return true;
-}
+bool test_game_print(void) { return true; }
 
 /*  USAGE  */
 void usage(char *argv[]) {

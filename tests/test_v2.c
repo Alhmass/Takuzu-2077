@@ -13,28 +13,22 @@ bool test_get_next_square_wrapping() { return true; }
 bool test_get_next_number_wrapping() { return true; }
 
 bool test_has_error_wrapping() {
+    bool status = true;
     square squares[4 * 8] = {3, 1, 2, 2, 1, 2, 2, 1, 1, 1, 2, 2, 1, 2, 2, 1,
                              2, 2, 1, 1, 2, 1, 1, 2, 2, 2, 1, 1, 2, 1, 1, 2};
     game g1 = game_new_ext(4, 8, squares, false, false);
     game g2 = game_new_ext(4, 8, squares, true, false);
     if (!g1 || !g2)
         return false;
-
-    for (uint i = 0; i < 4; i++) {
-        for (uint j = 0; j < 8; j++) {
-            if (game_has_error(g1, i, j) && !game_has_error(g2, i, j)) {
-                game_delete(g1);
-                game_delete(g2);
-                return false;
-            }
-        }
-    }
+    if (!game_has_error(g2, 0, 0) || game_has_error(g1, 0, 0))
+        status = false;
     game_delete(g1);
     game_delete(g2);
-    return true;
+    return status;
 }
 
 bool test_is_over_wrapping() {
+    bool status = true;
     square squares[4 * 8] = {3, 1, 2, 2, 1, 2, 2, 1, 1, 1, 2, 2, 1, 2, 2, 1,
                              2, 2, 1, 1, 2, 1, 1, 2, 2, 2, 1, 1, 2, 1, 1, 2};
     game g1 = game_new_ext(4, 8, squares, false, false);
@@ -42,16 +36,49 @@ bool test_is_over_wrapping() {
     if (!g1 || !g2)
         return false;
 
-    if (!game_is_over(g1) && game_is_over(g2))
-        return false;
+    if (!game_is_over(g1) || game_is_over(g2))
+        status = false;
+    fprintf(stderr, "val:%d\n", game_is_over(g1));
+    fprintf(stderr, "val2:%d\n", game_is_over(g2));
     game_delete(g1);
     game_delete(g2);
-    return true;
+    return status;
 }
 
-bool test_has_error_unique() { return true; }
+bool test_has_error_unique() {
+    bool status = false;
+    square squares[4 * 8] = {3, 1, 2, 2, 1, 2, 2, 1, 1, 1, 2, 2, 1, 2, 2, 1,
+                             2, 2, 1, 1, 2, 1, 1, 2, 2, 2, 1, 1, 2, 1, 1, 2};
+    game g1 = game_new_ext(4, 8, squares, false, false);
+    game g2 = game_new_ext(4, 8, squares, true, false);
+    game g3 = game_new_ext(4, 8, squares, true, true);
 
-bool test_is_over_unique() { return true; }
+    if (game_has_error(g1, 0, 0) || !game_has_error(g2, 0, 0) || !game_has_error(g3, 0, 0))
+        status = false;
+    game_delete(g1);
+    game_delete(g2);
+    game_delete(g3);
+    return status;
+}
+
+bool test_is_over_unique() {
+    bool status = true;
+    square squares[4 * 8] = {3, 1, 2, 2, 1, 2, 2, 1, 1, 1, 2, 2, 1, 2, 2, 1,
+                             2, 2, 1, 1, 2, 1, 1, 2, 2, 2, 1, 1, 2, 1, 1, 2};
+    game g1 = game_new_ext(4, 8, squares, false, false);
+    game g2 = game_new_ext(4, 8, squares, true, false);
+    game g3 = game_new_ext(4, 8, squares, true, true);
+
+    if (!game_is_over(g1) || game_is_over(g2) || game_is_over(g3))
+        status = false;
+    fprintf(stderr, "val:%d\n", game_is_over(g1));
+    fprintf(stderr, "val2:%d\n", game_is_over(g2));
+    fprintf(stderr, "val2:%d\n", game_is_over(g3));
+    game_delete(g1);
+    game_delete(g2);
+    game_delete(g3);
+    return status;
+}
 
 bool test_undo_one() {
     bool pass = true;
