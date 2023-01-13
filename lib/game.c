@@ -225,6 +225,7 @@ bool game_check_move(cgame g, uint i, uint j, square s) {
     if (c == S_IMMUTABLE_ONE || c == S_IMMUTABLE_ZERO)
         return false;
 
+
     return true;
 }
 
