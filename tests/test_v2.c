@@ -169,6 +169,24 @@ bool test_restart_undo() {
         game_get_square(g1, 0, 2) != S_EMPTY)
         pass = false;
     game_delete(g1);
+
+    game g2 = game_new_empty_ext(4, 4, false, false);
+    game_play_move(g2, 0, 0, S_ONE);
+    game_play_move(g2, 0, 1, S_ONE);
+    game_play_move(g2, 0, 2, S_ONE);
+    game_play_move(g2, 0, 0, S_ONE);
+    game_play_move(g2, 0, 1, S_ONE);
+    game_play_move(g2, 0, 2, S_ONE);
+    game_undo(g2);
+    game_undo(g2);
+    game_redo(g2);
+    game_restart(g2);
+    game_redo(g2);
+    game_undo(g2);
+    if (game_get_square(g2, 0, 0) != S_EMPTY || game_get_square(g2, 0, 1) != S_EMPTY ||
+        game_get_square(g2, 0, 2) != S_EMPTY)
+        pass = false;
+    game_delete(g2);
     return pass;
 }
 
