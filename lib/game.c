@@ -106,12 +106,12 @@ int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
     if (g->version == 2 && game_is_wrapping(g)) {
         if (dir == LEFT) {
             findex = (j - dist);
-            j = findex <= 0 ? (cols_g + findex) % cols_g: (j - dist) % cols_g;
+            j = findex <= 0 ? (cols_g + findex) % cols_g : (j - dist) % cols_g;
         } else if (dir == RIGHT)
             j = (j + dist) % cols_g;
         else if (dir == UP) {
             findex = (i - dist);
-            i = findex <= 0 ? (rows_g + findex) % rows_g: (i - dist) % rows_g;
+            i = findex <= 0 ? (rows_g + findex) % rows_g : (i - dist) % rows_g;
         } else
             i = (i + dist) % rows_g;
     } else {
