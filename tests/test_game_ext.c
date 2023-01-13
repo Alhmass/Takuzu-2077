@@ -100,6 +100,16 @@ bool test_game_redo(void) {
     if (before3 == after3)
         pass = false;
     game_delete(g);
+
+    game g2 = game_new_empty_ext(5, 5, false, false);
+    game_play_move(g2, 0, 0, S_ONE);
+    game_play_move(g2, 0, 1, S_ONE);
+    game_undo(g2);
+    game_redo(g2);
+    game_undo(g2);
+    if (game_get_square(g2, 0, 0) != S_ONE && game_get_square(g2, 0, 1) != S_EMPTY)
+        pass = false;
+    game_delete(g2);
     return pass;
 }
 
