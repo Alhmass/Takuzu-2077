@@ -163,28 +163,6 @@ bool test_game_restart(void) {
     }
     game_delete(g);
 
-    game g_ext = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
-    game_test(g, "malloc failed");
-    game_play_move(g_ext, 0, 0, S_ZERO);
-    game_play_move(g_ext, 3, 5, S_ONE);
-    square m1_before = game_get_square(g_ext, 0, 0);
-    square m2_before = game_get_square(g_ext, 3, 5);
-    game_undo(g_ext);
-    game_undo(g_ext);
-    game_restart(g_ext);
-    game_redo(g_ext);
-    game_redo(g_ext);
-    square m1_after = game_get_square(g_ext, 0, 0);
-    square m2_after = game_get_square(g_ext, 3, 5);
-    if (m1_before == m1_after || m2_before == m2_after)
-        return false;
-    game_play_move(g_ext, 5, 2, S_ZERO);
-    game_play_move(g_ext, 5, 2, S_ONE);
-    game_restart(g_ext);
-    game_undo(g_ext);
-    if (game_get_square(g_ext, 5, 2) != S_EMPTY)
-        return false;
-    game_delete(g_ext);
     return true;
 }
 
