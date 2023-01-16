@@ -1,82 +1,89 @@
 #include "takuzu.h"
 
 bool test_move_create() {
+    bool pass = true;
     move m = move_create(0, 0, S_ONE, S_EMPTY);
     if (m == NULL)
-        return false;
+        pass = false;
     if (m->row != 0 || m->col != 0 || m->s != S_ONE || m->p != S_EMPTY)
-        return false;
+        pass = false;
     free(m);
     m = NULL;
-    return true;
+    return pass;
 }
 
 bool test_move_delete() {
+    bool pass = true;
     move m = move_create(0, 0, S_ONE, S_EMPTY);
     move_delete(m);
     m = NULL;
     if (m != NULL)
-        return false;
-    return true;
+        pass = false;
+    return pass;
 }
 
 bool test_move_row() {
+    bool pass = true;
     move m1 = move_create(0, 0, S_ONE, S_EMPTY);
     if (move_row(m1) != 0)
-        return false;
+        pass = false;
     move_delete(m1);
     m1 = NULL;
     move m2 = move_create(10, 10, S_ONE, S_EMPTY);
     if (move_row(m2) != 10)
-        return false;
+        pass = false;
     move_delete(m2);
     m2 = NULL;
-    return true;
+    return pass;
 }
 
 bool test_move_col() {
+    bool pass = true;
     move m1 = move_create(0, 0, S_ONE, S_EMPTY);
     if (move_col(m1) != 0)
-        return false;
+        pass = false;
     move_delete(m1);
     m1 = NULL;
     move m2 = move_create(10, 10, S_ONE, S_EMPTY);
     if (move_col(m2) != 10)
-        return false;
+        pass = false;
     move_delete(m2);
     m2 = NULL;
-    return true;
+    return pass;
 }
 
 bool test_move_s() {
+    bool pass = true;
     move m1 = move_create(0, 0, S_ONE, S_EMPTY);
     if (move_s(m1) != (square)S_ONE)
-        return false;
+        pass = false;
     move_delete(m1);
     m1 = NULL;
     move m2 = move_create(10, 10, S_ZERO, S_EMPTY);
     if (move_s(m2) != (square)S_ZERO)
-        return false;
+        pass = false;
     move_delete(m2);
     m2 = NULL;
-    return true;
+    return pass;
 }
 
 bool test_move_p() {
+    bool pass = true;
     move m1 = move_create(0, 0, S_ONE, S_EMPTY);
     if (move_p(m1) != (square)S_EMPTY)
-        return false;
+        pass = false;
     move_delete(m1);
     m1 = NULL;
     move m2 = move_create(10, 10, S_ZERO, S_IMMUTABLE_ONE);
     if (move_p(m2) != (square)S_IMMUTABLE_ONE)
-        return false;
+        pass = false;
     move_delete(m2);
     m2 = NULL;
-    return true;
+    return pass;
 }
 
 bool test_move_print() {
+    bool pass = true;
     move m1 = move_create(0, 0, S_ONE, S_EMPTY);
     move_print(m1);
     move_delete(m1);
@@ -85,7 +92,7 @@ bool test_move_print() {
     move_print(m2);
     move_delete(m2);
     m2 = NULL;
-    return true;
+    return pass;
 }
 
 /*  USAGE  */

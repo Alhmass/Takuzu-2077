@@ -1,45 +1,43 @@
 #include "takuzu.h"
 
 bool test_game_new(void) {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
     game g2 = game_default();
 
     if (g == NULL || g2 == NULL)
-        return false;
-    if (!game_equal(g, g2)) {
-        game_delete(g);
-        game_delete(g2);
-        return false;
-    }
+        pass = false;
+    if (!game_equal(g, g2))
+        pass = false;
     game_delete(g);
     game_delete(g2);
-    return true;
+    return pass;
 }
 
 bool test_game_new_empty(void) {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     game g1 = game_new(squares);
     game g2 = game_new_empty();
 
     if (g1 == NULL || g2 == NULL)
-        return false;
-    if (!game_equal(g1, g2)) {
-        game_delete(g1);
-        game_delete(g2);
-        return false;
-    }
+        pass = false;
+    if (!game_equal(g1, g2))
+        pass = false;
     game_delete(g1);
     game_delete(g2);
-    return true;
+    return pass;
 }
 
 bool test_game_copy(void) {
+    bool pass = true;
     game g1 = game_default();
     game g1_copy = game_copy(g1);
     game g2 = game_new_empty_ext(8, 4, false, true);
+
     game_set_square(g2, 0, 0, S_IMMUTABLE_ZERO);
     game_set_square(g2, 0, 1, S_ZERO);
     game_set_square(g2, 0, 2, S_ONE);
@@ -51,51 +49,27 @@ bool test_game_copy(void) {
     game g2_copy = game_copy(g2);
 
     if (g1 == NULL || g1_copy == NULL || g2 == NULL)
-        return false;
-    if (!game_equal(g1, g1_copy)) {
-        game_delete(g1);
-        game_delete(g1_copy);
-        game_delete(g2);
-        game_delete(g2_copy);
-        return false;
-    }
+        pass = false;
+    if (!game_equal(g1, g1_copy))
+        pass = false;
     game_set_square(g1, 0, 0, 1);
-    if (game_equal(g1, g1_copy)) {
-        game_delete(g1);
-        game_delete(g1_copy);
-        game_delete(g2);
-        game_delete(g2_copy);
-        return false;
-    }
-    if (!game_equal(g2, g2_copy)) {
-        game_delete(g1);
-        game_delete(g1_copy);
-        game_delete(g2);
-        game_delete(g2_copy);
-        return false;
-    }
-    if (game_nb_cols(g2) != game_nb_cols(g2_copy) || game_nb_rows(g2) != game_nb_rows(g2_copy)) {
-        game_delete(g1);
-        game_delete(g1_copy);
-        game_delete(g2);
-        game_delete(g2_copy);
-        return (false);
-    }
-    if (game_is_wrapping(g2) != game_is_wrapping(g2_copy) || game_is_unique(g2) != game_is_unique(g2_copy)) {
-        game_delete(g1);
-        game_delete(g1_copy);
-        game_delete(g2);
-        game_delete(g2_copy);
-        return false;
-    }
+    if (game_equal(g1, g1_copy))
+        pass = false;
+    if (!game_equal(g2, g2_copy))
+        pass = false;
+    if (game_nb_cols(g2) != game_nb_cols(g2_copy) || game_nb_rows(g2) != game_nb_rows(g2_copy))
+        pass = (false);
+    if (game_is_wrapping(g2) != game_is_wrapping(g2_copy) || game_is_unique(g2) != game_is_unique(g2_copy))
+        pass = false;
     game_delete(g1);
     game_delete(g1_copy);
     game_delete(g2);
     game_delete(g2_copy);
-    return true;
+    return pass;
 }
 
 bool test_game_equal(void) {
+    bool pass = true;
     square squares_1[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 3, 0, 2, 3, 0,
                                                      0, 3, 4, 0, 1, 0, 0, 1, 4, 0, 2, 3, 0, 0, 0, 2, 0, 3};
     game g1 = game_new(squares_1);
@@ -104,75 +78,65 @@ bool test_game_equal(void) {
     game g2 = game_new(squares_2);
 
     if (g1 == NULL || g2 == NULL)
-        return false;
-    if (game_equal(g1, g2)) {
-        game_delete(g1);
-        game_delete(g2);
-        return false;
-    }
+        pass = false;
+    if (game_equal(g1, g2))
+        pass = false;
     game_delete(g1);
     game_delete(g2);
-    return true;
+    return pass;
 }
 
 bool test_game_delete(void) { return true; }
 
 bool test_game_is_empty(void) {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 1, 0, 0, 0, 0, 4, 0, 1, 3, 0, 1, 0, 0, 0, 3};
     game g = game_new(squares);
 
     if (!g)
-        return false;
-
+        pass = false;
     for (uint j = 0; j < DEFAULT_SIZE; j++) {
         for (uint i = 0; i < DEFAULT_SIZE; i++) {
-            if (game_get_square(g, i, j) == 0 && !game_is_empty(g, i, j)) {
-                game_delete(g);
-                return false;
-            }
-            if (game_get_square(g, i, j) == 1 && game_is_empty(g, i, j)) {
-                game_delete(g);
-                return false;
-            }
+            if (game_get_square(g, i, j) == 0 && !game_is_empty(g, i, j))
+                pass = false;
+            if (game_get_square(g, i, j) == 1 && game_is_empty(g, i, j))
+                pass = false;
         }
     }
     game_delete(g);
-    return true;
+    return pass;
 }
 
 bool test_game_restart(void) {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
 
     if (!g)
-        return false;
-
+        pass = false;
     game_set_square(g, 0, 0, S_ZERO);
     game_set_square(g, 3, 5, S_ONE);
     game_restart(g);
-
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
-            if (game_get_square(g, i, j) != squares[DEFAULT_SIZE * i + j]) {
-                game_delete(g);
-                return false;
-            }
+            if (game_get_square(g, i, j) != squares[DEFAULT_SIZE * i + j])
+                pass = false;
         }
     }
     game_delete(g);
-
-    return true;
+    return pass;
 }
 
 bool test_game_set_square() {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
 
     if (!g)
-        return (false);
+        pass = false;
     game_set_square(g, 0, 0, S_ZERO);
     squares[DEFAULT_SIZE * 0 + 0] = S_ZERO;
     game_set_square(g, 1, 0, S_ONE);
@@ -186,69 +150,67 @@ bool test_game_set_square() {
     for (int i = 0; i < DEFAULT_SIZE; i++) {
         for (int j = 0; j < DEFAULT_SIZE; j++) {
             if (game_get_square(g, i, j) != squares[DEFAULT_SIZE * i + j])
-                return (false);
+                pass = false;
         }
     }
     game_delete(g);
-    return (true);
+    return pass;
 }
 
 bool test_game_get_square() {
+    bool pass = true;
     game g = game_default();
-    bool status = true;
 
     if (!g)
-        return (false);
+        pass = false;
     game_set_square(g, 0, 0, S_ZERO);
     game_set_square(g, 1, 0, S_ONE);
     game_set_square(g, 0, 3, S_IMMUTABLE_ZERO);
     game_set_square(g, 1, 5, S_IMMUTABLE_ONE);
     game_set_square(g, 0, 1, S_EMPTY);
     if (game_get_square(g, 0, 0) != S_ZERO)
-        status = false;
+        pass = false;
     else if (game_get_square(g, 1, 0) != S_ONE)
-        status = false;
+        pass = false;
     else if (game_get_square(g, 0, 3) != S_IMMUTABLE_ZERO)
-        status = false;
+        pass = false;
     else if (game_get_square(g, 1, 5) != S_IMMUTABLE_ONE)
-        status = false;
+        pass = false;
     else if (game_get_square(g, 0, 1) != S_EMPTY)
-        status = false;
+        pass = false;
     game_delete(g);
-    return (status);
+    return pass;
 }
 
 bool test_game_get_number() {
+    bool pass = true;
     game g = game_default();
-    bool status = true;
 
     if (!g)
-        return (false);
+        pass = false;
     game_set_square(g, 0, 3, S_ONE);
     game_set_square(g, 0, 4, S_ZERO);
     if (game_get_number(g, 0, 1) != 1)
-        status = false;
+        pass = false;
     else if (game_get_number(g, 0, 0) != -1)
-        status = false;
+        pass = false;
     else if (game_get_number(g, 2, 1) != 0)
-        status = false;
+        pass = false;
     else if (game_get_number(g, 0, 3) != 1)
-        status = false;
+        pass = false;
     else if (game_get_number(g, 0, 4) != 0)
-        status = false;
+        pass = false;
     game_delete(g);
-    return (status);
+    return pass;
 }
 
 bool test_game_get_next_square() {
+    bool pass = true;
     game g = game_default();
     game g2 = game_new_empty_ext(12, 12, true, false);
-    bool status = true;
 
-    if (!g)
-        return (false);
-    if (!g2)
-        return (false);
+    if (!g || !g2)
+        pass = false;
     game_set_square(g, 0, 3, S_ZERO);
     game_set_square(g, 0, 4, S_ONE);
     game_set_square(g2, 0, 1, S_ONE);
@@ -259,47 +221,45 @@ bool test_game_get_next_square() {
     game_set_square(g2, 5, 0, S_ZERO);
     game_set_square(g2, 0, 11, S_ZERO);
     if (game_get_next_square(g, 0, 0, RIGHT, 1) != S_IMMUTABLE_ONE)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g, 0, 0, RIGHT, 2) != S_IMMUTABLE_ZERO)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g, 0, 0, DOWN, 1) != S_EMPTY)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g, 3, 0, LEFT, 2) != -1)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g, 2, 1, UP, 2) != S_IMMUTABLE_ONE)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g, 0, 1, RIGHT, 2) != S_ZERO)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g, 0, 5, LEFT, 1) != S_ONE)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g2, 0, 11, RIGHT, 2) != S_ONE)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g2, 11, 2, DOWN, 1) != S_ONE)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g2, 0, 0, UP, 2) != S_ZERO)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g2, 0, 0, LEFT, 2) != S_ZERO)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g2, 0, 6, LEFT, 1) != S_ZERO)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g2, 6, 0, UP, 1) != S_ZERO)
-        status = false;
+        pass = false;
     else if (game_get_next_square(g2, 0, 1, LEFT, 2) != S_ZERO)
-        status = false;
+        pass = false;
     game_delete(g);
     game_delete(g2);
-    return (status);
+    return pass;
 }
 
 bool test_game_get_next_number() {
+    bool pass = true;
     game g = game_default();
     game g2 = game_new_empty_ext(12, 12, true, false);
-    bool status = true;
 
-    if (!g)
-        return (false);
-    if (!g2)
-        return (false);
+    if (!g || !g2)
+        pass = false;
     game_set_square(g, 0, 3, S_ZERO);
     game_set_square(g, 0, 4, S_ONE);
     game_set_square(g2, 0, 1, S_ONE);
@@ -311,77 +271,73 @@ bool test_game_get_next_number() {
     game_set_square(g2, 0, 11, S_ZERO);
 
     if (game_get_next_number(g, 0, 0, RIGHT, 1) != 1)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g, 0, 0, RIGHT, 2) != 0)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g, 0, 0, DOWN, 1) != -1)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g, 3, 0, LEFT, 2) != -1)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g, 2, 1, UP, 2) != 1)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g, 0, 1, RIGHT, 2) != 0)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g, 0, 5, LEFT, 1) != 1)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g2, 0, 11, RIGHT, 2) != 1)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g2, 11, 2, DOWN, 1) != 1)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g2, 0, 0, UP, 2) != 0)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g2, 0, 0, LEFT, 2) != 0)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g2, 0, 6, LEFT, 1) != 0)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g2, 6, 0, UP, 1) != 0)
-        status = false;
+        pass = false;
     else if (game_get_next_number(g2, 0, 1, LEFT, 2) != 0)
-        status = false;
+        pass = false;
     game_delete(g);
     game_delete(g2);
-    return (status);
+    return pass;
 }
 
 bool test_game_is_immutable() {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
 
     if (!g)
-        return false;
+        pass = false;
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
             if (game_is_immutable(g, i, j) &&
-                (game_get_square(g, i, j) != S_IMMUTABLE_ONE && game_get_square(g, i, j) != S_IMMUTABLE_ZERO)) {
-                game_delete(g);
-                return false;
-            } else if (!(game_is_immutable(g, i, j)) &&
-                       (game_get_square(g, i, j) == S_IMMUTABLE_ONE || game_get_square(g, i, j) == S_IMMUTABLE_ZERO)) {
-                game_delete(g);
-                return false;
-            }
+                (game_get_square(g, i, j) != S_IMMUTABLE_ONE && game_get_square(g, i, j) != S_IMMUTABLE_ZERO))
+                pass = false;
+            else if (!(game_is_immutable(g, i, j)) &&
+                     (game_get_square(g, i, j) == S_IMMUTABLE_ONE || game_get_square(g, i, j) == S_IMMUTABLE_ZERO))
+                pass = false;
         }
     }
     game_delete(g);
-    return true;
+    return pass;
 }
 
 bool test_game_has_error() {
+    bool pass = true;
     game g1 = game_default_solution();
     square squares_2[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 2,
                                                      4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3};
     game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_2, false, false);
-    if (!g1 || !g2)
-        return false;
 
+    if (!g1 || !g2)
+        pass = false;
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
-            if (game_has_error(g1, i, j) || !game_has_error(g2, i, j)) {
-                game_delete(g1);
-                game_delete(g2);
-                return false;
-            }
+            if (game_has_error(g1, i, j) || !game_has_error(g2, i, j))
+                pass = false;
         }
     }
     game_delete(g1);
@@ -392,73 +348,73 @@ bool test_game_has_error() {
     game g4 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_4, false, true);
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
-            if (!game_has_error(g4, i, j)) {
-                game_delete(g4);
-                return false;
-            }
+            if (!game_has_error(g4, i, j))
+                pass = false;
         }
     }
     game_delete(g4);
-    return true;
+
+    square squares_5[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+                                                     0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+    game g5 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_5, true, false);
+    if (!game_has_error(g5, 0, 5))
+        pass = false;
+    game_delete(g5);
+    return pass;
 }
 
 bool test_game_check_move() {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
     if (!g)
-        return false;
+        pass = false;
     if (game_check_move(g, 0, 0, S_IMMUTABLE_ZERO))
-        return false;
+        pass = false;
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
             if (game_check_move(g, i, j, S_EMPTY) &&
-                (game_get_square(g, i, j) == S_IMMUTABLE_ONE || game_get_square(g, i, j) == S_IMMUTABLE_ZERO)) {
-                game_delete(g);
-                return false;
-            } else if (!(game_check_move(g, i, j, S_EMPTY)) &&
-                       (game_get_square(g, i, j) != S_IMMUTABLE_ONE && game_get_square(g, i, j) != S_IMMUTABLE_ZERO)) {
-                game_delete(g);
-                return false;
-            }
+                (game_get_square(g, i, j) == S_IMMUTABLE_ONE || game_get_square(g, i, j) == S_IMMUTABLE_ZERO))
+                pass = false;
+            else if (!(game_check_move(g, i, j, S_EMPTY)) &&
+                     (game_get_square(g, i, j) != S_IMMUTABLE_ONE && game_get_square(g, i, j) != S_IMMUTABLE_ZERO))
+                pass = false;
         }
     }
     game_delete(g);
-    return true;
+    return pass;
 }
 
 bool test_game_play_move() {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
-    // game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
 
     if (!g)
-        return (false);
+        pass = false;
     square q;
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
             q = game_get_square(g, i, j);
-            if (q == S_IMMUTABLE_ONE || q == S_IMMUTABLE_ZERO) {
+            if (q == S_IMMUTABLE_ONE || q == S_IMMUTABLE_ZERO)
                 break;
-            } else {
+            else
                 game_play_move(g, i, j, S_ONE);
-            }
-            if ((q == S_IMMUTABLE_ONE || q == S_IMMUTABLE_ZERO) && q != game_get_square(g, i, j)) {
-                game_delete(g);
-                return false;
-            }
-            if ((q != S_IMMUTABLE_ONE && q != S_IMMUTABLE_ZERO) && q == game_get_square(g, i, j)) {
-                game_delete(g);
-                return false;
-            }
+
+            if ((q == S_IMMUTABLE_ONE || q == S_IMMUTABLE_ZERO) && q != game_get_square(g, i, j))
+                pass = false;
+            if ((q != S_IMMUTABLE_ONE && q != S_IMMUTABLE_ZERO) && q == game_get_square(g, i, j))
+                pass = false;
         }
     }
     game_delete(g);
-    return true;
+    return pass;
 }
 
 bool test_game_is_over() {
+    bool pass = true;
     game g1 = game_default_solution();
     square squares_2[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 1, 2, 2, 3, 3, 4, 4, 1, 1, 2, 2, 3, 3, 4, 4, 1, 1,
                                                      2, 2, 3, 3, 4, 4, 1, 1, 2, 2, 3, 3, 4, 4, 1, 1, 2, 2};
@@ -474,22 +430,16 @@ bool test_game_is_over() {
     game g5 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares_5, false, false);
 
     if (!g1 || !g2 || !g3 || !g4 || !g5)
-        return false;
+        pass = false;
 
-    if (!game_is_over(g1) || game_is_over(g2) || game_is_over(g3) || game_is_over(g4) || game_is_over(g5)) {
-        game_delete(g1);
-        game_delete(g2);
-        game_delete(g3);
-        game_delete(g4);
-        game_delete(g5);
-        return false;
-    }
+    if (!game_is_over(g1) || game_is_over(g2) || game_is_over(g3) || game_is_over(g4) || game_is_over(g5))
+        pass = false;
     game_delete(g1);
     game_delete(g2);
     game_delete(g3);
     game_delete(g4);
     game_delete(g5);
-    return true;
+    return pass;
 }
 
 /*  USAGE  */

@@ -1,39 +1,35 @@
 #include "takuzu.h"
 
 bool test_game_default(void) {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
                                                    0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
     game g = game_new(squares);
     game g2 = game_default();
 
     if (g == NULL || g2 == NULL)
-        return false;
-    if (!game_equal(g, g2)) {
-        game_delete(g);
-        game_delete(g2);
-        return false;
-    }
+        pass = false;
+    if (!game_equal(g, g2))
+        pass = false;
     game_delete(g);
     game_delete(g2);
-    return true;
+    return pass;
 }
 
 bool test_game_default_solution(void) {
+    bool pass = true;
     square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
                                                    2, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
     game g = game_new(squares);
     game g2 = game_default_solution();
 
     if (g == NULL || g2 == NULL)
-        return false;
-    if (!game_equal(g, g2)) {
-        game_delete(g);
-        game_delete(g2);
-        return false;
-    }
+        pass = false;
+    if (!game_equal(g, g2))
+        pass = false;
     game_delete(g);
     game_delete(g2);
-    return true;
+    return pass;
 }
 
 bool test_game_print(void) { return true; }

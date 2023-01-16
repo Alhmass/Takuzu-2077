@@ -132,8 +132,6 @@ bool test_game_nb_cols(void) {
     game g2 = game_new_empty_ext(8, 4, false, false);
     if (!g || !g2)
         return false;
-    // if (game_nb_cols(g) != 12 || game_nb_cols(g2) != 4)
-    //     pass = false;
     game_delete(g);
     game_delete(g2);
     return pass;

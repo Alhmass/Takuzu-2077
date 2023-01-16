@@ -6,7 +6,6 @@ bool test_ms_create() {
     if (stack == NULL || stack->data == NULL || stack->size != 0 || stack->capacity != 5)
         pass = false;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -14,7 +13,6 @@ bool test_ms_delete() {
     bool pass = true;
     ms stack = ms_create(5);
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -25,7 +23,6 @@ bool test_ms_double_capacity() {
     if (stack->capacity != 4)
         pass = false;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -40,9 +37,7 @@ bool test_ms_top() {
     ms_delete(stack);
     stack = NULL;
     move_delete(m);
-    m = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -57,9 +52,7 @@ bool test_ms_push() {
     if (ms_top_row(stack) != 1 || ms_top_col(stack) != 2 || ms_top_s(stack) != S_ONE || ms_top_p(stack) != S_ZERO)
         pass = false;
     move_delete(m1);
-    m1 = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -75,11 +68,8 @@ bool test_ms_pop() {
     if (ms_top_row(stack) != 1 || ms_top_col(stack) != 2 || ms_top_s(stack) != S_ONE || ms_top_p(stack) != S_ZERO)
         pass = false;
     move_delete(m1);
-    m1 = NULL;
     move_delete(m2);
-    m2 = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -94,11 +84,8 @@ bool test_ms_clear() {
     if (stack->size != 0 || ms_top(stack) != NULL)
         pass = false;
     move_delete(m1);
-    m1 = NULL;
     move_delete(m2);
-    m2 = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -119,11 +106,8 @@ bool test_ms_top_row() {
     if (ms_top_row(stack) != 1)
         pass = false;
     move_delete(m1);
-    m1 = NULL;
     move_delete(m2);
-    m2 = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -142,11 +126,8 @@ bool test_ms_top_col() {
     if (ms_top_col(stack) != 2)
         pass = false;
     move_delete(m1);
-    m1 = NULL;
     move_delete(m2);
-    m2 = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -165,11 +146,8 @@ bool test_ms_top_s() {
     if (ms_top_s(stack) != S_ONE)
         pass = false;
     move_delete(m1);
-    m1 = NULL;
     move_delete(m2);
-    m2 = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -188,11 +166,8 @@ bool test_ms_top_p() {
     if (ms_top_p(stack) != S_ZERO)
         pass = false;
     move_delete(m1);
-    m1 = NULL;
     move_delete(m2);
-    m2 = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -209,9 +184,7 @@ bool test_ms_is_empty() {
     if (!ms_is_empty(stack))
         pass = false;
     move_delete(m1);
-    m1 = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -234,11 +207,8 @@ bool test_ms_is_full() {
     if (ms_is_full(stack))
         pass = false;
     move_delete(m1);
-    m1 = NULL;
     move_delete(m2);
-    m2 = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
@@ -251,11 +221,8 @@ bool test_ms_print() {
     ms_push(stack, m2);
     ms_print(stack);
     move_delete(m1);
-    m1 = NULL;
     move_delete(m2);
-    m2 = NULL;
     ms_delete(stack);
-    stack = NULL;
     return pass;
 }
 
