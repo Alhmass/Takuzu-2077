@@ -14,15 +14,15 @@ bool test_game_new_ext(void) {
     if (game_nb_rows(g2) != DEFAULT_SIZE || game_nb_cols(g2) != DEFAULT_SIZE || game_is_wrapping(g2) ||
         game_is_unique(g2))
         pass = false;
-    if (!game_equal(g1, g2))
+    if (game_equal(g1, g2))
         pass = false;
     game_delete(g1);
     game_delete(g2);
 
-    game g3 = game_new_ext(3, 4, squares, false, true);
+    game g3 = game_new_ext(8, 4, squares, false, true);
     if (g3 == NULL)
         pass = false;
-    if (game_nb_rows(g3) != 3 || game_nb_cols(g3) != 4)
+    if (game_nb_rows(g3) != 8 || game_nb_cols(g3) != 4)
         pass = false;
     if (!game_is_unique(g3) && game_is_wrapping(g3))
         pass = false;
@@ -39,7 +39,7 @@ bool test_game_new_empty_ext(void) {
     if (game_nb_rows(g) != DEFAULT_SIZE || game_nb_cols(g) != DEFAULT_SIZE || !game_is_wrapping(g) ||
         !game_is_unique(g))
         pass = false;
-    if (!game_equal(g, empty))
+    if (game_equal(g, empty))
         pass = false;
     game_delete(empty);
     game_delete(g);

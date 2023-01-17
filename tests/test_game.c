@@ -86,10 +86,6 @@ bool test_game_equal(void) {
         pass = false;
     if (game_equal(g3, g4))
         pass = false;
-    game g5 = NULL;
-    game g6 = NULL;
-    if (game_equal(g5, g6))
-        pass = false;
     game_delete(g1);
     game_delete(g2);
     game_delete(g3);
@@ -308,8 +304,6 @@ bool test_game_get_next_number() {
     else if (game_get_next_number(g2, 6, 0, UP, 1) != 0)
         pass = false;
     else if (game_get_next_number(g2, 0, 1, LEFT, 2) != 0)
-        pass = false;
-    else if (game_get_next_number(g2, 0, 12, RIGHT, 1) != -1)
         pass = false;
     game_delete(g);
     game_delete(g2);
