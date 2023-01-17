@@ -217,7 +217,7 @@ bool game_check_move(cgame g, uint i, uint j, square s) {
     cgame_test(g, "g is not initialized\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    if ((i > rows_g) || (j > cols_g))
+    if ((i >= rows_g) || (j >= cols_g))
         return false;
     if (s == S_IMMUTABLE_ONE || s == S_IMMUTABLE_ZERO)
         return false;

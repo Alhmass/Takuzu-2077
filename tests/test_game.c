@@ -76,13 +76,24 @@ bool test_game_equal(void) {
     square squares_2[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 2, 3, 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 3, 0, 2, 1, 0,
                                                      0, 3, 4, 0, 1, 0, 0, 1, 4, 0, 2, 3, 0, 0, 0, 2, 0, 3};
     game g2 = game_new(squares_2);
+    game g3 = game_new_empty_ext(8, 4, false, false);
+    game g4 =  game_default();
 
-    if (g1 == NULL || g2 == NULL)
+
+    if (g1 == NULL || g2 == NULL || g3 ==  NULL || g4 == NULL)
         pass = false;
     if (game_equal(g1, g2))
         pass = false;
+    if (game_equal(g3, g4))
+        pass = false;
+    game g5 = NULL;
+    game g6 = NULL;
+    if (game_equal(g5, g6))
+        pass = false;
     game_delete(g1);
     game_delete(g2);
+    game_delete(g3);
+    game_delete(g4);
     return pass;
 }
 
@@ -298,6 +309,8 @@ bool test_game_get_next_number() {
         pass = false;
     else if (game_get_next_number(g2, 0, 1, LEFT, 2) != 0)
         pass = false;
+    else if (game_get_next_number(g2, 0, 12, RIGHT, 1) != -1)
+        pass = false;
     game_delete(g);
     game_delete(g2);
     return pass;
@@ -371,6 +384,8 @@ bool test_game_check_move() {
     if (!g)
         pass = false;
     if (game_check_move(g, 0, 0, S_IMMUTABLE_ZERO))
+        pass = false;
+    if (game_check_move(g, 0, 6, S_ONE))
         pass = false;
     for (uint i = 0; i < DEFAULT_SIZE; i++) {
         for (uint j = 0; j < DEFAULT_SIZE; j++) {
