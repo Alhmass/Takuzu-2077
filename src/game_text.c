@@ -5,6 +5,8 @@ static void display_help(void) {
     printf("- press 'w <i> <j>' to put a zero/white at square (i,j)\n");
     printf("- press 'b <i> <j>' to put a one/black at square (i,j)\n");
     printf("- press 'e <i> <j>' to empty square (i,j)\n");
+    printf("- press 'z' to undo previous move\n");
+    printf("- press 'y' to redo undone moves\n");
     printf("- press 'r' to restart\n");
     printf("- press 'q' to quit\n");
 }
