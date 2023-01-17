@@ -77,10 +77,9 @@ bool test_game_equal(void) {
                                                      0, 3, 4, 0, 1, 0, 0, 1, 4, 0, 2, 3, 0, 0, 0, 2, 0, 3};
     game g2 = game_new(squares_2);
     game g3 = game_new_empty_ext(8, 4, false, false);
-    game g4 =  game_default();
+    game g4 = game_default();
 
-
-    if (g1 == NULL || g2 == NULL || g3 ==  NULL || g4 == NULL)
+    if (g1 == NULL || g2 == NULL || g3 == NULL || g4 == NULL)
         pass = false;
     if (game_equal(g1, g2))
         pass = false;

@@ -39,7 +39,7 @@ bool test_game_new_empty_ext(void) {
     if (game_nb_rows(g) != DEFAULT_SIZE || game_nb_cols(g) != DEFAULT_SIZE || !game_is_wrapping(g) ||
         !game_is_unique(g))
         pass = false;
-    if (game_equal(g, empty))
+    if (!game_equal(g, empty))
         pass = false;
     game_delete(empty);
     game_delete(g);
@@ -48,7 +48,7 @@ bool test_game_new_empty_ext(void) {
 
 bool test_game_undo(void) {
     bool pass = true;
-    game g = game_new_empty_ext(5, 5, false, false);
+    game g = game_new_empty_ext(6, 6, false, false);
     game_play_move(g, 0, 0, S_ONE);
     square before = game_get_square(g, 0, 0);
     game_undo(g);
@@ -72,7 +72,7 @@ bool test_game_undo(void) {
 
 bool test_game_redo(void) {
     bool pass = true;
-    game g = game_new_empty_ext(5, 5, false, false);
+    game g = game_new_empty_ext(6, 6, false, false);
     game_play_move(g, 0, 0, S_ONE);
     game_play_move(g, 0, 1, S_ONE);
     game_play_move(g, 0, 2, S_ONE);
@@ -101,7 +101,7 @@ bool test_game_redo(void) {
         pass = false;
     game_delete(g);
 
-    game g2 = game_new_empty_ext(5, 5, false, false);
+    game g2 = game_new_empty_ext(6, 6, false, false);
     game_play_move(g2, 0, 0, S_ONE);
     game_play_move(g2, 0, 1, S_ONE);
     game_undo(g2);

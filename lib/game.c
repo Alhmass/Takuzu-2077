@@ -41,8 +41,10 @@ bool game_equal(cgame g1, cgame g2) {
     uint cols_g2 = (g2->version == 1) ? DEFAULT_SIZE : game_nb_cols(g2);
     if (rows_g1 != rows_g2 || cols_g1 != cols_g2)
         return false;
-    if (game_is_unique(g1) != game_is_unique(g2) || game_is_wrapping(g1) != game_is_wrapping(g2))
-        return false;
+    if (g1->version != 1 && g2->version != 1) {
+        if (game_is_unique(g1) != game_is_unique(g2) || game_is_wrapping(g1) != game_is_wrapping(g2))
+            return false;
+    }
     for (uint i = 0; i < rows_g1; i++) {
         for (uint j = 0; j < cols_g1; j++) {
             if (game_get_square(g1, i, j) != game_get_square(g2, i, j))
