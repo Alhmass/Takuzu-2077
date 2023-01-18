@@ -104,16 +104,18 @@ int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
         throw_error("the distance value must be <=2!\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    int findex = 0;
+    int next_index = 0; // new coordinates for i or j
     if (g->version == 2 && game_is_wrapping(g)) {
         if (dir == LEFT) {
-            findex = (j - dist);
-            j = findex <= 0 ? (cols_g + findex) % cols_g : (j - dist) % cols_g;
+            next_index = (j - dist);
+            // ternary operator : if next_index <= 0, then (cols_g + next_index) % cols_g else (j - dist) % cols_g
+            j = (next_index <= 0) ? (cols_g + next_index) % cols_g : (j - dist) % cols_g;
         } else if (dir == RIGHT)
             j = (j + dist) % cols_g;
         else if (dir == UP) {
-            findex = (i - dist);
-            i = findex <= 0 ? (rows_g + findex) % rows_g : (i - dist) % rows_g;
+            next_index = (i - dist);
+            // ternary operator : if next_index <= 0, then (rows_g + next_index) % rows_g else (i - dist) % rows_g
+            i = (next_index <= 0) ? (rows_g + next_index) % rows_g : (i - dist) % rows_g;
         } else
             i = (i + dist) % rows_g;
     } else {
@@ -137,18 +139,20 @@ int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
         throw_error("the distance value must be <=2!\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    int findex = 0;
+    int next_index = 0; // new coordinates for i or j
     if (g->version == 2 && game_is_wrapping(g)) {
         if (i >= rows_g || j >= cols_g)
             return (-1);
         if (dir == LEFT) {
-            findex = (j - dist);
-            j = findex <= 0 ? (cols_g + findex) % cols_g : (j - dist) % cols_g;
+            next_index = (j - dist);
+            // ternary operator : if next_index <= 0, then (cols_g + next_index) % cols_g else (j - dist) % cols_g
+            j = (next_index <= 0) ? (cols_g + next_index) % cols_g : (j - dist) % cols_g;
         } else if (dir == RIGHT)
             j = (j + dist) % cols_g;
         else if (dir == UP) {
-            findex = (i - dist);
-            i = findex <= 0 ? (rows_g + findex) % rows_g : (i - dist) % rows_g;
+            next_index = (i - dist);
+            // ternary operator : if next_index <= 0, then (rows_g + next_index) % rows_g else (i - dist) % rows_g
+            i = (next_index <= 0) ? (rows_g + next_index) % rows_g : (i - dist) % rows_g;
         } else
             i = (i + dist) % rows_g;
     } else {
@@ -170,7 +174,7 @@ bool game_is_empty(cgame g, uint i, uint j) {
     cgame_test(g, "g is not initialized\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    assert(((i < rows_g) && (j < cols_g)));
+    assert(((i < rows_g) && (j < cols_g))); // i and j must be in the range of the game
     return (game_get_square(g, i, j) == S_EMPTY);
 }
 
@@ -178,11 +182,10 @@ bool game_is_immutable(cgame g, uint i, uint j) {
     cgame_test(g, "g is not initialized\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    assert(((i < rows_g) && (j < cols_g)));
+    assert(((i < rows_g) && (j < cols_g))); // i and j must be in the range of the game
     square s = game_get_square(g, i, j);
-    if (s == 3 || s == 4) {
+    if (s == 3 || s == 4)
         return true;
-    }
     return false;
 }
 

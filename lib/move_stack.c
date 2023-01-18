@@ -9,6 +9,7 @@ ms ms_create(uint capacity) {
     stack->capacity = capacity;
     return stack;
 }
+
 void ms_delete(ms stack) {
     if (stack != NULL) {
         for (uint i = 0; i < stack->size; i++) move_delete(stack->data[i]);
@@ -28,6 +29,7 @@ move ms_top(ms stack) {
         return NULL;
     return stack->data[stack->size - 1];
 }
+
 void ms_push(ms stack, move m) {
     if (ms_is_full(stack))
         ms_double_capacity(stack);
@@ -35,12 +37,14 @@ void ms_push(ms stack, move m) {
     stack->data[stack->size] = new;
     stack->size++;
 }
+
 void ms_pop(ms stack) {
     if (ms_is_empty(stack))
         return;
     move_delete(ms_top(stack));
     stack->size--;
 }
+
 void ms_clear(ms stack) {
     while (!ms_is_empty(stack)) ms_pop(stack);
 }
@@ -50,16 +54,19 @@ int ms_top_row(ms stack) {
         return -1;
     return move_row(ms_top(stack));
 }
+
 int ms_top_col(ms stack) {
     if (ms_is_empty(stack))
         return -1;
     return move_col(ms_top(stack));
 }
+
 int ms_top_s(ms stack) {
     if (ms_is_empty(stack))
         return -2;
     return move_s(ms_top(stack));
 }
+
 int ms_top_p(ms stack) {
     if (ms_is_empty(stack))
         return -2;
@@ -71,6 +78,7 @@ bool ms_is_empty(ms stack) {
         return true;
     return stack->size == 0;
 }
+
 bool ms_is_full(ms stack) {
     if (stack == NULL)
         return false;
