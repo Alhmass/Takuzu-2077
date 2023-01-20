@@ -5,6 +5,11 @@
 #include "move.h"
 #include "move_stack.h"
 
+/**
+ * @brief Structure of a game.
+ * @details This structure contains all the properties of a game.
+ * @see game
+ **/
 struct game_s {
     square *game;
     uint nb_rows;

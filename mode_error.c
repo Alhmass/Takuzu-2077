@@ -34,7 +34,7 @@ void rotate_array(square *array, uint size) {
     array[size - 1] = start;
 }
 
-int get_number(int s) {
+int get_number(square s) {
     if (s == S_EMPTY) {
         return -1;
     } else if (s == S_ZERO || s == S_IMMUTABLE_ZERO) {
