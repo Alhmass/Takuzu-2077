@@ -39,7 +39,7 @@ bool test_game_new_empty_ext(void) {
     if (game_nb_rows(g) != DEFAULT_SIZE || game_nb_cols(g) != DEFAULT_SIZE || !game_is_wrapping(g) ||
         !game_is_unique(g))
         pass = false;
-    if (!game_equal(g, empty))
+    if (game_equal(g, empty))
         pass = false;
     game_delete(empty);
     game_delete(g);
