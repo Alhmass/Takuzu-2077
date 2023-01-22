@@ -12,7 +12,7 @@ ms ms_create(uint capacity) {
 
 void ms_delete(ms stack) {
     if (stack != NULL) {
-        for (uint i = 0; i < stack->size; i++) move_delete(stack->data[i]);
+        ms_clear(stack);
         free(stack->data);
         free(stack);
     }
@@ -33,6 +33,7 @@ move ms_top(ms stack) {
 void ms_push(ms stack, move m) {
     if (ms_is_full(stack))
         ms_double_capacity(stack);
+    // duplicate the move m and put it on the top of the stack
     move new = move_create(move_row(m), move_col(m), move_s(m), move_p(m));
     stack->data[stack->size] = new;
     stack->size++;

@@ -5,25 +5,27 @@ game game_new(square *squares) {
     pointer_test(g, "malloc failed");
     g->game = malloc(sizeof(square) * (DEFAULT_SIZE * DEFAULT_SIZE));
     pointer_test(g->game, "malloc failed");
+    // copy the squares into the game
     memcpy(g->game, squares, sizeof(square) * (DEFAULT_SIZE * DEFAULT_SIZE));
+    // version 1 is the default version (indicated how the game was initialized)
     g->version = 1;
     return g;
 }
 
 game game_new_empty(void) {
+    // allocate memory for the squares and initialize them to 0
     square *squares = (square *)calloc(DEFAULT_SIZE * DEFAULT_SIZE, sizeof(square));
     pointer_test(squares, "malloc failed");
     game g = game_new(squares);
     cgame_test(g, "malloc failed");
     free(squares);
-    g->version = 1;
     return g;
 }
 
 game game_copy(cgame g) {
     cgame_test(g, "g is NULL");
     if (g->version == 2) {
-        game copy = game_new_ext(game_nb_rows(g), game_nb_cols(g), g->game, g->wrapping, g->unique);
+        game copy = game_new_ext(game_nb_rows(g), game_nb_cols(g), g->game, game_is_wrapping(g), game_is_unique(g));
         game_test(copy, "malloc failed");
         return copy;
     }
@@ -71,6 +73,7 @@ void game_set_square(game g, uint i, uint j, square s) {
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
     if (i >= rows_g || j >= cols_g)
         return;
+    // x * i + j = index in the square array (g->game)
     g->game[rows_g * i + j] = s;
 }
 
@@ -88,33 +91,35 @@ int game_get_number(cgame g, uint i, uint j) {
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
     if (i >= rows_g || j >= cols_g)
-        throw_error("i or j value is out of bounds!\n");
+        throw_error("i or j value is out of bounds\n");
     uint index = rows_g * i + j;
     if (g->game[index] == S_EMPTY)
-        return (-1);
+        return -1;
     else if (g->game[index] == S_ZERO || g->game[index] == S_IMMUTABLE_ZERO)
-        return (0);
-    else
-        return (1);
+        return 0;
+    else if (g->game[index] == S_ONE || g->game[index] == S_IMMUTABLE_ONE)
+        return 1;
+    // invalid square: should never happen
+    return -1;
 }
 
 int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
     cgame_test(g, "g is not initialized\n");
     if (dist > 2)
-        throw_error("the distance value must be <=2!\n");
+        throw_error("the distance value must be <= 2\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    int next_index = 0; // new coordinates for i or j
+    int next_index = 0;  // new coordinates for i or j
     if (g->version == 2 && game_is_wrapping(g)) {
         if (dir == LEFT) {
             next_index = (j - dist);
-            // ternary operator : if next_index <= 0, then (cols_g + next_index) % cols_g else (j - dist) % cols_g
+            // ternary operator : if next_index <= 0, then (cols_g + next_index) % cols_g, else (j - dist) % cols_g
             j = (next_index <= 0) ? (cols_g + next_index) % cols_g : (j - dist) % cols_g;
         } else if (dir == RIGHT)
             j = (j + dist) % cols_g;
         else if (dir == UP) {
             next_index = (i - dist);
-            // ternary operator : if next_index <= 0, then (rows_g + next_index) % rows_g else (i - dist) % rows_g
+            // ternary operator : if next_index <= 0, then (rows_g + next_index) % rows_g, else (i - dist) % rows_g
             i = (next_index <= 0) ? (rows_g + next_index) % rows_g : (i - dist) % rows_g;
         } else
             i = (i + dist) % rows_g;
@@ -139,7 +144,7 @@ int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
         throw_error("the distance value must be <=2!\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    int next_index = 0; // new coordinates for i or j
+    int next_index = 0;  // new coordinates for i or j
     if (g->version == 2 && game_is_wrapping(g)) {
         if (i >= rows_g || j >= cols_g)
             return (-1);
@@ -174,7 +179,7 @@ bool game_is_empty(cgame g, uint i, uint j) {
     cgame_test(g, "g is not initialized\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    assert(((i < rows_g) && (j < cols_g))); // i and j must be in the range of the game
+    assert(((i < rows_g) && (j < cols_g)));  // i and j must be in the range of the game
     return (game_get_square(g, i, j) == S_EMPTY);
 }
 
@@ -182,7 +187,7 @@ bool game_is_immutable(cgame g, uint i, uint j) {
     cgame_test(g, "g is not initialized\n");
     uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
-    assert(((i < rows_g) && (j < cols_g))); // i and j must be in the range of the game
+    assert(((i < rows_g) && (j < cols_g)));  // i and j must be in the range of the game
     square s = game_get_square(g, i, j);
     if (s == 3 || s == 4)
         return true;
@@ -197,18 +202,21 @@ int game_has_error(cgame g, uint i, uint j) {
     if (i >= rows_g || j >= cols_g)
         throw_error("i or j value is out of bounds!\n");
 
-    if (g->version == 2 && game_is_wrapping(g)) {
-        if (is_consecutive_grid(g, i, j)) {
+    // check if the square is part of a consecutive sequence of 3 squares in a row or a column
+    if (g->version == 2 && game_is_wrapping(g))
+        if (is_consecutive_grid(g, i, j))
             return 1;
-        }
-    }
-    if (g->version == 2 && game_is_unique(g)) {
-        if (!is_unique_array(g, i, j)) {
+
+    // check if the square is part of row or column that is identical to another one
+    if (g->version == 2 && game_is_unique(g))
+        if (!is_unique_array(g, i, j))
             return 1;
-        }
-    }
+
+    // row: array of squares that contains the row i
     square *row = get_row(g, i);
+    // col: array of squares that contains the column j
     square *col = get_col(g, j);
+    // check if the row or the column contains a consecutive sequence of 3 squares
     if (is_consecutive(row, cols_g, game_get_number(g, i, j)) ||
         is_consecutive(col, rows_g, game_get_number(g, i, j))) {
         free(row);
@@ -226,9 +234,11 @@ bool game_check_move(cgame g, uint i, uint j, square s) {
     uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
     if ((i >= rows_g) || (j >= cols_g))
         return false;
+    // if the square to be placed is immutable, the move is not valid
     if (s == S_IMMUTABLE_ONE || s == S_IMMUTABLE_ZERO)
         return false;
     square c = game_get_square(g, i, j);
+    // if the square to be replaced is immutable, the move is not valid
     if (c == S_IMMUTABLE_ONE || c == S_IMMUTABLE_ZERO)
         return false;
 
@@ -242,12 +252,10 @@ void game_play_move(game g, uint i, uint j, square s) {
     assert(((i < rows_g) && (j < cols_g)));
     if (game_check_move(g, i, j, s)) {
         if (g->version == 2) {
-            if (g->backup != NULL && g->history != NULL) {
-                move m = move_create(i, j, s, game_get_square(g, i, j));
-                ms_push(g->history, m);
-                ms_clear(g->backup);
-                free(m);
-            }
+            move m = move_create(i, j, s, game_get_square(g, i, j));
+            ms_push(g->history, m);
+            ms_clear(g->backup);
+            free(m);
         }
         game_set_square(g, i, j, s);
     }
