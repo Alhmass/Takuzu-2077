@@ -1,0 +1,15 @@
+# Folders
+.vscode/
+build/
+
+# Files
+*.o
+*.gdca
+*.gcno
+*~*
+
+# custom_build
+custom_build/
+
+# Solution Inputs
+moves.txt
