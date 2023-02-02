@@ -22,6 +22,7 @@
 #include "game_ext.h"
 #include "game_private.h"
 #include "game_struct.h"
+#include "game_tools.h"
 #include "queue.h"
 
 #endif /* __TAKUZU_H__ */

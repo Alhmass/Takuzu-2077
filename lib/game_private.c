@@ -230,14 +230,3 @@ int _str2square(char c) {
 char image[255] = {[S_EMPTY] = ' ', [S_ZERO] = 'w', [S_ONE] = 'b', [S_IMMUTABLE_ZERO] = 'W', [S_IMMUTABLE_ONE] = 'B'};
 
 char _square2str(square s) { return image[s]; }
-
-/* ************************************************************************** */
-/*                             WATERMARK                                      */
-/* ************************************************************************** */
-
-void __attribute__((constructor)) watermark() {
-    fprintf(stderr, "Copyright: Takuzu Game by University of Bordeaux, 2022.\n");
-    system("date >> watermark");
-}
-
-/* ************************************************************************** */

@@ -21,7 +21,8 @@ link_libraries(game)
 add_executable(game_text ${game_text_src})
 
 # ---- Configuration ---- #
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/configuration/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/build/)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/configuration/default.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/configuration/solution.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 # ---- Tests Generation ---- #
 add_executable(test_game                    tests/test_game.c)
