@@ -20,10 +20,6 @@ link_libraries(game)
 # ---- Binary Generation ---- #
 add_executable(game_text ${game_text_src})
 
-# ---- Configuration ---- #
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/saves/game/default.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/saves/game/solution.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-
 # ---- Tests Generation ---- #
 add_executable(test_game                    tests/test_game.c)
 add_test(test_game_new                      ./test_game game_new)
@@ -58,6 +54,10 @@ add_test(test_game_nb_rows                  ./test_game_ext game_nb_rows)
 add_test(test_game_nb_cols                  ./test_game_ext game_nb_cols)
 add_test(test_game_is_unique                ./test_game_ext game_is_unique)
 add_test(test_game_is_wrapping              ./test_game_ext game_is_wrapping)
+
+add_executable(test_game_tools              tests/test_game_tools.c)
+add_test(test_game_load                     ./test_game_tools game_load)
+add_test(test_game_save                     ./test_game_tools game_save)
 
 add_executable(test_v2                      tests/test_v2.c)
 add_test(test_new_ext                       ./test_v2 new_ext)
