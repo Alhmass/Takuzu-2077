@@ -20,6 +20,9 @@ link_libraries(game)
 # ---- Binary Generation ---- #
 add_executable(game_text ${game_text_src})
 
+# ---- Configuration ---- #
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/configuration/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/build/)
+
 # ---- Tests Generation ---- #
 add_executable(test_game                    tests/test_game.c)
 add_test(test_game_new                      ./test_game game_new)
