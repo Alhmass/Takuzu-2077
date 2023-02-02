@@ -41,22 +41,31 @@ static void display_errors(cgame g) {
     }
 }
 
-static square char_to_square(char c) {
-    if (c == 'w')
-        return (S_ZERO);
-    else if (c == 'b')
-        return (S_ONE);
-    else
-        return (S_EMPTY);
-}
+static void try_play_move(game g, char c) {
+    uint i = 0, j = 0;
+    if (scanf("%d %d", &i, &j) != 2)
+        return;
 
-static void try_play_move(game g, char c, int i, int j) {
-    square s = char_to_square(c);
-
+    square s = (c == 'w') ? (S_ZERO) : (c == 'b') ? (S_ONE) : (S_EMPTY);
     if (game_check_move(g, i, j, s)) {
         printf("> action: play move '%c' into square (%d,%d)\n", c, i, j);
         game_play_move(g, i, j, s);
     }
+}
+
+static void save_game(cgame g) {
+    char filepath[100];
+    if (scanf("%s", filepath) != 1)
+        return;
+
+    FILE *f = fopen(filepath, "w");
+    if (f == NULL) {
+        printf("Error: could not open file '%s' for writing\n", filepath);
+        return;
+    }
+    printf("> action: save game into /saves/user/%s\n", filepath);
+    game_save(g, filepath);
+    fclose(f);
 }
 
 int main(int ac, char **av) {
@@ -64,28 +73,18 @@ int main(int ac, char **av) {
     assert(g);
 
     char user_input = 0;
-    int scanf_return = 0;
-    char *save_path = NULL;
-    uint i = 0, j = 0;
-
     while (!game_is_over(g)) {
         game_print(g);
         display_errors(g);
         printf("> ? [h for help]\n");
-        if (scanf_return == EOF)
+        if (scanf(" %c", &user_input) == EOF)
             exit(EXIT_SUCCESS);
-        scanf_return = scanf(" %c", &user_input);
-        if (strchr("hzyrsq", user_input)) {
+        if (strchr("hzyrq", user_input))
             command(g, user_input);
-        } else if (strchr("wbe", user_input)) {
-            scanf_return = scanf("%d %d", &i, &j);
-            if (scanf_return == 2)
-                try_play_move(g, user_input, i, j);
-        } else if (strchr("s", user_input)) {
-            scanf_return = scanf("%s", save_path);
-            if (scanf_return == 1)
-                game_save(g, save_path);
-        }
+        else if (strchr("wbe", user_input))
+            try_play_move(g, user_input);
+        else if (strchr("s", user_input))
+            save_game(g);
     }
     game_print(g);
     game_delete(g);
