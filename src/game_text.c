@@ -69,7 +69,7 @@ static void save_game(cgame g) {
 }
 
 int main(int ac, char **av) {
-    game g = (ac == 2) ? game_load(av[1]) : game_load("default.txt");
+    game g = (ac == 2) ? game_load(av[1]) : game_load("saves/game/default.txt");
     assert(g);
 
     char user_input = 0;
