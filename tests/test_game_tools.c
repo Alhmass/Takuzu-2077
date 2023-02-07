@@ -114,7 +114,7 @@ bool test_game_load() {
     return true;
 }
 
-bool test_game_game_save() {
+bool test_game_save() {
     game g = game_default();
 
     if (!g)
@@ -175,6 +175,10 @@ bool test_game_game_save() {
     return true;
 }
 
+bool test_game_solve() { return false; }
+
+bool test_game_nb_solutions() { return false; }
+
 /*  USAGE  */
 void usage(char *argv[]) {
     fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
@@ -191,7 +195,11 @@ int main(int argc, char *argv[]) {
     if (strcmp("game_load", argv[1]) == 0)
         pass = test_game_load();
     else if (strcmp("game_save", argv[1]) == 0)
-        pass = test_game_game_save();
+        pass = test_game_save();
+    else if (strcmp("game_solve", argv[1]) == 0)
+        pass = test_game_solve();
+    else if (strcmp("game_nb_solutions", argv[1]) == 0)
+        pass = test_game_nb_solutions();
     else {
         fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
         exit(EXIT_FAILURE);
