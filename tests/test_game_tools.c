@@ -56,6 +56,61 @@ bool test_game_load() {
     }
     fclose(f_default);
     game_delete(g_default);
+
+    FILE *f_test = fopen("../saves/game/test.txt", "r");
+    if (f_test == NULL) {
+        return false;
+    }
+    game g2 = game_load("../saves/game/test.txt");
+    if (g2 == NULL) {
+        fclose(f_default);
+        return false;
+    }
+    if (fscanf(f_test, "%u %u %u %u\n", &nb_rows, &nb_cols, &wrapping, &unique) != 4) {
+        fclose(f_test);
+        game_delete(g2);
+        return false;
+    }
+    if (nb_rows != game_nb_rows(g2) || nb_cols != game_nb_cols(g2) || game_is_wrapping(g2) != wrapping ||
+        game_is_unique(g2) != unique) {
+        fclose(f_test);
+        game_delete(g2);
+        return false;
+    }
+    for (uint i = 0; i < game_nb_cols(g2); i++) {
+        for (uint j = 0; j < game_nb_rows(g2); j++) {
+            char input;
+            square s;
+            if (fscanf(f_test, "%c", &input) != 1) {
+                fclose(f_test);
+                game_delete(g2);
+                return false;
+            }
+            if (input == 'e')
+                s = S_EMPTY;
+            else if (input == 'w')
+                s = S_ZERO;
+            else if (input == 'W')
+                s = S_IMMUTABLE_ZERO;
+            else if (input == 'b')
+                s = S_ONE;
+            else if (input == 'B')
+                s = S_IMMUTABLE_ONE;
+            else {
+                fclose(f_test);
+                game_delete(g2);
+                return false;
+            }
+            if (s != game_get_square(g2, i, j)) {
+                fclose(f_test);
+                game_delete(g2);
+                return false;
+            }
+        }
+        fscanf(f_test, "\n");
+    }
+    fclose(f_test);
+    game_delete(g2);
     return true;
 }
 
