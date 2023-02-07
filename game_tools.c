@@ -49,6 +49,36 @@ game game_load(char *filename) {
 /* ************************************************************************** */
 
 void game_save(cgame g, char *filename) {
-    (void)g;
-    (void)filename;
+    char *final_filepath = (char *)malloc(sizeof(char) * (strlen(filename) + strlen("./") + 1));
+    strcpy(final_filepath, "./");
+    strcat(final_filepath, filename);
+
+    FILE *f = fopen(final_filepath, "w");
+    if (f == NULL) {
+        fprintf(stderr, "[error] cannot open file %s\n", filename);
+        exit(EXIT_FAILURE);
+    }
+    fprintf(f, "%u %u %u %u\n", g->nb_rows, g->nb_cols, g->wrapping, g->unique);
+    for (uint i = 0; i < g->nb_rows; i++) {
+        for (uint j = 0; j < g->nb_cols; j++) {
+            char s;
+            if (SQUARE(g, i, j) == S_EMPTY)
+                s = 'e';
+            else if (SQUARE(g, i, j) == S_ZERO)
+                s = 'w';
+            else if (SQUARE(g, i, j) == S_IMMUTABLE_ZERO)
+                s = 'W';
+            else if (SQUARE(g, i, j) == S_ONE)
+                s = 'b';
+            else if (SQUARE(g, i, j) == S_IMMUTABLE_ONE)
+                s = 'B';
+            else {
+                fprintf(stderr, "[error] cannot write file %s\n", filename);
+                exit(EXIT_FAILURE);
+            }
+            fprintf(f, "%c", s);
+        }
+        fprintf(f, "\n");
+    }
+    fclose(f);
 }
