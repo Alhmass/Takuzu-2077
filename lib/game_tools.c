@@ -82,6 +82,7 @@ void game_save(cgame g, char *filename) {
         fprintf(f, "\n");
     }
     fclose(f);
+    free(final_filepath);
 }
 
 /* ************************************************************************** */
