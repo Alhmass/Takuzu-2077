@@ -59,6 +59,8 @@ add_test(test_game_is_wrapping              ./test_game_ext game_is_wrapping)
 add_executable(test_game_tools              tests/test_game_tools.c)
 add_test(test_game_load                     ./test_game_tools game_load)
 add_test(test_game_save                     ./test_game_tools game_save)
+add_test(test_game_solve                    ./test_game_tools game_solve)
+add_test(test_game_nb_solutions             ./test_game_tools game_nb_solutions)
 
 add_executable(test_v2                      tests/test_v2.c)
 add_test(test_new_ext                       ./test_v2 new_ext)
