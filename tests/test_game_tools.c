@@ -59,7 +59,66 @@ bool test_game_load() {
     return true;
 }
 
-bool test_game_game_save() { return false; }
+bool test_game_game_save() {
+    game g = game_default();
+
+    if (!g)
+        return false;
+    game_save(g, "default.txt");
+    game_delete(g);
+    FILE *f_save = fopen("./default.txt", "r");
+    if (!f_save)
+        return false;
+    fprintf(stderr, "toto");
+    FILE *f_test = fopen("../saves/game/default.txt", "r");
+    if (!f_test) {
+        fclose(f_save);
+        return false;
+    }
+    uint rows_s, cols_s, wrapping_s, unique_s;
+    if (fscanf(f_save, "%u %u %u %u\n", &rows_s, &cols_s, &wrapping_s, &unique_s) != 4) {
+        fclose(f_test);
+        fclose(f_save);
+        return false;
+    }
+    uint rows_d, cols_d, wrapping_d, unique_d;
+    if (fscanf(f_test, "%u %u %u %u\n", &rows_d, &cols_d, &wrapping_d, &unique_d) != 4) {
+        fclose(f_test);
+        fclose(f_save);
+        return false;
+    }
+    if (rows_s != rows_d || cols_s != cols_d || wrapping_s != wrapping_d || unique_s != unique_d) {
+        fclose(f_test);
+        fclose(f_save);
+        return false;
+    }
+    for (uint i = 0; i < cols_s; i++) {
+        for (uint j = 0; j < rows_s; j++) {
+            char s_save;
+            char s_def;
+            if (fscanf(f_save, "%c", &s_save) != 1) {
+                fclose(f_test);
+                fclose(f_save);
+                return false;
+            }
+            if (fscanf(f_test, "%c", &s_def) != 1) {
+                fclose(f_test);
+                fclose(f_save);
+                return false;
+            }
+            if (s_def != s_save) {
+                fclose(f_test);
+                fclose(f_save);
+                return false;
+            }
+        }
+        fscanf(f_save, "\n");
+        fscanf(f_test, "\n");
+    }
+    fclose(f_test);
+    fclose(f_save);
+    return true;
+}
 
 /*  USAGE  */
 void usage(char *argv[]) {

@@ -49,8 +49,8 @@ game game_load(char *filename) {
 /* ************************************************************************** */
 
 void game_save(cgame g, char *filename) {
-    char *final_filepath = (char *)malloc(sizeof(char) * (strlen(filename) + strlen("../saves/user/") + 1));
-    strcpy(final_filepath, "../saves/user/");
+    char *final_filepath = (char *)malloc(sizeof(char) * (strlen(filename) + strlen("./") + 1));
+    strcpy(final_filepath, "./");
     strcat(final_filepath, filename);
 
     FILE *f = fopen(final_filepath, "w");
