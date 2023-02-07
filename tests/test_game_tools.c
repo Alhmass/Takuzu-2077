@@ -116,18 +116,28 @@ bool test_game_load() {
 
 bool test_game_save() {
     game g = game_default();
+    game g_ext = game_new_empty_ext(8, 8, true, false);
+    game_set_square(g_ext, 0, 1, S_IMMUTABLE_ONE);
+    game_set_square(g_ext, 0, 1, S_IMMUTABLE_ZERO);
+    game_set_square(g_ext, 5, 7, S_IMMUTABLE_ZERO);
 
-    if (!g)
+    if (!g || !g_ext)
         return false;
     game_save(g, "default.txt");
+    game_save(g_ext, "test_ext.txt");
     game_delete(g);
     FILE *f_save = fopen("./default.txt", "r");
     if (!f_save)
         return false;
-    fprintf(stderr, "toto");
+    FILE *f_ext = fopen("./test_ext.txt", "r");
+    if (!f_ext) {
+        fclose(f_save);
+        return false;
+    }
     FILE *f_test = fopen("../saves/game/default.txt", "r");
     if (!f_test) {
         fclose(f_save);
+        fclose(f_ext);
         return false;
     }
     uint rows_s, cols_s, wrapping_s, unique_s;
@@ -147,6 +157,22 @@ bool test_game_save() {
         fclose(f_save);
         return false;
     }
+    uint nb_rows, nb_cols, wrapping, unique;
+    if (fscanf(f_ext, "%u %u %u %u\n", &nb_rows, &nb_cols, &wrapping, &unique) != 4) {
+        fclose(f_test);
+        fclose(f_save);
+        fclose(f_ext);
+        game_delete(g_ext);
+        return false;
+    }
+    if (nb_rows != game_nb_rows(g_ext) || nb_cols != game_nb_cols(g_ext) || game_is_wrapping(g_ext) != wrapping ||
+        game_is_unique(g_ext) != unique) {
+        fclose(f_test);
+        fclose(f_save);
+        fclose(f_ext);
+        game_delete(g_ext);
+        return false;
+    }
     for (uint i = 0; i < cols_s; i++) {
         for (uint j = 0; j < rows_s; j++) {
             char s_save;
@@ -154,16 +180,22 @@ bool test_game_save() {
             if (fscanf(f_save, "%c", &s_save) != 1) {
                 fclose(f_test);
                 fclose(f_save);
+                fclose(f_ext);
+                game_delete(g_ext);
                 return false;
             }
             if (fscanf(f_test, "%c", &s_def) != 1) {
                 fclose(f_test);
                 fclose(f_save);
+                fclose(f_ext);
+                game_delete(g_ext);
                 return false;
             }
             if (s_def != s_save) {
                 fclose(f_test);
                 fclose(f_save);
+                fclose(f_ext);
+                game_delete(g_ext);
                 return false;
             }
         }
@@ -172,6 +204,40 @@ bool test_game_save() {
     }
     fclose(f_test);
     fclose(f_save);
+    for (uint i = 0; i < game_nb_cols(g_ext); i++) {
+        for (uint j = 0; j < game_nb_rows(g_ext); j++) {
+            char input;
+            square s;
+            if (fscanf(f_ext, "%c", &input) != 1) {
+                fclose(f_ext);
+                game_delete(g_ext);
+                return false;
+            }
+            if (input == 'e')
+                s = S_EMPTY;
+            else if (input == 'w')
+                s = S_ZERO;
+            else if (input == 'W')
+                s = S_IMMUTABLE_ZERO;
+            else if (input == 'b')
+                s = S_ONE;
+            else if (input == 'B')
+                s = S_IMMUTABLE_ONE;
+            else {
+                fclose(f_test);
+                game_delete(g_ext);
+                return false;
+            }
+            if (s != game_get_square(g_ext, i, j)) {
+                fclose(f_ext);
+                game_delete(g_ext);
+                return false;
+            }
+        }
+        fscanf(f_ext, "\n");
+    }
+    fclose(f_ext);
+    game_delete(g_ext);
     return true;
 }
 
