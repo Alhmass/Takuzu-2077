@@ -2,6 +2,9 @@
 .vscode/
 build/
 
+#Saves
+saves/user/*
+
 # Files
 *.o
 *.gdca
