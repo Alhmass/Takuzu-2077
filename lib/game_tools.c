@@ -55,6 +55,7 @@ void game_save(cgame g, char *filename) {
 
     FILE *f = fopen(final_filepath, "w");
     if (f == NULL) {
+        free(final_filepath);
         fprintf(stderr, "[error] cannot open file %s\n", filename);
         exit(EXIT_FAILURE);
     }
@@ -81,4 +82,5 @@ void game_save(cgame g, char *filename) {
         fprintf(f, "\n");
     }
     fclose(f);
+    free(final_filepath);
 }
