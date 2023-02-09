@@ -63,7 +63,7 @@ bool test_game_load() {
     }
     game g2 = game_load("../saves/game/test.txt");
     if (g2 == NULL) {
-        fclose(f_default);
+        fclose(f_test);
         return false;
     }
     if (fscanf(f_test, "%u %u %u %u\n", &nb_rows, &nb_cols, &wrapping, &unique) != 4) {
@@ -224,7 +224,7 @@ bool test_game_save() {
             else if (input == 'B')
                 s = S_IMMUTABLE_ONE;
             else {
-                fclose(f_test);
+                fclose(f_ext);
                 game_delete(g_ext);
                 return false;
             }
