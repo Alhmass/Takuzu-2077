@@ -120,6 +120,8 @@ bool test_game_save() {
     game_set_square(g_ext, 0, 1, S_IMMUTABLE_ONE);
     game_set_square(g_ext, 0, 1, S_IMMUTABLE_ZERO);
     game_set_square(g_ext, 5, 7, S_IMMUTABLE_ZERO);
+    game_set_square(g_ext, 4, 7, S_ZERO);
+    game_set_square(g_ext, 3, 7, S_ONE);
 
     if (!g || !g_ext)
         return false;
