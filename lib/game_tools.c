@@ -5,18 +5,25 @@
 /* ************************************************************************** */
 
 game game_load(char *filename) {
+    // Open the file
     FILE *f = fopen(filename, "r");
     if (f == NULL) {
         fprintf(stderr, "[error] cannot open file %s\n", filename);
         exit(EXIT_FAILURE);
     }
+
+    // Read the header
     uint nb_rows, nb_cols, wrapping, unique;
     if (fscanf(f, "%u %u %u %u\n", &nb_rows, &nb_cols, &wrapping, &unique) != 4) {
         fprintf(stderr, "[error] cannot read file %s\n", filename);
         exit(EXIT_FAILURE);
     }
+
+    // Create a new game
     game g = game_new_empty_ext(nb_rows, nb_cols, wrapping, unique);
     assert(g);
+
+    // Read the grid
     for (uint i = 0; i < g->nb_rows; i++) {
         for (uint j = 0; j < g->nb_cols; j++) {
             char s;
@@ -42,6 +49,9 @@ game game_load(char *filename) {
         }
         fscanf(f, "\n");
     }
+
+    update_counters(g);
+
     fclose(f);
     return g;
 }
@@ -88,13 +98,30 @@ void game_save(cgame g, char *filename) {
 /* ************************************************************************** */
 
 bool game_solve(game g) {
-    (void)g;
-    return true;
+    // Initialize the binary word
+    int *word = (int *)calloc(game_nb_empty(g), sizeof(int));
+    assert(word);
+
+    uint nb_solutions = 0;
+    find_solutions(g, 0, word, &nb_solutions, 0);
+
+    free(word);
+    return (nb_solutions == 1) ? true : false;
 }
 
 /* ************************************************************************** */
 
 uint game_nb_solutions(cgame g) {
-    (void)g;
-    return 0;
+    game other = game_copy(g);
+
+    // Initialize the binary word
+    int *word = (int *)calloc(game_nb_empty(g), sizeof(int));
+    assert(word);
+
+    uint nb_solutions = 0;
+    find_solutions(other, 0, word, &nb_solutions, 1);
+
+    free(word);
+    game_delete(other);
+    return nb_solutions;
 }

@@ -94,6 +94,37 @@ void game_undo(game g);
 void game_redo(game g);
 
 /**
+ * @brief Gets the number of empty squares.
+ * @param g the game
+ * @return the number of empty squares
+ * @pre @p g is a valid pointer toward a cgame structure
+ **/
+uint game_nb_empty(cgame g);
+
+/**
+ * @brief Gets the number of S_ZERO or S_IMMUTABLE_ZERO squares.
+ * @param g the game
+ * @return the number of squares with value 0
+ * @pre @p g is a valid pointer toward a cgame structure
+ **/
+uint game_nb_zero(cgame g);
+
+/**
+ * @brief Gets the number of S_ONE or S_IMMUTABLE_ONE squares.
+ * @param g the game
+ * @return the number of squares with value 1
+ * @pre @p g is a valid pointer toward a cgame structure
+ **/
+uint game_nb_one(cgame g);
+
+/**
+ * @brief Updates the counters of the game.
+ * @param g the game
+ * @pre @p g is a valid pointer toward a cgame structure
+ **/
+void update_counters(game g);
+
+/**
  * @}
  */
 

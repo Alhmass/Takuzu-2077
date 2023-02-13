@@ -7,12 +7,16 @@
 game game_new_ext(uint nb_rows, uint nb_cols, square* squares, bool wrapping, bool unique) {
     game g = game_new_empty_ext(nb_rows, nb_cols, wrapping, unique);
     assert(g);
+
     // set squares
-    for (uint i = 0; i < g->nb_rows; i++)
+    for (uint i = 0; i < g->nb_rows; i++) {
         for (uint j = 0; j < g->nb_cols; j++) {
             square s = squares[i * nb_cols + j];
             SQUARE(g, i, j) = s;
         }
+    }
+
+    update_counters(g);
     return g;
 }
 
@@ -35,6 +39,8 @@ game game_new_empty_ext(uint nb_rows, uint nb_cols, bool wrapping, bool unique) 
     assert(g->undo_stack);
     g->redo_stack = queue_new();
     assert(g->redo_stack);
+
+    update_counters(g);
     return g;
 }
 
@@ -77,3 +83,33 @@ void game_redo(game g) {
 }
 
 /* ************************************************************************** */
+
+uint game_nb_empty(cgame g) { return g->nb_empty; }
+
+/* ************************************************************************** */
+
+uint game_nb_zero(cgame g) { return g->nb_zero; }
+
+/* ************************************************************************** */
+
+uint game_nb_one(cgame g) { return g->nb_one; }
+
+/* ************************************************************************** */
+
+void update_counters(game g) {
+    g->nb_empty = 0;
+    g->nb_zero = 0;
+    g->nb_one = 0;
+
+    for (uint i = 0; i < g->nb_rows; i++) {
+        for (uint j = 0; j < g->nb_cols; j++) {
+            if (SQUARE(g, i, j) == S_EMPTY) {
+                g->nb_empty++;
+            } else if (SQUARE(g, i, j) == S_ZERO || SQUARE(g, i, j) == S_IMMUTABLE_ZERO) {
+                g->nb_zero++;
+            } else if (SQUARE(g, i, j) == S_ONE || SQUARE(g, i, j) == S_IMMUTABLE_ONE) {
+                g->nb_one++;
+            }
+        }
+    }
+}

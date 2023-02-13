@@ -21,13 +21,16 @@
  * @details This is an opaque data type.
  */
 struct game_s {
-    uint nb_rows;      /**< number of rows in the game */
-    uint nb_cols;      /**< number of columns in the game */
-    square* squares;   /**< the grid of squares using row-major storage */
-    bool wrapping;     /**< the wrapping option */
-    bool unique;       /**< the unique option */
-    queue* undo_stack; /**< stack to undo moves */
-    queue* redo_stack; /**< stack to redo moves */
+    uint nb_rows;      /** number of rows in the game */
+    uint nb_cols;      /** number of columns in the game */
+    square* squares;   /** the grid of squares using row-major storage */
+    bool wrapping;     /** the wrapping option */
+    bool unique;       /** the unique option */
+    queue* undo_stack; /** stack to undo moves */
+    queue* redo_stack; /** stack to redo moves */
+    uint nb_empty;     /** number of S_EMPTY in the game */
+    uint nb_zero;      /** number of S_ZERO in the game */
+    uint nb_one;       /** number of S_ONE in the game */
 };
 
 /* ************************************************************************** */
