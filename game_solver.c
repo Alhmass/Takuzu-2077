@@ -38,11 +38,12 @@ bool is_word_solution(game g, int *word, int nb_zero, int nb_one, uint nb_soluti
     game g_copy = game_copy(g);
 
     // replace empty squares with the word
+    uint word_index = 0;
     for (uint i = 0; i < g->nb_rows; i++) {
         for (uint j = 0; j < g->nb_cols; j++) {
             if (SQUARE(g, i, j) == S_EMPTY) {
-                SQUARE(g_copy, i, j) = (word[0] == 0) ? S_ZERO : S_ONE;
-                word++;
+                SQUARE(g_copy, i, j) = (word[word_index] == 0) ? S_ZERO : S_ONE;
+                word_index++;
             }
         }
     }

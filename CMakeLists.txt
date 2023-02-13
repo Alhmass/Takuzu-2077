@@ -13,12 +13,14 @@ add_library(game ${game_lib_src})
 
 # ---- Compilation Rules ---- #
 set(CMAKE_C_FLAGS "-std=c99 -Wall -Wextra -Werror -g")
-file(GLOB_RECURSE game_text_src src/*.c)
+file(GLOB_RECURSE game_text_src src/game_text.c)
+file(GLOB_RECURSE game_solve_src src/game_solve.c)
 link_directories(${CMAKE_SOURCE_DIR})
 link_libraries(game)
 
 # ---- Binary Generation ---- #
 add_executable(game_text ${game_text_src})
+add_executable(game_solve ${game_solve_src})
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/saves/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/saves/)
 
 # ---- Tests Generation ---- #
