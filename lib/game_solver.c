@@ -60,36 +60,30 @@ bool is_word_solution(game g, csolver s) {
     if (s->nb_zero + game_nb_zero(g) != s->nb_one + game_nb_one(g))
         return false;
 
-    // replace empty squares of g_copy with the word
-    uint word_index = 0;
-    game g_copy = game_copy(g);
-    for (uint i = 0; i < g->nb_rows; i++) {
-        for (uint j = 0; j < g->nb_cols; j++) {
-            if (SQUARE(g, i, j) == S_EMPTY) {
-                SQUARE(g_copy, i, j) = (s->word[word_index] == 0) ? S_ZERO : S_ONE;
-                word_index++;
-            }
-        }
-    }
+    copy_word(g, s);
 
-    if (game_is_over(g_copy)) {
-        if (s->nb_solutions == 0 && s->unique)
-            copy_squares(g, g_copy);
-        game_delete(g_copy);
+    // game_print(g);
+    if (game_is_over(g)) {
+        if (!s->unique)
+            game_restart(g);
         return true;
     }
 
-    game_delete(g_copy);
+    game_restart(g);
     return false;
 }
 
 /* ************************************************************************** */
 
-void copy_squares(game dest, game src) {
-    for (uint i = 0; i < dest->nb_rows; i++) {
-        for (uint j = 0; j < dest->nb_cols; j++) {
-            if (SQUARE(dest, i, j) == S_EMPTY)
-                SQUARE(dest, i, j) = SQUARE(src, i, j);
+void copy_word(game g, csolver s) {
+    // set squares
+    uint word_index = 0;
+    for (uint i = 0; i < g->nb_rows; i++) {
+        for (uint j = 0; j < g->nb_cols; j++) {
+            if (SQUARE(g, i, j) == S_EMPTY) {
+                SQUARE(g, i, j) = (s->word[word_index] == 0) ? S_ZERO : S_ONE;
+                word_index++;
+            }
         }
     }
 }

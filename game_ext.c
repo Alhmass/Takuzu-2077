@@ -13,10 +13,17 @@ game game_new_ext(uint nb_rows, uint nb_cols, square* squares, bool wrapping, bo
         for (uint j = 0; j < g->nb_cols; j++) {
             square s = squares[i * nb_cols + j];
             SQUARE(g, i, j) = s;
+
+            if (s == S_EMPTY) {
+                g->nb_empty++;
+            } else if (s == S_ZERO || s == S_IMMUTABLE_ZERO) {
+                g->nb_zero++;
+            } else if (s == S_ONE || s == S_IMMUTABLE_ONE) {
+                g->nb_one++;
+            }
         }
     }
 
-    update_counters(g);
     return g;
 }
 
@@ -40,7 +47,10 @@ game game_new_empty_ext(uint nb_rows, uint nb_cols, bool wrapping, bool unique) 
     g->redo_stack = queue_new();
     assert(g->redo_stack);
 
-    update_counters(g);
+    // initialize counters
+    g->nb_empty = nb_rows * nb_cols;
+    g->nb_zero = 0;
+    g->nb_one = 0;
     return g;
 }
 

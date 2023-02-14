@@ -8,7 +8,7 @@ bool test_find_solutions() { return false; }
 
 bool test_is_word_solution() { return false; }
 
-bool test_copy_squares() { return false; }
+bool test_copy_word() { return false; }
 
 bool test_print_word() { return false; }
 
@@ -33,8 +33,8 @@ int main(int argc, char *argv[]) {
         pass = test_find_solutions();
     else if (strcmp("is_word_solution", argv[1]) == 0)
         pass = test_is_word_solution();
-    else if (strcmp("copy_squares", argv[1]) == 0)
-        pass = test_copy_squares();
+    else if (strcmp("copy_word", argv[1]) == 0)
+        pass = test_copy_word();
     else if (strcmp("print_word", argv[1]) == 0)
         pass = test_print_word();
     else {

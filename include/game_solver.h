@@ -80,11 +80,11 @@ void find_solutions(game g, solver s, uint pos);
 bool is_word_solution(game g, csolver s);
 
 /**
- * @brief Copy the squares from src to dest
- * @param dest Destination game
- * @param src Source game
+ * @brief replace the empty squares of g by the word contained in s
+ * @param g Game
+ * @param s Solver
  */
-void copy_squares(game dest, game src);
+void copy_word(game g, csolver s);
 
 /**
  * @brief Print a word
