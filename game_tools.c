@@ -98,30 +98,20 @@ void game_save(cgame g, char *filename) {
 /* ************************************************************************** */
 
 bool game_solve(game g) {
-    // Initialize the binary word
-    int *word = (int *)calloc(game_nb_empty(g), sizeof(int));
-    assert(word);
-
-    uint nb_solutions = 0;
-    find_solutions(g, 0, word, &nb_solutions, 0);
-
-    free(word);
-    return (nb_solutions == 1) ? true : false;
+    solver s = solver_new(g, true);
+    find_solutions(g, s, 0);
+    bool solved = (s->nb_solutions == 1) ? true : false;
+    solver_delete(s);
+    return solved;
 }
 
 /* ************************************************************************** */
 
 uint game_nb_solutions(cgame g) {
     game other = game_copy(g);
-
-    // Initialize the binary word
-    int *word = (int *)calloc(game_nb_empty(g), sizeof(int));
-    assert(word);
-
-    uint nb_solutions = 0;
-    find_solutions(other, 0, word, &nb_solutions, 1);
-
-    free(word);
-    game_delete(other);
+    solver s = solver_new(other, false);
+    find_solutions(other, s, 0);
+    uint nb_solutions = s->nb_solutions;
+    solver_delete(s);
     return nb_solutions;
 }
