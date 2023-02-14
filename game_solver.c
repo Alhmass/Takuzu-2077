@@ -12,7 +12,6 @@ solver solver_new(game g, bool unique) {
     s->word = malloc(s->len * sizeof(int));
     assert(s->word);
 
-    s->pos = 0;
     s->nb_zero = 0;
     s->nb_one = game_nb_empty(g);
     s->nb_solutions = 0;
