@@ -11,8 +11,12 @@ include_directories(include)
 file(GLOB_RECURSE game_lib_src lib/*.c)
 add_library(game ${game_lib_src})
 
-# ---- Compilation Rules ---- #
-set(CMAKE_C_FLAGS "-std=c99 -Wall -Wextra -Werror -g")
+# ---- Compilation Options ---- #
+set(CMAKE_C_FLAGS "-std=c99 -Wall -Wextra -Werror -g")  # options de compilation génériques
+set(CMAKE_C_FLAGS_DEBUG "-g -O0 --coverage")            # options de compilation en mode Debug
+set(CMAKE_C_FLAGS_RELEASE "-O3")                        # options de compilation en mode Release
+
+# ---- Source Files ---- #
 file(GLOB_RECURSE game_text_src src/game_text.c)
 file(GLOB_RECURSE game_solve_src src/game_solve.c)
 link_directories(${CMAKE_SOURCE_DIR})
