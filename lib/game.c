@@ -156,8 +156,8 @@ bool game_is_immutable(cgame g, uint i, uint j) {
 
 int game_has_error(cgame g, uint i, uint j) {
     assert(g);
-    // assert(i < g->nb_rows);
-    // assert(j < g->nb_cols);
+    assert(i < g->nb_rows);
+    assert(j < g->nb_cols);
 
     int num = game_get_number(g, i, j);
 
