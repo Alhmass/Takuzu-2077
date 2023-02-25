@@ -100,7 +100,11 @@ void game_save(cgame g, char *filename) {
 bool game_solve(game g) {
     solver s = solver_new(g, true);
     find_solutions(g, s, 0);
-    bool solved = (s->nb_solutions == 1) ? true : false;
+    bool solved = false;
+    if (s->nb_solutions == 1) {
+        solved = true;
+        copy_solution(g, s);
+    }
     solver_delete(s);
     return solved;
 }
@@ -109,9 +113,11 @@ bool game_solve(game g) {
 
 uint game_nb_solutions(cgame g) {
     game other = game_copy(g);
+    update_counters(other);
     solver s = solver_new(other, false);
     find_solutions(other, s, 0);
     uint nb_solutions = s->nb_solutions;
     solver_delete(s);
+    game_delete(other);
     return nb_solutions;
 }

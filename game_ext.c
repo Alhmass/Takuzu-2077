@@ -16,9 +16,9 @@ game game_new_ext(uint nb_rows, uint nb_cols, square* squares, bool wrapping, bo
 
             if (s == S_EMPTY) {
                 g->nb_empty++;
-            } else if (s == S_ZERO || s == S_IMMUTABLE_ZERO) {
+            } else if (s == S_IMMUTABLE_ZERO) {
                 g->nb_zero++;
-            } else if (s == S_ONE || s == S_IMMUTABLE_ONE) {
+            } else if (s == S_IMMUTABLE_ONE) {
                 g->nb_one++;
             }
         }
@@ -115,9 +115,9 @@ void update_counters(game g) {
         for (uint j = 0; j < g->nb_cols; j++) {
             if (SQUARE(g, i, j) == S_EMPTY) {
                 g->nb_empty++;
-            } else if (SQUARE(g, i, j) == S_ZERO || SQUARE(g, i, j) == S_IMMUTABLE_ZERO) {
+            } else if (SQUARE(g, i, j) == S_IMMUTABLE_ZERO) {
                 g->nb_zero++;
-            } else if (SQUARE(g, i, j) == S_ONE || SQUARE(g, i, j) == S_IMMUTABLE_ONE) {
+            } else if (SQUARE(g, i, j) == S_IMMUTABLE_ONE) {
                 g->nb_one++;
             }
         }

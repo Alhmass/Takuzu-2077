@@ -9,11 +9,25 @@ solver solver_new(game g, bool unique) {
     assert(s);
 
     s->len = game_nb_empty(g);
-    s->word = malloc(s->len * sizeof(int));
-    assert(s->word);
+    s->coords = malloc(sizeof(coordinates) * s->len);
+    assert(s->coords);
+
+    uint index = 0;
+    for (uint i = 0; i < g->nb_cols; i++) {
+        for (uint j = 0; j < g->nb_rows; j++) {
+            if (game_get_square(g, i, j) == S_EMPTY) {
+                s->coords[index] = malloc(sizeof(struct coordinates_s));
+                COORDS_I(s, index) = i;
+                COORDS_J(s, index) = j;
+                index++;
+            }
+        }
+    }
+
+    s->solution = NULL;
 
     s->nb_zero = 0;
-    s->nb_one = game_nb_empty(g);
+    s->nb_one = s->len;
     s->nb_solutions = 0;
     s->unique = unique;
 
@@ -23,7 +37,10 @@ solver solver_new(game g, bool unique) {
 /* ************************************************************************** */
 
 void solver_delete(solver s) {
-    free(s->word);
+    for (uint i = 0; i < s->len; i++) {
+        free(s->coords[i]);
+    }
+    free(s->coords);
     free(s);
 }
 
@@ -31,23 +48,23 @@ void solver_delete(solver s) {
 
 void find_solutions(game g, solver s, uint pos) {
     // stop recursive calls
+    if (s->nb_solutions == 1 && s->unique)
+        return;
+
     if (pos == s->len) {
         if (is_word_solution(g, s))
             s->nb_solutions++;
         return;
     }
 
-    if (s->nb_solutions == 1 && s->unique)
-        return;
-
     // extend current word recursively with value 0 at position pos
-    s->word[pos] = 0;
+    game_set_square(g, COORDS_I(s, pos), COORDS_J(s, pos), S_ZERO);
     s->nb_zero++;
     s->nb_one--;
     find_solutions(g, s, pos + 1);
 
     // extend current word recursively with value 1 at position pos
-    s->word[pos] = 1;
+    game_set_square(g, COORDS_I(s, pos), COORDS_J(s, pos), S_ONE);
     s->nb_zero--;
     s->nb_one++;
     find_solutions(g, s, pos + 1);
@@ -55,44 +72,40 @@ void find_solutions(game g, solver s, uint pos) {
 
 /* ************************************************************************** */
 
-bool is_word_solution(game g, csolver s) {
+bool is_word_solution(game g, solver s) {
     // Optimizations
     if (s->nb_zero + game_nb_zero(g) != s->nb_one + game_nb_one(g))
         return false;
 
-    copy_word(g, s);
-
-    // game_print(g);
-    if (game_is_over(g)) {
-        if (!s->unique)
-            game_restart(g);
-        return true;
+    for (uint pos = 0; pos < s->len; pos++) {
+        if (game_has_error(g, COORDS_I(s, pos), COORDS_J(s, pos)))
+            return false;
     }
 
-    game_restart(g);
-    return false;
-}
-
-/* ************************************************************************** */
-
-void copy_word(game g, csolver s) {
-    // set squares
-    uint word_index = 0;
-    for (uint i = 0; i < g->nb_rows; i++) {
-        for (uint j = 0; j < g->nb_cols; j++) {
-            if (SQUARE(g, i, j) == S_EMPTY) {
-                SQUARE(g, i, j) = (s->word[word_index] == 0) ? S_ZERO : S_ONE;
-                word_index++;
-            }
+    // Save the first solution
+    if (s->nb_solutions == 0 && s->unique) {
+        s->solution = malloc(sizeof(square) * s->len);
+        assert(s->solution);
+        for (uint pos = 0; pos < s->len; pos++) {
+            s->solution[pos] = game_get_square(g, COORDS_I(s, pos), COORDS_J(s, pos));
         }
     }
+    return true;
 }
 
 /* ************************************************************************** */
 
-void print_word(csolver s) {
+void copy_solution(game g, csolver s) {
+    for (uint pos = 0; pos < s->len; pos++) {
+        game_set_square(g, COORDS_I(s, pos), COORDS_J(s, pos), s->solution[pos]);
+    }
+}
+
+/* ************************************************************************** */
+
+void print_word(cgame g, csolver s) {
     for (uint i = 0; i < s->len; i++) {
-        printf("%d", s->word[i]);
+        printf("%d", game_get_square(g, COORDS_I(s, i), COORDS_J(s, i)));
     }
     printf("\n");
 }

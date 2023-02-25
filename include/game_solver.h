@@ -18,16 +18,31 @@
 /* ************************************************************************** */
 
 /**
+ * @brief Coordinates Type
+ * @details This is an opaque data type.
+ */
+struct coordinates_s {
+    uint i;
+    uint j;
+};
+
+/**
+ * @brief The structure pointer that stores the coordinates of a square.
+ **/
+typedef struct coordinates_s *coordinates;
+
+/**
  * @brief Solver structure.
  * @details This is an opaque data type.
  */
 struct solver_s {
-    int *word;         /** the binary word that stores the combinations */
-    uint len;          /** the length of the word */
-    uint nb_zero;      /** the number of zeros in the word */
-    uint nb_one;       /** the number of ones in the word */
-    uint nb_solutions; /** the number of solutions found */
-    bool unique;       /** true if the solver has to find only 1 solution */
+    coordinates *coords; /** the coordinates of the empty squares */
+    uint len;            /** the length of the word */
+    uint nb_zero;        /** the number of zeros in the word */
+    uint nb_one;         /** the number of ones in the word */
+    uint nb_solutions;   /** the number of solutions found */
+    bool unique;         /** true if the solver has to find only 1 solution */
+    square *solution;    /** the first solution */
 };
 
 /**
@@ -40,6 +55,13 @@ typedef struct solver_s *solver;
  * @details That means that it is not possible to modify the solver using this pointer.
  **/
 typedef const struct solver_s *csolver;
+
+/* ************************************************************************** */
+/*                                MACRO                                       */
+/* ************************************************************************** */
+
+#define COORDS_I(s, pos) ((s)->coords[(pos)]->i)
+#define COORDS_J(s, pos) ((s)->coords[(pos)]->j)
 
 /* ************************************************************************** */
 /*                                FUNCTIONS                                   */
@@ -77,19 +99,20 @@ void find_solutions(game g, solver s, uint pos);
  * @param g Game
  * @param s Solver
  */
-bool is_word_solution(game g, csolver s);
+bool is_word_solution(game g, solver s);
 
 /**
- * @brief replace the empty squares of g by the word contained in s
+ * @brief Copy the solution of a game from a solver
  * @param g Game
  * @param s Solver
  */
-void copy_word(game g, csolver s);
+void copy_solution(game g, csolver s);
 
 /**
  * @brief Print a word
+ * @param g Game
  * @param solver Solver
  */
-void print_word(csolver s);
+void print_word(cgame g, csolver s);
 
 #endif  // __GAME_SOLVER_H__
