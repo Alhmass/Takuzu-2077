@@ -257,16 +257,37 @@ bool test_game_solve() {
         status = false;
     if (!game_equal(g, solution))
         status = false;
-    if (!game_is_over(g) || !game_is_over(g2) || !game_is_over(g3) || !game_solve(g4))
+    if (!game_is_over(g) || !game_is_over(g3) || !game_is_over(g4))
         status = false;
     game_delete(g);
+    game_delete(solution);
     game_delete(g2);
     game_delete(g3);
     game_delete(g4);
     return status;
 }
 
-bool test_game_nb_solutions() { return false; }
+bool test_game_nb_solutions() {
+    game g = game_load("../saves/game/default.txt");
+    game g2 = game_load("../saves/game/4x4_0.txt");
+    game g3 = game_load("../saves/game/4x4_1.txt");
+    game g4 = game_load("../saves/game/4x4_72.txt");
+    game g5 = game_load("../saves/game/4x4_90.txt");
+    bool status = true;
+
+    if (!g || !g2 || !g3 || !g4 || !g5)
+        return false;
+    if (game_nb_solutions(g) != 1 || game_nb_solutions(g2) != 0 || game_nb_solutions(g3) != 1)
+        status = false;
+    if (game_nb_solutions(g4) != 72 || game_nb_solutions(g5) != 90)
+        status = false;
+    game_delete(g);
+    game_delete(g2);
+    game_delete(g3);
+    game_delete(g4);
+    game_delete(g5);
+    return status;
+}
 
 /*  USAGE  */
 void usage(char *argv[]) {
