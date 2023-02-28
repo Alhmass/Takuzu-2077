@@ -25,6 +25,8 @@ link_libraries(game)
 # ---- Binary Generation ---- #
 add_executable(game_text ${game_text_src})
 add_executable(game_solve ${game_solve_src})
+
+# ---- File Duplication ---- #
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/saves/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/saves/)
 
 # ---- Tests Generation ---- #
@@ -73,7 +75,7 @@ add_test(test_solver_new                    ./test_game_solver solver_new)
 add_test(test_solver_delete                 ./test_game_solver solver_delete)
 add_test(test_find_solutions                ./test_game_solver find_solutions)
 add_test(test_is_word_solution              ./test_game_solver is_word_solution)
-add_test(test_copy_word                     ./test_game_solver copy_word)
+add_test(test_copy_solution                 ./test_game_solver copy_solution)
 add_test(test_print_word                    ./test_game_solver print_word)
 
 add_executable(test_v2                      tests/test_v2.c)
