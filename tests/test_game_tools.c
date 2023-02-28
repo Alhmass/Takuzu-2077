@@ -243,7 +243,28 @@ bool test_game_save() {
     return true;
 }
 
-bool test_game_solve() { return false; }
+bool test_game_solve() {
+    game g = game_load("../saves/game/default.txt");
+    game solution = game_load("../saves/game/solution.txt");
+    game g2 = game_load("../saves/game/4x4_0.txt");
+    game g3 = game_load("../saves/game/4x4_1.txt");
+    game g4 = game_load("../saves/game/4x4_72.txt");
+    bool status = true;
+
+    if (!g || !solution || !g2 || !g3 || !g4)
+        return false;
+    if (!game_solve(g) || game_solve(g2) || !game_solve(g3) || !game_solve(g4))
+        status = false;
+    if (!game_equal(g, solution))
+        status = false;
+    if (!game_is_over(g) || !game_is_over(g2) || !game_is_over(g3) || !game_solve(g4))
+        status = false;
+    game_delete(g);
+    game_delete(g2);
+    game_delete(g3);
+    game_delete(g4);
+    return status;
+}
 
 bool test_game_nb_solutions() { return false; }
 
