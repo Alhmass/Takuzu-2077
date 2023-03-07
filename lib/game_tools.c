@@ -47,7 +47,8 @@ game game_load(char *filename) {
             }
             SQUARE(g, i, j) = s;
         }
-        fscanf(f, "\n");
+        if (fscanf(f, "\n") != 0)
+            fprintf(stderr, "[error] cannot read file %s\n", filename);
     }
 
     update_counters(g);
