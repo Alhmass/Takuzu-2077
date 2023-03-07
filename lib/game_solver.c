@@ -41,6 +41,8 @@ void solver_delete(solver s) {
         free(s->coords[i]);
     }
     free(s->coords);
+    if (s->solution)
+        free(s->solution);
     free(s);
 }
 

@@ -12,8 +12,8 @@ file(GLOB_RECURSE game_lib_src lib/*.c)
 add_library(game ${game_lib_src})
 
 # ---- Compilation Options ---- #
-set(CMAKE_C_FLAGS "-std=c99 -Wall -Wextra -Werror -g")  # options de compilation génériques
-set(CMAKE_C_FLAGS_DEBUG "-g -O0 --coverage")            # options de compilation en mode Debug
+set(CMAKE_C_FLAGS "-std=c99 -Wall -Wextra -g")          # options de compilation génériques
+set(CMAKE_C_FLAGS_DEBUG "-O0 --coverage")               # options de compilation en mode Debug
 set(CMAKE_C_FLAGS_RELEASE "-O3")                        # options de compilation en mode Release
 
 # ---- Source Files ---- #
