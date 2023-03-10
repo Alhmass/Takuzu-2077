@@ -29,8 +29,8 @@ struct game_s {
     queue* undo_stack; /** stack to undo moves */
     queue* redo_stack; /** stack to redo moves */
     uint nb_empty;     /** number of S_EMPTY in the game */
-    uint nb_zero;      /** number of S_ZERO in the game */
-    uint nb_one;       /** number of S_ONE in the game */
+    uint nb_zero;      /** number of S_IMMUTABLE_ZERO in the game */
+    uint nb_one;       /** number of S_IMMUTABLE_ONE in the game */
 };
 
 /* ************************************************************************** */
