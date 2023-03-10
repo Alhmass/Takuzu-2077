@@ -1,1 +1,0 @@
-/usr/bin/cc -std=c99 -Wall -Wextra -g -rdynamic CMakeFiles/game_text.dir/src/game_text.c.o -o game_text   -L"/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c"  -Wl,-rpath,"/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c" libgame.a 

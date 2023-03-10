@@ -1,1 +1,0 @@
-/usr/bin/cc -std=c99 -Wall -Wextra -Werror -g -rdynamic CMakeFiles/test_move_stack.dir/tests/test_move_stack.c.o -o test_move_stack   -L"/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c"  -Wl,-rpath,"/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c" libgame.a 

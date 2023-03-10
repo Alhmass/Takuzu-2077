@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgame.a CMakeFiles/game.dir/lib/game.c.o CMakeFiles/game.dir/lib/game_aux.c.o CMakeFiles/game.dir/lib/game_ext.c.o CMakeFiles/game.dir/lib/game_private.c.o CMakeFiles/game.dir/lib/game_solver.c.o CMakeFiles/game.dir/lib/game_tools.c.o CMakeFiles/game.dir/lib/queue.c.o
-/usr/bin/ranlib libgame.a
