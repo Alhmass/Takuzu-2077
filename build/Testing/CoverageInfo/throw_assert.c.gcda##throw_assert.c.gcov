@@ -1,0 +1,30 @@
+        -:    0:Source:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/lib/throw_assert.c
+        -:    0:Graph:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/game.dir/lib/throw_assert.c.gcno
+        -:    0:Data:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/game.dir/lib/throw_assert.c.gcda
+        -:    0:Runs:122
+        -:    1:#include "takuzu.h"
+        -:    2:
+        2:    3:bool throw_error(char *msg) {
+        2:    4:    if (!msg)
+        2:    5:        return false;
+    #####:    6:    fprintf(stderr, "[error] %s\n", msg);
+    #####:    7:    exit(EXIT_FAILURE);
+        -:    8:}
+        -:    9:
+       26:   10:bool game_test(game g, char *msg) {
+       26:   11:    if (!g)
+    #####:   12:        throw_error(msg);
+       26:   13:    return true;
+        -:   14:}
+        -:   15:
+    17332:   16:bool cgame_test(cgame g, char *msg) {
+    17332:   17:    if (!g)
+    #####:   18:        throw_error(msg);
+    17332:   19:    return true;
+        -:   20:}
+        -:   21:
+     2246:   22:bool pointer_test(void *ptr, char *msg) {
+     2246:   23:    if (!ptr)
+    #####:   24:        throw_error(msg);
+     2246:   25:    return true;
+        -:   26:}

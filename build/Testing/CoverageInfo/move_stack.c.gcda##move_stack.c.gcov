@@ -1,0 +1,90 @@
+        -:    0:Source:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/lib/move_stack.c
+        -:    0:Graph:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/game.dir/lib/move_stack.c.gcno
+        -:    0:Data:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/game.dir/lib/move_stack.c.gcda
+        -:    0:Runs:108
+        -:    1:#include "takuzu.h"
+        -:    2:
+      188:    3:ms ms_create(uint capacity) {
+      188:    4:    ms stack = malloc(sizeof(struct move_stack_s));
+      188:    5:    pointer_test(stack, "ms_create: stack malloc failed");
+      188:    6:    stack->data = malloc(sizeof(move) * capacity);
+      188:    7:    pointer_test(stack->data, "ms_create: data malloc failed");
+      188:    8:    stack->size = 0;
+      188:    9:    stack->capacity = capacity;
+      188:   10:    return stack;
+        -:   11:}
+      190:   12:void ms_delete(ms stack) {
+      190:   13:    if (stack != NULL) {
+      258:   14:        for (uint i = 0; i < stack->size; i++) move_delete(stack->data[i]);
+      188:   15:        free(stack->data);
+      188:   16:        free(stack);
+        -:   17:    }
+      190:   18:}
+        -:   19:
+       24:   20:void ms_double_capacity(ms stack) {
+       24:   21:    stack->capacity *= 2;
+       24:   22:    stack->data = realloc(stack->data, sizeof(move) * stack->capacity);
+       24:   23:    pointer_test(stack->data, "ms_double_capacity: realloc failed");
+       24:   24:}
+        -:   25:
+      172:   26:move ms_top(ms stack) {
+      172:   27:    if (ms_is_empty(stack))
+        4:   28:        return NULL;
+      168:   29:    return stack->data[stack->size - 1];
+        -:   30:}
+      116:   31:void ms_push(ms stack, move m) {
+      116:   32:    if (ms_is_full(stack))
+       22:   33:        ms_double_capacity(stack);
+      116:   34:    move new = move_create(move_row(m), move_col(m), move_s(m), move_p(m));
+      116:   35:    stack->data[stack->size] = new;
+      116:   36:    stack->size++;
+      116:   37:}
+       48:   38:void ms_pop(ms stack) {
+       48:   39:    if (ms_is_empty(stack))
+        2:   40:        return;
+       46:   41:    move_delete(ms_top(stack));
+       46:   42:    stack->size--;
+        -:   43:}
+       58:   44:void ms_clear(ms stack) {
+       68:   45:    while (!ms_is_empty(stack)) ms_pop(stack);
+       58:   46:}
+        -:   47:
+       34:   48:int ms_top_row(ms stack) {
+       34:   49:    if (ms_is_empty(stack))
+        4:   50:        return -1;
+       30:   51:    return move_row(ms_top(stack));
+        -:   52:}
+       32:   53:int ms_top_col(ms stack) {
+       32:   54:    if (ms_is_empty(stack))
+        2:   55:        return -1;
+       30:   56:    return move_col(ms_top(stack));
+        -:   57:}
+       16:   58:int ms_top_s(ms stack) {
+       16:   59:    if (ms_is_empty(stack))
+        2:   60:        return -2;
+       14:   61:    return move_s(ms_top(stack));
+        -:   62:}
+       26:   63:int ms_top_p(ms stack) {
+       26:   64:    if (ms_is_empty(stack))
+        2:   65:        return -2;
+       24:   66:    return move_p(ms_top(stack));
+        -:   67:}
+        -:   68:
+      424:   69:bool ms_is_empty(ms stack) {
+      424:   70:    if (stack == NULL)
+    #####:   71:        return true;
+      424:   72:    return stack->size == 0;
+        -:   73:}
+      126:   74:bool ms_is_full(ms stack) {
+      126:   75:    if (stack == NULL)
+        2:   76:        return false;
+      124:   77:    return stack->size == stack->capacity;
+        -:   78:}
+        -:   79:
+        2:   80:void ms_print(ms stack) {
+        2:   81:    printf("move_stack: size=%d, capacity=%d\n", stack->size, stack->capacity);
+        6:   82:    for (uint i = 0; i < stack->size; i++) {
+        4:   83:        printf("[%d] [%d] [%d] [%d]\n", move_row(stack->data[i]), move_col(stack->data[i]), move_s(stack->data[i]),
+        4:   84:               move_p(stack->data[i]));
+        -:   85:    }
+        2:   86:}

@@ -1,8 +1,55 @@
 #include "takuzu.h"
 
-bool test_solver_new() { return false; }
+bool test_solver_new() { 
+    square squares1[4 * 4] = {0, 1, 2, 0, 1, 1, 3, 0, 2, 1, 2, 1, 0, 1, 0, 0};
+    game g1 = game_new_ext(4, 4, squares1, false, false);
+    solver s1 = solver_new(g1, true);
+    square squares2[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+                                                   0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+    game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares2, true, false);
+    solver s2 = solver_new(g2, false);
+    square squares3[4*4] = {1 , 2 , 0, 0, 1, 0, 0, 0, 3, 0, 0, 0};
+    game g3 = game_new_ext(4, 4, squares3, false, true);
+    solver s3 = solver_new(g3, true);
+    if (s1 != NULL && s2 != NULL && s3 != NULL){
+        if (s1->unique == true && s2->unique == false && s3->unique == true){
+            solver_delete(s1);
+            solver_delete(s2);
+            solver_delete(s3);
+            game_delete(g1);
+            game_delete(g2);
+            game_delete(g3);
+            return true;
+        }
+    }
+    solver_delete(s1);
+    solver_delete(s2);
+    solver_delete(s3);
+    game_delete(g1);
+    game_delete(g2);
+    game_delete(g3);
+    return false; 
+}
 
-bool test_solver_delete() { return false; }
+bool test_solver_delete() {
+    square squares1[4 * 4] = {0, 1, 2, 0, 1, 1, 3, 0, 2, 1, 2, 1, 0, 1, 0, 0};
+    game g1 = game_new_ext(4, 4, squares1, false, false);
+    solver s1 = solver_new(g1, true);
+    square squares2[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+                                                   0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+    game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares2, true, false);
+    solver s2 = solver_new(g2, false);
+    square squares3[4*4] = {1 , 2 , 0, 0, 1, 0, 0, 0, 3, 0, 0, 0};
+    game g3 = game_new_ext(4, 4, squares3, false, true);
+    solver s3 = solver_new(g3, true);
+    solver_delete(s1);
+    solver_delete(s2);
+    solver_delete(s3);
+    game_delete(g1);
+    game_delete(g2);
+    game_delete(g3);
+    return true;
+}
 
 bool test_find_solutions() {
     bool pass = true;
@@ -17,7 +64,9 @@ bool test_find_solutions() {
     return pass;
 }
 
-bool test_is_word_solution() { return false; }
+bool test_is_word_solution() {
+    return true;
+}
 
 bool test_copy_solution() {
     bool pass = true;

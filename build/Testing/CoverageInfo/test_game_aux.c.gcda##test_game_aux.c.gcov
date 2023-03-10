@@ -1,0 +1,78 @@
+        -:    0:Source:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/tests/test_game_aux.c
+        -:    0:Graph:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/test_game_aux.dir/tests/test_game_aux.c.gcno
+        -:    0:Data:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/test_game_aux.dir/tests/test_game_aux.c.gcda
+        -:    0:Runs:6
+        -:    1:#include "takuzu.h"
+        -:    2:
+        2:    3:bool test_game_default(void) {
+        2:    4:    square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0,
+        -:    5:                                                   0, 3, 4, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 0, 0, 3};
+        2:    6:    game g = game_new(squares);
+        2:    7:    game g2 = game_default();
+        -:    8:
+        2:    9:    if (g == NULL || g2 == NULL)
+    #####:   10:        return false;
+        2:   11:    if (!game_equal(g, g2)) {
+    #####:   12:        game_delete(g);
+    #####:   13:        game_delete(g2);
+    #####:   14:        return false;
+        -:   15:    }
+        2:   16:    game_delete(g);
+        2:   17:    game_delete(g2);
+        2:   18:    return true;
+        -:   19:}
+        -:   20:
+        2:   21:bool test_game_default_solution(void) {
+        2:   22:    square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
+        -:   23:                                                   2, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
+        2:   24:    game g = game_new(squares);
+        2:   25:    game g2 = game_default_solution();
+        -:   26:
+        2:   27:    if (g == NULL || g2 == NULL)
+    #####:   28:        return false;
+        2:   29:    if (!game_equal(g, g2)) {
+    #####:   30:        game_delete(g);
+    #####:   31:        game_delete(g2);
+    #####:   32:        return false;
+        -:   33:    }
+        2:   34:    game_delete(g);
+        2:   35:    game_delete(g2);
+        2:   36:    return true;
+        -:   37:}
+        -:   38:
+        2:   39:bool test_game_print(void) {
+        2:   40:    return true;
+        -:   41:}
+        -:   42:
+        -:   43:/*  USAGE  */
+    #####:   44:void usage(char *argv[]) {
+    #####:   45:    fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
+    #####:   46:    exit(EXIT_FAILURE);
+        -:   47:}
+        -:   48:
+        -:   49:/*  MAIN ROUTINE  */
+        6:   50:int main(int argc, char *argv[]) {
+        6:   51:    if (argc == 1)
+    #####:   52:        usage(argv);
+        -:   53:
+        6:   54:    fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
+        6:   55:    bool pass = false;
+        6:   56:    if (strcmp("game_default", argv[1]) == 0)
+        2:   57:        pass = test_game_default();
+        4:   58:    else if (strcmp("game_default_solution", argv[1]) == 0)
+        2:   59:        pass = test_game_default_solution();
+        2:   60:    else if (strcmp("game_print", argv[1]) == 0)
+        2:   61:        pass = test_game_print();
+        -:   62:    else {
+    #####:   63:        fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
+    #####:   64:        exit(EXIT_FAILURE);
+        -:   65:    }
+        -:   66:
+        6:   67:    if (pass == true) {
+        6:   68:        fprintf(stderr, "Test \"%s\" finished: SUCCESS\n", argv[1]);
+        6:   69:        return EXIT_SUCCESS;
+        -:   70:    } else {
+    #####:   71:        fprintf(stderr, "Test \"%s\" finished: FAILURE\n", argv[1]);
+    #####:   72:        return EXIT_FAILURE;
+        -:   73:    }
+        -:   74:}

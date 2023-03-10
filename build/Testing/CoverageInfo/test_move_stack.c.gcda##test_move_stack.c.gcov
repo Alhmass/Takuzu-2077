@@ -1,0 +1,319 @@
+        -:    0:Source:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/tests/test_move_stack.c
+        -:    0:Graph:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/test_move_stack.dir/tests/test_move_stack.c.gcno
+        -:    0:Data:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/test_move_stack.dir/tests/test_move_stack.c.gcda
+        -:    0:Runs:28
+        -:    1:#include "takuzu.h"
+        -:    2:
+        2:    3:bool test_ms_create() {
+        2:    4:    bool pass = true;
+        2:    5:    ms stack = ms_create(5);
+        2:    6:    if (stack == NULL || stack->data == NULL || stack->size != 0 || stack->capacity != 5)
+    #####:    7:        pass = false;
+        2:    8:    ms_delete(stack);
+        2:    9:    stack = NULL;
+        2:   10:    return pass;
+        -:   11:}
+        -:   12:
+        2:   13:bool test_ms_delete() {
+        2:   14:    bool pass = true;
+        2:   15:    ms stack = ms_create(5);
+        2:   16:    ms_delete(stack);
+        2:   17:    stack = NULL;
+        2:   18:    return pass;
+        -:   19:}
+        -:   20:
+        2:   21:bool test_ms_double_capacity() {
+        2:   22:    bool pass = true;
+        2:   23:    ms stack = ms_create(2);
+        2:   24:    ms_double_capacity(stack);
+        2:   25:    if (stack->capacity != 4)
+    #####:   26:        pass = false;
+        2:   27:    ms_delete(stack);
+        2:   28:    stack = NULL;
+        2:   29:    return pass;
+        -:   30:}
+        -:   31:
+        2:   32:bool test_ms_top() {
+        2:   33:    bool pass = true;
+        2:   34:    ms stack = ms_create(2);
+        2:   35:    move m = move_create(1, 2, S_ONE, S_ZERO);
+        2:   36:    ms_push(stack, m);
+        2:   37:    move m2 = ms_top(stack);
+        2:   38:    if (m2->row != 1 || m2->col != 2 || m2->s != S_ONE || m2->p != S_ZERO)
+    #####:   39:        pass = false;
+        2:   40:    ms_delete(stack);
+        2:   41:    stack = NULL;
+        2:   42:    move_delete(m);
+        2:   43:    m = NULL;
+        2:   44:    ms_delete(stack);
+        2:   45:    stack = NULL;
+        2:   46:    return pass;
+        -:   47:}
+        -:   48:
+        2:   49:bool test_ms_push() {
+        2:   50:    bool pass = true;
+        2:   51:    ms stack = ms_create(2);
+        2:   52:    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+        2:   53:    move m2 = ms_top(stack);
+        2:   54:    if (m2 != NULL)
+    #####:   55:        pass = false;
+        2:   56:    ms_push(stack, m1);
+        2:   57:    if (ms_top_row(stack) != 1 || ms_top_col(stack) != 2 || ms_top_s(stack) != S_ONE || ms_top_p(stack) != S_ZERO)
+    #####:   58:        pass = false;
+        2:   59:    move_delete(m1);
+        2:   60:    m1 = NULL;
+        2:   61:    ms_delete(stack);
+        2:   62:    stack = NULL;
+        2:   63:    return pass;
+        -:   64:}
+        -:   65:
+        2:   66:bool test_ms_pop() {
+        2:   67:    bool pass = true;
+        2:   68:    ms stack = ms_create(2);
+        2:   69:    ms_pop(stack);
+        2:   70:    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+        2:   71:    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+        2:   72:    ms_push(stack, m1);
+        2:   73:    ms_push(stack, m2);
+        2:   74:    ms_pop(stack);
+        2:   75:    if (ms_top_row(stack) != 1 || ms_top_col(stack) != 2 || ms_top_s(stack) != S_ONE || ms_top_p(stack) != S_ZERO)
+    #####:   76:        pass = false;
+        2:   77:    move_delete(m1);
+        2:   78:    m1 = NULL;
+        2:   79:    move_delete(m2);
+        2:   80:    m2 = NULL;
+        2:   81:    ms_delete(stack);
+        2:   82:    stack = NULL;
+        2:   83:    return pass;
+        -:   84:}
+        -:   85:
+        2:   86:bool test_ms_clear() {
+        2:   87:    bool pass = true;
+        2:   88:    ms stack = ms_create(2);
+        2:   89:    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+        2:   90:    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+        2:   91:    ms_push(stack, m1);
+        2:   92:    ms_push(stack, m2);
+        2:   93:    ms_clear(stack);
+        2:   94:    if (stack->size != 0 || ms_top(stack) != NULL)
+    #####:   95:        pass = false;
+        2:   96:    move_delete(m1);
+        2:   97:    m1 = NULL;
+        2:   98:    move_delete(m2);
+        2:   99:    m2 = NULL;
+        2:  100:    ms_delete(stack);
+        2:  101:    stack = NULL;
+        2:  102:    return pass;
+        -:  103:}
+        -:  104:
+        2:  105:bool test_ms_top_row() {
+        2:  106:    bool pass = true;
+        2:  107:    ms stack = ms_create(2);
+        2:  108:    printf("size: %d\n", stack->size);
+        2:  109:    if (ms_top_row(stack) != -1)
+    #####:  110:        pass = false;
+        2:  111:    printf("ms_top_row(stack) : %d\n", ms_top_row(stack));
+        2:  112:    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+        2:  113:    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+        2:  114:    ms_push(stack, m1);
+        2:  115:    ms_push(stack, m2);
+        2:  116:    if (ms_top_row(stack) != 3)
+    #####:  117:        pass = false;
+        2:  118:    ms_pop(stack);
+        2:  119:    if (ms_top_row(stack) != 1)
+    #####:  120:        pass = false;
+        2:  121:    move_delete(m1);
+        2:  122:    m1 = NULL;
+        2:  123:    move_delete(m2);
+        2:  124:    m2 = NULL;
+        2:  125:    ms_delete(stack);
+        2:  126:    stack = NULL;
+        2:  127:    return pass;
+        -:  128:}
+        -:  129:
+        2:  130:bool test_ms_top_col() {
+        2:  131:    bool pass = true;
+        2:  132:    ms stack = ms_create(2);
+        2:  133:    if (ms_top_col(stack) != -1)
+    #####:  134:        pass = false;
+        2:  135:    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+        2:  136:    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+        2:  137:    ms_push(stack, m1);
+        2:  138:    ms_push(stack, m2);
+        2:  139:    if (ms_top_col(stack) != 4)
+    #####:  140:        pass = false;
+        2:  141:    ms_pop(stack);
+        2:  142:    if (ms_top_col(stack) != 2)
+    #####:  143:        pass = false;
+        2:  144:    move_delete(m1);
+        2:  145:    m1 = NULL;
+        2:  146:    move_delete(m2);
+        2:  147:    m2 = NULL;
+        2:  148:    ms_delete(stack);
+        2:  149:    stack = NULL;
+        2:  150:    return pass;
+        -:  151:}
+        -:  152:
+        2:  153:bool test_ms_top_s() {
+        2:  154:    bool pass = true;
+        2:  155:    ms stack = ms_create(2);
+        2:  156:    if (ms_top_s(stack) != -2)
+    #####:  157:        pass = false;
+        2:  158:    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+        2:  159:    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+        2:  160:    ms_push(stack, m1);
+        2:  161:    ms_push(stack, m2);
+        2:  162:    if (ms_top_s(stack) != S_ZERO)
+    #####:  163:        pass = false;
+        2:  164:    ms_pop(stack);
+        2:  165:    if (ms_top_s(stack) != S_ONE)
+    #####:  166:        pass = false;
+        2:  167:    move_delete(m1);
+        2:  168:    m1 = NULL;
+        2:  169:    move_delete(m2);
+        2:  170:    m2 = NULL;
+        2:  171:    ms_delete(stack);
+        2:  172:    stack = NULL;
+        2:  173:    return pass;
+        -:  174:}
+        -:  175:
+        2:  176:bool test_ms_top_p() {
+        2:  177:    bool pass = true;
+        2:  178:    ms stack = ms_create(2);
+        2:  179:    if (ms_top_p(stack) != -2)
+    #####:  180:        pass = false;
+        2:  181:    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+        2:  182:    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+        2:  183:    ms_push(stack, m1);
+        2:  184:    ms_push(stack, m2);
+        2:  185:    if (ms_top_p(stack) != S_ONE)
+    #####:  186:        pass = false;
+        2:  187:    ms_pop(stack);
+        2:  188:    if (ms_top_p(stack) != S_ZERO)
+    #####:  189:        pass = false;
+        2:  190:    move_delete(m1);
+        2:  191:    m1 = NULL;
+        2:  192:    move_delete(m2);
+        2:  193:    m2 = NULL;
+        2:  194:    ms_delete(stack);
+        2:  195:    stack = NULL;
+        2:  196:    return pass;
+        -:  197:}
+        -:  198:
+        2:  199:bool test_ms_is_empty() {
+        2:  200:    bool pass = true;
+        2:  201:    ms stack = ms_create(2);
+       2*:  202:    if (!ms_is_empty(stack) && ms_is_empty(NULL))
+    #####:  203:        pass = false;
+        2:  204:    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+        2:  205:    ms_push(stack, m1);
+        2:  206:    if (ms_is_empty(stack))
+    #####:  207:        pass = false;
+        2:  208:    ms_pop(stack);
+        2:  209:    if (!ms_is_empty(stack))
+    #####:  210:        pass = false;
+        2:  211:    move_delete(m1);
+        2:  212:    m1 = NULL;
+        2:  213:    ms_delete(stack);
+        2:  214:    stack = NULL;
+        2:  215:    return pass;
+        -:  216:}
+        -:  217:
+        2:  218:bool test_ms_is_full() {
+        2:  219:    bool pass = true;
+        2:  220:    ms stack = ms_create(2);
+        2:  221:    if (ms_is_full(stack))
+    #####:  222:        pass = false;
+        2:  223:    if (ms_is_full(NULL))
+    #####:  224:        pass = false;
+        2:  225:    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+        2:  226:    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+        2:  227:    ms_push(stack, m1);
+        2:  228:    if (ms_is_full(stack))
+    #####:  229:        pass = false;
+        2:  230:    ms_push(stack, m2);
+        2:  231:    if (!ms_is_full(stack))
+    #####:  232:        pass = false;
+        2:  233:    ms_pop(stack);
+        2:  234:    if (ms_is_full(stack))
+    #####:  235:        pass = false;
+        2:  236:    move_delete(m1);
+        2:  237:    m1 = NULL;
+        2:  238:    move_delete(m2);
+        2:  239:    m2 = NULL;
+        2:  240:    ms_delete(stack);
+        2:  241:    stack = NULL;
+        2:  242:    return pass;
+        -:  243:}
+        -:  244:
+        2:  245:bool test_ms_print() {
+        2:  246:    bool pass = true;
+        2:  247:    ms stack = ms_create(2);
+        2:  248:    move m1 = move_create(1, 2, S_ONE, S_ZERO);
+        2:  249:    move m2 = move_create(3, 4, S_ZERO, S_ONE);
+        2:  250:    ms_push(stack, m1);
+        2:  251:    ms_push(stack, m2);
+        2:  252:    ms_print(stack);
+        2:  253:    move_delete(m1);
+        2:  254:    m1 = NULL;
+        2:  255:    move_delete(m2);
+        2:  256:    m2 = NULL;
+        2:  257:    ms_delete(stack);
+        2:  258:    stack = NULL;
+        2:  259:    return pass;
+        -:  260:}
+        -:  261:
+        -:  262:/*  USAGE  */
+    #####:  263:void usage(char *argv[]) {
+    #####:  264:    fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
+    #####:  265:    exit(EXIT_FAILURE);
+        -:  266:}
+        -:  267:
+        -:  268:/*  MAIN ROUTINE  */
+       28:  269:int main(int argc, char *argv[]) {
+       28:  270:    if (argc == 1)
+    #####:  271:        usage(argv);
+        -:  272:
+       28:  273:    fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
+       28:  274:    bool pass = false;
+       28:  275:    if (strcmp("ms_create", argv[1]) == 0)
+        2:  276:        pass = test_ms_create();
+       26:  277:    else if (strcmp("ms_delete", argv[1]) == 0)
+        2:  278:        pass = test_ms_delete();
+       24:  279:    else if (strcmp("ms_double_capacity", argv[1]) == 0)
+        2:  280:        pass = test_ms_double_capacity();
+       22:  281:    else if (strcmp("ms_top", argv[1]) == 0)
+        2:  282:        pass = test_ms_top();
+       20:  283:    else if (strcmp("ms_push", argv[1]) == 0)
+        2:  284:        pass = test_ms_push();
+       18:  285:    else if (strcmp("ms_pop", argv[1]) == 0)
+        2:  286:        pass = test_ms_pop();
+       16:  287:    else if (strcmp("ms_clear", argv[1]) == 0)
+        2:  288:        pass = test_ms_clear();
+       14:  289:    else if (strcmp("ms_top_row", argv[1]) == 0)
+        2:  290:        pass = test_ms_top_row();
+       12:  291:    else if (strcmp("ms_top_col", argv[1]) == 0)
+        2:  292:        pass = test_ms_top_col();
+       10:  293:    else if (strcmp("ms_top_s", argv[1]) == 0)
+        2:  294:        pass = test_ms_top_s();
+        8:  295:    else if (strcmp("ms_top_p", argv[1]) == 0)
+        2:  296:        pass = test_ms_top_p();
+        6:  297:    else if (strcmp("ms_is_empty", argv[1]) == 0)
+        2:  298:        pass = test_ms_is_empty();
+        4:  299:    else if (strcmp("ms_is_full", argv[1]) == 0)
+        2:  300:        pass = test_ms_is_full();
+        2:  301:    else if (strcmp("ms_print", argv[1]) == 0)
+        2:  302:        pass = test_ms_print();
+        -:  303:    else {
+    #####:  304:        fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
+    #####:  305:        exit(EXIT_FAILURE);
+        -:  306:    }
+        -:  307:
+       28:  308:    if (pass == true) {
+       28:  309:        fprintf(stderr, "Test \"%s\" finished: SUCCESS\n", argv[1]);
+       28:  310:        return EXIT_SUCCESS;
+        -:  311:    } else {
+    #####:  312:        fprintf(stderr, "Test \"%s\" finished: FAILURE\n", argv[1]);
+    #####:  313:        return EXIT_FAILURE;
+        -:  314:    }
+        -:  315:}

@@ -1,0 +1,1 @@
+/usr/bin/cc -std=c99 -Wall -Wextra -g -rdynamic CMakeFiles/game_solve.dir/src/game_solve.c.o -o game_solve   -L"/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c"  -Wl,-rpath,"/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c" libgame.a 

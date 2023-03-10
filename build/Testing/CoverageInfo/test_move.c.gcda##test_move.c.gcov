@@ -1,0 +1,134 @@
+        -:    0:Source:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/tests/test_move.c
+        -:    0:Graph:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/test_move.dir/tests/test_move.c.gcno
+        -:    0:Data:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/test_move.dir/tests/test_move.c.gcda
+        -:    0:Runs:14
+        -:    1:#include "takuzu.h"
+        -:    2:
+        2:    3:bool test_move_create() {
+        2:    4:    move m = move_create(0, 0, S_ONE, S_EMPTY);
+        2:    5:    if (m == NULL)
+    #####:    6:        return false;
+        2:    7:    if (m->row != 0 || m->col != 0 || m->s != S_ONE || m->p != S_EMPTY)
+    #####:    8:        return false;
+        2:    9:    free(m);
+        2:   10:    m = NULL;
+        2:   11:    return true;
+        -:   12:}
+        -:   13:
+        2:   14:bool test_move_delete() {
+        2:   15:    move m = move_create(0, 0, S_ONE, S_EMPTY);
+        2:   16:    move_delete(m);
+        2:   17:    m = NULL;
+        2:   18:    if (m != NULL)
+    #####:   19:        return false;
+        2:   20:    return true;
+        -:   21:}
+        -:   22:
+        2:   23:bool test_move_row() {
+        2:   24:    move m1 = move_create(0, 0, S_ONE, S_EMPTY);
+        2:   25:    if (move_row(m1) != 0)
+    #####:   26:        return false;
+        2:   27:    move_delete(m1);
+        2:   28:    m1 = NULL;
+        2:   29:    move m2 = move_create(10, 10, S_ONE, S_EMPTY);
+        2:   30:    if (move_row(m2) != 10)
+    #####:   31:        return false;
+        2:   32:    move_delete(m2);
+        2:   33:    m2 = NULL;
+        2:   34:    return true;
+        -:   35:}
+        -:   36:
+        2:   37:bool test_move_col() {
+        2:   38:    move m1 = move_create(0, 0, S_ONE, S_EMPTY);
+        2:   39:    if (move_col(m1) != 0)
+    #####:   40:        return false;
+        2:   41:    move_delete(m1);
+        2:   42:    m1 = NULL;
+        2:   43:    move m2 = move_create(10, 10, S_ONE, S_EMPTY);
+        2:   44:    if (move_col(m2) != 10)
+    #####:   45:        return false;
+        2:   46:    move_delete(m2);
+        2:   47:    m2 = NULL;
+        2:   48:    return true;
+        -:   49:}
+        -:   50:
+        2:   51:bool test_move_s() {
+        2:   52:    move m1 = move_create(0, 0, S_ONE, S_EMPTY);
+        2:   53:    if (move_s(m1) != (square)S_ONE)
+    #####:   54:        return false;
+        2:   55:    move_delete(m1);
+        2:   56:    m1 = NULL;
+        2:   57:    move m2 = move_create(10, 10, S_ZERO, S_EMPTY);
+        2:   58:    if (move_s(m2) != (square)S_ZERO)
+    #####:   59:        return false;
+        2:   60:    move_delete(m2);
+        2:   61:    m2 = NULL;
+        2:   62:    return true;
+        -:   63:}
+        -:   64:
+        2:   65:bool test_move_p() {
+        2:   66:    move m1 = move_create(0, 0, S_ONE, S_EMPTY);
+        2:   67:    if (move_p(m1) != (square)S_EMPTY)
+    #####:   68:        return false;
+        2:   69:    move_delete(m1);
+        2:   70:    m1 = NULL;
+        2:   71:    move m2 = move_create(10, 10, S_ZERO, S_IMMUTABLE_ONE);
+        2:   72:    if (move_p(m2) != (square)S_IMMUTABLE_ONE)
+    #####:   73:        return false;
+        2:   74:    move_delete(m2);
+        2:   75:    m2 = NULL;
+        2:   76:    return true;
+        -:   77:}
+        -:   78:
+        2:   79:bool test_move_print() {
+        2:   80:    move m1 = move_create(0, 0, S_ONE, S_EMPTY);
+        2:   81:    move_print(m1);
+        2:   82:    move_delete(m1);
+        2:   83:    m1 = NULL;
+        2:   84:    move m2 = move_create(10, 10, S_ZERO, S_IMMUTABLE_ONE);
+        2:   85:    move_print(m2);
+        2:   86:    move_delete(m2);
+        2:   87:    m2 = NULL;
+        2:   88:    return true;
+        -:   89:}
+        -:   90:
+        -:   91:/*  USAGE  */
+    #####:   92:void usage(char *argv[]) {
+    #####:   93:    fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
+    #####:   94:    exit(EXIT_FAILURE);
+        -:   95:}
+        -:   96:
+        -:   97:/*  MAIN ROUTINE  */
+       14:   98:int main(int argc, char *argv[]) {
+       14:   99:    if (argc == 1)
+    #####:  100:        usage(argv);
+        -:  101:
+       14:  102:    fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
+       14:  103:    bool pass = false;
+       14:  104:    if (strcmp("move_create", argv[1]) == 0)
+        2:  105:        pass = test_move_create();
+       12:  106:    else if (strcmp("move_delete", argv[1]) == 0)
+        2:  107:        pass = test_move_delete();
+       10:  108:    else if (strcmp("move_row", argv[1]) == 0)
+        2:  109:        pass = test_move_row();
+        8:  110:    else if (strcmp("move_col", argv[1]) == 0)
+        2:  111:        pass = test_move_col();
+        6:  112:    else if (strcmp("move_s", argv[1]) == 0)
+        2:  113:        pass = test_move_s();
+        4:  114:    else if (strcmp("move_p", argv[1]) == 0)
+        2:  115:        pass = test_move_p();
+        2:  116:    else if (strcmp("move_print", argv[1]) == 0)
+        2:  117:        pass = test_move_print();
+        -:  118:    else {
+    #####:  119:        fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
+    #####:  120:        exit(EXIT_FAILURE);
+        -:  121:    }
+        -:  122:
+       14:  123:    if (pass == true) {
+       14:  124:        fprintf(stderr, "Test \"%s\" finished: SUCCESS\n", argv[1]);
+       14:  125:        return EXIT_SUCCESS;
+        -:  126:    } else {
+    #####:  127:        fprintf(stderr, "Test \"%s\" finished: FAILURE\n", argv[1]);
+    #####:  128:        return EXIT_FAILURE;
+        -:  129:    }
+        -:  130:}

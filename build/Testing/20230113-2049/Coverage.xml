@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="Linux-cc"
+	BuildStamp="20230113-2049-Experimental"
+	Name="DESKTOP-4R78PDH"
+	Generator="ctest-3.22.1"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="DESKTOP-4R78PDH"
+	OSRelease="5.10.16.3-microsoft-standard-WSL2"
+	OSVersion="#1 SMP Fri Apr 2 22:23:49 UTC 2021"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="151"
+	ProcessorCacheSize="20480"
+	NumberOfLogicalCPU="16"
+	NumberOfPhysicalCPU="8"
+	TotalVirtualMemory="4096"
+	TotalPhysicalMemory="12614"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="3686.40"
+	>
+	<Coverage>
+		<StartDateTime>Jan 13 21:49 CET</StartDateTime>
+		<StartTime>1673642994</StartTime>
+		<File Name="game.c" FullPath="./lib/game.c" Covered="true">
+			<LOCTested>198</LOCTested>
+			<LOCUnTested>17</LOCUnTested>
+			<PercentCoverage>92.09</PercentCoverage>
+			<CoverageMetric>0.92</CoverageMetric>
+		</File>
+		<File Name="game_aux.c" FullPath="./lib/game_aux.c" Covered="true">
+			<LOCTested>10</LOCTested>
+			<LOCUnTested>29</LOCUnTested>
+			<PercentCoverage>25.64</PercentCoverage>
+			<CoverageMetric>0.41</CoverageMetric>
+		</File>
+		<File Name="game_ext.c" FullPath="./lib/game_ext.c" Covered="true">
+			<LOCTested>53</LOCTested>
+			<LOCUnTested>4</LOCUnTested>
+			<PercentCoverage>92.98</PercentCoverage>
+			<CoverageMetric>0.94</CoverageMetric>
+		</File>
+		<File Name="mode_error.c" FullPath="./lib/mode_error.c" Covered="true">
+			<LOCTested>100</LOCTested>
+			<LOCUnTested>1</LOCUnTested>
+			<PercentCoverage>99.01</PercentCoverage>
+			<CoverageMetric>0.99</CoverageMetric>
+		</File>
+		<File Name="move.c" FullPath="./lib/move.c" Covered="true">
+			<LOCTested>29</LOCTested>
+			<LOCUnTested>0</LOCUnTested>
+			<PercentCoverage>100.00</PercentCoverage>
+			<CoverageMetric>1.00</CoverageMetric>
+		</File>
+		<File Name="move_stack.c" FullPath="./lib/move_stack.c" Covered="true">
+			<LOCTested>67</LOCTested>
+			<LOCUnTested>1</LOCUnTested>
+			<PercentCoverage>98.53</PercentCoverage>
+			<CoverageMetric>0.99</CoverageMetric>
+		</File>
+		<File Name="throw_assert.c" FullPath="./lib/throw_assert.c" Covered="true">
+			<LOCTested>12</LOCTested>
+			<LOCUnTested>5</LOCUnTested>
+			<PercentCoverage>70.59</PercentCoverage>
+			<CoverageMetric>0.81</CoverageMetric>
+		</File>
+		<File Name="test_game.c" FullPath="./tests/test_game.c" Covered="true">
+			<LOCTested>302</LOCTested>
+			<LOCUnTested>129</LOCUnTested>
+			<PercentCoverage>70.07</PercentCoverage>
+			<CoverageMetric>0.71</CoverageMetric>
+		</File>
+		<File Name="test_game_aux.c" FullPath="./tests/test_game_aux.c" Covered="true">
+			<LOCTested>33</LOCTested>
+			<LOCUnTested>16</LOCUnTested>
+			<PercentCoverage>67.35</PercentCoverage>
+			<CoverageMetric>0.73</CoverageMetric>
+		</File>
+		<File Name="test_game_ext.c" FullPath="./tests/test_game_ext.c" Covered="true">
+			<LOCTested>135</LOCTested>
+			<LOCUnTested>27</LOCUnTested>
+			<PercentCoverage>83.33</PercentCoverage>
+			<CoverageMetric>0.84</CoverageMetric>
+		</File>
+		<File Name="test_mode_error.c" FullPath="./tests/test_mode_error.c" Covered="true">
+			<LOCTested>148</LOCTested>
+			<LOCUnTested>47</LOCUnTested>
+			<PercentCoverage>75.90</PercentCoverage>
+			<CoverageMetric>0.77</CoverageMetric>
+		</File>
+		<File Name="test_move.c" FullPath="./tests/test_move.c" Covered="true">
+			<LOCTested>84</LOCTested>
+			<LOCUnTested>19</LOCUnTested>
+			<PercentCoverage>81.55</PercentCoverage>
+			<CoverageMetric>0.83</CoverageMetric>
+		</File>
+		<File Name="test_move_stack.c" FullPath="./tests/test_move_stack.c" Covered="true">
+			<LOCTested>239</LOCTested>
+			<LOCUnTested>35</LOCUnTested>
+			<PercentCoverage>87.23</PercentCoverage>
+			<CoverageMetric>0.88</CoverageMetric>
+		</File>
+		<File Name="test_throw_assert.c" FullPath="./tests/test_throw_assert.c" Covered="true">
+			<LOCTested>37</LOCTested>
+			<LOCUnTested>12</LOCUnTested>
+			<PercentCoverage>75.51</PercentCoverage>
+			<CoverageMetric>0.80</CoverageMetric>
+		</File>
+		<LOCTested>1447</LOCTested>
+		<LOCUntested>342</LOCUntested>
+		<LOC>1789</LOC>
+		<PercentCoverage>80.88</PercentCoverage>
+		<EndDateTime>Jan 13 21:49 CET</EndDateTime>
+		<EndTime>1673642999</EndTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Coverage>
+</Site>

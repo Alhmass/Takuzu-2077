@@ -1,0 +1,2253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="Linux-cc"
+	BuildStamp="20230113-2049-Experimental"
+	Name="DESKTOP-4R78PDH"
+	Generator="ctest-3.22.1"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="DESKTOP-4R78PDH"
+	OSRelease="5.10.16.3-microsoft-standard-WSL2"
+	OSVersion="#1 SMP Fri Apr 2 22:23:49 UTC 2021"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="151"
+	ProcessorCacheSize="20480"
+	NumberOfLogicalCPU="16"
+	NumberOfPhysicalCPU="8"
+	TotalVirtualMemory="4096"
+	TotalPhysicalMemory="12614"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="3686.4"
+	>
+	<Testing>
+		<StartDateTime>Jan 13 21:50 CET</StartDateTime>
+		<StartTestTime>1673643009</StartTestTime>
+		<TestList>
+			<Test>./test_game_new</Test>
+			<Test>./test_game_new_empty</Test>
+			<Test>./test_game_copy</Test>
+			<Test>./test_game_equal</Test>
+			<Test>./test_game_delete</Test>
+			<Test>./test_game_is_empty</Test>
+			<Test>./test_game_restart</Test>
+			<Test>./test_game_set_square</Test>
+			<Test>./test_game_get_square</Test>
+			<Test>./test_game_get_number</Test>
+			<Test>./test_game_get_next_square</Test>
+			<Test>./test_game_get_next_number</Test>
+			<Test>./test_game_is_immutable</Test>
+			<Test>./test_game_has_error</Test>
+			<Test>./test_game_check_move</Test>
+			<Test>./test_game_play_move</Test>
+			<Test>./test_game_is_over</Test>
+			<Test>./test_game_default</Test>
+			<Test>./test_game_default_solution</Test>
+			<Test>./test_game_print</Test>
+			<Test>./test_game_new_ext</Test>
+			<Test>./test_game_new_empty_ext</Test>
+			<Test>./test_game_undo</Test>
+			<Test>./test_game_redo</Test>
+			<Test>./test_game_nb_rows</Test>
+			<Test>./test_game_nb_cols</Test>
+			<Test>./test_game_is_unique</Test>
+			<Test>./test_game_is_wrapping</Test>
+			<Test>./test_is_unique_array</Test>
+			<Test>./test_is_array_same</Test>
+			<Test>./test_is_consecutive_grid</Test>
+			<Test>./test_is_consecutive</Test>
+			<Test>./test_get_number</Test>
+			<Test>./test_rotate_array</Test>
+			<Test>./test_get_col</Test>
+			<Test>./test_get_row</Test>
+			<Test>./test_is_array_full</Test>
+			<Test>./test_move_create</Test>
+			<Test>./test_move_delete</Test>
+			<Test>./test_move_row</Test>
+			<Test>./test_move_col</Test>
+			<Test>./test_move_s</Test>
+			<Test>./test_move_p</Test>
+			<Test>./test_move_print</Test>
+			<Test>./test_ms_create</Test>
+			<Test>./test_ms_delete</Test>
+			<Test>./test_ms_double_capacity</Test>
+			<Test>./test_ms_top</Test>
+			<Test>./test_ms_push</Test>
+			<Test>./test_ms_pop</Test>
+			<Test>./test_ms_clear</Test>
+			<Test>./test_ms_top_row</Test>
+			<Test>./test_ms_top_col</Test>
+			<Test>./test_ms_top_s</Test>
+			<Test>./test_ms_top_p</Test>
+			<Test>./test_ms_is_empty</Test>
+			<Test>./test_ms_is_full</Test>
+			<Test>./test_ms_print</Test>
+			<Test>./test_throw_error</Test>
+			<Test>./test_game_test</Test>
+			<Test>./test_cgame_test</Test>
+			<Test>./test_pointer_test</Test>
+			<Test>./test_new_ext</Test>
+			<Test>./test_new_empty_ext</Test>
+			<Test>./test_equal_ext</Test>
+			<Test>./test_copy_ext</Test>
+			<Test>./test_get_next_square_wrapping</Test>
+			<Test>./test_get_next_number_wrapping</Test>
+			<Test>./test_has_error_wrapping</Test>
+			<Test>./test_is_over_wrapping</Test>
+			<Test>./test_has_error_unique</Test>
+			<Test>./test_is_over_unique</Test>
+			<Test>./test_undo_one</Test>
+			<Test>./test_undo_redo_some</Test>
+			<Test>./test_undo_redo_all</Test>
+			<Test>./test_restart_undo</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>test_game_new</Name>
+			<Path>.</Path>
+			<FullName>./test_game_new</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.1.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_new"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.378571</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.1.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_new"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_new"
+Test "game_new" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_new_empty</Name>
+			<Path>.</Path>
+			<FullName>./test_game_new_empty</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.2.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_new_empty"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.320077</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.2.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_new_empty"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_new_empty"
+Test "game_new_empty" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_copy</Name>
+			<Path>.</Path>
+			<FullName>./test_game_copy</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.3.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_copy"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.357651</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.3.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_copy"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_copy"
+Test "game_copy" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_equal</Name>
+			<Path>.</Path>
+			<FullName>./test_game_equal</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.4.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_equal"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.349693</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.4.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_equal"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_equal"
+Test "game_equal" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_delete</Name>
+			<Path>.</Path>
+			<FullName>./test_game_delete</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.5.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_delete"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.388595</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.5.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_delete"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_delete"
+Test "game_delete" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_is_empty</Name>
+			<Path>.</Path>
+			<FullName>./test_game_is_empty</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.6.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_is_empty"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.322196</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.6.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_is_empty"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_is_empty"
+Test "game_is_empty" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_restart</Name>
+			<Path>.</Path>
+			<FullName>./test_game_restart</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.7.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_restart"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.320624</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.7.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_restart"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_restart"
+Test "game_restart" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_set_square</Name>
+			<Path>.</Path>
+			<FullName>./test_game_set_square</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.8.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_set_square"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.317211</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.8.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_set_square"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_set_square"
+Test "game_set_square" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_get_square</Name>
+			<Path>.</Path>
+			<FullName>./test_game_get_square</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.9.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_square"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.319685</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.9.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_square"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_get_square"
+Test "game_get_square" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_get_number</Name>
+			<Path>.</Path>
+			<FullName>./test_game_get_number</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.10.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_number"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.324884</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.10.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_number"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_get_number"
+Test "game_get_number" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_get_next_square</Name>
+			<Path>.</Path>
+			<FullName>./test_game_get_next_square</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.11.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_next_square"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.33687</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.11.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_next_square"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_get_next_square"
+Test "game_get_next_square" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_get_next_number</Name>
+			<Path>.</Path>
+			<FullName>./test_game_get_next_number</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.12.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_next_number"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.360925</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.12.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_next_number"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_get_next_number"
+Test "game_get_next_number" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_is_immutable</Name>
+			<Path>.</Path>
+			<FullName>./test_game_is_immutable</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.13.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_is_immutable"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.350831</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.13.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_is_immutable"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_is_immutable"
+Test "game_is_immutable" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_has_error</Name>
+			<Path>.</Path>
+			<FullName>./test_game_has_error</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.14.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_has_error"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.40307</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.14.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_has_error"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_has_error"
+Test "game_has_error" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_check_move</Name>
+			<Path>.</Path>
+			<FullName>./test_game_check_move</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.15.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_check_move"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.339766</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.15.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_check_move"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_check_move"
+Test "game_check_move" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_play_move</Name>
+			<Path>.</Path>
+			<FullName>./test_game_play_move</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.16.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_play_move"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.333106</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.16.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_play_move"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_play_move"
+Test "game_play_move" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_is_over</Name>
+			<Path>.</Path>
+			<FullName>./test_game_is_over</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.17.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_is_over"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.352884</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.17.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_is_over"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_is_over"
+Test "game_is_over" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_default</Name>
+			<Path>.</Path>
+			<FullName>./test_game_default</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.18.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_aux" "game_default"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.321549</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.18.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_aux" "game_default"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_default"
+Test "game_default" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_default_solution</Name>
+			<Path>.</Path>
+			<FullName>./test_game_default_solution</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.19.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_aux" "game_default_solution"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.321513</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.19.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_aux" "game_default_solution"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_default_solution"
+Test "game_default_solution" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_print</Name>
+			<Path>.</Path>
+			<FullName>./test_game_print</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.20.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_aux" "game_print"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.315423</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.20.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_aux" "game_print"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_print"
+Test "game_print" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_new_ext</Name>
+			<Path>.</Path>
+			<FullName>./test_game_new_ext</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.21.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_new_ext"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.345129</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.21.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_new_ext"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_new_ext"
+Test "game_new_ext" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_new_empty_ext</Name>
+			<Path>.</Path>
+			<FullName>./test_game_new_empty_ext</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.22.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_new_empty_ext"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.357373</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.22.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_new_empty_ext"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_new_empty_ext"
+Test "game_new_empty_ext" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_undo</Name>
+			<Path>.</Path>
+			<FullName>./test_game_undo</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.23.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_undo"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.415007</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.23.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_undo"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_undo"
+Test "game_undo" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_redo</Name>
+			<Path>.</Path>
+			<FullName>./test_game_redo</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.24.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_redo"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.345177</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.24.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_redo"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_redo"
+Test "game_redo" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_nb_rows</Name>
+			<Path>.</Path>
+			<FullName>./test_game_nb_rows</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.25.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_nb_rows"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.32565</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.25.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_nb_rows"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_nb_rows"
+Test "game_nb_rows" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_nb_cols</Name>
+			<Path>.</Path>
+			<FullName>./test_game_nb_cols</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.26.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_nb_cols"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.317124</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.26.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_nb_cols"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_nb_cols"
+Test "game_nb_cols" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_is_unique</Name>
+			<Path>.</Path>
+			<FullName>./test_game_is_unique</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.27.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_is_unique"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.324581</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.27.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_is_unique"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_is_unique"
+Test "game_is_unique" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_is_wrapping</Name>
+			<Path>.</Path>
+			<FullName>./test_game_is_wrapping</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.28.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_is_wrapping"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.324428</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.28.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_is_wrapping"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_is_wrapping"
+Test "game_is_wrapping" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_is_unique_array</Name>
+			<Path>.</Path>
+			<FullName>./test_is_unique_array</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.29.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "is_unique_array"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.326192</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.29.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "is_unique_array"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "is_unique_array"
+Test "is_unique_array" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_is_array_same</Name>
+			<Path>.</Path>
+			<FullName>./test_is_array_same</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.30.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "is_array_same"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.345673</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.30.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "is_array_same"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "is_array_same"
+Test "is_array_same" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_is_consecutive_grid</Name>
+			<Path>.</Path>
+			<FullName>./test_is_consecutive_grid</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.31.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "is_consecutive_grid"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.330314</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.31.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "is_consecutive_grid"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "is_consecutive_grid"
+Test "is_consecutive_grid" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_is_consecutive</Name>
+			<Path>.</Path>
+			<FullName>./test_is_consecutive</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.32.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "is_consecutive"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.369818</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.32.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "is_consecutive"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "is_consecutive"
+Test "is_consecutive" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_get_number</Name>
+			<Path>.</Path>
+			<FullName>./test_get_number</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.33.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "get_number"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.365797</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.33.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "get_number"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "get_number"
+Test "get_number" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_rotate_array</Name>
+			<Path>.</Path>
+			<FullName>./test_rotate_array</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.34.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "rotate_array"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.3286</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.34.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "rotate_array"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "rotate_array"
+Test "rotate_array" finished: SUCCESS
+[1] [3] [1] [3] [1] [3] 
+[3] [1] [3] [1] [3] [1] 
+[3] [1] [3] [1] [3] [1] 
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_get_col</Name>
+			<Path>.</Path>
+			<FullName>./test_get_col</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.35.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "get_col"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.32605</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.35.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "get_col"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "get_col"
+Test "get_col" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_get_row</Name>
+			<Path>.</Path>
+			<FullName>./test_get_row</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.36.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "get_row"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.32317</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.36.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "get_row"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "get_row"
+Test "get_row" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_is_array_full</Name>
+			<Path>.</Path>
+			<FullName>./test_is_array_full</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.37.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "is_array_full"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.318201</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.37.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_mode_error" "is_array_full"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "is_array_full"
+Test "is_array_full" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_move_create</Name>
+			<Path>.</Path>
+			<FullName>./test_move_create</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.38.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_create"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.321085</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.38.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_create"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "move_create"
+Test "move_create" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_move_delete</Name>
+			<Path>.</Path>
+			<FullName>./test_move_delete</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.39.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_delete"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.340442</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.39.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_delete"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "move_delete"
+Test "move_delete" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_move_row</Name>
+			<Path>.</Path>
+			<FullName>./test_move_row</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.40.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_row"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.37629</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.40.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_row"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "move_row"
+Test "move_row" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_move_col</Name>
+			<Path>.</Path>
+			<FullName>./test_move_col</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.41.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_col"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.386674</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.41.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_col"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "move_col"
+Test "move_col" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_move_s</Name>
+			<Path>.</Path>
+			<FullName>./test_move_s</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.42.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_s"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.512924</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.42.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_s"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "move_s"
+Test "move_s" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_move_p</Name>
+			<Path>.</Path>
+			<FullName>./test_move_p</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.43.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_p"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.346421</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.43.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_p"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "move_p"
+Test "move_p" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_move_print</Name>
+			<Path>.</Path>
+			<FullName>./test_move_print</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.44.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_print"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.327591</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.44.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move" "move_print"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "move_print"
+Test "move_print" finished: SUCCESS
+[0] [0] [2] [0]
+[10] [10] [1] [4]
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_create</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_create</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.45.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_create"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.327029</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.45.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_create"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_create"
+Test "ms_create" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_delete</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_delete</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.46.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_delete"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.336105</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.46.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_delete"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_delete"
+Test "ms_delete" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_double_capacity</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_double_capacity</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.47.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_double_capacity"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.362105</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.47.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_double_capacity"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_double_capacity"
+Test "ms_double_capacity" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_top</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_top</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.48.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_top"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.320183</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.48.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_top"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_top"
+Test "ms_top" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_push</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_push</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.49.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_push"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.349379</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.49.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_push"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_push"
+Test "ms_push" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_pop</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_pop</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.50.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_pop"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.351716</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.50.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_pop"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_pop"
+Test "ms_pop" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_clear</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_clear</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.51.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_clear"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.368647</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.51.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_clear"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_clear"
+Test "ms_clear" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_top_row</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_top_row</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.52.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_top_row"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.364684</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.52.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_top_row"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_top_row"
+Test "ms_top_row" finished: SUCCESS
+size: 0
+ms_top_row(stack) : -1
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_top_col</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_top_col</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.53.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_top_col"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.326803</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.53.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_top_col"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_top_col"
+Test "ms_top_col" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_top_s</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_top_s</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.54.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_top_s"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.323522</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.54.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_top_s"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_top_s"
+Test "ms_top_s" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_top_p</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_top_p</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.55.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_top_p"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.342798</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.55.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_top_p"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_top_p"
+Test "ms_top_p" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_is_empty</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_is_empty</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.56.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_is_empty"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.348111</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.56.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_is_empty"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_is_empty"
+Test "ms_is_empty" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_is_full</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_is_full</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.57.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_is_full"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.342197</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.57.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_is_full"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_is_full"
+Test "ms_is_full" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_ms_print</Name>
+			<Path>.</Path>
+			<FullName>./test_ms_print</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.58.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_print"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.328418</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.58.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_move_stack" "ms_print"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "ms_print"
+Test "ms_print" finished: SUCCESS
+move_stack: size=2, capacity=2
+[1] [2] [2] [1]
+[3] [4] [1] [2]
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_throw_error</Name>
+			<Path>.</Path>
+			<FullName>./test_throw_error</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.59.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_throw_assert" "throw_error"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.334218</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.59.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_throw_assert" "throw_error"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "throw_error"
+Test "throw_error" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_game_test</Name>
+			<Path>.</Path>
+			<FullName>./test_game_test</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.60.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_throw_assert" "game_test"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.325139</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.60.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_throw_assert" "game_test"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "game_test"
+Test "game_test" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_cgame_test</Name>
+			<Path>.</Path>
+			<FullName>./test_cgame_test</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.61.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_throw_assert" "cgame_test"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.395729</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.61.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_throw_assert" "cgame_test"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "cgame_test"
+Test "cgame_test" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_pointer_test</Name>
+			<Path>.</Path>
+			<FullName>./test_pointer_test</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.62.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_throw_assert" "pointer_test"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.321371</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.62.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_throw_assert" "pointer_test"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "pointer_test"
+Test "pointer_test" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_new_ext</Name>
+			<Path>.</Path>
+			<FullName>./test_new_ext</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.63.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "new_ext"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.319784</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.63.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "new_ext"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "new_ext"
+Test "new_ext" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_new_empty_ext</Name>
+			<Path>.</Path>
+			<FullName>./test_new_empty_ext</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.64.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "new_empty_ext"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.32474</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.64.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "new_empty_ext"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "new_empty_ext"
+Test "new_empty_ext" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_equal_ext</Name>
+			<Path>.</Path>
+			<FullName>./test_equal_ext</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.65.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "equal_ext"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.351425</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.65.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "equal_ext"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "equal_ext"
+Test "equal_ext" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_copy_ext</Name>
+			<Path>.</Path>
+			<FullName>./test_copy_ext</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.66.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "copy_ext"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.357794</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.66.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "copy_ext"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "copy_ext"
+Test "copy_ext" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_get_next_square_wrapping</Name>
+			<Path>.</Path>
+			<FullName>./test_get_next_square_wrapping</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.67.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "get_next_square_wrapping"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.323199</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.67.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "get_next_square_wrapping"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "get_next_square_wrapping"
+Test "get_next_square_wrapping" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_get_next_number_wrapping</Name>
+			<Path>.</Path>
+			<FullName>./test_get_next_number_wrapping</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.68.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "get_next_number_wrapping"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.333825</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.68.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "get_next_number_wrapping"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "get_next_number_wrapping"
+Test "get_next_number_wrapping" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_has_error_wrapping</Name>
+			<Path>.</Path>
+			<FullName>./test_has_error_wrapping</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.69.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "has_error_wrapping"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.338018</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.69.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "has_error_wrapping"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "has_error_wrapping"
+Test "has_error_wrapping" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_is_over_wrapping</Name>
+			<Path>.</Path>
+			<FullName>./test_is_over_wrapping</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.70.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "is_over_wrapping"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.406877</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.70.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "is_over_wrapping"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "is_over_wrapping"
+Test "is_over_wrapping" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_has_error_unique</Name>
+			<Path>.</Path>
+			<FullName>./test_has_error_unique</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.71.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "has_error_unique"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.346256</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.71.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "has_error_unique"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "has_error_unique"
+Test "has_error_unique" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_is_over_unique</Name>
+			<Path>.</Path>
+			<FullName>./test_is_over_unique</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.72.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "is_over_unique"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.322855</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.72.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "is_over_unique"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "is_over_unique"
+Test "is_over_unique" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_undo_one</Name>
+			<Path>.</Path>
+			<FullName>./test_undo_one</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.73.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "undo_one"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.344742</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.73.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "undo_one"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "undo_one"
+Test "undo_one" finished: SUCCESS
+game_undo: history is empty
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_undo_redo_some</Name>
+			<Path>.</Path>
+			<FullName>./test_undo_redo_some</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.74.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "undo_redo_some"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.339605</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.74.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "undo_redo_some"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "undo_redo_some"
+Test "undo_redo_some" finished: SUCCESS
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_undo_redo_all</Name>
+			<Path>.</Path>
+			<FullName>./test_undo_redo_all</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.75.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "undo_redo_all"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.326208</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.75.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "undo_redo_all"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "undo_redo_all"
+Test "undo_redo_all" finished: SUCCESS
+game_undo: history is empty
+game_redo: backup is empty
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>test_restart_undo</Name>
+			<Path>.</Path>
+			<FullName>./test_restart_undo</FullName>
+			<FullCommandLine>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.76.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "restart_undo"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.345553</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/usr/bin/valgrind "--log-file=/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/Testing/Temporary/MemoryChecker.76.log" "-q" "--tool=memcheck" "--leak-check=yes" "--show-reachable=yes" "--num-callers=50" "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "restart_undo"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>=&gt; Start test "restart_undo"
+Test "restart_undo" finished: SUCCESS
+game_undo: history is empty
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Jan 13 21:50 CET</EndDateTime>
+		<EndTestTime>1673643036</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

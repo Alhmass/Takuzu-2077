@@ -1,0 +1,279 @@
+        -:    0:Source:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/lib/game.c
+        -:    0:Graph:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/game.dir/lib/game.c.gcno
+        -:    0:Data:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/game.dir/lib/game.c.gcda
+        -:    0:Runs:80
+        -:    1:#include "takuzu.h"
+        -:    2:
+       48:    3:game game_new(square *squares) {
+       48:    4:    game g = malloc(sizeof(struct game_s));
+       48:    5:    pointer_test(g, "malloc failed");
+       48:    6:    g->game = malloc(sizeof(square) * (DEFAULT_SIZE * DEFAULT_SIZE));
+       48:    7:    pointer_test(g->game, "malloc failed");
+       48:    8:    memcpy(g->game, squares, sizeof(square) * (DEFAULT_SIZE * DEFAULT_SIZE));
+       48:    9:    g->version = 1;
+       48:   10:    return g;
+        -:   11:}
+        -:   12:
+        8:   13:game game_new_empty(void) {
+        8:   14:    square *squares = (square *)calloc(DEFAULT_SIZE * DEFAULT_SIZE, sizeof(square));
+        8:   15:    pointer_test(squares, "malloc failed");
+        8:   16:    game g = game_new(squares);
+        8:   17:    cgame_test(g, "malloc failed");
+        8:   18:    free(squares);
+        8:   19:    g->version = 1;
+        8:   20:    return g;
+        -:   21:}
+        -:   22:
+        4:   23:game game_copy(cgame g) {
+        4:   24:    cgame_test(g, "g is NULL");
+        4:   25:    if (g->version == 2) {
+        2:   26:        game copy = game_new_ext(game_nb_rows(g), game_nb_cols(g), g->game, g->wrapping, g->unique);
+        2:   27:        game_test(copy, "malloc failed");
+        2:   28:        return copy;
+        -:   29:    }
+        2:   30:    game copy = game_new(g->game);
+        2:   31:    game_test(copy, "malloc failed");
+        2:   32:    return copy;
+        -:   33:}
+        -:   34:
+       20:   35:bool game_equal(cgame g1, cgame g2) {
+       20:   36:    if (g1 == NULL || g2 == NULL || g1->game == NULL || g2->game == NULL)
+    #####:   37:        return false;
+       20:   38:    uint rows_g1 = (g1->version == 1) ? DEFAULT_SIZE : game_nb_rows(g1);
+       20:   39:    uint cols_g1 = (g1->version == 1) ? DEFAULT_SIZE : game_nb_cols(g1);
+       20:   40:    uint rows_g2 = (g2->version == 1) ? DEFAULT_SIZE : game_nb_rows(g2);
+       20:   41:    uint cols_g2 = (g2->version == 1) ? DEFAULT_SIZE : game_nb_cols(g2);
+       20:   42:    if (rows_g1 != rows_g2 || cols_g1 != cols_g2)
+    #####:   43:        return false;
+      120:   44:    for (uint i = 0; i < rows_g1; i++) {
+      674:   45:        for (uint j = 0; j < cols_g1; j++) {
+      574:   46:            if (game_get_square(g1, i, j) != game_get_square(g2, i, j))
+        4:   47:                return false;
+        -:   48:        }
+        -:   49:    }
+       16:   50:    return true;
+        -:   51:}
+        -:   52:
+      128:   53:void game_delete(game g) {
+      128:   54:    if (g == NULL)
+    #####:   55:        return;
+      128:   56:    if (g->game != NULL)
+      128:   57:        free(g->game);
+      128:   58:    if (g->version == 2) {
+       80:   59:        ms_delete(g->history);
+       80:   60:        ms_delete(g->backup);
+        -:   61:    }
+      128:   62:    free(g);
+        -:   63:}
+        -:   64:
+      214:   65:void game_set_square(game g, uint i, uint j, square s) {
+      214:   66:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+      214:   67:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+      214:   68:    if (i >= rows_g || j >= cols_g)
+    #####:   69:        return;
+      214:   70:    g->game[rows_g * i + j] = s;
+        -:   71:}
+        -:   72:
+     6220:   73:square game_get_square(cgame g, uint i, uint j) {
+     6220:   74:    cgame_test(g, "g is not initialized\n");
+     6220:   75:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+     6220:   76:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+     6220:   77:    if (i >= rows_g || j >= cols_g)
+    #####:   78:        throw_error("invalid index");
+     6220:   79:    return g->game[cols_g * i + j];
+        -:   80:}
+        -:   81:
+      454:   82:int game_get_number(cgame g, uint i, uint j) {
+      454:   83:    cgame_test(g, "g is not initialized\n");
+      454:   84:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+      454:   85:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+      454:   86:    if (i >= rows_g || j >= cols_g)
+    #####:   87:        throw_error("i or j value is out of bounds!\n");
+      454:   88:    uint index = rows_g * i + j;
+      454:   89:    if (g->game[index] == S_EMPTY)
+        4:   90:        return (-1);
+      450:   91:    else if (g->game[index] == S_ZERO || g->game[index] == S_IMMUTABLE_ZERO)
+      254:   92:        return (0);
+        -:   93:    else
+      196:   94:        return (1);
+        -:   95:}
+        -:   96:
+       28:   97:int game_get_next_square(cgame g, uint i, uint j, direction dir, uint dist) {
+       28:   98:    cgame_test(g, "g is not initialized\n");
+       28:   99:    if (dist > 2)
+    #####:  100:        throw_error("the distance value must be <=2!\n");
+       28:  101:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+       28:  102:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+       28:  103:    int findex = 0;
+       28:  104:    if (g->version == 2 && game_is_wrapping(g)) {
+       14:  105:        if (dir == LEFT) {
+        6:  106:            findex = (j - dist);
+        6:  107:            j = findex <= 0 ? (cols_g + findex) % cols_g : (j - dist) % cols_g;
+        8:  108:        } else if (dir == RIGHT)
+        2:  109:            j = (j + dist) % cols_g;
+        6:  110:        else if (dir == UP) {
+        4:  111:            findex = (i - dist);
+        4:  112:            i = findex <= 0 ? (rows_g + findex) % rows_g : (i - dist) % rows_g;
+        -:  113:        } else
+        2:  114:            i = (i + dist) % rows_g;
+        -:  115:    } else {
+       14:  116:        if (dir == LEFT && dist <= j)
+        2:  117:            j -= dist;
+       12:  118:        else if (dir == RIGHT && (j + dist) < cols_g)
+        6:  119:            j += dist;
+        6:  120:        else if (dir == UP && dist <= i)
+        2:  121:            i -= dist;
+        4:  122:        else if (dir == DOWN && (i + dist) < rows_g)
+        2:  123:            i += dist;
+        -:  124:        else
+        2:  125:            return (-1);
+        -:  126:    }
+       26:  127:    return (game_get_square(g, i, j));
+        -:  128:}
+        -:  129:
+       28:  130:int game_get_next_number(cgame g, uint i, uint j, direction dir, uint dist) {
+       28:  131:    cgame_test(g, "g is not initialized\n");
+       28:  132:    if (dist > 2)
+    #####:  133:        throw_error("the distance value must be <=2!\n");
+       28:  134:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+       28:  135:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+       28:  136:    int findex = 0;
+       28:  137:    if (g->version == 2 && game_is_wrapping(g)) {
+       14:  138:        if (i >= rows_g || j >= cols_g)
+    #####:  139:            return (-1);
+       14:  140:        if (dir == LEFT) {
+        6:  141:            findex = (j - dist);
+        6:  142:            j = findex <= 0 ? (cols_g + findex) % cols_g : (j - dist) % cols_g;
+        8:  143:        } else if (dir == RIGHT)
+        2:  144:            j = (j + dist) % cols_g;
+        6:  145:        else if (dir == UP) {
+        4:  146:            findex = (i - dist);
+        4:  147:            i = findex <= 0 ? (rows_g + findex) % rows_g : (i - dist) % rows_g;
+        -:  148:        } else
+        2:  149:            i = (i + dist) % rows_g;
+        -:  150:    } else {
+       14:  151:        if (dir == LEFT && dist <= j)
+        2:  152:            j -= dist;
+       12:  153:        else if (dir == RIGHT && (j + dist) < cols_g)
+        6:  154:            j += dist;
+        6:  155:        else if (dir == UP && dist <= i)
+        2:  156:            i -= dist;
+        4:  157:        else if (dir == DOWN && (i + dist) < rows_g)
+        2:  158:            i += dist;
+        -:  159:        else
+        2:  160:            return (-1);
+        -:  161:    }
+       26:  162:    return (game_get_number(g, i, j));
+        -:  163:}
+        -:  164:
+      134:  165:bool game_is_empty(cgame g, uint i, uint j) {
+      134:  166:    cgame_test(g, "g is not initialized\n");
+      134:  167:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+      134:  168:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+     134*:  169:    assert(((i < rows_g) && (j < cols_g)));
+      134:  170:    return (game_get_square(g, i, j) == S_EMPTY);
+        -:  171:}
+        -:  172:
+      216:  173:bool game_is_immutable(cgame g, uint i, uint j) {
+      216:  174:    cgame_test(g, "g is not initialized\n");
+      216:  175:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+      216:  176:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+     216*:  177:    assert(((i < rows_g) && (j < cols_g)));
+      216:  178:    square s = game_get_square(g, i, j);
+      216:  179:    if (s == 3 || s == 4) {
+       54:  180:        return true;
+        -:  181:    }
+      162:  182:    return false;
+        -:  183:}
+        -:  184:
+      294:  185:int game_has_error(cgame g, uint i, uint j) {
+      294:  186:    cgame_test(g, "g is not initialized\n");
+        -:  187:
+      294:  188:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+      294:  189:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+      294:  190:    if (i >= rows_g || j >= cols_g)
+    #####:  191:        throw_error("i or j value is out of bounds!\n");
+        -:  192:
+      294:  193:    if (g->version == 2 && game_is_wrapping(g)) {
+    #####:  194:        if (is_consecutive_grid(g, i, j)) {
+    #####:  195:            return 1;
+        -:  196:        }
+        -:  197:    }
+      294:  198:    if (g->version == 2 && game_is_unique(g)) {
+       72:  199:        if (!is_unique_array(g, i, j)) {
+       72:  200:            return 1;
+        -:  201:        }
+        -:  202:    }
+      222:  203:    square *row = get_row(g, i);
+      222:  204:    square *col = get_col(g, j);
+      368:  205:    if (is_consecutive(row, cols_g, game_get_number(g, i, j)) ||
+      146:  206:        is_consecutive(col, rows_g, game_get_number(g, i, j))) {
+       78:  207:        free(row);
+       78:  208:        free(col);
+       78:  209:        return 1;
+        -:  210:    }
+      144:  211:    free(row);
+      144:  212:    free(col);
+      144:  213:    return 0;
+        -:  214:}
+        -:  215:
+      202:  216:bool game_check_move(cgame g, uint i, uint j, square s) {
+      202:  217:    cgame_test(g, "g is not initialized\n");
+     202*:  218:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+     202*:  219:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+      202:  220:    if ((i > rows_g) || (j > cols_g))
+    #####:  221:        return false;
+      202:  222:    if (s == S_IMMUTABLE_ONE || s == S_IMMUTABLE_ZERO)
+        2:  223:        return false;
+      200:  224:    square c = game_get_square(g, i, j);
+      200:  225:    if (c == S_IMMUTABLE_ONE || c == S_IMMUTABLE_ZERO)
+       36:  226:        return false;
+        -:  227:
+        -:  228:
+      164:  229:    return true;
+        -:  230:}
+        -:  231:
+       56:  232:void game_play_move(game g, uint i, uint j, square s) {
+       56:  233:    cgame_test(g, "g is not initialized\n");
+      56*:  234:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+      56*:  235:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+      56*:  236:    assert(((i < rows_g) && (j < cols_g)));
+       56:  237:    if (game_check_move(g, i, j, s)) {
+       56:  238:        if (g->version == 2) {
+       56:  239:            if (g->backup != NULL && g->history != NULL) {
+       56:  240:                move m = move_create(i, j, s, game_get_square(g, i, j));
+       56:  241:                ms_push(g->history, m);
+       56:  242:                ms_clear(g->backup);
+       56:  243:                free(m);
+        -:  244:            }
+        -:  245:        }
+       56:  246:        game_set_square(g, i, j, s);
+        -:  247:    }
+       56:  248:}
+        -:  249:
+       10:  250:bool game_is_over(cgame g) {
+       10:  251:    cgame_test(g, "g is not initialized\n");
+       10:  252:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+       10:  253:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+       22:  254:    for (uint i = 0; i < rows_g; i++)
+       92:  255:        for (uint j = 0; j < cols_g; j++)
+       80:  256:            if (game_is_empty(g, i, j) || game_has_error(g, i, j))
+        8:  257:                return false;
+        2:  258:    return true;
+        -:  259:}
+        -:  260:
+        2:  261:void game_restart(game g) {
+        2:  262:    pointer_test(g, "g is not initialized\n");
+       2*:  263:    uint rows_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_rows(g);
+       2*:  264:    uint cols_g = (g->version == 1) ? DEFAULT_SIZE : game_nb_cols(g);
+       14:  265:    for (uint i = 0; i < rows_g; i++)
+       84:  266:        for (uint j = 0; j < cols_g; j++)
+       72:  267:            if (!game_is_immutable(g, i, j))
+       54:  268:                game_set_square(g, i, j, S_EMPTY);
+        2:  269:    if (g->version == 2) {
+    #####:  270:        if (g->history != NULL)
+    #####:  271:            ms_clear(g->history);
+    #####:  272:        if (g->backup != NULL)
+    #####:  273:            ms_clear(g->backup);
+        -:  274:    }
+        2:  275:}

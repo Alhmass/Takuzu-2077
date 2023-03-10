@@ -1,0 +1,199 @@
+        -:    0:Source:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/tests/test_game_ext.c
+        -:    0:Graph:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/test_game_ext.dir/tests/test_game_ext.c.gcno
+        -:    0:Data:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/test_game_ext.dir/tests/test_game_ext.c.gcda
+        -:    0:Runs:16
+        -:    1:#include "takuzu.h"
+        -:    2:
+        2:    3:bool test_game_new_ext(void) {
+        2:    4:    bool pass = true;
+        2:    5:    square squares[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
+        -:    6:                                                   2, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
+        2:    7:    game g1 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, true, true);
+        2:    8:    game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, squares, false, false);
+        2:    9:    if (g1 == NULL || g2 == NULL)
+    #####:   10:        pass = false;
+        2:   11:    if (game_nb_rows(g1) != DEFAULT_SIZE || game_nb_cols(g1) != DEFAULT_SIZE || !game_is_wrapping(g1) ||
+        2:   12:        !game_is_unique(g1))
+    #####:   13:        pass = false;
+        4:   14:    if (game_nb_rows(g2) != DEFAULT_SIZE || game_nb_cols(g2) != DEFAULT_SIZE || game_is_wrapping(g2) ||
+        2:   15:        game_is_unique(g2))
+    #####:   16:        pass = false;
+        2:   17:    if (!game_equal(g1, g2))
+    #####:   18:        pass = false;
+        2:   19:    game_delete(g1);
+        2:   20:    game_delete(g2);
+        -:   21:
+        2:   22:    game g3 = game_new_ext(3, 4, squares, false, true);
+        2:   23:    if (g3 == NULL)
+    #####:   24:        pass = false;
+        2:   25:    if (game_nb_rows(g3) != 3 || game_nb_cols(g3) != 4)
+    #####:   26:        pass = false;
+       2*:   27:    if (!game_is_unique(g3) && game_is_wrapping(g3))
+    #####:   28:        pass = false;
+        2:   29:    game_delete(g3);
+        2:   30:    return pass;
+        -:   31:}
+        -:   32:
+        2:   33:bool test_game_new_empty_ext(void) {
+        2:   34:    bool pass = true;
+        2:   35:    game g = game_new_empty_ext(DEFAULT_SIZE, DEFAULT_SIZE, 1, 1);
+        2:   36:    game empty = game_new_empty();
+        2:   37:    if (g == NULL || empty == NULL)
+    #####:   38:        pass = false;
+        2:   39:    if (game_nb_rows(g) != DEFAULT_SIZE || game_nb_cols(g) != DEFAULT_SIZE || !game_is_wrapping(g) ||
+        2:   40:        !game_is_unique(g))
+    #####:   41:        pass = false;
+        2:   42:    if (!game_equal(g, empty))
+    #####:   43:        pass = false;
+        2:   44:    game_delete(empty);
+        2:   45:    game_delete(g);
+        2:   46:    return pass;
+        -:   47:}
+        -:   48:
+        2:   49:bool test_game_undo(void) {
+        2:   50:    bool pass = true;
+        2:   51:    game g = game_new_empty_ext(5, 5, false, false);
+        2:   52:    game_play_move(g, 0, 0, S_ONE);
+        2:   53:    square before = game_get_square(g, 0, 0);
+        2:   54:    game_undo(g);
+        2:   55:    square after = game_get_square(g, 0, 0);
+        2:   56:    if (before != S_ONE || after != S_EMPTY)
+    #####:   57:        pass = false;
+        2:   58:    game_play_move(g, 0, 0, S_ONE);
+        2:   59:    game_play_move(g, 0, 1, S_ONE);
+        2:   60:    game_play_move(g, 0, 2, S_ONE);
+        2:   61:    square before2 = game_get_square(g, 0, 1);
+        2:   62:    square before3 = game_get_square(g, 0, 2);
+        2:   63:    game_undo(g);
+        2:   64:    game_undo(g);
+        2:   65:    square after2 = game_get_square(g, 0, 1);
+        2:   66:    square after3 = game_get_square(g, 0, 2);
+        2:   67:    if (before2 == after2 || before3 == after3)
+    #####:   68:        pass = false;
+        2:   69:    game_delete(g);
+        2:   70:    return pass;
+        -:   71:}
+        -:   72:
+        2:   73:bool test_game_redo(void) {
+        2:   74:    bool pass = true;
+        2:   75:    game g = game_new_empty_ext(5, 5, false, false);
+        2:   76:    game_play_move(g, 0, 0, S_ONE);
+        2:   77:    game_play_move(g, 0, 1, S_ONE);
+        2:   78:    game_play_move(g, 0, 2, S_ONE);
+        2:   79:    game_undo(g);
+        2:   80:    game_undo(g);
+        2:   81:    square before = game_get_square(g, 0, 1);
+        2:   82:    square before2 = game_get_square(g, 0, 2);
+        2:   83:    game_redo(g);
+        2:   84:    game_redo(g);
+        2:   85:    square after = game_get_square(g, 0, 1);
+        2:   86:    square after2 = game_get_square(g, 0, 2);
+        2:   87:    if (before == after || before2 == after2)
+    #####:   88:        pass = false;
+        2:   89:    game_play_move(g, 1, 0, S_ONE);
+        2:   90:    game_play_move(g, 1, 1, S_ONE);
+        2:   91:    game_play_move(g, 1, 2, S_ONE);
+        2:   92:    game_undo(g);
+        2:   93:    game_undo(g);
+        2:   94:    game_play_move(g, 2, 0, S_ONE);
+        2:   95:    game_play_move(g, 2, 0, S_ZERO);
+        2:   96:    game_undo(g);
+        2:   97:    square before3 = game_get_square(g, 2, 0);
+        2:   98:    game_redo(g);
+        2:   99:    square after3 = game_get_square(g, 2, 0);
+        2:  100:    if (before3 == after3)
+    #####:  101:        pass = false;
+        2:  102:    game_delete(g);
+        2:  103:    return pass;
+        -:  104:}
+        -:  105:
+        2:  106:bool test_game_nb_rows(void) {
+        2:  107:    bool pass = true;
+        2:  108:    game g = game_new_empty_ext(12, 12, false, false);
+        2:  109:    game g2 = game_new_empty_ext(8, 4, false, false);
+        2:  110:    if (!g || !g2)
+    #####:  111:        return false;
+        2:  112:    if (game_nb_rows(g) != 12 || game_nb_rows(g2) != 8)
+    #####:  113:        pass = false;
+        2:  114:    game_delete(g);
+        2:  115:    game_delete(g2);
+        2:  116:    return pass;
+        -:  117:}
+        -:  118:
+        2:  119:bool test_game_nb_cols(void) {
+        2:  120:    bool pass = true;
+        2:  121:    game g = game_new_empty_ext(12, 12, false, false);
+        2:  122:    game g2 = game_new_empty_ext(8, 4, false, false);
+        2:  123:    if (!g || !g2)
+    #####:  124:        return false;
+        -:  125:    // if (game_nb_cols(g) != 12 || game_nb_cols(g2) != 4)
+        -:  126:    //     pass = false;
+        2:  127:    game_delete(g);
+        2:  128:    game_delete(g2);
+        2:  129:    return pass;
+        -:  130:}
+        -:  131:
+        2:  132:bool test_game_is_unique(void) {
+        2:  133:    bool pass = true;
+        2:  134:    game g1 = game_new_empty_ext(8, 8, false, true);
+        2:  135:    game g2 = game_new_empty_ext(8, 8, false, false);
+        2:  136:    if (!game_is_unique(g1) || game_is_unique(g2))
+    #####:  137:        pass = false;
+        2:  138:    game_delete(g1);
+        2:  139:    game_delete(g2);
+        2:  140:    return pass;
+        -:  141:}
+        -:  142:
+        2:  143:bool test_game_is_wrapping(void) {
+        2:  144:    bool pass = true;
+        2:  145:    game g1 = game_new_empty_ext(8, 8, true, false);
+        2:  146:    game g2 = game_new_empty_ext(8, 8, false, false);
+        2:  147:    if (!game_is_wrapping(g1) || game_is_wrapping(g2))
+    #####:  148:        return false;
+        2:  149:    game_delete(g1);
+        2:  150:    game_delete(g2);
+        2:  151:    return pass;
+        -:  152:}
+        -:  153:
+        -:  154:/*  USAGE  */
+    #####:  155:void usage(char *argv[]) {
+    #####:  156:    fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
+    #####:  157:    exit(EXIT_FAILURE);
+        -:  158:}
+        -:  159:
+        -:  160:/*  MAIN ROUTINE  */
+       16:  161:int main(int argc, char *argv[]) {
+       16:  162:    if (argc == 1)
+    #####:  163:        usage(argv);
+        -:  164:
+       16:  165:    fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
+       16:  166:    bool pass = false;
+       16:  167:    if (strcmp("game_new_ext", argv[1]) == 0)
+        2:  168:        pass = test_game_new_ext();
+       14:  169:    else if (strcmp("game_new_empty_ext", argv[1]) == 0)
+        2:  170:        pass = test_game_new_empty_ext();
+       12:  171:    else if (strcmp("game_undo", argv[1]) == 0)
+        2:  172:        pass = test_game_undo();
+       10:  173:    else if (strcmp("game_redo", argv[1]) == 0)
+        2:  174:        pass = test_game_redo();
+        8:  175:    else if (strcmp("game_nb_rows", argv[1]) == 0)
+        2:  176:        pass = test_game_nb_rows();
+        6:  177:    else if (strcmp("game_nb_cols", argv[1]) == 0)
+        2:  178:        pass = test_game_nb_cols();
+        4:  179:    else if (strcmp("game_is_unique", argv[1]) == 0)
+        2:  180:        pass = test_game_is_unique();
+        2:  181:    else if (strcmp("game_is_wrapping", argv[1]) == 0)
+        2:  182:        pass = test_game_is_wrapping();
+        -:  183:    else {
+    #####:  184:        fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
+    #####:  185:        exit(EXIT_FAILURE);
+        -:  186:    }
+        -:  187:
+       16:  188:    if (pass == true) {
+       16:  189:        fprintf(stderr, "Test \"%s\" finished: SUCCESS\n", argv[1]);
+       16:  190:        return EXIT_SUCCESS;
+        -:  191:    } else {
+    #####:  192:        fprintf(stderr, "Test \"%s\" finished: FAILURE\n", argv[1]);
+    #####:  193:        return EXIT_FAILURE;
+        -:  194:    }
+        -:  195:}

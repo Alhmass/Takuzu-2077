@@ -1,0 +1,1 @@
+/usr/bin/cc -std=c99 -Wall -Wextra -Werror -g -rdynamic CMakeFiles/test_mode_error.dir/tests/test_mode_error.c.o -o test_mode_error   -L"/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c"  -Wl,-rpath,"/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c" libgame.a 

@@ -1,0 +1,234 @@
+        -:    0:Source:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/tests/test_mode_error.c
+        -:    0:Graph:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/test_mode_error.dir/tests/test_mode_error.c.gcno
+        -:    0:Data:/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/CMakeFiles/test_mode_error.dir/tests/test_mode_error.c.gcda
+        -:    0:Runs:16
+        -:    1:#include "takuzu.h"
+        -:    2:
+        2:    3:bool test_is_unique_array() { 
+        2:    4:    bool pass = true;
+        2:    5:    square array1[4 * 4] = {1, 3, 2, 2, 1, 1, 2, 4, 1, 4, 1, 3, 3, 2, 1, 4};
+        2:    6:    square array2[4 * 4] = {1, 0, 0, 3, 4, 0, 0, 2, 2, 0, 0, 4, 1, 0, 0, 3};
+        2:    7:    square array3[4 * 4] = {1, 4, 2, 3, 2, 1, 1, 2, 4, 4, 1, 3, 1, 3, 4, 2};
+        2:    8:    game g1 = game_new_ext(4, 4, array1, true, false);
+        2:    9:    game g2 = game_new_ext(4, 4, array2, true, false);
+        2:   10:    game g3 = game_new_ext(4, 4, array3, true, false);
+        2:   11:    if (is_unique_array(g1, 0, 0))
+    #####:   12:        pass = false;
+        2:   13:    if (is_unique_array(g2, 0, 0))
+    #####:   14:        pass = false;
+        2:   15:    if (!is_unique_array(g3, 0, 0))
+    #####:   16:        pass = false;
+        2:   17:    game_delete(g1);
+        2:   18:    game_delete(g2);
+        2:   19:    game_delete(g3);
+        2:   20:    return pass;
+        -:   21:}
+        -:   22:
+        2:   23:bool test_is_array_same() {
+        2:   24:    bool pass = true;
+        2:   25:    square array1[6] = {1, 1, 1, 1, 1, 1};
+        2:   26:    square array2[6] = {1, 3, 1, 3, 1, 3};
+        2:   27:    square array3[6] = {2, 2, 2, 2, 2, 2};
+        2:   28:    square array4[6] = {2, 4, 4, 4, 2, 2};
+        2:   29:    if (!is_array_same(array1, array2, 6))
+    #####:   30:        pass = false;
+        2:   31:    if (is_array_same(array1, array3, 6))
+    #####:   32:        pass = false;
+        2:   33:    if (is_array_same(array2, array3, 6))
+    #####:   34:        pass = false;
+        2:   35:    if (is_array_same(array1, array4, 6))
+    #####:   36:        pass = false;
+        2:   37:    if (!is_array_same(array3, array4, 6))
+    #####:   38:        pass = false;
+        2:   39:    return pass;
+        -:   40:}
+        -:   41:
+        2:   42:bool test_is_consecutive_grid() {
+        2:   43:    bool pass = true;
+        2:   44:    square square_1[4 * 4] = {3, 1, 1, 2, 4, 3, 2, 1, 4, 2, 3, 1, 1, 2, 2, 2};
+        2:   45:    game g1 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_1, false, false);
+        2:   46:    square square_2[4 * 4] = {1, 1, 2, 3, 2, 1, 2, 1, 2, 2, 1, 1, 1, 2, 2, 2};
+        2:   47:    game g2 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_2, false, false);
+        2:   48:    square square_3[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 2, 1, 2, 1, 2, 1, 3, 4, 2, 1, 1, 2, 2, 1, 
+        -:   49:                                                    2, 1, 3, 4, 4, 1, 1, 2, 3, 1, 3, 2, 3, 3, 2, 1, 4, 2};
+        2:   50:    game g3 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_3, false, false);
+        2:   51:    square square_4[DEFAULT_SIZE * DEFAULT_SIZE] = {1, 4, 3, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 3, 1, 2, 3, 2,
+        -:   52:                                                    2, 3, 4, 1, 1, 2, 1, 2, 4, 1, 2, 3, 2, 1, 1, 2, 2, 3};
+        2:   53:    game g4 = game_new_ext(DEFAULT_SIZE, DEFAULT_SIZE, square_4, false, false);
+        2:   54:    if (!is_consecutive_grid(g1, 0, 0))
+    #####:   55:        pass = false;
+        2:   56:    if (!is_consecutive_grid(g2, 0, 0))
+    #####:   57:        pass = false;
+        2:   58:    if (!is_consecutive_grid(g3, 0, 0))
+    #####:   59:        pass = false; 
+        2:   60:    if (is_consecutive_grid(g4, 0, 0))
+    #####:   61:        pass = false; 
+        2:   62:    game_delete(g1);
+        2:   63:    game_delete(g2);
+        2:   64:    game_delete(g3);
+        2:   65:    game_delete(g4);
+        2:   66:    return pass;
+        -:   67:}
+        -:   68:
+        2:   69:bool test_is_consecutive() {
+        2:   70:    bool pass = true;
+        2:   71:    square square_1[DEFAULT_SIZE] = {1, 1, 3, 2, 4, 3};
+        2:   72:    game g1 = game_new_ext(1, DEFAULT_SIZE, square_1, false, false);
+        2:   73:    square square_2[DEFAULT_SIZE] = {4, 2, 4, 1, 2, 3};
+        2:   74:    game g2 = game_new_ext(1, DEFAULT_SIZE, square_2, false, false);
+        2:   75:    square square_3[DEFAULT_SIZE] = {1, 1, 2, 2, 1, 1};
+        2:   76:    game g3 = game_new_ext(1, DEFAULT_SIZE, square_3, false, false);
+        2:   77:    square square_4[DEFAULT_SIZE] = {1, 3, 2, 4, 1, 2};
+        2:   78:    game g4 = game_new_ext(1, DEFAULT_SIZE, square_4, false, false);
+        2:   79:    if(!is_consecutive(square_1, DEFAULT_SIZE, game_get_number(g1, 0, 0)))
+    #####:   80:        pass = false;
+        2:   81:    if(!is_consecutive(square_2, DEFAULT_SIZE, game_get_number(g2, 0, 0)))
+    #####:   82:        pass = false;
+        2:   83:    if(!is_consecutive(square_3, DEFAULT_SIZE, game_get_number(g3, 0, 0)))
+    #####:   84:        pass = false;
+        2:   85:    if(is_consecutive(square_4, DEFAULT_SIZE, game_get_number(g4, 0, 0)))
+    #####:   86:        pass = false;
+        2:   87:    game_delete(g1);
+        2:   88:    game_delete(g2);
+        2:   89:    game_delete(g3);
+        2:   90:    game_delete(g4);
+        2:   91:    return pass;
+        -:   92:}
+        -:   93:
+        2:   94:bool test_get_number() {
+        2:   95:    bool pass = true;
+        2:   96:    square a = S_ONE;
+        2:   97:    square b = S_ZERO;
+        2:   98:    square c = S_IMMUTABLE_ONE;
+        2:   99:    square d = S_IMMUTABLE_ZERO;
+        2:  100:    square e = S_EMPTY;
+        4:  101:    if (get_number(e) != -1 || (get_number(a) != 1 || get_number(c) != 1) ||
+        4:  102:        (get_number(b) != 0 || get_number(d) != 0)) {
+    #####:  103:        pass = false;
+        -:  104:    }
+        2:  105:    return pass;
+        -:  106:}
+        -:  107:
+        2:  108:bool test_rotate_array() {
+        2:  109:    bool pass = true;
+        2:  110:    square array[6] = {1, 3, 1, 3, 1, 3};
+        2:  111:    square array2[6] = {1, 3, 1, 3, 1, 3};
+        2:  112:    rotate_array(array2, 6);
+        2:  113:    square array3[6] = {3, 1, 3, 1, 3, 1};
+        2:  114:    square array4[6] = {1, 3, 1, 3, 1, 3};
+        2:  115:    print_array(array, 6);
+        2:  116:    print_array(array2, 6);
+        2:  117:    print_array(array3, 6);
+        2:  118:    if (!is_array_same(array, array2, 6))
+    #####:  119:        pass = false;
+        2:  120:    if (!is_array_same(array2, array3, 6))
+    #####:  121:        pass = false;
+       14:  122:    for (uint i = 0; i < DEFAULT_SIZE; i++) {
+       12:  123:        rotate_array(array4, 6);
+        -:  124:    }
+        2:  125:    if (!is_array_same(array, array4, 6))
+    #####:  126:        pass = false;
+        2:  127:    return pass;
+        -:  128:}
+        -:  129:
+        2:  130:bool test_get_col() {
+        2:  131:    bool pass = true;
+        2:  132:    square square_1[DEFAULT_SIZE * 2] = {1, 2, 1, 1, 2, 1, 3, 4, 3, 4, 3, 4};
+        2:  133:    game g = game_new_ext(DEFAULT_SIZE, 2, square_1, false, false);
+        2:  134:    square square_2[DEFAULT_SIZE] = {1, 1, 2, 3, 3, 3};
+        2:  135:    square square_3[DEFAULT_SIZE] = {2, 1, 1, 4, 4, 4};
+        2:  136:    square square_4[DEFAULT_SIZE] = {3, 2, 1, 3, 2, 1};
+        2:  137:    square *col_0 = get_col(g, 0);
+        2:  138:    square *col_1 = get_col(g, 1);
+        2:  139:    if (!is_array_same(col_0, square_2, 2))
+    #####:  140:        pass = false;
+        2:  141:    if (!is_array_same(col_1, square_3, 2))
+    #####:  142:        pass = false;
+        2:  143:    if (is_array_same(col_0, square_4, 2))
+    #####:  144:        pass = false;
+        2:  145:    if (is_array_same(col_1, square_4, 2))
+    #####:  146:        pass = false;
+        2:  147:    free(col_0);
+        2:  148:    free(col_1);
+        2:  149:    game_delete(g);
+        2:  150:    return pass;
+        -:  151:}
+        -:  152:
+        2:  153:bool test_get_row() {
+        2:  154:    bool pass = true;
+        2:  155:    square square_1[DEFAULT_SIZE * 2] = {1, 2, 1, 1, 2, 1, 3, 4, 3, 4, 3, 4};
+        2:  156:    game g = game_new_ext(2, DEFAULT_SIZE, square_1, true, false);
+        2:  157:    square square_2[DEFAULT_SIZE] = {1, 2, 1, 1, 2, 1};
+        2:  158:    square square_3[DEFAULT_SIZE] = {3, 4, 3, 4, 3, 4};
+        2:  159:    square square_4[DEFAULT_SIZE] = {1, 2, 3, 1, 2, 0};
+        2:  160:    square *row_0 = get_row(g, 0);
+        2:  161:    square *row_1 = get_row(g, 1);
+        2:  162:    if (!is_array_same(row_0, square_2, 6))
+    #####:  163:        pass = false;
+        2:  164:    if (!is_array_same(row_1, square_3, 6))
+    #####:  165:        pass = false;
+        2:  166:    if (is_array_same(row_0, square_4, 6))
+    #####:  167:        pass = false;
+        2:  168:    if (is_array_same(row_1, square_4, 6))
+    #####:  169:        pass = false;
+        2:  170:    free(row_0);
+        2:  171:    free(row_1);
+        2:  172:    game_delete(g);
+        2:  173:    return pass;
+        -:  174:}
+        -:  175:
+    #####:  176:bool test_is_array_full(){
+    #####:  177:    bool pass = true;
+    #####:  178:    square array1[DEFAULT_SIZE] = {1, 2, 3, 1, 2, 3};
+    #####:  179:    square array2[DEFAULT_SIZE] = {1, 0, 3, 1, 2, 3};
+    #####:  180:    if (!is_array_full(array1, DEFAULT_SIZE))
+    #####:  181:        pass = false;
+    #####:  182:    if (is_array_full(array2, DEFAULT_SIZE))
+    #####:  183:        pass = false;
+    #####:  184:    return pass;
+        -:  185:}
+        -:  186:
+        -:  187:/*  USAGE  */
+    #####:  188:void usage(char *argv[]) {
+    #####:  189:    fprintf(stderr, "Usage: %s <testname> [<...>]\n", argv[0]);
+    #####:  190:    exit(EXIT_FAILURE);
+        -:  191:}
+        -:  192:
+        -:  193:/*  MAIN ROUTINE  */
+       16:  194:int main(int argc, char *argv[]) {
+       16:  195:    if (argc == 1)
+    #####:  196:        usage(argv);
+        -:  197:
+       16:  198:    fprintf(stderr, "=> Start test \"%s\"\n", argv[1]);
+       16:  199:    bool pass = false;
+       16:  200:    if (strcmp("is_unique_array", argv[1]) == 0)
+        2:  201:        pass = test_is_unique_array();
+       14:  202:    else if (strcmp("is_array_same", argv[1]) == 0)
+        2:  203:        pass = test_is_array_same();
+       12:  204:    else if (strcmp("is_consecutive_grid", argv[1]) == 0)
+        2:  205:        pass = test_is_consecutive_grid();
+       10:  206:    else if (strcmp("is_consecutive", argv[1]) == 0)
+        2:  207:        pass = test_is_consecutive();
+        8:  208:    else if (strcmp("get_number", argv[1]) == 0)
+        2:  209:        pass = test_get_number();
+        6:  210:    else if (strcmp("rotate_array", argv[1]) == 0)
+        2:  211:        pass = test_rotate_array();
+        4:  212:    else if (strcmp("get_col", argv[1]) == 0)
+        2:  213:        pass = test_get_col();
+        2:  214:    else if (strcmp("get_row", argv[1]) == 0)
+        2:  215:        pass = test_get_row();
+    #####:  216:    else if (strcmp("is_array_full", argv[1]) == 0)
+    #####:  217:        pass = test_is_array_full();
+        -:  218:    else {
+    #####:  219:        fprintf(stderr, "Error: test \"%s\" not found!\n", argv[1]);
+    #####:  220:        exit(EXIT_FAILURE);
+        -:  221:    }
+        -:  222:
+       16:  223:    if (pass == true) {
+       16:  224:        fprintf(stderr, "Test \"%s\" finished: SUCCESS\n", argv[1]);
+       16:  225:        return EXIT_SUCCESS;
+        -:  226:    } else {
+    #####:  227:        fprintf(stderr, "Test \"%s\" finished: FAILURE\n", argv[1]);
+    #####:  228:        return EXIT_FAILURE;
+        -:  229:    }
+        -:  230:}

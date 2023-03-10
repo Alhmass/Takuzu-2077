@@ -1,0 +1,877 @@
+Start testing: Mar 10 19:51 CET
+----------------------------------------------------------
+1/51 Testing: test_game_new
+1/51 Test: test_game_new
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_new"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_new" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_new"
+Test "game_new" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_new" end time: Mar 10 19:51 CET
+"test_game_new" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/51 Testing: test_game_new_empty
+2/51 Test: test_game_new_empty
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_new_empty"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_new_empty" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_new_empty"
+Test "game_new_empty" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_new_empty" end time: Mar 10 19:51 CET
+"test_game_new_empty" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/51 Testing: test_game_copy
+3/51 Test: test_game_copy
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_copy"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_copy" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_copy"
+Test "game_copy" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_copy" end time: Mar 10 19:51 CET
+"test_game_copy" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/51 Testing: test_game_equal
+4/51 Test: test_game_equal
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_equal"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_equal" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_equal"
+Test "game_equal" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_equal" end time: Mar 10 19:51 CET
+"test_game_equal" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/51 Testing: test_game_delete
+5/51 Test: test_game_delete
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_delete"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_delete" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_delete"
+Test "game_delete" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_delete" end time: Mar 10 19:51 CET
+"test_game_delete" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/51 Testing: test_game_is_empty
+6/51 Test: test_game_is_empty
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_is_empty"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_is_empty" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_is_empty"
+Test "game_is_empty" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_is_empty" end time: Mar 10 19:51 CET
+"test_game_is_empty" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/51 Testing: test_game_restart
+7/51 Test: test_game_restart
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_restart"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_restart" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_restart"
+Test "game_restart" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_restart" end time: Mar 10 19:51 CET
+"test_game_restart" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/51 Testing: test_game_set_square
+8/51 Test: test_game_set_square
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_set_square"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_set_square" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_set_square"
+Test "game_set_square" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_set_square" end time: Mar 10 19:51 CET
+"test_game_set_square" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/51 Testing: test_game_get_square
+9/51 Test: test_game_get_square
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_square"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_get_square" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_get_square"
+Test "game_get_square" finished: SUCCESS
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_get_square" end time: Mar 10 19:51 CET
+"test_game_get_square" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/51 Testing: test_game_get_number
+10/51 Test: test_game_get_number
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_number"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_get_number" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_get_number"
+Test "game_get_number" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_get_number" end time: Mar 10 19:51 CET
+"test_game_get_number" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/51 Testing: test_game_get_next_square
+11/51 Test: test_game_get_next_square
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_next_square"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_get_next_square" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_get_next_square"
+Test "game_get_next_square" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_get_next_square" end time: Mar 10 19:51 CET
+"test_game_get_next_square" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/51 Testing: test_game_get_next_number
+12/51 Test: test_game_get_next_number
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_get_next_number"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_get_next_number" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_get_next_number"
+Test "game_get_next_number" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_get_next_number" end time: Mar 10 19:51 CET
+"test_game_get_next_number" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/51 Testing: test_game_is_immutable
+13/51 Test: test_game_is_immutable
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_is_immutable"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_is_immutable" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_is_immutable"
+Test "game_is_immutable" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_is_immutable" end time: Mar 10 19:51 CET
+"test_game_is_immutable" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/51 Testing: test_game_has_error
+14/51 Test: test_game_has_error
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_has_error"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_has_error" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_has_error"
+Test "game_has_error" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_has_error" end time: Mar 10 19:51 CET
+"test_game_has_error" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/51 Testing: test_game_check_move
+15/51 Test: test_game_check_move
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_check_move"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_check_move" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_check_move"
+Test "game_check_move" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_check_move" end time: Mar 10 19:51 CET
+"test_game_check_move" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/51 Testing: test_game_play_move
+16/51 Test: test_game_play_move
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_play_move"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_play_move" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_play_move"
+Test "game_play_move" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_play_move" end time: Mar 10 19:51 CET
+"test_game_play_move" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/51 Testing: test_game_is_over
+17/51 Test: test_game_is_over
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game" "game_is_over"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_is_over" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_is_over"
+Test "game_is_over" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_is_over" end time: Mar 10 19:51 CET
+"test_game_is_over" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/51 Testing: test_game_default
+18/51 Test: test_game_default
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_aux" "game_default"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_default" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_default"
+Test "game_default" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_default" end time: Mar 10 19:51 CET
+"test_game_default" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/51 Testing: test_game_default_solution
+19/51 Test: test_game_default_solution
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_aux" "game_default_solution"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_default_solution" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_default_solution"
+Test "game_default_solution" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_default_solution" end time: Mar 10 19:51 CET
+"test_game_default_solution" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/51 Testing: test_game_print
+20/51 Test: test_game_print
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_aux" "game_print"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_print" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_print"
+Test "game_print" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_print" end time: Mar 10 19:51 CET
+"test_game_print" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/51 Testing: test_game_new_ext
+21/51 Test: test_game_new_ext
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_new_ext"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_new_ext" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_new_ext"
+Test "game_new_ext" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_new_ext" end time: Mar 10 19:51 CET
+"test_game_new_ext" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/51 Testing: test_game_new_empty_ext
+22/51 Test: test_game_new_empty_ext
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_new_empty_ext"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_new_empty_ext" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_new_empty_ext"
+Test "game_new_empty_ext" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_new_empty_ext" end time: Mar 10 19:51 CET
+"test_game_new_empty_ext" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/51 Testing: test_game_undo
+23/51 Test: test_game_undo
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_undo"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_undo" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_undo"
+Test "game_undo" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_undo" end time: Mar 10 19:51 CET
+"test_game_undo" time elapsed: 00:00:00
+----------------------------------------------------------
+
+24/51 Testing: test_game_redo
+24/51 Test: test_game_redo
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_redo"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_redo" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_redo"
+Test "game_redo" finished: SUCCESS
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_redo" end time: Mar 10 19:51 CET
+"test_game_redo" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/51 Testing: test_game_nb_rows
+25/51 Test: test_game_nb_rows
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_nb_rows"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_nb_rows" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_nb_rows"
+Test "game_nb_rows" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_nb_rows" end time: Mar 10 19:51 CET
+"test_game_nb_rows" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/51 Testing: test_game_nb_cols
+26/51 Test: test_game_nb_cols
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_nb_cols"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_nb_cols" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_nb_cols"
+Test "game_nb_cols" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_nb_cols" end time: Mar 10 19:51 CET
+"test_game_nb_cols" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/51 Testing: test_game_is_unique
+27/51 Test: test_game_is_unique
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_is_unique"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_is_unique" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_is_unique"
+Test "game_is_unique" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_is_unique" end time: Mar 10 19:51 CET
+"test_game_is_unique" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/51 Testing: test_game_is_wrapping
+28/51 Test: test_game_is_wrapping
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_ext" "game_is_wrapping"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_is_wrapping" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_is_wrapping"
+Test "game_is_wrapping" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_is_wrapping" end time: Mar 10 19:51 CET
+"test_game_is_wrapping" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/51 Testing: test_game_load
+29/51 Test: test_game_load
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_tools" "game_load"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_load" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_load"
+Test "game_load" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_load" end time: Mar 10 19:51 CET
+"test_game_load" time elapsed: 00:00:00
+----------------------------------------------------------
+
+30/51 Testing: test_game_save
+30/51 Test: test_game_save
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_tools" "game_save"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_save" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_save"
+Test "game_save" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_save" end time: Mar 10 19:51 CET
+"test_game_save" time elapsed: 00:00:00
+----------------------------------------------------------
+
+31/51 Testing: test_game_solve
+31/51 Test: test_game_solve
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_tools" "game_solve"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_solve" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_solve"
+Test "game_solve" finished: SUCCESS
+<end of output>
+Test time =   1.24 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_solve" end time: Mar 10 19:51 CET
+"test_game_solve" time elapsed: 00:00:01
+----------------------------------------------------------
+
+32/51 Testing: test_game_nb_solutions
+32/51 Test: test_game_nb_solutions
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_tools" "game_nb_solutions"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_game_nb_solutions" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "game_nb_solutions"
+Test "game_nb_solutions" finished: SUCCESS
+<end of output>
+Test time =   4.25 sec
+----------------------------------------------------------
+Test Passed.
+"test_game_nb_solutions" end time: Mar 10 19:51 CET
+"test_game_nb_solutions" time elapsed: 00:00:04
+----------------------------------------------------------
+
+33/51 Testing: test_solver_new
+33/51 Test: test_solver_new
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_solver" "solver_new"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_solver_new" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "solver_new"
+Test "solver_new" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_solver_new" end time: Mar 10 19:51 CET
+"test_solver_new" time elapsed: 00:00:00
+----------------------------------------------------------
+
+34/51 Testing: test_solver_delete
+34/51 Test: test_solver_delete
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_solver" "solver_delete"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_solver_delete" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "solver_delete"
+Test "solver_delete" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_solver_delete" end time: Mar 10 19:51 CET
+"test_solver_delete" time elapsed: 00:00:00
+----------------------------------------------------------
+
+35/51 Testing: test_find_solutions
+35/51 Test: test_find_solutions
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_solver" "find_solutions"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_find_solutions" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "find_solutions"
+Test "find_solutions" finished: FAILURE
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"test_find_solutions" end time: Mar 10 19:51 CET
+"test_find_solutions" time elapsed: 00:00:00
+----------------------------------------------------------
+
+36/51 Testing: test_is_word_solution
+36/51 Test: test_is_word_solution
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_solver" "is_word_solution"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_is_word_solution" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "is_word_solution"
+free(): invalid pointer
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"test_is_word_solution" end time: Mar 10 19:51 CET
+"test_is_word_solution" time elapsed: 00:00:00
+----------------------------------------------------------
+
+37/51 Testing: test_copy_solution
+37/51 Test: test_copy_solution
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_game_solver" "copy_solution"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_copy_solution" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "copy_solution"
+Test "copy_solution" finished: FAILURE
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"test_copy_solution" end time: Mar 10 19:51 CET
+"test_copy_solution" time elapsed: 00:00:00
+----------------------------------------------------------
+
+38/51 Testing: test_new_ext
+38/51 Test: test_new_ext
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "new_ext"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_new_ext" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "new_ext"
+Test "new_ext" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_new_ext" end time: Mar 10 19:51 CET
+"test_new_ext" time elapsed: 00:00:00
+----------------------------------------------------------
+
+39/51 Testing: test_new_empty_ext
+39/51 Test: test_new_empty_ext
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "new_empty_ext"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_new_empty_ext" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "new_empty_ext"
+Test "new_empty_ext" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_new_empty_ext" end time: Mar 10 19:51 CET
+"test_new_empty_ext" time elapsed: 00:00:00
+----------------------------------------------------------
+
+40/51 Testing: test_equal_ext
+40/51 Test: test_equal_ext
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "equal_ext"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_equal_ext" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "equal_ext"
+Test "equal_ext" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_equal_ext" end time: Mar 10 19:51 CET
+"test_equal_ext" time elapsed: 00:00:00
+----------------------------------------------------------
+
+41/51 Testing: test_copy_ext
+41/51 Test: test_copy_ext
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "copy_ext"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_copy_ext" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "copy_ext"
+Test "copy_ext" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_copy_ext" end time: Mar 10 19:51 CET
+"test_copy_ext" time elapsed: 00:00:00
+----------------------------------------------------------
+
+42/51 Testing: test_get_next_square_wrapping
+42/51 Test: test_get_next_square_wrapping
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "get_next_square_wrapping"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_get_next_square_wrapping" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "get_next_square_wrapping"
+Test "get_next_square_wrapping" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_get_next_square_wrapping" end time: Mar 10 19:51 CET
+"test_get_next_square_wrapping" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/51 Testing: test_get_next_number_wrapping
+43/51 Test: test_get_next_number_wrapping
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "get_next_number_wrapping"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_get_next_number_wrapping" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "get_next_number_wrapping"
+Test "get_next_number_wrapping" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_get_next_number_wrapping" end time: Mar 10 19:51 CET
+"test_get_next_number_wrapping" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/51 Testing: test_has_error_wrapping
+44/51 Test: test_has_error_wrapping
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "has_error_wrapping"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_has_error_wrapping" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "has_error_wrapping"
+Test "has_error_wrapping" finished: SUCCESS
+   01234567
+   --------
+0 |Wwbbwbbw|
+1 |wwbbwbbw|
+2 |bbwwbwwb|
+3 |bbwwbwwb|
+   --------
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_has_error_wrapping" end time: Mar 10 19:51 CET
+"test_has_error_wrapping" time elapsed: 00:00:00
+----------------------------------------------------------
+
+45/51 Testing: test_is_over_wrapping
+45/51 Test: test_is_over_wrapping
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "is_over_wrapping"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_is_over_wrapping" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "is_over_wrapping"
+Test "is_over_wrapping" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_is_over_wrapping" end time: Mar 10 19:51 CET
+"test_is_over_wrapping" time elapsed: 00:00:00
+----------------------------------------------------------
+
+46/51 Testing: test_has_error_unique
+46/51 Test: test_has_error_unique
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "has_error_unique"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_has_error_unique" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "has_error_unique"
+Test "has_error_unique" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_has_error_unique" end time: Mar 10 19:51 CET
+"test_has_error_unique" time elapsed: 00:00:00
+----------------------------------------------------------
+
+47/51 Testing: test_is_over_unique
+47/51 Test: test_is_over_unique
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "is_over_unique"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_is_over_unique" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "is_over_unique"
+Test "is_over_unique" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_is_over_unique" end time: Mar 10 19:51 CET
+"test_is_over_unique" time elapsed: 00:00:00
+----------------------------------------------------------
+
+48/51 Testing: test_undo_one
+48/51 Test: test_undo_one
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "undo_one"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_undo_one" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "undo_one"
+Test "undo_one" finished: SUCCESS
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_undo_one" end time: Mar 10 19:51 CET
+"test_undo_one" time elapsed: 00:00:00
+----------------------------------------------------------
+
+49/51 Testing: test_undo_redo_some
+49/51 Test: test_undo_redo_some
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "undo_redo_some"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_undo_redo_some" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "undo_redo_some"
+Test "undo_redo_some" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_undo_redo_some" end time: Mar 10 19:51 CET
+"test_undo_redo_some" time elapsed: 00:00:00
+----------------------------------------------------------
+
+50/51 Testing: test_undo_redo_all
+50/51 Test: test_undo_redo_all
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "undo_redo_all"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_undo_redo_all" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "undo_redo_all"
+Test "undo_redo_all" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_undo_redo_all" end time: Mar 10 19:51 CET
+"test_undo_redo_all" time elapsed: 00:00:00
+----------------------------------------------------------
+
+51/51 Testing: test_restart_undo
+51/51 Test: test_restart_undo
+Command: "/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build/test_v2" "restart_undo"
+Directory: /mnt/c/Users/Alexandre L-P/Documents/takuzu-01c/build
+"test_restart_undo" start time: Mar 10 19:51 CET
+Output:
+----------------------------------------------------------
+=> Start test "restart_undo"
+Test "restart_undo" finished: SUCCESS
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_restart_undo" end time: Mar 10 19:51 CET
+"test_restart_undo" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 10 19:51 CET

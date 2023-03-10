@@ -1,0 +1,1 @@
+/usr/bin/cc -std=c99 -Wall -Wextra -Werror -g -rdynamic CMakeFiles/test_throw_assert.dir/tests/test_throw_assert.c.o -o test_throw_assert   -L"/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c"  -Wl,-rpath,"/mnt/c/Users/Alexandre L-P/Documents/takuzu-01c" libgame.a 
