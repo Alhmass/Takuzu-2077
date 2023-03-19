@@ -10,6 +10,7 @@ solver solver_new(game g, bool unique) {
 
     s->len = game_nb_empty(g);
     s->coords = malloc(sizeof(coordinates) * s->len);
+    printf("solver_new: s->len = %d\n", s->len);
     assert(s->coords);
 
     uint index = 0;

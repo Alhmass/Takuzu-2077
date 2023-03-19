@@ -8,13 +8,16 @@ game game_new_ext(uint nb_rows, uint nb_cols, square* squares, bool wrapping, bo
     game g = game_new_empty_ext(nb_rows, nb_cols, wrapping, unique);
     assert(g);
 
+    g->nb_empty = 0;
+    g->nb_zero = 0;
+    g->nb_one = 0;
     // set squares
     for (uint i = 0; i < g->nb_rows; i++) {
         for (uint j = 0; j < g->nb_cols; j++) {
             square s = squares[i * nb_cols + j];
             SQUARE(g, i, j) = s;
 
-            if (s == S_EMPTY) {
+            if (s == S_EMPTY || s == S_ZERO || s == S_ONE) {
                 g->nb_empty++;
             } else if (s == S_IMMUTABLE_ZERO) {
                 g->nb_zero++;
@@ -113,7 +116,7 @@ void update_counters(game g) {
 
     for (uint i = 0; i < g->nb_rows; i++) {
         for (uint j = 0; j < g->nb_cols; j++) {
-            if (SQUARE(g, i, j) == S_EMPTY) {
+            if (SQUARE(g, i, j) == S_EMPTY || SQUARE(g, i, j) == S_ZERO || SQUARE(g, i, j) == S_ONE) {
                 g->nb_empty++;
             } else if (SQUARE(g, i, j) == S_IMMUTABLE_ZERO) {
                 g->nb_zero++;
