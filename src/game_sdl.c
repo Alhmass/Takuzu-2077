@@ -1,11 +1,4 @@
-#include <SDL.h>
-#include <SDL_image.h>  // required to load transparent texture from PNG
-#include <SDL_mixer.h>  // required to play sounds
-#include <SDL_ttf.h>    // required to use TTF fonts
-#include <stdbool.h>
-#include <stdio.h>
-
-#include "model.h"
+#include "takuzu.h"
 
 /* **************************************************************** */
 
@@ -43,6 +36,12 @@ int main(int argc, char* argv[]) {
     /* main render loop */
     SDL_Event e;
     bool quit = false;
+
+    SDL_SetWindowMinimumSize(win, 800, 600);
+    SDL_SetWindowMaximumSize(win, 1920, 1080);
+    SDL_SetWindowPosition(win, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+    // SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN_DESKTOP);
+
     while (!quit) {
         /* manage events */
         while (SDL_PollEvent(&e)) {
@@ -52,14 +51,11 @@ int main(int argc, char* argv[]) {
                 break;
         }
 
-        /* background in gray */
-        SDL_SetRenderDrawColor(ren, 0xA0, 0xA0, 0xA0, 0xFF);
+        // Window Reset
         SDL_RenderClear(ren);
-
-        /* render all what you want */
         render(win, ren, env);
         SDL_RenderPresent(ren);
-        SDL_Delay(DELAY);
+        SDL_Delay(10);
     }
 
     /* clean your environment */
@@ -69,6 +65,7 @@ int main(int argc, char* argv[]) {
     SDL_DestroyWindow(win);
     IMG_Quit();
     TTF_Quit();
+    Mix_Quit();
     SDL_Quit();
 
     return EXIT_SUCCESS;

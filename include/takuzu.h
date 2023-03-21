@@ -29,6 +29,6 @@
 #include "game_tools.h"
 
 /* Game SDL Headers */
-#include "model.h"
+#include "sdl_game.h"
 
 #endif /* __TAKUZU_H__ */

@@ -1,7 +1,7 @@
 // SDL2 Model by aurelien.esnard@u-bordeaux.fr
 
-#ifndef MODEL_H
-#define MODEL_H
+#ifndef ENGINE_H
+#define ENGINE_H
 
 #include <SDL.h>
 #include <stdbool.h>
@@ -36,9 +36,9 @@ typedef struct Env_t Env;
 /* **************************************************************** */
 
 #define APP_NAME "Takuzu_2077"
-#define SCREEN_WIDTH 600
-#define SCREEN_HEIGHT 600
-#define DELAY 100
+#define SCREEN_WIDTH 1600
+#define SCREEN_HEIGHT 900
+// #define DELAY 100
 
 /* **************************************************************** */
 
@@ -49,4 +49,4 @@ bool process(SDL_Window* win, SDL_Renderer* ren, Env* env, SDL_Event* e);
 
 /* **************************************************************** */
 
-#endif
+#endif /* ENGINE_H */

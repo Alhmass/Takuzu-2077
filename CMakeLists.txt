@@ -16,7 +16,9 @@ include_directories(${SDL2_ALL_INC})
 include_directories(include)
 include_directories(include/text)
 include_directories(include/solver)
+
 include_directories(include/sdl)
+include_directories(include/sdl/scenes)
 
 # ---- Library Generation ---- #
 file(GLOB_RECURSE game_lib_src lib/*.c)
@@ -38,11 +40,11 @@ link_libraries(game)
 # ---- Binary Generation ---- #
 add_executable(game_text ${game_text_src})
 add_executable(game_solve ${game_solve_src})
-
 add_executable(game_sdl ${game_sdl_src})
 target_link_libraries(game_sdl ${SDL2_ALL_LIBS} m)
 
 # ---- File Duplication ---- #
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/assets/)
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/saves/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/saves/)
 
 # ---- Tests Generation ---- #
