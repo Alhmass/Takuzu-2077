@@ -16,14 +16,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* Headers */
+/* Game Text Headers */
 #include "game.h"
 #include "game_aux.h"
 #include "game_ext.h"
 #include "game_private.h"
-#include "game_solver.h"
 #include "game_struct.h"
-#include "game_tools.h"
 #include "queue.h"
+
+/* Game Solver Headers */
+#include "game_solver.h"
+#include "game_tools.h"
+
+/* Game SDL Headers */
+#include "model.h"
 
 #endif /* __TAKUZU_H__ */

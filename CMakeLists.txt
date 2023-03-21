@@ -4,12 +4,24 @@ project(game_text C)
 include(CTest)
 enable_testing()
 
+# ---- Import SDL2 ---- #
+include(SDL2.cmake)
+message(STATUS "SDL2 include dir: ${SDL2_ALL_INC}")
+message(STATUS "SDL2 all libraries: ${SDL2_ALL_LIBS}")
+
+
 # ---- Pre Processor Intructions ---- #
+include_directories(${SDL2_ALL_INC})
+
 include_directories(include)
+include_directories(include/text)
+include_directories(include/solver)
+include_directories(include/sdl)
 
 # ---- Library Generation ---- #
 file(GLOB_RECURSE game_lib_src lib/*.c)
-add_library(game ${game_lib_src})
+file(GLOB_RECURSE game_graphical_src sdl/*.c)
+add_library(game ${game_lib_src} ${game_graphical_src})
 
 # ---- Compilation Options ---- #
 set(CMAKE_C_FLAGS "-std=c99 -Wall -Wextra -g")          # options de compilation génériques
@@ -19,12 +31,16 @@ set(CMAKE_C_FLAGS_RELEASE "-O3")                        # options de compilation
 # ---- Source Files ---- #
 file(GLOB_RECURSE game_text_src src/game_text.c)
 file(GLOB_RECURSE game_solve_src src/game_solve.c)
+file(GLOB_RECURSE game_sdl_src src/game_sdl.c)
 link_directories(${CMAKE_SOURCE_DIR})
 link_libraries(game)
 
 # ---- Binary Generation ---- #
 add_executable(game_text ${game_text_src})
 add_executable(game_solve ${game_solve_src})
+
+add_executable(game_sdl ${game_sdl_src})
+target_link_libraries(game_sdl ${SDL2_ALL_LIBS} m)
 
 # ---- File Duplication ---- #
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/saves/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/saves/)
