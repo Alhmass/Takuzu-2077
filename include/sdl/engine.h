@@ -7,7 +7,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-typedef struct Env_t Env;
+#include "env.h"
 
 /* **************************************************************** */
 
@@ -39,6 +39,11 @@ typedef struct Env_t Env;
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
 // #define DELAY 100
+
+/* **************************************************************** */
+
+#define X(x, env) ((x) * (env)->screen_width / 1920)
+#define Y(y, env) ((y) * (env)->screen_height / 1080)
 
 /* **************************************************************** */
 

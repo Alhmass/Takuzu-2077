@@ -1,3 +1,10 @@
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+
+#include "engine.h"
+#include "env.h"
+#include "sdl_game.h"
 #include "takuzu.h"
 
 /* **************************************************************** */
@@ -30,40 +37,30 @@ int main(int argc, char* argv[]) {
     if (!ren)
         ERROR("Error: SDL_CreateRenderer (%s)", SDL_GetError());
 
-    /* initialize your environment */
+    /* initialize the environment */
     Env* env = init(win, ren, argc, argv);
-
-    /* main render loop */
     SDL_Event e;
+
     bool quit = false;
-
-    SDL_SetWindowMinimumSize(win, 800, 600);
-    SDL_SetWindowMaximumSize(win, 1920, 1080);
-    SDL_SetWindowPosition(win, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-    // Fullscreen
-    SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN_DESKTOP);
-
     while (!quit) {
+        env_update(env);
         /* manage events */
         while (SDL_PollEvent(&e)) {
             /* process your events */
-            quit = process(win, ren, env, &e);
+            quit = process(env->win, env->ren, env, &e);
             if (quit)
                 break;
         }
 
         // Window Reset
-        SDL_RenderClear(ren);
-        render(win, ren, env);
-        SDL_RenderPresent(ren);
-        SDL_Delay(10);
+        SDL_RenderClear(env->ren);
+        render(env->win, env->ren, env);
+        SDL_RenderPresent(env->ren);
     }
 
-    /* clean your environment */
-    clean(win, ren, env);
+    /* clean the environment */
+    clean(env->win, env->ren, env);
 
-    SDL_DestroyRenderer(ren);
-    SDL_DestroyWindow(win);
     IMG_Quit();
     TTF_Quit();
     Mix_Quit();
