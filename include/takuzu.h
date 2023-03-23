@@ -28,7 +28,4 @@
 #include "game_solver.h"
 #include "game_tools.h"
 
-/* Game SDL Headers */
-#include "sdl_game.h"
-
 #endif /* __TAKUZU_H__ */

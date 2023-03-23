@@ -4,37 +4,41 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
+#include "controls.h"
+#include "create.h"
+#include "credits.h"
+#include "custom.h"
+#include "editor.h"
 #include "env.h"
-#include "sdl_game.h"
+#include "game_scene.h"
+#include "graphics.h"
+#include "main.h"
+#include "saved.h"
+#include "scene.h"
+#include "sounds.h"
+#include "stats.h"
 #include "takuzu.h"
 
 /* **************************************************************** */
 
 Env *init(SDL_Window *win, SDL_Renderer *ren, int argc, char *argv[]) {
-    Env *env = malloc(sizeof(struct Env_t));
+    Env *env = env_init(win, ren);
 
-    env->win = win;
-    env->ren = ren;
+    if (argc > 1)
+        env->takuzu = game_load(argv[1]);
+    else
+        env->takuzu = game_default();
 
-    /* set rules for window resizing */
-    SDL_SetWindowMinimumSize(env->win, 800, 600);
-    SDL_SetWindowMaximumSize(env->win, 1920, 1080);
-    SDL_SetWindowPosition(env->win, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-    // SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    void (*init_list[])(Scene scene, SDL_Renderer * ren, SDL_Rect win_rect) = {
+        main_init,   game_init,   controls_init, stats_init,    sounds_init,  saved_init,
+        create_init, custom_init, editor_init,   graphics_init, credits_init, NULL};
 
-    env->active_scene = MAIN;
-
-    if (argc > 1) {
-        env->game = game_load(argv[1]);
-    } else {
-        env->game = game_default();
-    }
-
-    void (*init_list[])(SDL_Window * win, SDL_Renderer * ren, int argc, char *argv[], Env *env) = {
-        m_init, c_init, g_init, lc_init, ls_init, nc_init, ne_init, sc_init, sg_init, sso_init, sst_init, NULL};
     for (int i = 0; init_list[i] != NULL; i++) {
-        (*init_list[i])(win, ren, argc, argv, env);
+        SCENE(env, i) = malloc(sizeof(struct Scene_s));
+        init_list[i](SCENE(env, i), env->ren, env->win_rect);
     }
+
+    SCENE(env, MAIN)->is_active = true;
 
     return env;
 }
@@ -42,40 +46,42 @@ Env *init(SDL_Window *win, SDL_Renderer *ren, int argc, char *argv[]) {
 /* **************************************************************** */
 
 void render(SDL_Window *win, SDL_Renderer *ren, Env *env) {
-    void (*render_list[])(SDL_Window * win, SDL_Renderer * ren, Env * env) = {
-        m_render,  c_render,  g_render,  lc_render,  ls_render,  nc_render,
-        ne_render, sc_render, sg_render, sso_render, sst_render, NULL};
-    for (int i = 0; render_list[i] != NULL; i++) {
-        (*render_list[i])(win, ren, env);
+    (void)win;
+    (void)ren;
+
+    for (int i = 0; i < NB_SCENES; i++) {
+        scene_render(SCENE(env, i), env->ren, env->win_rect);
     }
 }
 
 /* **************************************************************** */
 
 bool process(SDL_Window *win, SDL_Renderer *ren, Env *env, SDL_Event *e) {
+    (void)win;
+    (void)ren;
+
     if (e->type == SDL_QUIT) {
         return true;
     }
 
-    bool (*process_list[])(SDL_Window * win, SDL_Renderer * ren, Env * env, SDL_Event * e) = {
-        m_process,  c_process,  g_process,  lc_process,  ls_process,  nc_process,
-        ne_process, sc_process, sg_process, sso_process, sst_process, NULL};
-    for (int i = 0; process_list[i] != NULL; i++) {
-        if ((*process_list[i])(win, ren, env, e))
-            return true;
-    }
+    void (*process_list[])(Scene * scenes, Input input, SDL_Renderer * ren) = {
+        main_process,   game_process,   controls_process, stats_process,    sounds_process,  saved_process,
+        create_process, custom_process, editor_process,   graphics_process, credits_process, NULL};
 
+    for (int i = 0; process_list[i] != NULL; i++) {
+        process_list[i](env->scenes, env->input, env->ren);
+    }
     return false;
 }
 
 /* **************************************************************** */
 
 void clean(SDL_Window *win, SDL_Renderer *ren, Env *env) {
-    void (*clean_list[])(SDL_Window * win, SDL_Renderer * ren, Env * env) = {m_clean,  c_clean,   g_clean,   lc_clean,
-                                                                             ls_clean, nc_clean,  ne_clean,  sc_clean,
-                                                                             sg_clean, sso_clean, sst_clean, NULL};
-    for (int i = 0; clean_list[i] != NULL; i++) {
-        (*clean_list[i])(win, ren, env);
+    (void)win;
+    (void)ren;
+
+    for (int i = 0; i < NB_SCENES; i++) {
+        scene_delete(SCENE(env, i), env->ren);
     }
 
     env_delete(env);

@@ -4,68 +4,54 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <assert.h>
 
 #include "game.h"
+#include "input.h"
+#include "scene.h"
 
 /* **************************************************************** */
 
-/**
- * @brief The active scene
- * @details Contains all the scenes of the game
- */
-enum scenes {
-    MAIN,
-    GAME,
-    NEW_CREATE,
-    NEW_EDITOR,
-    LOAD_SAVED,
-    LOAD_CUSTOM,
-    SETTINGS_SOUNDS,
-    SETTINGS_CONTROLS,
-    SETTINGS_GRAPHICS,
-    SETTINGS_STATS,
-    CREDITS
-};
-
-/* **************************************************************** */
-
-/**
- * @brief The environment
- * @details This structure contains all the data of the game
- */
 struct Env_t {
+    /****** SDL ******/
     SDL_Window *win;
     SDL_Renderer *ren;
+    SDL_Rect win_rect;
 
-    int active_scene;
-
-    uint screen_width;
-    uint screen_height;
-
-    game game;
-
-    SDL_Texture *background;
-    SDL_Texture *button1;
-    int button1_x, button1_y;
+    /****** Backend ******/
+    game takuzu;
+    Scene *scenes;
+    Input input;
 };
 
-/**
- * @brief Environment type definition (opaque)
- */
 typedef struct Env_t Env;
 
 /* **************************************************************** */
 
-/**
- * @brief Update the environment
- * @param env The environment
- */
-void env_update(Env *env);
+// Direct Access to Window Properties
+#define WIN_X(env) ((env)->win_rect.x)
+#define WIN_Y(env) ((env)->win_rect.y)
+#define WIN_W(env) ((env)->win_rect.w)
+#define WIN_H(env) ((env)->win_rect.h)
 
-/**
- * @brief Destroy the environment
- * @param env The environment
- */
+// Dynamic Scaling
+#define X(dim, rect) ((dim) * (rect).w / 1920)
+#define Y(dim, rect) ((dim) * (rect).h / 1080)
+#define W(dim, rect) ((dim) * (rect).w / 1920)
+#define H(dim, rect) ((dim) * (rect).h / 1080)
+
+// Direct Access to Scenes
+#define SCENE(env, i) ((env)->scenes[(i)])
+
+// Direct Access to User Input
+#define MOUSE_X(env) ((env)->input->mouse_pos.x)
+#define MOUSE_Y(env) ((env)->input->mouse_pos.y)
+#define CLICK(env) ((env)->input->mouse_action)
+
+/* **************************************************************** */
+
+Env *env_init(SDL_Window *win, SDL_Renderer *ren);
+void env_update(Env *env, SDL_Event *event);
 void env_delete(Env *env);
 
 #endif /* ENV_H */

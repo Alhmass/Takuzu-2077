@@ -9,21 +9,20 @@ include(SDL2.cmake)
 message(STATUS "SDL2 include dir: ${SDL2_ALL_INC}")
 message(STATUS "SDL2 all libraries: ${SDL2_ALL_LIBS}")
 
-
 # ---- Pre Processor Intructions ---- #
-include_directories(${SDL2_ALL_INC})
-
 include_directories(include)
 include_directories(include/text)
 include_directories(include/solver)
 
+include_directories(${SDL2_ALL_INC})
 include_directories(include/sdl)
 include_directories(include/sdl/scenes)
+include_directories(include/sdl/buttons)
 
 # ---- Library Generation ---- #
 file(GLOB_RECURSE game_lib_src lib/*.c)
-file(GLOB_RECURSE game_graphical_src sdl/*.c)
-add_library(game ${game_lib_src} ${game_graphical_src})
+file(GLOB_RECURSE game_sdl_src sdl/*.c)
+add_library(game ${game_lib_src} ${game_sdl_src})
 
 # ---- Compilation Options ---- #
 set(CMAKE_C_FLAGS "-std=c99 -Wall -Wextra -g")          # options de compilation génériques

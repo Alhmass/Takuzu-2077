@@ -35,15 +35,10 @@
 
 /* **************************************************************** */
 
-#define APP_NAME "Takuzu_2077"
+#define APP_NAME "Takuzu 2077"
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
 // #define DELAY 100
-
-/* **************************************************************** */
-
-#define X(x, env) ((x) * (env)->screen_width / 1920)
-#define Y(y, env) ((y) * (env)->screen_height / 1080)
 
 /* **************************************************************** */
 

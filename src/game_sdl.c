@@ -1,10 +1,11 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <SDL_ttf.h>
+#include <assert.h>
 
 #include "engine.h"
 #include "env.h"
-#include "sdl_game.h"
 #include "takuzu.h"
 
 /* **************************************************************** */
@@ -39,15 +40,13 @@ int main(int argc, char* argv[]) {
 
     /* initialize the environment */
     Env* env = init(win, ren, argc, argv);
-    SDL_Event e;
+    SDL_Event event;
 
     bool quit = false;
     while (!quit) {
-        env_update(env);
-        /* manage events */
-        while (SDL_PollEvent(&e)) {
-            /* process your events */
-            quit = process(env->win, env->ren, env, &e);
+        while (SDL_PollEvent(&event)) {
+            env_update(env, &event);
+            quit = process(env->win, env->ren, env, &event);
             if (quit)
                 break;
         }
