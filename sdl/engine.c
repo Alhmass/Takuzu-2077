@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <assert.h>
 
 #include "controls.h"
 #include "create.h"
@@ -29,13 +30,14 @@ Env *init(SDL_Window *win, SDL_Renderer *ren, int argc, char *argv[]) {
     else
         env->takuzu = game_default();
 
-    void (*init_list[])(Scene scene, SDL_Renderer * ren, SDL_Rect win_rect) = {
+    void (*init_list[])(Scene scene, Assets assets, SDL_Renderer * ren) = {
         main_init,   game_init,   controls_init, stats_init,    sounds_init,  saved_init,
         create_init, custom_init, editor_init,   graphics_init, credits_init, NULL};
 
     for (int i = 0; init_list[i] != NULL; i++) {
         SCENE(env, i) = malloc(sizeof(struct Scene_s));
-        init_list[i](SCENE(env, i), env->ren, env->win_rect);
+        assert(SCENE(env, i));
+        init_list[i](SCENE(env, i), env->assets, env->ren);
     }
 
     SCENE(env, MAIN)->is_active = true;
@@ -50,7 +52,7 @@ void render(SDL_Window *win, SDL_Renderer *ren, Env *env) {
     (void)ren;
 
     for (int i = 0; i < NB_SCENES; i++) {
-        scene_render(SCENE(env, i), env->ren, env->win_rect);
+        scene_render(SCENE(env, i), i, env->assets, env->ren, env->win_rect);
     }
 }
 
@@ -64,12 +66,12 @@ bool process(SDL_Window *win, SDL_Renderer *ren, Env *env, SDL_Event *e) {
         return true;
     }
 
-    void (*process_list[])(Scene * scenes, Input input, SDL_Renderer * ren) = {
+    void (*process_list[])(Scene * scenes, Input input, SDL_Renderer * ren, SDL_Rect win_rect) = {
         main_process,   game_process,   controls_process, stats_process,    sounds_process,  saved_process,
         create_process, custom_process, editor_process,   graphics_process, credits_process, NULL};
 
     for (int i = 0; process_list[i] != NULL; i++) {
-        process_list[i](env->scenes, env->input, env->ren);
+        process_list[i](env->scenes, env->input, env->ren, env->win_rect);
     }
     return false;
 }

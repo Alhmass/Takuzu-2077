@@ -8,38 +8,38 @@
 #include <assert.h>
 #include <stdbool.h>
 
+#include "assets.h"
 #include "button.h"
-// #include "text.h"
+#include "cell.h"
+#include "choice.h"
+#include "default.h"
+#include "input.h"
+#include "slider.h"
+#include "switch.h"
+#include "text.h"
+#include "toggle.h"
 
 /* **************************************************************** */
 
-enum scenes {
-    MAIN,
-    GAME,
-    NEW_CREATE,
-    NEW_EDITOR,
-    LOAD_SAVED,
-    LOAD_CUSTOM,
-    SETTINGS_SOUNDS,
-    SETTINGS_CONTROLS,
-    SETTINGS_GRAPHICS,
-    SETTINGS_STATS,
-    CREDITS,
-    NB_SCENES
-};
+enum scenes { MAIN, GAME, CREATE, EDITOR, SAVED, CUSTOM, SOUNDS, CONTROLS, GRAPHICS, STATS, CREDITS, NB_SCENES };
 
 struct Scene_s {
-    /****** Assets ******/
-    SDL_Texture **texture;
-    // SDL_Font **font;
-    // SDL_Mixer *mixer;
-    Button *button;
-    // SDL_Text *text;
+    /****** Objects ******/
+    Default *default_b;
+    Switch *switch_b;
+    Toggle *toggle_b;
+    Choice *choice_b;
+    Slider *slider_b;
+    Cell *cell_btn;
 
-    int nb_textures;
-    int nb_fonts;
-    int nb_mixers;
-    int nb_buttons;
+    int nb_default;
+    int nb_switch;
+    int nb_toggle;
+    int nb_choice;
+    int nb_slider;
+    int nb_cell;
+
+    Text *text;
     int nb_texts;
 
     /****** Properties ******/
@@ -50,15 +50,9 @@ typedef struct Scene_s *Scene;
 
 /* **************************************************************** */
 
-#define TEXTURE(scene, i) (scene->texture[i])
-#define FONT(scene, i) (scene->font[i])
-#define MIXER(scene, i) (scene->mixer[i])
-#define BUTTON(scene, i) (scene->button[i])
-// #define TEXT(scene, i) (scene->text[i])
-
-/* **************************************************************** */
-
-void scene_render(Scene scene, SDL_Renderer *ren, SDL_Rect win_rect);
+void scene_init(Scene scene, int nb_default, int nb_switch, int nb_toggle, int nb_choice, int nb_slider, int nb_cell,
+                int nb_texts);
+void scene_render(Scene scene, int type, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
 void scene_delete(Scene scene, SDL_Renderer *ren);
 
 #endif /* SCENE_H */

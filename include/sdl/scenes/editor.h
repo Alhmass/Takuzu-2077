@@ -8,16 +8,10 @@
 #include "input.h"
 #include "scene.h"
 
-enum editor_textures { NB_EDITOR_TEXTURES };
-enum editor_buttons { NB_EDITOR_BUTTONS };
-enum editor_texts { NB_EDITOR_TEXTS };
-enum editor_fonts { NB_EDITOR_FONTS };
-enum editor_mixers { NB_EDITOR_MIXERS };
-
 /* **************************************************************** */
 
-void editor_init(Scene scene, SDL_Renderer *ren);
-void editor_process(Scene *scenes, Input input, SDL_Renderer *ren);
+void editor_init(Scene scene, Assets assets, SDL_Renderer *ren);
+void editor_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
 
 /* **************************************************************** */
 

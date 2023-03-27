@@ -6,6 +6,7 @@
 #include <SDL_ttf.h>
 #include <assert.h>
 
+#include "assets.h"
 #include "game.h"
 #include "input.h"
 #include "scene.h"
@@ -21,6 +22,7 @@ struct Env_t {
     /****** Backend ******/
     game takuzu;
     Scene *scenes;
+    Assets assets;
     Input input;
 };
 

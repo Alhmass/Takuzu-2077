@@ -12,13 +12,16 @@ Env *env_init(SDL_Window *win, SDL_Renderer *ren) {
     SDL_GetWindowPosition(env->win, &WIN_X(env), &WIN_Y(env));
     SDL_GetWindowSize(env->win, &WIN_W(env), &WIN_H(env));
     SDL_SetWindowMinimumSize(env->win, 800, 450);
-    SDL_SetWindowMaximumSize(env->win, 1920, 1080);
+    // SDL_SetWindowMaximumSize(env->win, 1920, 1080);
     SDL_SetWindowPosition(env->win, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
     // SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN_DESKTOP);
 
     /****** Backend ******/
     env->scenes = malloc(sizeof(struct Scene_s) * NB_SCENES);
     assert(env->scenes);
+
+    env->assets = assets_init(env->ren);
+    assert(env->assets);
 
     env->input = malloc(sizeof(struct Input_s));
     assert(env->input);

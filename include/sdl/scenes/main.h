@@ -5,19 +5,14 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
+#include "assets.h"
 #include "input.h"
 #include "scene.h"
 
-enum main_textures { MAIN_BACKGROUND, NB_MAIN_TEXTURES };
-enum main_buttons { LOAD_GAME, NB_MAIN_BUTTONS };
-enum main_texts { NB_MAIN_TEXTS };
-enum main_fonts { NB_MAIN_FONTS };
-enum main_mixers { NB_MAIN_MIXERS };
-
 /* **************************************************************** */
 
-void main_init(Scene scene, SDL_Renderer *ren);
-void main_process(Scene *scenes, Input input, SDL_Renderer *ren);
+void main_init(Scene scene, Assets assets, SDL_Renderer *ren);
+void main_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
 
 /* **************************************************************** */
 
@@ -26,5 +21,7 @@ bool load_game(Scene *scenes);
 // bool settings(Scene *scenes);
 // bool credits(Scene *scenes);
 // bool quit_game(Scene *scenes);
+
+void square_btn();
 
 #endif /* MAIN_H */

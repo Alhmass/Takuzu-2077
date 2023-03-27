@@ -8,16 +8,10 @@
 #include "input.h"
 #include "scene.h"
 
-enum game_textures { GAME_BACKGROUND, NB_GAME_TEXTURES };
-enum game_buttons { MAIN_MENU, NB_GAME_BUTTONS };
-enum game_texts { NB_GAME_TEXTS };
-enum game_fonts { NB_GAME_FONTS };
-enum game_mixers { NB_GAME_MIXERS };
-
 /* **************************************************************** */
 
-void game_init(Scene scene, SDL_Renderer *ren);
-void game_process(Scene *scenes, Input input, SDL_Renderer *ren);
+void game_init(Scene scene, Assets assets, SDL_Renderer *ren);
+void game_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
 
 /* **************************************************************** */
 
