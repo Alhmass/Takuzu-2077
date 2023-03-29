@@ -3,15 +3,21 @@
 
 #include <assert.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-FILE *open_file(char *path);
+#define LINE_SIZE(file, line) (get_pos((file), (line), '\n') - get_pos((file), (line - 1), '\n'))
+#define SETTING_SIZE(file, line) (get_pos((file), (line), ' ') - get_pos((file), (line - 1), '\n'))
+
+FILE *open_file(const char *path);
 void close_file(FILE *file);
 
-char *get_line(FILE *file, int line);
-char *get_setting(FILE *file, int line);
+char *get_line(char *path, int line);
+char *get_setting(char *path, int line);
 
-bool set_value(FILE *file, int line, int value);
-bool set_setting(FILE *file, int line, char *value);
-bool set_line(FILE *file, int line, char *line);
+bool set_value(char *path, int line, int value);
+bool set_setting(char *path, int line, char *value);
+bool set_line(char *path, int line, char *nline);
 
 #endif /* FILE_H */
