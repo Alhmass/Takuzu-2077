@@ -7,12 +7,21 @@
 /* **************************************************************** */
 
 void sounds_init(Scene sounds, Assets assets, SDL_Renderer *ren) {
-    scene_init(sounds, 0, 0, 4, 0, 1, 0, 0);
+    scene_init(sounds, 0, 0, 4, 0, 3, 0, 0);
 
     (void)assets;
     (void)ren;
 
-    SDL_Rect hitbox = {842, 632, 660, 59};
+    SDL_Rect hitbox = {842, 283, 660, 59};
+    sounds->slider_b[0] = slider_create(hitbox, 0, 0, 100, assets, ren);
+
+    hitbox = (SDL_Rect){842, 359, 660, 59};
+    sounds->slider_b[1] = slider_create(hitbox, 50, 0, 100, assets, ren);
+
+    hitbox = (SDL_Rect){842, 435, 660, 59};
+    sounds->slider_b[2] = slider_create(hitbox, 100, 0, 100, assets, ren);
+
+    hitbox = (SDL_Rect){842, 632, 660, 59};
     sounds->toggle_b[0] = toggle_create(hitbox, true);
 
     hitbox = (SDL_Rect){842, 707, 660, 59};
@@ -23,9 +32,6 @@ void sounds_init(Scene sounds, Assets assets, SDL_Renderer *ren) {
 
     hitbox = (SDL_Rect){842, 859, 660, 59};
     sounds->toggle_b[3] = toggle_create(hitbox, true);
-
-    hitbox = (SDL_Rect){842, 283, 660, 59};
-    sounds->slider_b[0] = slider_create(hitbox, 50, 0, 100, assets, ren);
 }
 
 void sounds_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
@@ -55,6 +61,18 @@ void sounds_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren
         scenes[SOUNDS]->is_active = false;
     }
 
+    if (slider_dragged(scenes[SOUNDS]->slider_b[0], input, assets, ren, win_rect)) {
+        printf("[slider 0]: %d\n", scenes[SOUNDS]->slider_b[0]->value);
+    }
+
+    if (slider_dragged(scenes[SOUNDS]->slider_b[1], input, assets, ren, win_rect)) {
+        printf("[slider 1]: %d\n", scenes[SOUNDS]->slider_b[1]->value);
+    }
+
+    if (slider_dragged(scenes[SOUNDS]->slider_b[2], input, assets, ren, win_rect)) {
+        printf("[slider 2]: %d\n", scenes[SOUNDS]->slider_b[2]->value);
+    }
+
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[0], input, win_rect, assets)) {
         printf("[toggle 0]: %d\n", scenes[SOUNDS]->toggle_b[0]->state);
     }
@@ -69,10 +87,6 @@ void sounds_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren
 
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[3], input, win_rect, assets)) {
         printf("[toggle 3]: %d\n", scenes[SOUNDS]->toggle_b[3]->state);
-    }
-
-    if (slider_dragged(scenes[SOUNDS]->slider_b[0], input, assets, ren, win_rect)) {
-        printf("[slider 0]: %d\n", scenes[SOUNDS]->slider_b[0]->value);
     }
 }
 

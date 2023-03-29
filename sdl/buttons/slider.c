@@ -10,23 +10,23 @@ Slider slider_create(SDL_Rect hitbox, int value, int min, int max, Assets assets
     Slider button = malloc(sizeof(struct Slider_s));
     assert(button);
 
-    // TODO: Make this more accurate
     button->hitbox = hitbox;
     button->scaled = hitbox;
 
-    // TODO: Make this more accurate
-    button->cursor_hitbox.x = hitbox.x;
-    button->cursor_hitbox.y = hitbox.y + (0.02 * hitbox.y / 100);
-    button->cursor_hitbox.w = hitbox.w * 0.17 / 100;
-    button->cursor_hitbox.h = hitbox.h * 0.83 / 100;
-
-    printf("cursor hitbox: %d %d %d %d\n", button->cursor_hitbox.x, button->cursor_hitbox.y, button->cursor_hitbox.w,
-           button->cursor_hitbox.h);
+    button->cursor_hitbox.x = 0;
+    button->cursor_hitbox.y = hitbox.y + (1.5 * hitbox.y / 100);
+    button->cursor_hitbox.w = 17 * hitbox.w / 100;
+    button->cursor_hitbox.h = 83 * hitbox.h / 100;
 
     button->cursor_scaled = button->cursor_hitbox;
 
     // TODO: Make this more accurate
-    SDL_Rect label_hitbox = {button->cursor_hitbox.x + 10, hitbox.y + 10, button->cursor_hitbox.w - 20, hitbox.h - 20};
+    SDL_Rect label_hitbox;
+    label_hitbox.x = button->cursor_hitbox.x + (30 * button->cursor_hitbox.x / 100);
+    label_hitbox.y = button->cursor_hitbox.y + (1.5 * button->cursor_hitbox.y / 100);
+    label_hitbox.w = 40 * button->cursor_hitbox.w / 100;
+    label_hitbox.h = button->cursor_hitbox.h;
+
     char label[5];
     sprintf(label, "%d", value);
     button->label = text_create(assets, label, RAJDHANI, LIGHT_BLUE, label_hitbox, ren);
@@ -48,6 +48,13 @@ void slider_delete(Slider button) {
 
 void slider_render(Slider button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
     button->scaled = scale_rect(button->hitbox, win_rect);
+
+    // move the cursor to the correct position given the value
+    button->cursor_hitbox.x = button->value *
+                                  ((button->hitbox.w + 5 * button->cursor_hitbox.w / 100) -
+                                   (button->cursor_hitbox.w + 8 * button->cursor_hitbox.w / 100)) /
+                                  100 +
+                              button->hitbox.x;
     button->cursor_scaled = scale_rect(button->cursor_hitbox, win_rect);
 
     // center the label into the cursor
@@ -63,21 +70,26 @@ void slider_render(Slider button, Assets assets, SDL_Renderer *ren, SDL_Rect win
 bool slider_dragged(Slider button, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
     button->cursor_scaled = scale_rect(button->cursor_hitbox, win_rect);
 
-    // TODO: Make this more accurate
-    if (left_drag(button->cursor_scaled, input)) {
+    if (button->dragged == false && left_click(button->cursor_scaled, input)) {
+        button->dragged = true;
+        return true;
+    } else if (button->dragged == true && left_drag((SDL_Rect){0, 0, win_rect.w, win_rect.h}, input)) {
         button->cursor_scaled.x = input->mouse_pos.x - button->cursor_scaled.w / 2;
-        if ((button->cursor_scaled.x > button->scaled.x + 5) &&
-            button->cursor_scaled.x < ((button->scaled.x + button->scaled.w) - button->cursor_scaled.w)) {
-            button->cursor_scaled.x = input->mouse_pos.x - button->cursor_scaled.w / 2;
+
+        if (button->cursor_scaled.x < button->scaled.x + 2 * button->cursor_scaled.w / 100) {
+            button->cursor_scaled.x = button->scaled.x - 2 * button->cursor_scaled.w / 100;
         }
 
-        button->value = button->cursor_scaled.x * 100 / (button->scaled.x + button->scaled.w - button->cursor_scaled.w);
+        if (button->cursor_scaled.x > (button->scaled.x + button->scaled.w) - button->cursor_scaled.w) {
+            button->cursor_scaled.x = (button->scaled.x + button->scaled.w) - button->cursor_scaled.w;
+        }
+
+        button->value =
+            (button->cursor_scaled.x - button->scaled.x) * 100 / (button->scaled.w - button->cursor_scaled.w);
 
         char label[5];
         sprintf(label, "%d", button->value);
         button->label = text_set_text(button->label, label, assets, ren);
-
-        button->dragged = true;
         return true;
     }
     button->dragged = false;

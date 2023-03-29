@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
     // Play sounds in a separate thread
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0)
         ERROR("Error: Mix_OpenAudio (%s)", SDL_GetError());
+    Mix_Volume(-1, 10);
 
     /* create window and renderer */
     SDL_Window* win = SDL_CreateWindow(APP_NAME, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
