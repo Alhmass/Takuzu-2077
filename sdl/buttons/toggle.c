@@ -21,7 +21,6 @@ Toggle toggle_create(SDL_Rect hitbox, bool default_state) {
 
     button->state = default_state;
 
-    button->pressed = false;
     button->hovered = false;
 
     return button;
@@ -38,42 +37,30 @@ void toggle_render(Toggle button, Assets assets, SDL_Renderer *ren, SDL_Rect win
     }
 }
 
-int toggle_pressed(Toggle button, Input input, SDL_Rect win_rect, Assets a) {
+bool toggle_pressed(Toggle button, Input input, SDL_Rect win_rect, Assets a) {
     button->scaled_off = scale_rect(button->hitbox_off, win_rect);
     button->scaled_on = scale_rect(button->hitbox_on, win_rect);
 
-    int ret = 0;
     if (is_clicked(button->scaled_off, input)) {
-        if (button->pressed == false) {
-            if (button->state == true) {
-                // play negative sound
-                (void)a;
-                button->state = false;
-                ret = -1;
-            } else {
-                // play error sound
-                ret = 0;
-            }
+        if (button->state == true) {
+            // play negative sound
+            (void)a;
+            button->state = false;
+        } else {
+            // play error sound
         }
-        button->pressed = true;
-        return ret;
+        return true;
     } else if (is_clicked(button->scaled_on, input)) {
-        if (button->pressed == false) {
-            if (button->state == false) {
-                // play affirmative sound
-                (void)a;
-                button->state = true;
-                ret = 1;
-            } else {
-                // play error sound
-                ret = 0;
-            }
+        if (button->state == false) {
+            // play affirmative sound
+            (void)a;
+            button->state = true;
+        } else {
+            // play error sound
         }
-        button->pressed = true;
-        return ret;
+        return true;
     }
-    button->pressed = false;
-    return 0;
+    return false;
 }
 
 bool toggle_hovered(Toggle button, Input input, SDL_Rect win_rect, Assets assets) {

@@ -21,7 +21,6 @@ struct Toggle_s {
 
     bool state;  // switch state
 
-    bool pressed;
     bool hovered;
 };
 
@@ -33,8 +32,7 @@ Toggle toggle_create(SDL_Rect hitbox, bool default_state);
 void toggle_delete(Toggle button);
 void toggle_render(Toggle button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
 
-// returns 0 if no change, 1 if toggled on, -1 if toggled off
-int toggle_pressed(Toggle button, Input input, SDL_Rect win_rect, Assets assets);
+bool toggle_pressed(Toggle button, Input input, SDL_Rect win_rect, Assets assets);
 bool toggle_hovered(Toggle button, Input input, SDL_Rect win_rect, Assets assets);
 
 #endif /* TOGGLE_H */

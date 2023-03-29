@@ -23,13 +23,11 @@ Choice choice_create(SDL_Rect hitbox, char **choices, int nb_choice, int default
     button->scaled_next = button->hitbox_next;
 
     // TODO: make this more accurate
-    button->label_hitbox =
-        (SDL_Rect){hitbox.x + hitbox.w * 10 / 100 + 20, hitbox.y, hitbox.w * 80 / 100 - 40, hitbox.h};
-    button->label_scaled = button->label_hitbox;
-
     button->choices = malloc(sizeof(struct Text_s) * nb_choice);
+    assert(button->choices);
+    SDL_Rect label_hitbox = {hitbox.x + hitbox.w * 10 / 100 + 20, hitbox.y, hitbox.w * 80 / 100 - 40, hitbox.h};
     for (int i = 0; i < nb_choice; i++) {
-        button->choices[i] = text_create(assets, choices[i], RAJDHANI, LIGHT_BLUE, ren);
+        button->choices[i] = text_create(assets, choices[i], RAJDHANI, LIGHT_BLUE, label_hitbox, ren);
     }
 
     button->current_choice = default_choice;
@@ -53,44 +51,42 @@ void choice_render(Choice button, Assets assets, SDL_Renderer *ren, SDL_Rect win
     button->scaled = scale_rect(button->hitbox, win_rect);
 
     // Center the text in the button
-    button->label_scaled = scale_rect(button->label_hitbox, win_rect);
-    button->label_scaled.x += button->scaled.w / 2 - button->label_scaled.w / 2;
-    button->label_scaled.y += button->scaled.h / 2 - button->label_scaled.h / 2;
+    button->choices[button->current_choice]->scaled =
+        scale_rect(button->choices[button->current_choice]->hitbox, win_rect);
+    button->choices[button->current_choice]->scaled.x +=
+        button->scaled.w / 2 - button->choices[button->current_choice]->scaled.w / 2;
+    button->choices[button->current_choice]->scaled.y +=
+        button->scaled.h / 2 - button->choices[button->current_choice]->scaled.h / 2;
 
-    SDL_RenderCopy(ren, BT(assets, CHOICE, CHOICE_BACKGROUND), NULL, &button->scaled_prev);
-    text_render(button->choices[button->current_choice], ren, button->label_scaled);
+    SDL_RenderCopy(ren, BT(assets, CHOICE, CHOICE_BACKGROUND), NULL, &button->scaled);
+    text_render(button->choices[button->current_choice], ren);
 }
 
-int choice_pressed(Choice button, Input input, SDL_Rect win_rect, Assets assets) {
+bool choice_pressed(Choice button, Input input, SDL_Rect win_rect, Assets assets) {
     button->scaled = scale_rect(button->hitbox, win_rect);
     button->scaled_prev = scale_rect(button->hitbox_prev, win_rect);
     button->scaled_next = scale_rect(button->hitbox_next, win_rect);
 
     if (is_clicked(button->scaled_prev, input)) {
-        if (button->pressed == false) {
-            if (button->current_choice == 0) {
-                button->current_choice = button->nb_choice - 1;
-            } else {
-                button->current_choice--;
-            }
-            // play decrement sound
-            (void)assets;
+        if (button->current_choice == 0) {
+            button->current_choice = button->nb_choice - 1;
+        } else {
+            button->current_choice--;
         }
-        button->pressed = true;
+        // play decrement sound
+        (void)assets;
+        return true;
     } else if (is_clicked(button->scaled_next, input)) {
-        if (button->pressed == false) {
-            if (button->current_choice == button->nb_choice - 1) {
-                button->current_choice = 0;
-            } else {
-                button->current_choice++;
-            }
-            // play increment sound
-            (void)assets;
+        if (button->current_choice == button->nb_choice - 1) {
+            button->current_choice = 0;
+        } else {
+            button->current_choice++;
         }
-        button->pressed = true;
+        // play increment sound
+        (void)assets;
+        return true;
     }
-    button->pressed = false;
-    return button->current_choice;
+    return false;
 }
 
 bool choice_hovered(Choice button, Input input, SDL_Rect win_rect, Assets assets) {

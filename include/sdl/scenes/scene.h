@@ -30,7 +30,7 @@ struct Scene_s {
     Toggle *toggle_b;
     Choice *choice_b;
     Slider *slider_b;
-    Cell *cell_btn;
+    Cell *cell_b;
 
     int nb_default;
     int nb_switch;
@@ -53,6 +53,6 @@ typedef struct Scene_s *Scene;
 void scene_init(Scene scene, int nb_default, int nb_switch, int nb_toggle, int nb_choice, int nb_slider, int nb_cell,
                 int nb_texts);
 void scene_render(Scene scene, int type, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
-void scene_delete(Scene scene, SDL_Renderer *ren);
+void scene_delete(Scene scene);
 
 #endif /* SCENE_H */

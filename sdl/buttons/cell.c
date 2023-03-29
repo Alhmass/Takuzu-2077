@@ -38,16 +38,14 @@ bool cell_pressed(Cell button, Input input, SDL_Rect win_rect, Assets assets) {
     button->scaled = scale_rect(button->hitbox, win_rect);
 
     if (is_clicked(button->scaled, input)) {
-        if (button->pressed == false) {
-            // play cell sound
-            (void)assets;
-            if (button->type == CELL_TYPE_EMPTY)
-                button->type = CELL_TYPE_BLUE;
-            else if (button->type == CELL_TYPE_BLUE)
-                button->type = CELL_TYPE_RED;
-            else if (button->type == CELL_TYPE_RED)
-                button->type = CELL_TYPE_EMPTY;
-        }
+        // play cell sound
+        (void)assets;
+        if (button->type == CELL_EMPTY)
+            button->type = CELL_BLUE;
+        else if (button->type == CELL_BLUE)
+            button->type = CELL_RED;
+        else if (button->type == CELL_RED)
+            button->type = CELL_EMPTY;
         button->pressed = true;
         return true;
     }

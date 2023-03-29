@@ -6,8 +6,21 @@
 
 /* **************************************************************** */
 
-void saved_init(Scene saved, Assets assets, SDL_Renderer *ren) { scene_init(saved, 0, 0, 0, 0, 0, 0, 0); }
+void saved_init(Scene saved, Assets assets, SDL_Renderer *ren) {
+    scene_init(saved, 0, 0, 0, 0, 0, 0, 0);
 
-void saved_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {}
+    (void)assets;
+    (void)ren;
+}
+
+void saved_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+    if (scenes[SAVED]->is_active == false)
+        return;
+
+    (void)assets;
+    (void)ren;
+    (void)win_rect;
+    (void)input;
+}
 
 /* **************************************************************** */

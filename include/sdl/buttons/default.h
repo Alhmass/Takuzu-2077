@@ -10,16 +10,6 @@
 
 /* **************************************************************** */
 
-enum default_type {
-    DEF_TYPE_BLUE,
-    DEF_TYPE_BLUE_T,
-    DEF_TYPE_BLUE_HOVER,
-    DEF_TYPE_RED,
-    DEF_TYPE_RED_T,
-    DEF_TYPE_RED_HOVER,
-    DEF_TYPE_COUNT
-};
-
 struct Default_s {
     int type;
 
@@ -28,11 +18,6 @@ struct Default_s {
     SDL_Rect hitbox;  // default hitbox (full screen 1920x1080)
     SDL_Rect scaled;  // scaled hitbox (current window size)
 
-    // label hitbox, used for rendering
-    SDL_Rect label_hitbox;
-    SDL_Rect label_scaled;
-
-    bool pressed;
     bool hovered;
 };
 

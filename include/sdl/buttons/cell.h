@@ -10,15 +10,6 @@
 
 /* **************************************************************** */
 
-enum cell_type {
-    CELL_TYPE_EMPTY,
-    CELL_TYPE_BLUE,
-    CELL_TYPE_IMM_BLUE,
-    CELL_TYPE_RED,
-    CELL_TYPE_IMM_RED,
-    CELL_TYPE_COUNT
-};
-
 struct Cell_s {
     SDL_Rect hitbox;  // default hitbox (full screen 1920x1080)
     SDL_Rect scaled;  // scaled hitbox (current window size)

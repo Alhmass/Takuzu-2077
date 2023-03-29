@@ -7,7 +7,7 @@
 
 /* **************************************************************** */
 
-enum mouse_action { NO_ACTION, LEFT_CLICK, RIGHT_CLICK, LEFT_DRAG };
+enum mouse_action { NO_ACTION, LEFT_CLICK, LEFT_DRAG, RIGHT_CLICK, RIGHT_DRAG };
 
 /* **************************************************************** */
 

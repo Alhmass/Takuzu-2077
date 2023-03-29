@@ -17,7 +17,7 @@
 
 /******************************** Sprite Textures ********************************/
 
-enum sprite_assets { MAIN_BG, GAME_BG, SETTINGS_BG, SPRITE_COUNT };
+enum sprite_assets { MAIN_BG, GAME_BG, SETTINGS_BG, SOUNDS_BG, GRAPHICS_BG, CONTROLS_BG, STATS_BG, SPRITE_COUNT };
 
 /******************************** Button Textures ********************************/
 
@@ -27,6 +27,7 @@ enum texture_assets {
     DEFAULT_BLUE,
     DEFAULT_BLUE_T,
     DEFAULT_BLUE_HOVER,
+    DEFAULT_BLUE_DARK,
     DEFAULT_RED,
     DEFAULT_RED_T,
     DEFAULT_RED_HOVER,
@@ -45,7 +46,7 @@ enum cell_assets { CELL_EMPTY, CELL_BLUE, CELL_IMM_BLUE, CELL_RED, CELL_IMM_RED,
 
 /* **************************************************************** */
 
-enum font_assets { FONT_CYBERPUNK, FONT_OXTA, FONT_RAJDHANI, FONT_COUNT };
+enum font_assets { CYBERPUNK, OXTA, RAJDHANI, RAJDHANI_MED, FONT_COUNT };
 
 /* **************************************************************** */
 

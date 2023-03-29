@@ -2,6 +2,7 @@
 
 #include <SDL_mixer.h>
 #include <assert.h>
+#include <string.h>
 
 #include "button.h"
 
@@ -11,29 +12,28 @@ Default default_create(SDL_Rect hitbox, char *label, int type, Assets assets, SD
 
     button->type = type;
 
-    if (type == DEF_TYPE_BLUE || type == DEF_TYPE_RED) {
-        button->label = text_create(assets, label, RAJDHANI, BLACK, ren);
-    } else if (type == DEF_TYPE_BLUE_T) {
-        button->label = text_create(assets, label, OXTA, LIGHT_BLUE, ren);
-    } else if (type == DEF_TYPE_RED_T) {
-        button->label = text_create(assets, label, RAJDHANI, LIGHT_RED, ren);
+    // TODO make this more accurate
+    SDL_Rect label_hitbox = {
+        hitbox.x + hitbox.w * 0.05,
+        hitbox.y + hitbox.h * 0.15,
+        hitbox.w * 0.05 * strlen(label),
+        hitbox.h * 0.8,
+    };
+
+    if (type == DEFAULT_BLUE || type == DEFAULT_RED) {
+        button->label = text_create(assets, label, RAJDHANI, BLACK, label_hitbox, ren);
+    } else if (type == DEFAULT_BLUE_T || type == DEFAULT_BLUE_DARK) {
+        button->label = text_create(assets, label, RAJDHANI, LIGHT_BLUE, label_hitbox, ren);
+    } else if (type == DEFAULT_RED_T) {
+        button->label = text_create(assets, label, RAJDHANI, LIGHT_RED, label_hitbox, ren);
     } else {
-        button->label = text_create(assets, label, RAJDHANI, BLACK, ren);
+        button->label = text_create(assets, label, RAJDHANI, BLACK, label_hitbox, ren);
     }
 
     button->hitbox = hitbox;
     button->scaled = hitbox;
 
-    // height : center the label using hitbox %
-    // width : center and keep mono-spaced font using hitbox %
-    // fit the label into the button
-    button->label_hitbox =
-        (SDL_Rect){hitbox.x + hitbox.w * 0.1, hitbox.y + hitbox.h * 0.2, hitbox.w * 0.8, hitbox.h * 0.8};
-    button->label_scaled = button->label_hitbox;
-
     button->hovered = false;
-    button->pressed = false;
-
     return button;
 }
 
@@ -46,31 +46,28 @@ void default_render(Default button, Assets assets, SDL_Renderer *ren, SDL_Rect w
     button->scaled = scale_rect(button->hitbox, win_rect);
 
     // center the label into the button
-    button->label_scaled = scale_rect(button->label_hitbox, win_rect);
-    button->label_scaled.x = button->scaled.x + button->scaled.w / 2 - button->label_scaled.w / 2;
-    button->label_scaled.y = button->scaled.y + button->scaled.h / 2 - button->label_scaled.h / 2;
+    // button->label->scaled = scale_rect(button->label->hitbox, win_rect);
+    // button->label->scaled.x = button->scaled.x + button->scaled.w / 2 - button->label->scaled.w / 2;
+    // button->label->scaled.y = button->scaled.y + button->scaled.h / 2 - button->label->scaled.h / 2;
 
     SDL_RenderCopy(ren, BT(assets, DEFAULT, button->type), NULL, &button->scaled);
-    text_render(button->label, ren, button->label_scaled);
+    text_render_scaled(button->label, ren, win_rect);
 }
 
 bool default_pressed(Default button, Input input, SDL_Rect win_rect, Assets assets) {
     button->scaled = scale_rect(button->hitbox, win_rect);
 
     if (is_clicked(button->scaled, input)) {
-        if (button->pressed == false) {
-            // play press sound
-            (void)assets;
-        }
-        button->pressed = true;
+        // play press sound
+        (void)assets;
         return true;
     }
-    button->pressed = false;
     return false;
 }
 
 bool default_hovered(Default button, Input input, SDL_Rect win_rect, Assets assets) {
     button->scaled = scale_rect(button->hitbox, win_rect);
+
     if (is_hovered(button->scaled, input)) {
         if (button->hovered == false) {
             // play hover sound

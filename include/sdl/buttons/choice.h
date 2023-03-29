@@ -20,10 +20,6 @@ struct Choice_s {
     SDL_Rect hitbox_next;  // next button hitbox
     SDL_Rect scaled_next;  // next button scaled hitbox
 
-    // label hitbox, used for rendering
-    SDL_Rect label_hitbox;
-    SDL_Rect label_scaled;
-
     Text *choices;
     int current_choice;
     int nb_choice;
@@ -42,7 +38,7 @@ void choice_delete(Choice button);
 void choice_render(Choice button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
 
 // returns the new choice number
-int choice_pressed(Choice button, Input input, SDL_Rect win_rect, Assets assets);
+bool choice_pressed(Choice button, Input input, SDL_Rect win_rect, Assets assets);
 bool choice_hovered(Choice button, Input input, SDL_Rect win_rect, Assets assets);
 
 #endif /* CHOICE_H */

@@ -66,12 +66,12 @@ bool process(SDL_Window *win, SDL_Renderer *ren, Env *env, SDL_Event *e) {
         return true;
     }
 
-    void (*process_list[])(Scene * scenes, Input input, SDL_Renderer * ren, SDL_Rect win_rect) = {
+    void (*process_list[])(Scene * scenes, Input input, Assets assets, SDL_Renderer * ren, SDL_Rect win_rect) = {
         main_process,   game_process,   controls_process, stats_process,    sounds_process,  saved_process,
         create_process, custom_process, editor_process,   graphics_process, credits_process, NULL};
 
     for (int i = 0; process_list[i] != NULL; i++) {
-        process_list[i](env->scenes, env->input, env->ren, env->win_rect);
+        process_list[i](env->scenes, env->input, env->assets, env->ren, env->win_rect);
     }
     return false;
 }
@@ -83,7 +83,7 @@ void clean(SDL_Window *win, SDL_Renderer *ren, Env *env) {
     (void)ren;
 
     for (int i = 0; i < NB_SCENES; i++) {
-        scene_delete(SCENE(env, i), env->ren);
+        scene_delete(SCENE(env, i));
     }
 
     env_delete(env);

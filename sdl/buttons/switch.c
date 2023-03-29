@@ -16,8 +16,6 @@ Switch switch_create(SDL_Rect hitbox, bool default_state) {
     button->scaled = button->hitbox;
 
     button->state = default_state;
-
-    button->pressed = false;
     button->hovered = false;
 
     return button;
@@ -36,27 +34,25 @@ void switch_render(Switch button, Assets a, SDL_Renderer *ren, SDL_Rect win_rect
 
 bool switch_pressed(Switch button, Input input, SDL_Rect win_rect, Assets assets) {
     button->scaled = scale_rect(button->hitbox, win_rect);
+
     if (is_clicked(button->scaled, input)) {
-        if (button->pressed == false) {
-            if (button->state == false) {
-                // play affirmative sound
-                (void)assets;
-                button->state = true;
-            } else if (button->state == true) {
-                // play negative sound
-                (void)assets;
-                button->state = false;
-            }
+        if (button->state == false) {
+            // play affirmative sound
+            (void)assets;
+            button->state = true;
+        } else if (button->state == true) {
+            // play negative sound
+            (void)assets;
+            button->state = false;
         }
-        button->pressed = true;
         return true;
     }
-    button->pressed = false;
     return false;
 }
 
 bool switch_hovered(Switch button, Input input, SDL_Rect win_rect, Assets assets) {
     button->scaled = scale_rect(button->hitbox, win_rect);
+
     if (is_hovered(button->scaled, input)) {
         if (button->hovered == false) {
             // play hover sound

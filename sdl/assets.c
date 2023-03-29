@@ -17,6 +17,9 @@ static void default_init(Assets a, SDL_Renderer *ren) {
     BT(a, DEFAULT, DEFAULT_BLUE_HOVER) = IMG_LoadTexture(ren, "assets/img/buttons/default/blue_hover.png");
     if (!BT(a, DEFAULT, DEFAULT_BLUE_HOVER))
         ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
+    BT(a, DEFAULT, DEFAULT_BLUE_DARK) = IMG_LoadTexture(ren, "assets/img/buttons/default/blue_dark.png");
+    if (!BT(a, DEFAULT, DEFAULT_BLUE_DARK))
+        ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
     BT(a, DEFAULT, DEFAULT_RED) = IMG_LoadTexture(ren, "assets/img/buttons/default/red.png");
     if (!BT(a, DEFAULT, DEFAULT_RED))
         ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
@@ -115,6 +118,18 @@ static void sprite_init(Assets a, SDL_Renderer *ren) {
     ST(a, SETTINGS_BG) = IMG_LoadTexture(ren, "assets/img/sprites/settings_bg.png");
     if (!ST(a, SETTINGS_BG))
         ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
+    ST(a, SOUNDS_BG) = IMG_LoadTexture(ren, "assets/img/sprites/sounds_bg.png");
+    if (!ST(a, SOUNDS_BG))
+        ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
+    ST(a, GRAPHICS_BG) = IMG_LoadTexture(ren, "assets/img/sprites/graphics_bg.png");
+    if (!ST(a, GRAPHICS_BG))
+        ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
+    ST(a, CONTROLS_BG) = IMG_LoadTexture(ren, "assets/img/sprites/controls_bg.png");
+    if (!ST(a, CONTROLS_BG))
+        ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
+    ST(a, STATS_BG) = IMG_LoadTexture(ren, "assets/img/sprites/stats_bg.png");
+    if (!ST(a, STATS_BG))
+        ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
 }
 
 /* ************************************************************************* */
@@ -123,14 +138,17 @@ static void fonts_init(Assets a) {
     a->font = malloc(sizeof(TTF_Font *) * FONT_COUNT);
     assert(a->font);
 
-    F(a, FONT_CYBERPUNK) = TTF_OpenFont("assets/fonts/Cyberpunk.ttf", 100);
-    if (!F(a, FONT_CYBERPUNK))
+    F(a, CYBERPUNK) = TTF_OpenFont("assets/fonts/Cyberpunk.ttf", 50);
+    if (!F(a, CYBERPUNK))
         ERROR("Error: TTF_OpenFont (%s)", TTF_GetError());
-    F(a, FONT_OXTA) = TTF_OpenFont("assets/fonts/Oxta.ttf", 100);
-    if (!F(a, FONT_OXTA))
+    F(a, OXTA) = TTF_OpenFont("assets/fonts/Oxta.ttf", 50);
+    if (!F(a, OXTA))
         ERROR("Error: TTF_OpenFont (%s)", TTF_GetError());
-    F(a, FONT_RAJDHANI) = TTF_OpenFont("assets/fonts/Rajdhani-SemiBold.ttf", 100);
-    if (!F(a, FONT_RAJDHANI))
+    F(a, RAJDHANI) = TTF_OpenFont("assets/fonts/Rajdhani-SemiBold.ttf", 50);
+    if (!F(a, RAJDHANI))
+        ERROR("Error: TTF_OpenFont (%s)", TTF_GetError());
+    F(a, RAJDHANI_MED) = TTF_OpenFont("assets/fonts/Rajdhani-Medium.ttf", 50);
+    if (!F(a, RAJDHANI_MED))
         ERROR("Error: TTF_OpenFont (%s)", TTF_GetError());
 }
 

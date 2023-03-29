@@ -16,12 +16,4 @@ void main_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, 
 
 /* **************************************************************** */
 
-// bool new_game(Scene *scenes);
-bool load_game(Scene *scenes);
-// bool settings(Scene *scenes);
-// bool credits(Scene *scenes);
-// bool quit_game(Scene *scenes);
-
-void square_btn();
-
 #endif /* MAIN_H */

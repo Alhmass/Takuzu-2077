@@ -12,12 +12,12 @@
 struct Switch_s {
     SDL_Rect render_hitbox;  // hitbox for rendering
     SDL_Rect scaled_hitbox;  // scaled hitbox for rendering
-    SDL_Rect hitbox;         // hitbox for input
-    SDL_Rect scaled;         // scaled hitbox for input
+
+    SDL_Rect hitbox;  // hitbox for input
+    SDL_Rect scaled;  // scaled hitbox for input
 
     bool state;  // switch button state
 
-    bool pressed;
     bool hovered;
 };
 
