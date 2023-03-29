@@ -67,7 +67,7 @@ bool choice_pressed(Choice button, Input input, SDL_Rect win_rect, Assets assets
     button->scaled_prev = scale_rect(button->hitbox_prev, win_rect);
     button->scaled_next = scale_rect(button->hitbox_next, win_rect);
 
-    if (is_clicked(button->scaled_prev, input)) {
+    if (left_click(button->scaled_prev, input)) {
         if (button->current_choice == 0) {
             button->current_choice = button->nb_choice - 1;
         } else {
@@ -76,7 +76,7 @@ bool choice_pressed(Choice button, Input input, SDL_Rect win_rect, Assets assets
         // play decrement sound
         (void)assets;
         return true;
-    } else if (is_clicked(button->scaled_next, input)) {
+    } else if (left_click(button->scaled_next, input)) {
         if (button->current_choice == button->nb_choice - 1) {
             button->current_choice = 0;
         } else {

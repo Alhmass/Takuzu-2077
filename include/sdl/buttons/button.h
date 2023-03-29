@@ -21,9 +21,14 @@
 
 SDL_Rect scale_rect(SDL_Rect rect, SDL_Rect win_rect);
 
-bool is_pressed(SDL_Rect rect, Input input);
-bool is_clicked(SDL_Rect rect, Input input);
+bool left_press(SDL_Rect rect, Input input);
+bool left_click(SDL_Rect rect, Input input);
+bool left_drag(SDL_Rect rect, Input input);
+
+bool right_press(SDL_Rect rect, Input input);
+bool right_click(SDL_Rect rect, Input input);
+bool right_drag(SDL_Rect rect, Input input);
+
 bool is_hovered(SDL_Rect rect, Input input);
-bool is_dragged(SDL_Rect rect, Input input);
 
 #endif /* BUTTON_H */

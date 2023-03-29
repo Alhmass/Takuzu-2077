@@ -21,21 +21,21 @@ void graphics_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *r
 
     SDL_Rect hitbox = {418, 67, 142, 28};
     hitbox = scale_rect(hitbox, win_rect);
-    if (is_clicked(hitbox, input)) {
+    if (left_click(hitbox, input)) {
         scenes[SOUNDS]->is_active = true;
         scenes[GRAPHICS]->is_active = false;
     }
 
     hitbox = (SDL_Rect){715, 67, 180, 28};
     hitbox = scale_rect(hitbox, win_rect);
-    if (is_clicked(hitbox, input)) {
+    if (left_click(hitbox, input)) {
         scenes[CONTROLS]->is_active = true;
         scenes[GRAPHICS]->is_active = false;
     }
 
     hitbox = (SDL_Rect){1394, 67, 107, 28};
     hitbox = scale_rect(hitbox, win_rect);
-    if (is_clicked(hitbox, input)) {
+    if (left_click(hitbox, input)) {
         scenes[STATS]->is_active = true;
         scenes[GRAPHICS]->is_active = false;
     }

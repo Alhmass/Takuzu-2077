@@ -31,10 +31,10 @@ Env *init(SDL_Window *win, SDL_Renderer *ren, int argc, char *argv[]) {
         env->takuzu = game_default();
 
     void (*init_list[])(Scene scene, Assets assets, SDL_Renderer * ren) = {
-        main_init,   game_init,   controls_init, stats_init,    sounds_init,  saved_init,
-        create_init, custom_init, editor_init,   graphics_init, credits_init, NULL};
+        main_init,   game_init,     create_init,   editor_init, saved_init,   custom_init,
+        sounds_init, controls_init, graphics_init, stats_init,  credits_init, NULL};
 
-    for (int i = 0; init_list[i] != NULL; i++) {
+    for (int i = 0; i < NB_SCENES; i++) {
         SCENE(env, i) = malloc(sizeof(struct Scene_s));
         assert(SCENE(env, i));
         init_list[i](SCENE(env, i), env->assets, env->ren);
@@ -67,10 +67,10 @@ bool process(SDL_Window *win, SDL_Renderer *ren, Env *env, SDL_Event *e) {
     }
 
     void (*process_list[])(Scene * scenes, Input input, Assets assets, SDL_Renderer * ren, SDL_Rect win_rect) = {
-        main_process,   game_process,   controls_process, stats_process,    sounds_process,  saved_process,
-        create_process, custom_process, editor_process,   graphics_process, credits_process, NULL};
+        main_process,   game_process,     create_process,   editor_process, saved_process,   custom_process,
+        sounds_process, controls_process, graphics_process, stats_process,  credits_process, NULL};
 
-    for (int i = 0; process_list[i] != NULL; i++) {
+    for (int i = 0; i < NB_SCENES; i++) {
         process_list[i](env->scenes, env->input, env->assets, env->ren, env->win_rect);
     }
     return false;

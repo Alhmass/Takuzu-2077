@@ -12,15 +12,41 @@ void scene_init(Scene scene, int nb_default, int nb_switch, int nb_toggle, int n
     scene->nb_slider = nb_slider;
     scene->nb_cell = nb_cell;
 
-    scene->default_b = malloc(sizeof(struct Default_s) * nb_default);
-    scene->switch_b = malloc(sizeof(struct Switch_s) * nb_switch);
-    scene->toggle_b = malloc(sizeof(struct Toggle_s) * nb_toggle);
-    scene->choice_b = malloc(sizeof(struct Choice_s) * nb_choice);
-    scene->slider_b = malloc(sizeof(struct Slider_s) * nb_slider);
-    scene->cell_b = malloc(sizeof(struct Cell_s) * nb_cell);
+    if (nb_default > 0)
+        scene->default_b = malloc(sizeof(struct Default_s) * nb_default);
+    else
+        scene->default_b = NULL;
+
+    if (nb_switch > 0)
+        scene->switch_b = malloc(sizeof(struct Switch_s) * nb_switch);
+    else
+        scene->switch_b = NULL;
+
+    if (nb_toggle > 0)
+        scene->toggle_b = malloc(sizeof(struct Toggle_s) * nb_toggle);
+    else
+        scene->toggle_b = NULL;
+
+    if (nb_choice > 0)
+        scene->choice_b = malloc(sizeof(struct Choice_s) * nb_choice);
+    else
+        scene->choice_b = NULL;
+
+    if (nb_slider > 0)
+        scene->slider_b = malloc(sizeof(struct Slider_s) * nb_slider);
+    else
+        scene->slider_b = NULL;
+
+    if (nb_cell > 0)
+        scene->cell_b = malloc(sizeof(struct Cell_s) * nb_cell);
+    else
+        scene->cell_b = NULL;
 
     scene->nb_texts = nb_texts;
-    scene->text = malloc(sizeof(struct Text_s) * nb_texts);
+    if (nb_texts > 0)
+        scene->text = malloc(sizeof(struct Text_s) * nb_texts);
+    else
+        scene->text = NULL;
 
     scene->is_active = false;
 }

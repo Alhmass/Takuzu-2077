@@ -9,16 +9,32 @@ SDL_Rect scale_rect(SDL_Rect rect, SDL_Rect win_rect) {
     return scaled_rect;
 }
 
-bool is_pressed(SDL_Rect rect, Input input) { return (is_clicked(rect, input) || is_dragged(rect, input)); }
+/* **************************************************************** */
 
-bool is_clicked(SDL_Rect rect, Input input) {
+bool left_press(SDL_Rect rect, Input input) { return (left_click(rect, input) || left_drag(rect, input)); }
+
+bool left_click(SDL_Rect rect, Input input) {
     return (input->mouse_action == LEFT_CLICK && SDL_PointInRect(&input->mouse_pos, &rect));
 }
 
-bool is_hovered(SDL_Rect rect, Input input) {
-    return (input->mouse_action == NO_ACTION && SDL_PointInRect(&input->mouse_pos, &rect));
+bool left_drag(SDL_Rect rect, Input input) {
+    return (input->mouse_action == LEFT_DRAG && SDL_PointInRect(&input->mouse_pos, &rect));
 }
 
-bool is_dragged(SDL_Rect rect, Input input) {
-    return (input->mouse_action == LEFT_DRAG && SDL_PointInRect(&input->mouse_pos, &rect));
+/* **************************************************************** */
+
+bool right_press(SDL_Rect rect, Input input) { return (right_click(rect, input) || right_drag(rect, input)); }
+
+bool right_click(SDL_Rect rect, Input input) {
+    return (input->mouse_action == RIGHT_CLICK && SDL_PointInRect(&input->mouse_pos, &rect));
+}
+
+bool right_drag(SDL_Rect rect, Input input) {
+    return (input->mouse_action == RIGHT_DRAG && SDL_PointInRect(&input->mouse_pos, &rect));
+}
+
+/* **************************************************************** */
+
+bool is_hovered(SDL_Rect rect, Input input) {
+    return (input->mouse_action == NO_ACTION && SDL_PointInRect(&input->mouse_pos, &rect));
 }

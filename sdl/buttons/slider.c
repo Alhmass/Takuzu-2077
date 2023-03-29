@@ -10,15 +10,19 @@ Slider slider_create(SDL_Rect hitbox, int value, int min, int max, Assets assets
     Slider button = malloc(sizeof(struct Slider_s));
     assert(button);
 
+    // TODO: Make this more accurate
     button->hitbox = hitbox;
     button->scaled = hitbox;
 
     // TODO: Make this more accurate
-    button->hitbox = (SDL_Rect){hitbox.x + 10, hitbox.y + 10, hitbox.w - 20, hitbox.h - 20};
-    button->scaled = button->hitbox;
+    button->cursor_hitbox.x = hitbox.x;
+    button->cursor_hitbox.y = hitbox.y + (0.02 * hitbox.y / 100);
+    button->cursor_hitbox.w = hitbox.w * 0.17 / 100;
+    button->cursor_hitbox.h = hitbox.h * 0.83 / 100;
 
-    // TODO: Make this more accurate
-    button->cursor_hitbox = (SDL_Rect){hitbox.x + hitbox.w / 2 - 20, hitbox.y + 5, hitbox.w / 5, hitbox.h - 10};
+    printf("cursor hitbox: %d %d %d %d\n", button->cursor_hitbox.x, button->cursor_hitbox.y, button->cursor_hitbox.w,
+           button->cursor_hitbox.h);
+
     button->cursor_scaled = button->cursor_hitbox;
 
     // TODO: Make this more accurate
@@ -60,7 +64,7 @@ bool slider_dragged(Slider button, Input input, Assets assets, SDL_Renderer *ren
     button->cursor_scaled = scale_rect(button->cursor_hitbox, win_rect);
 
     // TODO: Make this more accurate
-    if (is_dragged(button->cursor_scaled, input)) {
+    if (left_drag(button->cursor_scaled, input)) {
         button->cursor_scaled.x = input->mouse_pos.x - button->cursor_scaled.w / 2;
         if ((button->cursor_scaled.x > button->scaled.x + 5) &&
             button->cursor_scaled.x < ((button->scaled.x + button->scaled.w) - button->cursor_scaled.w)) {
@@ -71,7 +75,6 @@ bool slider_dragged(Slider button, Input input, Assets assets, SDL_Renderer *ren
 
         char label[5];
         sprintf(label, "%d", button->value);
-        printf("%s %d\n", label, button->value);
         button->label = text_set_text(button->label, label, assets, ren);
 
         button->dragged = true;

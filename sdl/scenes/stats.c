@@ -21,21 +21,21 @@ void stats_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren,
 
     SDL_Rect hitbox = {418, 67, 142, 28};
     hitbox = scale_rect(hitbox, win_rect);
-    if (is_clicked(hitbox, input)) {
+    if (left_click(hitbox, input)) {
         scenes[SOUNDS]->is_active = true;
         scenes[STATS]->is_active = false;
     }
 
     hitbox = (SDL_Rect){715, 67, 180, 28};
     hitbox = scale_rect(hitbox, win_rect);
-    if (is_clicked(hitbox, input)) {
+    if (left_click(hitbox, input)) {
         scenes[CONTROLS]->is_active = true;
         scenes[STATS]->is_active = false;
     }
 
     hitbox = (SDL_Rect){1017, 67, 170, 28};
     hitbox = scale_rect(hitbox, win_rect);
-    if (is_clicked(hitbox, input)) {
+    if (left_click(hitbox, input)) {
         scenes[GRAPHICS]->is_active = true;
         scenes[STATS]->is_active = false;
     }

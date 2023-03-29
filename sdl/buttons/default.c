@@ -57,9 +57,9 @@ void default_render(Default button, Assets assets, SDL_Renderer *ren, SDL_Rect w
 bool default_pressed(Default button, Input input, SDL_Rect win_rect, Assets assets) {
     button->scaled = scale_rect(button->hitbox, win_rect);
 
-    if (is_clicked(button->scaled, input)) {
+    if (left_click(button->scaled, input)) {
         // play press sound
-        (void)assets;
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_CLICK), 0);
         return true;
     }
     return false;

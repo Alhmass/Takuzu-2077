@@ -41,7 +41,7 @@ bool toggle_pressed(Toggle button, Input input, SDL_Rect win_rect, Assets a) {
     button->scaled_off = scale_rect(button->hitbox_off, win_rect);
     button->scaled_on = scale_rect(button->hitbox_on, win_rect);
 
-    if (is_clicked(button->scaled_off, input)) {
+    if (left_click(button->scaled_off, input)) {
         if (button->state == true) {
             // play negative sound
             (void)a;
@@ -50,7 +50,7 @@ bool toggle_pressed(Toggle button, Input input, SDL_Rect win_rect, Assets a) {
             // play error sound
         }
         return true;
-    } else if (is_clicked(button->scaled_on, input)) {
+    } else if (left_click(button->scaled_on, input)) {
         if (button->state == false) {
             // play affirmative sound
             (void)a;

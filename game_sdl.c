@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
         ERROR("Error: TTF_Init (%s)", SDL_GetError());
 
     // Play sounds in a separate thread
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0)
         ERROR("Error: Mix_OpenAudio (%s)", SDL_GetError());
 
     /* create window and renderer */

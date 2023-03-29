@@ -14,9 +14,7 @@ Cell cell_create(SDL_Rect hitbox, int type) {
 
     button->type = type;
     button->has_error = false;
-
     button->hovered = false;
-    button->pressed = false;
 
     return button;
 }
@@ -37,7 +35,7 @@ void cell_render(Cell button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rec
 bool cell_pressed(Cell button, Input input, SDL_Rect win_rect, Assets assets) {
     button->scaled = scale_rect(button->hitbox, win_rect);
 
-    if (is_clicked(button->scaled, input)) {
+    if (left_click(button->scaled, input)) {
         // play cell sound
         (void)assets;
         if (button->type == CELL_EMPTY)
@@ -46,10 +44,18 @@ bool cell_pressed(Cell button, Input input, SDL_Rect win_rect, Assets assets) {
             button->type = CELL_RED;
         else if (button->type == CELL_RED)
             button->type = CELL_EMPTY;
-        button->pressed = true;
+        return true;
+    } else if (right_click(button->scaled, input)) {
+        // play cell sound
+        (void)assets;
+        if (button->type == CELL_EMPTY)
+            button->type = CELL_RED;
+        else if (button->type == CELL_RED)
+            button->type = CELL_BLUE;
+        else if (button->type == CELL_BLUE)
+            button->type = CELL_EMPTY;
         return true;
     }
-    button->pressed = false;
     return false;
 }
 

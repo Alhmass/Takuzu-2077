@@ -64,7 +64,11 @@ enum sound_assets {
     SOUND_COUNT
 };
 
+#define SOUND(assets, type) ((assets)->sound[type])
+
 enum music_assets { MENU_LOOP, GAME_LOOP, MUSIC_COUNT };
+
+#define MUSIC(assets, type) ((assets)->music[type])
 
 /* **************************************************************** */
 
