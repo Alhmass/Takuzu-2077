@@ -47,8 +47,8 @@ void stats_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Ren
 
     // Keyboard Input
     if (input->key_code == SDLK_ESCAPE) {
-        scenes[MAIN]->is_active = true;
         scenes[STATS]->is_active = false;
+        scenes[conf->last_scene]->is_active = true;
     }
 
     // if (key_down(input, SDLK_LEFT)) {

@@ -11,9 +11,8 @@ void graphics_init(Conf conf, Scene graphics, Assets assets, SDL_Renderer *ren) 
     (void)conf;
 
     SDL_Rect hitbox = {842, 283, 660, 59};
-    char *choices[7] = {"960 x 540",  "1024 x 576", "1152 x 648", "1280 x 720",
-                        "1366 x 768", "1600 x 900", "1920 x 1080"};
-    graphics->choice_b[0] = choice_create(hitbox, choices, 7, 6, assets, ren);
+    char *choices[7] = {"960 x 540", "1024 x 576", "1152 x 648", "1280 x 720", "1366 x 768", "1600 x 900"};
+    graphics->choice_b[0] = choice_create(hitbox, choices, 6, 5, assets, ren);
 
     hitbox = (SDL_Rect){842, 359, 660, 59};
     graphics->toggle_b[0] = toggle_create(hitbox, false);
@@ -66,11 +65,13 @@ void graphics_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_
     }
 
     if (choice_pressed(scenes[GRAPHICS]->choice_b[0], input, win_rect, assets)) {
-        printf("[choice 0]: %d\n", scenes[GRAPHICS]->choice_b[0]->current_choice);
+        SDL_Rect size[6] = {{0, 0, 960, 540},  {0, 0, 1024, 576}, {0, 0, 1152, 648},
+                            {0, 0, 1280, 720}, {0, 0, 1366, 768}, {0, 0, 1600, 900}};
+        conf->window_size = size[scenes[GRAPHICS]->choice_b[0]->current_choice];
     }
 
     if (toggle_pressed(scenes[GRAPHICS]->toggle_b[0], input, win_rect, assets)) {
-        printf("[toggle 0]: %d\n", scenes[GRAPHICS]->toggle_b[0]->state);
+        conf->fullscreen = scenes[GRAPHICS]->toggle_b[0]->state;
     }
 
     if (toggle_pressed(scenes[GRAPHICS]->toggle_b[1], input, win_rect, assets)) {
@@ -95,8 +96,8 @@ void graphics_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_
 
     // Keyboard Input
     if (input->key_code == SDLK_ESCAPE) {
-        scenes[MAIN]->is_active = true;
         scenes[GRAPHICS]->is_active = false;
+        scenes[conf->last_scene]->is_active = true;
     }
 }
 

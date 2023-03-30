@@ -14,19 +14,26 @@ Choice choice_create(SDL_Rect hitbox, char **choices, int nb_choice, int default
     button->hitbox = hitbox;
     button->scaled = hitbox;
 
-    // TODO: make this more accurate
-    button->hitbox_prev = (SDL_Rect){hitbox.x + 20, hitbox.y + 5, hitbox.w * 10 / 100, hitbox.h - 10};
+    button->hitbox_prev.x = hitbox.x + (7 * hitbox.w / 100);
+    button->hitbox_prev.y = hitbox.y + (18 * hitbox.h / 100);
+    button->hitbox_prev.w = 5 * hitbox.w / 100;
+    button->hitbox_prev.h = 63 * hitbox.h / 100;
     button->scaled_prev = button->hitbox_prev;
 
-    // TODO: make this more accurate
-    button->hitbox_next =
-        (SDL_Rect){hitbox.x + hitbox.w - 20 - hitbox.w * 10 / 100, hitbox.y + 5, hitbox.w * 10 / 100, hitbox.h - 10};
+    button->hitbox_next.x = hitbox.x + (88 * hitbox.w / 100);
+    button->hitbox_next.y = hitbox.y + (18 * hitbox.h / 100);
+    button->hitbox_next.w = 5 * hitbox.w / 100;
+    button->hitbox_next.h = 63 * hitbox.h / 100;
     button->scaled_next = button->hitbox_next;
 
-    // TODO: make this more accurate
     button->choices = malloc(sizeof(struct Text_s) * nb_choice);
     assert(button->choices);
-    SDL_Rect label_hitbox = {hitbox.x + hitbox.w * 10 / 100 + 20, hitbox.y, hitbox.w * 80 / 100 - 40, hitbox.h};
+
+    SDL_Rect label_hitbox;
+    label_hitbox.w = strlen(choices[default_choice]) * (4 * hitbox.w / 100);
+    label_hitbox.x = hitbox.x + (hitbox.w / 2) - (hitbox.w / 2);
+    label_hitbox.y = hitbox.y;
+    label_hitbox.h = 80 * hitbox.h / 100;
     for (int i = 0; i < nb_choice; i++) {
         button->choices[i] = text_create(assets, choices[i], RAJDHANI, LIGHT_BLUE, label_hitbox, ren);
     }

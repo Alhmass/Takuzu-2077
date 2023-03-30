@@ -42,6 +42,7 @@ void main_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
     if (default_pressed(scenes[MAIN]->default_b[1], input, win_rect, assets)) {
         scenes[GAME]->is_active = true;
         scenes[MAIN]->is_active = false;
+        conf->last_scene = GAME;
     }
 
     if (default_pressed(scenes[MAIN]->default_b[2], input, win_rect, assets)) {

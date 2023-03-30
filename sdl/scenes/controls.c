@@ -47,8 +47,8 @@ void controls_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_
 
     // Keyboard Input
     if (input->key_code == SDLK_ESCAPE) {
-        scenes[MAIN]->is_active = true;
         scenes[CONTROLS]->is_active = false;
+        scenes[conf->last_scene]->is_active = true;
     }
 }
 

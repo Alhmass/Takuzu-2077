@@ -19,7 +19,12 @@ struct Conf_s {
     int sound_volume;
     int general_volume;
 
+    /****** Graphics ******/
+    int fullscreen;
+    SDL_Rect window_size;
+
     /****** Status ******/
+    int last_scene;
     bool quit;
 };
 

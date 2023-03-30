@@ -6,12 +6,17 @@ Conf conf_init() {
     Conf conf = malloc(sizeof(struct Conf_s));
     assert(conf);
 
-    // default value for all settings
-
+    // Sounds
     conf->sound_volume = 50 * 20 / 100;
     conf->music_volume = 20 * 20 / 100;
     conf->general_volume = 100;
 
+    // Graphics
+    conf->fullscreen = 0;
+    conf->window_size = (SDL_Rect){0, 0, 1600, 900};
+
+    // Status
+    conf->last_scene = 0;
     conf->quit = false;
     return conf;
 }

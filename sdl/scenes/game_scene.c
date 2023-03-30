@@ -4,6 +4,7 @@
 #include "engine.h"
 #include "env.h"
 #include "input.h"
+#include "takuzu.h"
 
 /* **************************************************************** */
 
@@ -74,17 +75,19 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
         default_pressed(scenes[GAME]->default_b[i], input, win_rect, assets);
     }
 
-    if (default_pressed(scenes[GAME]->default_b[9], input, win_rect, assets)) {
-        scenes[GAME]->is_active = false;
+    // click or key 'U'
+    if (default_pressed(scenes[GAME]->default_b[9], input, win_rect, assets) || key_down(input, SDLK_u)) {
         scenes[SOUNDS]->is_active = true;
+        scenes[GAME]->is_active = false;
     }
 
-    if (default_pressed(scenes[GAME]->default_b[10], input, win_rect, assets)) {
+    if (default_pressed(scenes[GAME]->default_b[10], input, win_rect, assets) || key_down(input, SDLK_m)) {
         scenes[GAME]->is_active = false;
         scenes[MAIN]->is_active = true;
+        conf->last_scene = MAIN;
     }
 
-    if (default_pressed(scenes[GAME]->default_b[11], input, win_rect, assets)) {
+    if (default_pressed(scenes[GAME]->default_b[11], input, win_rect, assets) || key_down(input, SDLK_q)) {
         conf->quit = true;
     }
 
@@ -103,12 +106,6 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
 
     if (switch_pressed(scenes[GAME]->switch_b[3], input, win_rect, assets)) {
         printf("[switch 3] %d\n", scenes[GAME]->switch_b[3]->state);
-    }
-
-    // Keyboard Input
-    if (input->key_code == SDLK_ESCAPE) {
-        scenes[GAME]->is_active = false;
-        scenes[MAIN]->is_active = true;
     }
 }
 

@@ -98,8 +98,14 @@ void sounds_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Re
     // Keyboard Input
     if (input->key_code == SDLK_ESCAPE) {
         scenes[SOUNDS]->is_active = false;
-        scenes[MAIN]->is_active = true;
+        scenes[conf->last_scene]->is_active = true;
     }
+
+    // if (key_down(input, SDLK_LEFT)) {
+    //     Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
+    //     scenes[GRAPHICS]->is_active = true;
+    //     scenes[STATS]->is_active = false;
+    // }
 }
 
 /* **************************************************************** */
