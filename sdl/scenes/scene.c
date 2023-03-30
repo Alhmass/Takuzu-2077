@@ -51,7 +51,7 @@ void scene_init(Scene scene, int nb_default, int nb_switch, int nb_toggle, int n
     scene->is_active = false;
 }
 
-void scene_render(Scene scene, int type, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void scene_render(Scene scene, int type, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input) {
     if (scene->is_active == false)
         return;
 
@@ -74,27 +74,27 @@ void scene_render(Scene scene, int type, Assets assets, SDL_Renderer *ren, SDL_R
     }
 
     for (int i = 0; i < scene->nb_default; i++) {
-        default_render(scene->default_b[i], assets, ren, win_rect);
+        default_render(scene->default_b[i], assets, ren, win_rect, input);
     }
 
     for (int i = 0; i < scene->nb_switch; i++) {
-        switch_render(scene->switch_b[i], assets, ren, win_rect);
+        switch_render(scene->switch_b[i], assets, ren, win_rect, input);
     }
 
     for (int i = 0; i < scene->nb_toggle; i++) {
-        toggle_render(scene->toggle_b[i], assets, ren, win_rect);
+        toggle_render(scene->toggle_b[i], assets, ren, win_rect, input);
     }
 
     for (int i = 0; i < scene->nb_choice; i++) {
-        choice_render(scene->choice_b[i], assets, ren, win_rect);
+        choice_render(scene->choice_b[i], assets, ren, win_rect, input);
     }
 
     for (int i = 0; i < scene->nb_slider; i++) {
-        slider_render(scene->slider_b[i], assets, ren, win_rect);
+        slider_render(scene->slider_b[i], assets, ren, win_rect, input);
     }
 
     for (int i = 0; i < scene->nb_cell; i++) {
-        cell_render(scene->cell_b[i], assets, ren, win_rect);
+        cell_render(scene->cell_b[i], assets, ren, win_rect, input);
     }
 
     for (int i = 0; i < scene->nb_texts; i++) {

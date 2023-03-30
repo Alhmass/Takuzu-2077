@@ -47,7 +47,8 @@ void choice_delete(Choice button) {
     free(button);
 }
 
-void choice_render(Choice button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void choice_render(Choice button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input) {
+    (void)input;
     button->scaled = scale_rect(button->hitbox, win_rect);
 
     // Center the text in the button

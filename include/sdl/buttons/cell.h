@@ -26,7 +26,7 @@ typedef struct Cell_s *Cell;
 
 Cell cell_create(SDL_Rect hitbox, int type);
 void cell_delete(Cell button);
-void cell_render(Cell button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
+void cell_render(Cell button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input);
 
 bool cell_pressed(Cell button, Input input, SDL_Rect win_rect, Assets assets);
 bool cell_hovered(Cell button, Input input, SDL_Rect win_rect, Assets assets);

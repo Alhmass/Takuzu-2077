@@ -47,7 +47,8 @@ void slider_delete(Slider button) {
     free(button);
 }
 
-void slider_render(Slider button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void slider_render(Slider button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input) {
+    (void)input;
     button->scaled = scale_rect(button->hitbox, win_rect);
 
     // move the cursor to the correct position given the value
@@ -91,6 +92,11 @@ bool slider_dragged(Slider button, Input input, Assets assets, SDL_Renderer *ren
 
         char label[5];
         sprintf(label, "%d", button->value);
+        if (strlen(label) == 1) {
+            char temp[5];
+            sprintf(temp, " %s ", label);
+            strcpy(label, temp);
+        }
         button->label = text_set_text(button->label, label, assets, ren);
         return true;
     }

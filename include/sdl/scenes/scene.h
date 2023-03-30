@@ -52,7 +52,7 @@ typedef struct Scene_s *Scene;
 
 void scene_init(Scene scene, int nb_default, int nb_switch, int nb_toggle, int nb_choice, int nb_slider, int nb_cell,
                 int nb_texts);
-void scene_render(Scene scene, int type, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
+void scene_render(Scene scene, int type, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input);
 void scene_delete(Scene scene);
 
 #endif /* SCENE_H */

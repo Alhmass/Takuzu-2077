@@ -21,7 +21,8 @@ Cell cell_create(SDL_Rect hitbox, int type) {
 
 void cell_delete(Cell button) { free(button); }
 
-void cell_render(Cell button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void cell_render(Cell button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input) {
+    (void)input;
     button->scaled = scale_rect(button->hitbox, win_rect);
     SDL_RenderCopy(ren, BT(assets, CELL, button->type), NULL, &button->scaled);
 

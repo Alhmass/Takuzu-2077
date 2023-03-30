@@ -27,7 +27,7 @@ typedef struct Default_s *Default;
 
 Default default_create(SDL_Rect hitbox, char *label, int type, Assets assets, SDL_Renderer *ren);
 void default_delete(Default button);
-void default_render(Default button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
+void default_render(Default button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input);
 
 bool default_pressed(Default button, Input input, SDL_Rect win_rect, Assets assets);
 bool default_hovered(Default button, Input input, SDL_Rect win_rect, Assets assets);

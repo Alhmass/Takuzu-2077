@@ -42,7 +42,7 @@ void default_delete(Default button) {
     free(button);
 }
 
-void default_render(Default button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void default_render(Default button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input) {
     button->scaled = scale_rect(button->hitbox, win_rect);
 
     // center the label into the button
@@ -51,6 +51,11 @@ void default_render(Default button, Assets assets, SDL_Renderer *ren, SDL_Rect w
     // button->label->scaled.y = button->scaled.y + button->scaled.h / 2 - button->label->scaled.h / 2;
 
     SDL_RenderCopy(ren, BT(assets, DEFAULT, button->type), NULL, &button->scaled);
+
+    default_hovered(button, input, win_rect, assets);
+    if (button->hovered)
+        SDL_RenderCopy(ren, BT(assets, DEFAULT, DEFAULT_BLUE_HOVER), NULL, &button->scaled);
+
     text_render_scaled(button->label, ren, win_rect);
 }
 
@@ -58,7 +63,6 @@ bool default_pressed(Default button, Input input, SDL_Rect win_rect, Assets asse
     button->scaled = scale_rect(button->hitbox, win_rect);
 
     if (left_click(button->scaled, input)) {
-        // play press sound
         Mix_PlayChannel(-1, SOUND(assets, SOUND_CLICK), 0);
         return true;
     }
@@ -70,8 +74,7 @@ bool default_hovered(Default button, Input input, SDL_Rect win_rect, Assets asse
 
     if (is_hovered(button->scaled, input)) {
         if (button->hovered == false) {
-            // play hover sound
-            (void)assets;
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_HOVER), 0);
         }
         button->hovered = true;
         return true;

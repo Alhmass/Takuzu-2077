@@ -27,7 +27,7 @@ typedef struct Switch_s *Switch;
 
 Switch switch_create(SDL_Rect hitbox, bool default_state);
 void switch_delete(Switch button);
-void switch_render(Switch button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
+void switch_render(Switch button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input);
 
 bool switch_pressed(Switch button, Input input, SDL_Rect win_rect, Assets assets);
 bool switch_hovered(Switch button, Input input, SDL_Rect win_rect, Assets assets);

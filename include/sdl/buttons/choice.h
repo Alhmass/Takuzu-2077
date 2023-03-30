@@ -35,7 +35,7 @@ typedef struct Choice_s *Choice;
 Choice choice_create(SDL_Rect hitbox, char **choices, int nb_choice, int default_choice, Assets assets,
                      SDL_Renderer *ren);
 void choice_delete(Choice button);
-void choice_render(Choice button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
+void choice_render(Choice button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input);
 
 // returns the new choice number
 bool choice_pressed(Choice button, Input input, SDL_Rect win_rect, Assets assets);

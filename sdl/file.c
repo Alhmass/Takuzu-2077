@@ -35,17 +35,6 @@ char *get_line(char *path, int line) {
     return linebuf;
 }
 
-char *get_setting(char *path, int line) {
-    FILE *file = open_file(path);
-    int setting_size = SETTING_SIZE(file, line);
-    assert(setting_size >= 0);
-    char *buf = malloc(sizeof(char) * setting_size);
-    fseek(file, get_pos(file, line, ' '), SEEK_SET);
-    fgets(buf, setting_size, file);
-    close_file(file);
-    return (buf);
-}
-
 bool set_line(char *path, int line, char *nline) {
     assert(nline);
     FILE *file = open_file(path);
@@ -69,25 +58,6 @@ bool set_line(char *path, int line, char *nline) {
     remove(path);
     rename(tempFile, path);
     return true;
-}
-
-bool set_setting(char *path, int line, char *value) {
-    assert(value);
-
-    char *curr_line = get_line(path, line);
-    strtok(curr_line, " ");
-
-    size_t len = strlen(curr_line) + strlen(value) + 2;
-    char *new_line = malloc(sizeof(char) * len);
-    assert(new_line);
-    strcpy(new_line, curr_line);
-    strcat(new_line, " ");
-    strcat(new_line, value);
-
-    bool res = set_line(path, line, new_line);
-    free(curr_line);
-    free(new_line);
-    return res;
 }
 
 bool set_value(char *path, int line, int value) {

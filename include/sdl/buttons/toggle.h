@@ -30,7 +30,7 @@ typedef struct Toggle_s *Toggle;
 
 Toggle toggle_create(SDL_Rect hitbox, bool default_state);
 void toggle_delete(Toggle button);
-void toggle_render(Toggle button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
+void toggle_render(Toggle button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input);
 
 bool toggle_pressed(Toggle button, Input input, SDL_Rect win_rect, Assets assets);
 bool toggle_hovered(Toggle button, Input input, SDL_Rect win_rect, Assets assets);

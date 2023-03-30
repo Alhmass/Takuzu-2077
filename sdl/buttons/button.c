@@ -35,6 +35,4 @@ bool right_drag(SDL_Rect rect, Input input) {
 
 /* **************************************************************** */
 
-bool is_hovered(SDL_Rect rect, Input input) {
-    return (input->mouse_action == NO_ACTION && SDL_PointInRect(&input->mouse_pos, &rect));
-}
+bool is_hovered(SDL_Rect rect, Input input) { return (SDL_PointInRect(&input->mouse_pos, &rect)); }

@@ -33,7 +33,7 @@ typedef struct Slider_s *Slider;
 
 Slider slider_create(SDL_Rect hitbox, int value, int min, int max, Assets assets, SDL_Renderer *ren);
 void slider_delete(Slider button);
-void slider_render(Slider button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
+void slider_render(Slider button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input);
 
 bool slider_dragged(Slider button, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
 bool slider_hovered(Slider button, Input input, SDL_Rect win_rect, Assets assets);

@@ -52,7 +52,7 @@ void render(SDL_Window *win, SDL_Renderer *ren, Env *env) {
     (void)ren;
 
     for (int i = 0; i < NB_SCENES; i++) {
-        scene_render(SCENE(env, i), i, env->assets, env->ren, env->win_rect);
+        scene_render(SCENE(env, i), i, env->assets, env->ren, env->win_rect, env->input);
     }
 }
 

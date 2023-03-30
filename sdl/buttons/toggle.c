@@ -28,7 +28,8 @@ Toggle toggle_create(SDL_Rect hitbox, bool default_state) {
 
 void toggle_delete(Toggle button) { free(button); }
 
-void toggle_render(Toggle button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void toggle_render(Toggle button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect, Input input) {
+    (void)input;
     button->scaled_hitbox = scale_rect(button->render_hitbox, win_rect);
     if (button->state) {
         SDL_RenderCopy(ren, BT(assets, TOGGLE, TOGGLE_ON), NULL, &button->scaled_hitbox);

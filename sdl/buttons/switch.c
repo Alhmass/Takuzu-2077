@@ -23,7 +23,8 @@ Switch switch_create(SDL_Rect hitbox, bool default_state) {
 
 void switch_delete(Switch button) { free(button); }
 
-void switch_render(Switch button, Assets a, SDL_Renderer *ren, SDL_Rect win_rect) {
+void switch_render(Switch button, Assets a, SDL_Renderer *ren, SDL_Rect win_rect, Input input) {
+    (void)input;
     button->scaled_hitbox = scale_rect(button->render_hitbox, win_rect);
     if (button->state) {
         SDL_RenderCopy(ren, BT(a, SWITCH, SWITCH_ON), NULL, &button->scaled_hitbox);
