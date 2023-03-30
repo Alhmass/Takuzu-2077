@@ -6,7 +6,7 @@ Conf conf_init() {
     Conf conf = malloc(sizeof(struct Conf_s));
     assert(conf);
 
-    conf->takuzu = game_default();
+    // default value for all settings
 
     return conf;
 }
@@ -19,10 +19,22 @@ void conf_delete(Conf conf) {
 bool conf_load(Conf conf, const char *path) {
     (void)conf;
     (void)path;
-    return false;
+
+    // if (file.conf == false)
+    //     return false;
+
+    // load settings from file.conf
+    return true;
 }
 bool conf_save(Conf conf, const char *path) {
     (void)conf;
     (void)path;
-    return false;
+
+    // if (file.conf == true) {
+    //     destroy file.conf
+    // }
+
+    // save settings to file.conf
+
+    return true;
 }

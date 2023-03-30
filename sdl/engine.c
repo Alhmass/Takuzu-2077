@@ -25,10 +25,12 @@
 Env *init(SDL_Window *win, SDL_Renderer *ren, int argc, char *argv[]) {
     Env *env = env_init(win, ren);
 
-    if (argc > 1)
+    if (argc > 1) {
         env->conf->takuzu = game_load(argv[1]);
-    else
+        conf_load(env->conf, argv[1]);
+    } else {
         env->conf->takuzu = game_default();
+    }
 
     void (*init_list[])(Scene scene, Assets assets, SDL_Renderer * ren) = {
         main_init,   game_init,     create_init,   editor_init, saved_init,   custom_init,
