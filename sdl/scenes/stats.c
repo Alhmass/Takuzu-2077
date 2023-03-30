@@ -7,10 +7,25 @@
 /* **************************************************************** */
 
 void stats_init(Conf conf, Scene stats, Assets assets, SDL_Renderer *ren) {
-    scene_init(stats, 0, 0, 0, 0, 0, 0, 0);
+    scene_init(stats, 0, 0, 0, 0, 0, 0, 5);
     (void)conf;
     (void)assets;
     (void)ren;
+
+    SDL_Rect hitbox = {450, 390, 100, 100};
+    stats->text[0]=text_create(assets, "00:00:00", RAJDHANI_MED, LIGHT_BLUE, hitbox, ren);
+
+    hitbox = (SDL_Rect){450, 530, 100, 100};
+    stats->text[1]=text_create(assets, "00:00:00", RAJDHANI_MED, LIGHT_BLUE, hitbox, ren);
+
+    hitbox = (SDL_Rect){450, 660, 100, 100};
+    stats->text[2]=text_create(assets, "00:00:00", RAJDHANI_MED, LIGHT_BLUE, hitbox, ren);
+
+    hitbox = (SDL_Rect){450, 800, 100, 100};
+    stats->text[3]=text_create(assets, "00:00:00", RAJDHANI_MED, LIGHT_BLUE, hitbox, ren);
+
+    hitbox = (SDL_Rect){450, 930, 100, 100};
+    stats->text[4]=text_create(assets, "00:00:00", RAJDHANI_MED, LIGHT_BLUE, hitbox, ren);
 }
 
 void stats_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
