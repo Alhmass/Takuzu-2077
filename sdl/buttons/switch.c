@@ -11,8 +11,10 @@ Switch switch_create(SDL_Rect hitbox, bool default_state) {
     button->render_hitbox = hitbox;
     button->scaled_hitbox = hitbox;
 
-    // TODO: Make this pixel perfect
-    button->hitbox = (SDL_Rect){hitbox.x + 10, hitbox.y + 10, hitbox.w - 20, hitbox.h - 20};
+    button->hitbox.x = hitbox.x + (25 * hitbox.w / 100);
+    button->hitbox.y = hitbox.y;
+    button->hitbox.w = 75 * hitbox.w / 100;
+    button->hitbox.h = hitbox.h;
     button->scaled = button->hitbox;
 
     button->state = default_state;

@@ -52,11 +52,9 @@ void slider_render(Slider button, Assets assets, SDL_Renderer *ren, SDL_Rect win
     button->scaled = scale_rect(button->hitbox, win_rect);
 
     // move the cursor to the correct position given the value
-    button->cursor_hitbox.x = button->value *
-                                  ((button->hitbox.w + 5 * button->cursor_hitbox.w / 100) -
-                                   (button->cursor_hitbox.w + 8 * button->cursor_hitbox.w / 100)) /
-                                  100 +
-                              button->hitbox.x;
+    button->cursor_hitbox.x =
+        button->value * (button->hitbox.w - (button->cursor_hitbox.w + 8 * button->cursor_hitbox.w / 100)) / 100 +
+        button->hitbox.x;
     button->cursor_scaled = scale_rect(button->cursor_hitbox, win_rect);
 
     // center the label into the cursor
@@ -79,21 +77,19 @@ bool slider_dragged(Slider button, Input input, Assets assets, SDL_Renderer *ren
     } else if (button->dragged == true && left_drag((SDL_Rect){0, 0, win_rect.w, win_rect.h}, input)) {
         button->cursor_scaled.x = input->mouse_pos.x - button->cursor_scaled.w / 2;
 
-        if (button->cursor_scaled.x < button->scaled.x + 2 * button->cursor_scaled.w / 100) {
+        if (button->cursor_scaled.x < button->scaled.x + 2 * button->cursor_scaled.w / 100)
             button->cursor_scaled.x = button->scaled.x - 2 * button->cursor_scaled.w / 100;
-        }
 
-        if (button->cursor_scaled.x > (button->scaled.x + button->scaled.w) - button->cursor_scaled.w) {
+        if (button->cursor_scaled.x > (button->scaled.x + button->scaled.w) - button->cursor_scaled.w)
             button->cursor_scaled.x = (button->scaled.x + button->scaled.w) - button->cursor_scaled.w;
-        }
 
         button->value =
             (button->cursor_scaled.x - button->scaled.x) * 100 / (button->scaled.w - button->cursor_scaled.w);
 
-        char label[5];
+        char label[7];
         sprintf(label, "%d", button->value);
         if (strlen(label) == 1) {
-            char temp[5];
+            char temp[7];
             sprintf(temp, " %s ", label);
             strcpy(label, temp);
         }

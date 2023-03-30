@@ -42,16 +42,16 @@ void env_update(Env *env, SDL_Event *event) {
         } else if (event->button.button == SDL_BUTTON_RIGHT) {
             CLICK(env) = RIGHT_CLICK;
         }
+    } else if (event->type == SDL_MOUSEBUTTONUP) {
+        CLICK(env) = NO_ACTION;
     } else if (CLICK(env) == LEFT_CLICK) {
         CLICK(env) = LEFT_DRAG;
     } else if (CLICK(env) == RIGHT_CLICK) {
         CLICK(env) = RIGHT_DRAG;
-    } else if (event->type == SDL_MOUSEBUTTONUP) {
-        CLICK(env) = NO_ACTION;
     }
 
-    // char *action[5] = {"NO_ACTION", "LEFT_CLICK", "LEFT_DRAG", "RIGHT_CLICK", "RIGHT_DRAG"};
-    // printf("[%d, %d]  %s\n", MOUSE_X(env), MOUSE_Y(env), action[CLICK(env)]);
+    char *action[5] = {"NO_ACTION", "LEFT_CLICK", "LEFT_DRAG", "RIGHT_CLICK", "RIGHT_DRAG"};
+    printf("[%d, %d]  %s\n", MOUSE_X(env), MOUSE_Y(env), action[CLICK(env)]);
 }
 
 /* **************************************************************** */
