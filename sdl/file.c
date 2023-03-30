@@ -34,7 +34,7 @@ char *get_line(char *path, int line) {
     close_file(file);
     return linebuf;
 }
-/*
+
 char *get_setting(char *path, int line) {
     FILE *file = open_file(path);
     int setting_size = SETTING_SIZE(file, line);
@@ -44,7 +44,7 @@ char *get_setting(char *path, int line) {
     fgets(buf, setting_size, file);
     close_file(file);
     return (buf);
-}*/
+}
 
 bool set_line(char *path, int line, char *nline) {
     assert(nline);
@@ -71,7 +71,7 @@ bool set_line(char *path, int line, char *nline) {
     return true;
 }
 
-/*bool set_setting(char *path, int line, char *value) {
+bool set_setting(char *path, int line, char *value) {
     assert(value);
 
     char *curr_line = get_line(path, line);
@@ -88,7 +88,7 @@ bool set_line(char *path, int line, char *nline) {
     free(curr_line);
     free(new_line);
     return res;
-}*/
+}
 
 bool set_value(char *path, int line, int value) {
     char str[10];

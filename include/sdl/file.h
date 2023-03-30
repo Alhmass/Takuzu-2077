@@ -14,10 +14,10 @@ FILE *open_file(const char *path);
 void close_file(FILE *file);
 
 char *get_line(char *path, int line);
-//char *get_setting(char *path, char *setting);
+char *get_setting(char *path, char *setting);
 
 bool set_value(char *path, int line, int value);
-//bool set_setting(char *path, char *setting, char *value);
+bool set_setting(char *path, char *setting, char *value);
 bool set_line(char *path, int line, char *nline);
 
 #endif /* FILE_H */
