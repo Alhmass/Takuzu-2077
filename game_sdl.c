@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
     SDL_Event event;
 
     bool quit = false;
-    while (!quit) {
+    while (!quit && !env->conf->quit) {
         while (SDL_PollEvent(&event)) {
             env_update(env, &event);
             quit = process(env->win, env->ren, env, &event);

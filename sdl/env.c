@@ -28,6 +28,9 @@ Env *env_init(SDL_Window *win, SDL_Renderer *ren) {
 
     env->assets = assets_init(env->ren);
     assert(env->assets);
+    if (Mix_PlayMusic(MUSIC(env->assets, MENU_LOOP), -1) == -1)
+        fprintf(stderr, "Mix_PlayMusic: %s\n", Mix_GetError());
+    Mix_VolumeMusic(env->conf->music_volume);
 
     env->input = malloc(sizeof(struct Input_s));
     assert(env->input);

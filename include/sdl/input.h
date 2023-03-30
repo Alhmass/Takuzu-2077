@@ -38,8 +38,8 @@ bool is_hovered(SDL_Rect rect, Input input);
 
 /* **************************************************************** */
 
-bool key_down(int key_code, Input input);
-bool key_repeat(int key_code, Input input);
+bool key_down(Input input, int key_code);
+bool key_repeat(Input input, int key_code);
 
 /* **************************************************************** */
 

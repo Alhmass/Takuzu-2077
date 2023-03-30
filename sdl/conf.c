@@ -8,6 +8,10 @@ Conf conf_init() {
 
     // default value for all settings
 
+    conf->sound_volume = 50 * 20 / 100;
+    conf->music_volume = 20 * 20 / 100;
+    conf->general_volume = 100;
+
     conf->quit = false;
     return conf;
 }

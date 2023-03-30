@@ -14,7 +14,7 @@ void sounds_init(Conf conf, Scene sounds, Assets assets, SDL_Renderer *ren) {
     sounds->slider_b[0] = slider_create(hitbox, 50, 0, 100, assets, ren);
 
     hitbox = (SDL_Rect){842, 359, 660, 59};
-    sounds->slider_b[1] = slider_create(hitbox, 50, 0, 100, assets, ren);
+    sounds->slider_b[1] = slider_create(hitbox, 20, 0, 100, assets, ren);
 
     hitbox = (SDL_Rect){842, 435, 660, 59};
     sounds->slider_b[2] = slider_create(hitbox, 100, 0, 100, assets, ren);
@@ -62,20 +62,21 @@ void sounds_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Re
     }
 
     if (slider_dragged(scenes[SOUNDS]->slider_b[0], input, assets, ren, win_rect)) {
-        int value = scenes[SOUNDS]->slider_b[0]->value;
-        value = value * 20 / 100;
-        Mix_Volume(-1, value);
+        conf->sound_volume = scenes[SOUNDS]->slider_b[0]->value;
+        conf->sound_volume = conf->sound_volume * 20 / 100;
+        Mix_Volume(-1, conf->sound_volume * conf->general_volume / 100);
     }
 
     if (slider_dragged(scenes[SOUNDS]->slider_b[1], input, assets, ren, win_rect)) {
-        int value = scenes[SOUNDS]->slider_b[1]->value;
-        value = value * 20 / 100;
-        Mix_Volume(0, value);
+        conf->music_volume = scenes[SOUNDS]->slider_b[1]->value;
+        conf->music_volume = conf->music_volume * 25 / 100;
+        Mix_VolumeMusic(conf->music_volume * conf->general_volume / 100);
     }
 
     if (slider_dragged(scenes[SOUNDS]->slider_b[2], input, assets, ren, win_rect)) {
-        printf("[slider 2]: %d\n", scenes[SOUNDS]->slider_b[2]->value);
-        Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
+        conf->general_volume = scenes[SOUNDS]->slider_b[2]->value;
+        Mix_Volume(-1, conf->sound_volume * conf->general_volume / 100);
+        Mix_VolumeMusic(conf->music_volume * conf->general_volume / 100);
     }
 
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[0], input, win_rect, assets)) {

@@ -14,6 +14,11 @@
 struct Conf_s {
     game takuzu;
 
+    /****** Sounds ******/
+    int music_volume;
+    int sound_volume;
+    int general_volume;
+
     /****** Status ******/
     bool quit;
 };

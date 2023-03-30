@@ -87,6 +87,6 @@ bool is_hovered(SDL_Rect rect, Input input) { return (SDL_PointInRect(&input->mo
 
 /* **************************************************************** */
 
-bool key_down(int key_code, Input input) { return (input->key_code == key_code && input->key_action == KEY_DOWN); }
+bool key_down(Input input, int key_code) { return (input->key_code == key_code && input->key_action == KEY_DOWN); }
 
-bool key_repeat(int key_code, Input input) { return (input->key_code == key_code && input->key_action == KEY_REPEAT); }
+bool key_repeat(Input input, int key_code) { return (input->key_code == key_code && input->key_action == KEY_REPEAT); }
