@@ -109,8 +109,7 @@ bool slider_hovered(Slider button, Input input, SDL_Rect win_rect, Assets assets
 
     if (is_hovered(button->scaled, input)) {
         if (button->hovered == false) {
-            // play hover sound
-            (void)assets;
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_HOVER), 0);
         }
         button->hovered = true;
         return true;

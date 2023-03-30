@@ -38,26 +38,20 @@ void toggle_render(Toggle button, Assets assets, SDL_Renderer *ren, SDL_Rect win
     }
 }
 
-bool toggle_pressed(Toggle button, Input input, SDL_Rect win_rect, Assets a) {
+bool toggle_pressed(Toggle button, Input input, SDL_Rect win_rect, Assets assets) {
     button->scaled_off = scale_rect(button->hitbox_off, win_rect);
     button->scaled_on = scale_rect(button->hitbox_on, win_rect);
 
     if (left_click(button->scaled_off, input)) {
         if (button->state == true) {
-            // play negative sound
-            (void)a;
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_NEGATIVE), 0);
             button->state = false;
-        } else {
-            // play error sound
         }
         return true;
     } else if (left_click(button->scaled_on, input)) {
         if (button->state == false) {
-            // play affirmative sound
-            (void)a;
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_AFFIRMATIVE), 0);
             button->state = true;
-        } else {
-            // play error sound
         }
         return true;
     }
