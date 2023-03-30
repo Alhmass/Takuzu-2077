@@ -84,6 +84,10 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
         scenes[MAIN]->is_active = true;
     }
 
+    if (default_pressed(scenes[GAME]->default_b[11], input, win_rect, assets)) {
+        conf->quit = true;
+    }
+
     // Switches
     if (switch_pressed(scenes[GAME]->switch_b[0], input, win_rect, assets)) {
         printf("[switch 0] %d\n", scenes[GAME]->switch_b[0]->state);
@@ -99,6 +103,12 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
 
     if (switch_pressed(scenes[GAME]->switch_b[3], input, win_rect, assets)) {
         printf("[switch 3] %d\n", scenes[GAME]->switch_b[3]->state);
+    }
+
+    // Keyboard Input
+    if (input->key_code == SDLK_ESCAPE) {
+        scenes[GAME]->is_active = false;
+        scenes[MAIN]->is_active = true;
     }
 }
 

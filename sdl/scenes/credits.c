@@ -22,7 +22,12 @@ void credits_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_R
     (void)assets;
     (void)ren;
     (void)win_rect;
-    (void)input;
+
+    // Keyboard Input
+    if (input->key_code == SDLK_ESCAPE) {
+        scenes[CREDITS]->is_active = false;
+        scenes[MAIN]->is_active = true;
+    }
 }
 
 /* **************************************************************** */

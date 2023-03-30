@@ -10,6 +10,8 @@
 
 enum mouse_action { NO_ACTION, LEFT_CLICK, LEFT_DRAG, RIGHT_CLICK, RIGHT_DRAG };
 
+enum key_action { NO_KEY, KEY_DOWN, KEY_REPEAT };
+
 /* **************************************************************** */
 
 struct Input_s {
@@ -33,6 +35,11 @@ bool right_click(SDL_Rect rect, Input input);
 bool right_drag(SDL_Rect rect, Input input);
 
 bool is_hovered(SDL_Rect rect, Input input);
+
+/* **************************************************************** */
+
+bool key_down(int key_code, Input input);
+bool key_repeat(int key_code, Input input);
 
 /* **************************************************************** */
 

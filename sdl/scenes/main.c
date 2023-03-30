@@ -28,11 +28,11 @@ void main_init(Conf conf, Scene main, Assets assets, SDL_Renderer *ren) {
 }
 
 void main_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
-    (void)conf;
-    (void)ren;
-
     if (scenes[MAIN]->is_active == false)
         return;
+
+    (void)conf;
+    (void)ren;
 
     if (default_pressed(scenes[MAIN]->default_b[0], input, win_rect, assets)) {
         scenes[CREATE]->is_active = true;
@@ -55,7 +55,7 @@ void main_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
     }
 
     if (default_pressed(scenes[MAIN]->default_b[4], input, win_rect, assets)) {
-        printf("Quit Game\n");
+        conf->quit = true;
     }
 }
 

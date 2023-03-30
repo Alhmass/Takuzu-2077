@@ -10,6 +10,7 @@ Env *env_init(SDL_Window *win, SDL_Renderer *ren) {
     assert(env);
 
     env->conf = conf_init();
+    env->input = input_init();
 
     /****** SDL ******/
     env->win = win;

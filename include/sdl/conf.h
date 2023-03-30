@@ -13,6 +13,9 @@
 
 struct Conf_s {
     game takuzu;
+
+    /****** Status ******/
+    bool quit;
 };
 
 typedef struct Conf_s *Conf;

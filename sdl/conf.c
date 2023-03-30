@@ -8,6 +8,7 @@ Conf conf_init() {
 
     // default value for all settings
 
+    conf->quit = false;
     return conf;
 }
 
