@@ -43,7 +43,7 @@ enum choice_assets { CHOICE_BACKGROUND, CHOICE_COUNT };
 
 enum slider_assets { SLIDER_BACKGROUND, SLIDER_CURSOR, SLIDER_COUNT };
 
-enum cell_assets { CELL_EMPTY, CELL_BLUE, CELL_IMM_BLUE, CELL_RED, CELL_IMM_RED, CELL_ERROR, CELL_HOVER, CELL_COUNT };
+enum cell_assets { CELL_EMPTY, CELL_BLUE, CELL_RED, CELL_IMM_BLUE, CELL_IMM_RED, CELL_ERROR, CELL_HOVER, CELL_COUNT };
 
 /* **************************************************************** */
 

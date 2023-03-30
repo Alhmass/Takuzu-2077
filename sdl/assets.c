@@ -89,11 +89,11 @@ static void cell_init(Assets a, SDL_Renderer *ren) {
     BT(a, CELL, CELL_BLUE) = IMG_LoadTexture(ren, "assets/img/buttons/cell/blue.png");
     if (!BT(a, CELL, CELL_BLUE))
         ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
-    BT(a, CELL, CELL_IMM_BLUE) = IMG_LoadTexture(ren, "assets/img/buttons/cell/imm_blue.png");
-    if (!BT(a, CELL, CELL_IMM_BLUE))
-        ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
     BT(a, CELL, CELL_RED) = IMG_LoadTexture(ren, "assets/img/buttons/cell/red.png");
     if (!BT(a, CELL, CELL_RED))
+        ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
+    BT(a, CELL, CELL_IMM_BLUE) = IMG_LoadTexture(ren, "assets/img/buttons/cell/imm_blue.png");
+    if (!BT(a, CELL, CELL_IMM_BLUE))
         ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
     BT(a, CELL, CELL_IMM_RED) = IMG_LoadTexture(ren, "assets/img/buttons/cell/imm_red.png");
     if (!BT(a, CELL, CELL_IMM_RED))

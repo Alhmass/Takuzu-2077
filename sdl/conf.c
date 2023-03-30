@@ -11,6 +11,12 @@ Conf conf_init() {
     conf->music_volume = 20 * 20 / 100;
     conf->general_volume = 100;
 
+    // Game
+    conf->errors = true;
+    conf->hover = true;
+    conf->timer = true;
+    conf->accuracy = true;
+
     // Graphics
     conf->fullscreen = 0;
     conf->window_size = (SDL_Rect){0, 0, 1600, 900};

@@ -88,7 +88,11 @@ void sounds_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Re
     }
 
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[2], input, win_rect, assets)) {
-        printf("[toggle 2]: %d\n", scenes[SOUNDS]->toggle_b[2]->state);
+        if (scenes[SOUNDS]->toggle_b[2]->state == true) {
+            Mix_ResumeMusic();
+        } else {
+            Mix_PauseMusic();
+        }
     }
 
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[3], input, win_rect, assets)) {

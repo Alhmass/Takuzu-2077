@@ -19,6 +19,12 @@ struct Conf_s {
     int sound_volume;
     int general_volume;
 
+    /****** Game ******/
+    bool errors;
+    bool hover;
+    bool timer;
+    bool accuracy;
+
     /****** Graphics ******/
     int fullscreen;
     SDL_Rect window_size;

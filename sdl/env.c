@@ -50,6 +50,8 @@ void env_update(Env *env, SDL_Event *event) {
         SDL_GetCurrentDisplayMode(0, &DM);
         WIN_W(env) = DM.w;
         WIN_H(env) = DM.h;
+        env->conf->window_size.w = WIN_W(env);
+        env->conf->window_size.h = WIN_H(env);
     } else {
         SDL_SetWindowFullscreen(env->win, 0);
         WIN_W(env) = env->conf->window_size.w;
