@@ -24,6 +24,7 @@ struct Conf_s {
     bool hover;
     bool timer;
     bool accuracy;
+    char *save_path;
 
     /****** Graphics ******/
     int fullscreen;
@@ -41,7 +42,7 @@ typedef struct Conf_s *Conf;
 Conf conf_init();
 void conf_delete(Conf conf);
 
-bool conf_load(Conf conf, const char *path);
-bool conf_save(Conf conf, const char *path);
+bool conf_load(Conf conf, char *path);
+bool conf_save(Conf conf, char *path);
 
 #endif /* CONF_H */

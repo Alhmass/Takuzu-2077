@@ -32,9 +32,23 @@ void conf_delete(Conf conf) {
     free(conf);
 }
 
-bool conf_load(Conf conf, const char *path) {
+bool conf_load(Conf conf, char *path) {
     (void)conf;
     (void)path;
+
+    if (strcmp(path, "default.conf") != 0) {
+        conf->takuzu = game_load(path);
+        if (conf->takuzu == NULL) {
+            conf->takuzu = game_default();
+        } else {
+            // copy the file path to the save_path
+            conf->save_path = malloc(sizeof(char) * (strlen(path) + 1));
+            assert(conf->save_path);
+            strcpy(conf->save_path, path);
+        }
+    } else {
+        conf->takuzu = game_default();
+    }
 
     // if (file.conf == false)
     //     return false;
@@ -42,7 +56,7 @@ bool conf_load(Conf conf, const char *path) {
     // load settings from file.conf
     return true;
 }
-bool conf_save(Conf conf, const char *path) {
+bool conf_save(Conf conf, char *path) {
     (void)conf;
     (void)path;
 

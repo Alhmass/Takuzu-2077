@@ -44,6 +44,14 @@ void game_init(Conf conf, Scene game, Assets assets, SDL_Renderer *ren) {
     }
 }
 
+static void refresh_cells(Scene game, Conf conf) {
+    for (uint i = 0; i < conf->takuzu->nb_rows; i++) {
+        for (uint j = 0; j < conf->takuzu->nb_cols; j++) {
+            game->cell_b[i * conf->takuzu->nb_cols + j]->type = game_get_square(conf->takuzu, i, j);
+        }
+    }
+}
+
 void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
     if (scenes[GAME]->is_active == false)
         return;
@@ -51,11 +59,35 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
     (void)ren;
 
     // Defaults
-    for (int i = 0; i < scenes[GAME]->nb_default; i++) {
-        default_pressed(scenes[GAME]->default_b[i], input, win_rect, assets);
+    if (default_pressed(scenes[GAME]->default_b[3], input, win_rect, assets) || key_down(input, SDLK_z)) {
+        game_undo(conf->takuzu);
+        refresh_cells(scenes[GAME], conf);
     }
 
-    // click or key 'U'
+    if (default_pressed(scenes[GAME]->default_b[4], input, win_rect, assets) || key_down(input, SDLK_y)) {
+        game_redo(conf->takuzu);
+        refresh_cells(scenes[GAME], conf);
+    }
+
+    if (default_pressed(scenes[GAME]->default_b[5], input, win_rect, assets) || key_down(input, SDLK_r)) {
+        game_restart(conf->takuzu);
+        refresh_cells(scenes[GAME], conf);
+    }
+
+    if (default_pressed(scenes[GAME]->default_b[6], input, win_rect, assets) || key_down(input, SDLK_s)) {
+        game_solve(conf->takuzu);
+        refresh_cells(scenes[GAME], conf);
+    }
+
+    if (default_pressed(scenes[GAME]->default_b[7], input, win_rect, assets) || key_down(input, SDLK_f)) {
+        game_save(conf->takuzu, conf->save_path);
+    }
+
+    if (default_pressed(scenes[GAME]->default_b[8], input, win_rect, assets) || key_down(input, SDLK_l)) {
+        game_delete(conf->takuzu);
+        conf->takuzu = game_load(conf->save_path);
+    }
+
     if (default_pressed(scenes[GAME]->default_b[9], input, win_rect, assets) || key_down(input, SDLK_u)) {
         scenes[SOUNDS]->is_active = true;
         scenes[GAME]->is_active = false;
@@ -100,5 +132,3 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
         }
     }
 }
-
-/* **************************************************************** */
