@@ -32,14 +32,14 @@ Env *init(SDL_Window *win, SDL_Renderer *ren, int argc, char *argv[]) {
         env->conf->takuzu = game_default();
     }
 
-    void (*init_list[])(Scene scene, Assets assets, SDL_Renderer * ren) = {
+    void (*init_list[])(Conf conf, Scene scene, Assets assets, SDL_Renderer * ren) = {
         main_init,   game_init,     create_init,   editor_init, saved_init,   custom_init,
         sounds_init, controls_init, graphics_init, stats_init,  credits_init, NULL};
 
     for (int i = 0; i < NB_SCENES; i++) {
         SCENE(env, i) = malloc(sizeof(struct Scene_s));
         assert(SCENE(env, i));
-        init_list[i](SCENE(env, i), env->assets, env->ren);
+        init_list[i](env->conf, SCENE(env, i), env->assets, env->ren);
     }
 
     SCENE(env, MAIN)->is_active = true;

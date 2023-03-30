@@ -41,12 +41,10 @@ bool switch_pressed(Switch button, Input input, SDL_Rect win_rect, Assets assets
 
     if (left_click(button->scaled, input)) {
         if (button->state == false) {
-            // play affirmative sound
-            (void)assets;
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_AFFIRMATIVE), 0);
             button->state = true;
         } else if (button->state == true) {
-            // play negative sound
-            (void)assets;
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_NEGATIVE), 0);
             button->state = false;
         }
         return true;

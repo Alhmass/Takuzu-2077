@@ -29,6 +29,9 @@ static void default_init(Assets a, SDL_Renderer *ren) {
     BT(a, DEFAULT, DEFAULT_RED_HOVER) = IMG_LoadTexture(ren, "assets/img/buttons/default/red_hover.png");
     if (!BT(a, DEFAULT, DEFAULT_RED_HOVER))
         ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
+    BT(a, DEFAULT, DEFAULT_T) = IMG_LoadTexture(ren, "assets/img/buttons/default/transparent.png");
+    if (!BT(a, DEFAULT, DEFAULT_T))
+        ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
 }
 
 static void switch_init(Assets a, SDL_Renderer *ren) {

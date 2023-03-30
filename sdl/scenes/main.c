@@ -7,8 +7,9 @@
 
 /* **************************************************************** */
 
-void main_init(Scene main, Assets assets, SDL_Renderer *ren) {
+void main_init(Conf conf, Scene main, Assets assets, SDL_Renderer *ren) {
     scene_init(main, 5, 0, 0, 0, 0, 0, 0);
+    (void)conf;
 
     SDL_Rect hitbox = {300, 550, 365, 56};
     main->default_b[0] = default_create(hitbox, "NEW GAME", DEFAULT_BLUE_DARK, assets, ren);
@@ -26,7 +27,8 @@ void main_init(Scene main, Assets assets, SDL_Renderer *ren) {
     main->default_b[4] = default_create(hitbox, "QUIT GAME", DEFAULT_BLUE_DARK, assets, ren);
 }
 
-void main_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL_Renderer * ren,                     SDL_Rect win_rect) {
+void main_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+    (void)conf;
     (void)ren;
 
     if (scenes[MAIN]->is_active == false)

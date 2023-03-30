@@ -31,6 +31,7 @@ enum texture_assets {
     DEFAULT_RED,
     DEFAULT_RED_T,
     DEFAULT_RED_HOVER,
+    DEFAULT_T,
     DEFAULT_COUNT
 };
 

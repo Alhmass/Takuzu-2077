@@ -11,7 +11,7 @@
 
 /* **************************************************************** */
 
-void editor_init(Scene scene, Assets assets, SDL_Renderer *ren);
+void editor_init(Conf conf, Scene scene, Assets assets, SDL_Renderer *ren);
 void editor_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
 
 /* **************************************************************** */

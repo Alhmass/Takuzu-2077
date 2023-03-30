@@ -11,7 +11,7 @@
 
 /* **************************************************************** */
 
-void game_init(Scene scene, Assets assets, SDL_Renderer *ren);
+void game_init(Conf conf, Scene scene, Assets assets, SDL_Renderer *ren);
 void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
 
 /* **************************************************************** */

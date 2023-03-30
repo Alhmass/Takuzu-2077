@@ -11,7 +11,7 @@
 
 /* **************************************************************** */
 
-void custom_init(Scene scene, Assets assets, SDL_Renderer *ren);
+void custom_init(Conf conf, Scene scene, Assets assets, SDL_Renderer *ren);
 void custom_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect);
 
 /* **************************************************************** */

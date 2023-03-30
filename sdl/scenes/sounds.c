@@ -6,7 +6,8 @@
 
 /* **************************************************************** */
 
-void sounds_init(Scene sounds, Assets assets, SDL_Renderer *ren) {
+void sounds_init(Conf conf, Scene sounds, Assets assets, SDL_Renderer *ren) {
+    (void)conf;
     scene_init(sounds, 0, 0, 4, 0, 3, 0, 0);
 
     SDL_Rect hitbox = {842, 283, 660, 59};
@@ -31,9 +32,10 @@ void sounds_init(Scene sounds, Assets assets, SDL_Renderer *ren) {
     sounds->toggle_b[3] = toggle_create(hitbox, true);
 }
 
-void sounds_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL_Renderer * ren,                     SDL_Rect win_rect) {
+void sounds_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
     if (scenes[SOUNDS]->is_active == false)
         return;
+    (void)conf;
 
     SDL_Rect hitbox = {715, 67, 180, 28};
     hitbox = scale_rect(hitbox, win_rect);
@@ -92,8 +94,10 @@ void sounds_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL_R
         printf("[toggle 3]: %d\n", scenes[SOUNDS]->toggle_b[3]->state);
     }
 
-    if (slider_dragged(scenes[SOUNDS]->slider_b[0], input, assets, ren, win_rect)) {
-        printf("[slider 0]: %d\n", scenes[SOUNDS]->slider_b[0]->value);
+    // Keyboard Input
+    if (input->key_code == SDLK_ESCAPE) {
+        scenes[SOUNDS]->is_active = false;
+        scenes[MAIN]->is_active = true;
     }
 }
 

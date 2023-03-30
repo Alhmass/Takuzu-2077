@@ -6,8 +6,9 @@
 
 /* **************************************************************** */
 
-void graphics_init(Scene graphics, Assets assets, SDL_Renderer *ren) {
+void graphics_init(Conf conf, Scene graphics, Assets assets, SDL_Renderer *ren) {
     scene_init(graphics, 0, 0, 6, 1, 0, 0, 0);
+    (void)conf;
 
     SDL_Rect hitbox = {842, 283, 660, 59};
     char *choices[7] = {"960 x 540",  "1024 x 576", "1152 x 648", "1280 x 720",
@@ -33,11 +34,11 @@ void graphics_init(Scene graphics, Assets assets, SDL_Renderer *ren) {
     graphics->toggle_b[5] = toggle_create(hitbox, true);
 }
 
-void graphics_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL_Renderer * ren,                     SDL_Rect win_rect) {
+void graphics_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
     if (scenes[GRAPHICS]->is_active == false)
         return;
 
-    (void)assets;
+    (void)conf;
     (void)ren;
 
     SDL_Rect hitbox = {418, 67, 142, 28};
@@ -90,6 +91,12 @@ void graphics_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL
 
     if (toggle_pressed(scenes[GRAPHICS]->toggle_b[5], input, win_rect, assets)) {
         printf("[toggle 5]: %d\n", scenes[GRAPHICS]->toggle_b[5]->state);
+    }
+
+    // Keyboard Input
+    if (input->key_code == SDLK_ESCAPE) {
+        scenes[MAIN]->is_active = true;
+        scenes[GRAPHICS]->is_active = false;
     }
 }
 

@@ -6,8 +6,10 @@
 
 /* **************************************************************** */
 
-void controls_init(Scene controls, Assets assets, SDL_Renderer *ren) {
+void controls_init(Conf conf, Scene controls, Assets assets, SDL_Renderer *ren) {
     scene_init(controls, 0, 0, 0, 0, 0, 0, 0);
+
+    (void)conf;
     (void)assets;
     (void)ren;
 }
@@ -16,7 +18,7 @@ void controls_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_
     if (scenes[CONTROLS]->is_active == false)
         return;
 
-    (void)assets;
+    (void)conf;
     (void)ren;
 
     SDL_Rect hitbox = {418, 67, 142, 28};
@@ -40,6 +42,12 @@ void controls_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_
     if (left_click(hitbox, input)) {
         Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
         scenes[STATS]->is_active = true;
+        scenes[CONTROLS]->is_active = false;
+    }
+
+    // Keyboard Input
+    if (input->key_code == SDLK_ESCAPE) {
+        scenes[MAIN]->is_active = true;
         scenes[CONTROLS]->is_active = false;
     }
 }
