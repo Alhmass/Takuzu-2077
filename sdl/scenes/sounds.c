@@ -42,7 +42,11 @@ void sounds_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren
 
     SDL_Rect hitbox = {715, 67, 180, 28};
     hitbox = scale_rect(hitbox, win_rect);
+    if (is_hovered(hitbox, input)){
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_HOVER), 0);
+    }
     if (left_click(hitbox, input)) {
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
         scenes[CONTROLS]->is_active = true;
         scenes[SOUNDS]->is_active = false;
     }
@@ -50,6 +54,7 @@ void sounds_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren
     hitbox = (SDL_Rect){1055, 67, 174, 28};
     hitbox = scale_rect(hitbox, win_rect);
     if (left_click(hitbox, input)) {
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
         scenes[GRAPHICS]->is_active = true;
         scenes[SOUNDS]->is_active = false;
     }
@@ -57,6 +62,7 @@ void sounds_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren
     hitbox = (SDL_Rect){1394, 67, 107, 28};
     hitbox = scale_rect(hitbox, win_rect);
     if (left_click(hitbox, input)) {
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
         scenes[STATS]->is_active = true;
         scenes[SOUNDS]->is_active = false;
     }
@@ -65,40 +71,54 @@ void sounds_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren
         int value = scenes[SOUNDS]->slider_b[0]->value;
         value = value * 20 / 100;
         Mix_Volume(-1, value);
-        Mix_PlayChannel(-1, SOUND(assets, SOUND_AFFIRMATIVE), 0);
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
     }
 
     if (slider_dragged(scenes[SOUNDS]->slider_b[1], input, assets, ren, win_rect)) {
         int value = scenes[SOUNDS]->slider_b[1]->value;
         value = value * 20 / 100;
         Mix_Volume(0, value);
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
     }
 
     if (slider_dragged(scenes[SOUNDS]->slider_b[2], input, assets, ren, win_rect)) {
         printf("[slider 2]: %d\n", scenes[SOUNDS]->slider_b[2]->value);
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
     }
 
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[0], input, win_rect, assets)) {
+        if (scenes[SOUNDS]->toggle_b[0]->state){
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_AFFIRMATIVE), 0);
+        }else{
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_NEGATIVE), 0);
+        }
         printf("[toggle 0]: %d\n", scenes[SOUNDS]->toggle_b[0]->state);
     }
 
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[1], input, win_rect, assets)) {
-        int value = scenes[SOUNDS]->slider_b[0]->value;
-        value = value * 20 / 100;
-        if (scenes[SOUNDS]->toggle_b[1]->state == true) {
-            Mix_Volume(-1, value);
-            Mix_PlayChannel(-1, SOUND(assets, SOUND_AFFIRMATIVE), 0);
-        } else {
-            Mix_Volume(-1, 0);
-        }
+        printf("[toggle 1]: %d\n", scenes[SOUNDS]->toggle_b[1]->state);
     }
 
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[2], input, win_rect, assets)) {
+        if (scenes[SOUNDS]->toggle_b[2]->state){
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_AFFIRMATIVE), 0);
+        }else{
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_NEGATIVE), 0);
+        }
         printf("[toggle 2]: %d\n", scenes[SOUNDS]->toggle_b[2]->state);
     }
 
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[3], input, win_rect, assets)) {
+        if (scenes[SOUNDS]->toggle_b[3]->state){
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_AFFIRMATIVE), 0);
+        }else{
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_NEGATIVE), 0);
+        }
         printf("[toggle 3]: %d\n", scenes[SOUNDS]->toggle_b[3]->state);
+    }
+
+    if (slider_dragged(scenes[SOUNDS]->slider_b[0], input, assets, ren, win_rect)) {
+        printf("[slider 0]: %d\n", scenes[SOUNDS]->slider_b[0]->value);
     }
 }
 

@@ -43,6 +43,7 @@ void graphics_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *r
     SDL_Rect hitbox = {418, 67, 142, 28};
     hitbox = scale_rect(hitbox, win_rect);
     if (left_click(hitbox, input)) {
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
         scenes[SOUNDS]->is_active = true;
         scenes[GRAPHICS]->is_active = false;
     }
@@ -50,6 +51,7 @@ void graphics_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *r
     hitbox = (SDL_Rect){715, 67, 180, 28};
     hitbox = scale_rect(hitbox, win_rect);
     if (left_click(hitbox, input)) {
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
         scenes[CONTROLS]->is_active = true;
         scenes[GRAPHICS]->is_active = false;
     }
@@ -57,6 +59,7 @@ void graphics_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *r
     hitbox = (SDL_Rect){1394, 67, 107, 28};
     hitbox = scale_rect(hitbox, win_rect);
     if (left_click(hitbox, input)) {
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_SWIPE), 0);
         scenes[STATS]->is_active = true;
         scenes[GRAPHICS]->is_active = false;
     }
