@@ -93,7 +93,7 @@ bool slider_dragged(Slider button, Input input, Assets assets, SDL_Renderer *ren
         char label[5];
         sprintf(label, "%d", button->value);
         if (strlen(label) == 1) {
-            char temp[5];
+            char temp[7];
             sprintf(temp, " %s ", label);
             strcpy(label, temp);
         }
