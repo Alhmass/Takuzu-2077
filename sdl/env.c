@@ -55,6 +55,7 @@ void env_update(Env *env, SDL_Event *event) {
         WIN_W(env) = env->conf->window_size.w;
         WIN_H(env) = env->conf->window_size.h;
         SDL_SetWindowSize(env->win, WIN_W(env), WIN_H(env));
+        SDL_SetWindowPosition(env->win, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
     }
 
     input_update(env->input, event);
