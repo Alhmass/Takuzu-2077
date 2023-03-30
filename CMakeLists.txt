@@ -44,7 +44,11 @@ target_link_libraries(game_sdl ${SDL2_ALL_LIBS} m)
 
 # ---- File Duplication ---- #
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/assets/)
+<<<<<<< HEAD
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/configuration/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/configuration/)
+=======
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/configuration/saves DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/saves/)
+>>>>>>> f091fc46baca5b3f0cbdef5f6c7588f0a1e55117
 
 # ---- Tests Generation ---- #
 add_executable(test_game                    tests/test_game.c)

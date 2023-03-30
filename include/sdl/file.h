@@ -7,8 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LINE_SIZE(file, line) (get_pos((file), (line), '\n') - get_pos((file), (line - 1), '\n'))
-#define SETTING_SIZE(file, line) (get_pos((file), (line), ' ') - get_pos((file), (line - 1), '\n'))
+#define LINE_SIZE(file, line) (get_pos((file), (line)) - get_pos((file), (line - 1)))
 
 FILE *open_file(const char *path);
 void close_file(FILE *file);
