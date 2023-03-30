@@ -1,10 +1,15 @@
 #include "env.h"
 
+#include "conf.h"
+#include "input.h"
+
 /* **************************************************************** */
 
 Env *env_init(SDL_Window *win, SDL_Renderer *ren) {
     Env *env = (Env *)malloc(sizeof(struct Env_t));
     assert(env);
+
+    env->conf = conf_init();
 
     /****** SDL ******/
     env->win = win;
@@ -34,24 +39,7 @@ void env_update(Env *env, SDL_Event *event) {
     SDL_GetWindowPosition(env->win, &WIN_X(env), &WIN_Y(env));
     SDL_GetWindowSize(env->win, &WIN_W(env), &WIN_H(env));
 
-    // Input Update
-    SDL_GetMouseState(&MOUSE_X(env), &MOUSE_Y(env));
-    if (event->type == SDL_MOUSEBUTTONDOWN) {
-        if (event->button.button == SDL_BUTTON_LEFT) {
-            CLICK(env) = LEFT_CLICK;
-        } else if (event->button.button == SDL_BUTTON_RIGHT) {
-            CLICK(env) = RIGHT_CLICK;
-        }
-    } else if (event->type == SDL_MOUSEBUTTONUP) {
-        CLICK(env) = NO_ACTION;
-    } else if (CLICK(env) == LEFT_CLICK) {
-        CLICK(env) = LEFT_DRAG;
-    } else if (CLICK(env) == RIGHT_CLICK) {
-        CLICK(env) = RIGHT_DRAG;
-    }
-
-    char *action[5] = {"NO_ACTION", "LEFT_CLICK", "LEFT_DRAG", "RIGHT_CLICK", "RIGHT_DRAG"};
-    printf("[%d, %d]  %s\n", MOUSE_X(env), MOUSE_Y(env), action[CLICK(env)]);
+    input_update(env->input, event);
 }
 
 /* **************************************************************** */
@@ -61,6 +49,6 @@ void env_delete(Env *env) {
     free(env->input);
     SDL_DestroyRenderer(env->ren);
     SDL_DestroyWindow(env->win);
-    game_delete(env->takuzu);
+    conf_delete(env->conf);
     free(env);
 }

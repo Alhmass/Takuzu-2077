@@ -26,7 +26,7 @@ void game_init(Scene game, Assets assets, SDL_Renderer *ren) {
     game->switch_b[3] = switch_create(hitbox, SWITCH_OFF);
 }
 
-void game_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
     if (scenes[GAME]->is_active == false)
         return;
 

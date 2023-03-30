@@ -3,6 +3,7 @@
 #include <assert.h>
 
 #include "button.h"
+#include "input.h"
 
 Switch switch_create(SDL_Rect hitbox, bool default_state) {
     Switch button = malloc(sizeof(struct Switch_s));

@@ -26,7 +26,7 @@ void main_init(Scene main, Assets assets, SDL_Renderer *ren) {
     main->default_b[4] = default_create(hitbox, "QUIT GAME", DEFAULT_BLUE_DARK, assets, ren);
 }
 
-void main_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void main_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL_Renderer * ren,                     SDL_Rect win_rect) {
     (void)ren;
 
     if (scenes[MAIN]->is_active == false)

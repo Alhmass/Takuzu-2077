@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #include "button.h"
+#include "input.h"
 #include "text.h"
 
 Slider slider_create(SDL_Rect hitbox, int value, int min, int max, Assets assets, SDL_Renderer *ren) {

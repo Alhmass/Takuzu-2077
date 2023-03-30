@@ -33,7 +33,7 @@ void graphics_init(Scene graphics, Assets assets, SDL_Renderer *ren) {
     graphics->toggle_b[5] = toggle_create(hitbox, true);
 }
 
-void graphics_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void graphics_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL_Renderer * ren,                     SDL_Rect win_rect) {
     if (scenes[GRAPHICS]->is_active == false)
         return;
 

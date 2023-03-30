@@ -3,6 +3,7 @@
 #include <assert.h>
 
 #include "button.h"
+#include "input.h"
 
 Toggle toggle_create(SDL_Rect hitbox, bool default_state) {
     Toggle button = malloc(sizeof(struct Toggle_s));

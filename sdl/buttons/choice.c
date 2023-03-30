@@ -3,6 +3,7 @@
 #include <assert.h>
 
 #include "button.h"
+#include "input.h"
 #include "text.h"
 
 Choice choice_create(SDL_Rect hitbox, char **choices, int nb_choice, int default_choice, Assets assets,

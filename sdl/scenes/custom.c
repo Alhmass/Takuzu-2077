@@ -12,7 +12,7 @@ void custom_init(Scene custom, Assets assets, SDL_Renderer *ren) {
     (void)ren;
 }
 
-void custom_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void custom_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL_Renderer * ren,                     SDL_Rect win_rect) {
     if (scenes[CUSTOM]->is_active == false)
         return;
 

@@ -4,6 +4,7 @@
 #include <assert.h>
 
 #include "button.h"
+#include "input.h"
 
 Cell cell_create(SDL_Rect hitbox, int type) {
     Cell button = malloc(sizeof(struct Cell_s));

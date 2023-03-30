@@ -7,6 +7,7 @@
 #include <assert.h>
 
 #include "assets.h"
+#include "conf.h"
 #include "game.h"
 #include "input.h"
 #include "scene.h"
@@ -14,13 +15,14 @@
 /* **************************************************************** */
 
 struct Env_t {
+    Conf conf;
+
     /****** SDL ******/
     SDL_Window *win;
     SDL_Renderer *ren;
     SDL_Rect win_rect;
 
     /****** Backend ******/
-    game takuzu;
     Scene *scenes;
     Assets assets;
     Input input;
@@ -45,10 +47,14 @@ typedef struct Env_t Env;
 // Direct Access to Scenes
 #define SCENE(env, i) ((env)->scenes[(i)])
 
-// Direct Access to User Input
+// Direct Access to Mouse Input
 #define MOUSE_X(env) ((env)->input->mouse_pos.x)
 #define MOUSE_Y(env) ((env)->input->mouse_pos.y)
 #define CLICK(env) ((env)->input->mouse_action)
+
+// Direct Access to Keyboard Input
+#define KEY(env) ((env)->input->key_code)
+#define ACTION(env) ((env)->input->key_action)
 
 /* **************************************************************** */
 

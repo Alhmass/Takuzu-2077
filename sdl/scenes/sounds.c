@@ -31,7 +31,7 @@ void sounds_init(Scene sounds, Assets assets, SDL_Renderer *ren) {
     sounds->toggle_b[3] = toggle_create(hitbox, true);
 }
 
-void sounds_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void sounds_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL_Renderer * ren,                     SDL_Rect win_rect) {
     if (scenes[SOUNDS]->is_active == false)
         return;
 

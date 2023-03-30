@@ -13,7 +13,7 @@ void editor_init(Scene editor, Assets assets, SDL_Renderer *ren) {
     (void)ren;
 }
 
-void editor_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void editor_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL_Renderer * ren,                     SDL_Rect win_rect) {
     if (scenes[EDITOR]->is_active == false)
         return;
 

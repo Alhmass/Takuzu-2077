@@ -26,9 +26,9 @@ Env *init(SDL_Window *win, SDL_Renderer *ren, int argc, char *argv[]) {
     Env *env = env_init(win, ren);
 
     if (argc > 1)
-        env->takuzu = game_load(argv[1]);
+        env->conf->takuzu = game_load(argv[1]);
     else
-        env->takuzu = game_default();
+        env->conf->takuzu = game_default();
 
     void (*init_list[])(Scene scene, Assets assets, SDL_Renderer * ren) = {
         main_init,   game_init,     create_init,   editor_init, saved_init,   custom_init,
@@ -66,12 +66,13 @@ bool process(SDL_Window *win, SDL_Renderer *ren, Env *env, SDL_Event *e) {
         return true;
     }
 
-    void (*process_list[])(Scene * scenes, Input input, Assets assets, SDL_Renderer * ren, SDL_Rect win_rect) = {
-        main_process,   game_process,     create_process,   editor_process, saved_process,   custom_process,
-        sounds_process, controls_process, graphics_process, stats_process,  credits_process, NULL};
+    void (*process_list[])(Conf conf, Scene * scenes, Input input, Assets assets, SDL_Renderer * ren,
+                           SDL_Rect win_rect) = {main_process,     game_process,   create_process,  editor_process,
+                                                 saved_process,    custom_process, sounds_process,  controls_process,
+                                                 graphics_process, stats_process,  credits_process, NULL};
 
     for (int i = 0; i < NB_SCENES; i++) {
-        process_list[i](env->scenes, env->input, env->assets, env->ren, env->win_rect);
+        process_list[i](env->conf, env->scenes, env->input, env->assets, env->ren, env->win_rect);
     }
     return false;
 }

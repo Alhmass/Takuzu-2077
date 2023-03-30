@@ -12,7 +12,7 @@ void stats_init(Scene stats, Assets assets, SDL_Renderer *ren) {
     (void)ren;
 }
 
-void stats_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void stats_process(Conf conf, Scene * scenes, Input input, Assets assets, SDL_Renderer * ren,                     SDL_Rect win_rect) {
     if (scenes[STATS]->is_active == false)
         return;
 

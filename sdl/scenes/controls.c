@@ -12,7 +12,7 @@ void controls_init(Scene controls, Assets assets, SDL_Renderer *ren) {
     (void)ren;
 }
 
-void controls_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
+void controls_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
     if (scenes[CONTROLS]->is_active == false)
         return;
 

@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "button.h"
+#include "input.h"
 
 Default default_create(SDL_Rect hitbox, char *label, int type, Assets assets, SDL_Renderer *ren) {
     Default button = malloc(sizeof(struct Default_s));
