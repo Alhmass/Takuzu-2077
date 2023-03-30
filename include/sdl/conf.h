@@ -25,6 +25,7 @@ struct Conf_s {
     bool timer;
     bool accuracy;
     char *save_path;
+    char *conf_path;
 
     /****** Graphics ******/
     int fullscreen;
@@ -42,6 +43,7 @@ typedef struct Conf_s *Conf;
 Conf conf_init();
 void conf_delete(Conf conf);
 
+void default_conf(Conf conf);
 bool conf_load(Conf conf, char *path);
 bool conf_save(Conf conf, char *path);
 

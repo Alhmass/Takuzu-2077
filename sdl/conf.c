@@ -16,6 +16,8 @@ Conf conf_init() {
     conf->hover = true;
     conf->timer = true;
     conf->accuracy = true;
+    conf->save_path = NULL;
+    conf->conf_path = NULL;
 
     // Graphics
     conf->fullscreen = 0;
@@ -32,6 +34,22 @@ void conf_delete(Conf conf) {
     free(conf);
 }
 
+void default_conf(Conf conf) {
+    // copy "default.txt" to save path
+    char *default_path = "default.txt";
+    conf->save_path = malloc(sizeof(char) * (strlen(default_path) + 1));
+    assert(conf->save_path);
+    strcpy(conf->save_path, default_path);
+
+    // copy "default.conf" to conf path
+    char *default_conf = "default.conf";
+    conf->conf_path = malloc(sizeof(char) * (strlen(default_conf) + 1));
+    assert(conf->conf_path);
+    strcpy(conf->conf_path, default_conf);
+
+    conf->takuzu = game_default();
+}
+
 bool conf_load(Conf conf, char *path) {
     (void)conf;
     (void)path;
@@ -39,7 +57,7 @@ bool conf_load(Conf conf, char *path) {
     if (strcmp(path, "default.conf") != 0) {
         conf->takuzu = game_load(path);
         if (conf->takuzu == NULL) {
-            conf->takuzu = game_default();
+            default_conf(conf);
         } else {
             // copy the file path to the save_path
             conf->save_path = malloc(sizeof(char) * (strlen(path) + 1));
@@ -47,7 +65,7 @@ bool conf_load(Conf conf, char *path) {
             strcpy(conf->save_path, path);
         }
     } else {
-        conf->takuzu = game_default();
+        default_conf(conf);
     }
 
     // if (file.conf == false)

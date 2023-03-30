@@ -86,6 +86,7 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
     if (default_pressed(scenes[GAME]->default_b[8], input, win_rect, assets) || key_down(input, SDLK_l)) {
         game_delete(conf->takuzu);
         conf->takuzu = game_load(conf->save_path);
+        refresh_cells(scenes[GAME], conf);
     }
 
     if (default_pressed(scenes[GAME]->default_b[9], input, win_rect, assets) || key_down(input, SDLK_u)) {
