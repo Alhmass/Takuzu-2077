@@ -13,7 +13,7 @@ void sounds_init(Scene sounds, Assets assets, SDL_Renderer *ren) {
     (void)ren;
 
     SDL_Rect hitbox = {842, 283, 660, 59};
-    sounds->slider_b[0] = slider_create(hitbox, 0, 0, 100, assets, ren);
+    sounds->slider_b[0] = slider_create(hitbox, 50, 0, 100, assets, ren);
 
     hitbox = (SDL_Rect){842, 359, 660, 59};
     sounds->slider_b[1] = slider_create(hitbox, 50, 0, 100, assets, ren);
@@ -62,11 +62,16 @@ void sounds_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren
     }
 
     if (slider_dragged(scenes[SOUNDS]->slider_b[0], input, assets, ren, win_rect)) {
-        printf("[slider 0]: %d\n", scenes[SOUNDS]->slider_b[0]->value);
+        int value = scenes[SOUNDS]->slider_b[0]->value;
+        value = value * 20 / 100;
+        Mix_Volume(-1, value);
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_AFFIRMATIVE), 0);
     }
 
     if (slider_dragged(scenes[SOUNDS]->slider_b[1], input, assets, ren, win_rect)) {
-        printf("[slider 1]: %d\n", scenes[SOUNDS]->slider_b[1]->value);
+        int value = scenes[SOUNDS]->slider_b[1]->value;
+        value = value * 20 / 100;
+        Mix_Volume(0, value);
     }
 
     if (slider_dragged(scenes[SOUNDS]->slider_b[2], input, assets, ren, win_rect)) {
@@ -78,7 +83,14 @@ void sounds_process(Scene *scenes, Input input, Assets assets, SDL_Renderer *ren
     }
 
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[1], input, win_rect, assets)) {
-        printf("[toggle 1]: %d\n", scenes[SOUNDS]->toggle_b[1]->state);
+        int value = scenes[SOUNDS]->slider_b[0]->value;
+        value = value * 20 / 100;
+        if (scenes[SOUNDS]->toggle_b[1]->state == true) {
+            Mix_Volume(-1, value);
+            Mix_PlayChannel(-1, SOUND(assets, SOUND_AFFIRMATIVE), 0);
+        } else {
+            Mix_Volume(-1, 0);
+        }
     }
 
     if (toggle_pressed(scenes[SOUNDS]->toggle_b[2], input, win_rect, assets)) {

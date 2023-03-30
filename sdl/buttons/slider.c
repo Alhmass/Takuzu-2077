@@ -1,5 +1,6 @@
 #include "slider.h"
 
+#include <SDL_mixer.h>
 #include <assert.h>
 #include <stdio.h>
 
@@ -72,6 +73,7 @@ bool slider_dragged(Slider button, Input input, Assets assets, SDL_Renderer *ren
 
     if (button->dragged == false && left_click(button->cursor_scaled, input)) {
         button->dragged = true;
+        Mix_PlayChannel(-1, SOUND(assets, SOUND_CLICK), 0);
         return true;
     } else if (button->dragged == true && left_drag((SDL_Rect){0, 0, win_rect.w, win_rect.h}, input)) {
         button->cursor_scaled.x = input->mouse_pos.x - button->cursor_scaled.w / 2;
