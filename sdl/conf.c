@@ -71,10 +71,11 @@ bool conf_load(Conf conf, char *path) {
             strcat(conf_path, ".conf");
             FILE *conf_file = fopen(conf_path, "r");
             if (!conf_file) {
-                copy_file("conf.txt", conf_path);
+                copy_file("default.conf", conf_path);
                 conf->conf_path = malloc(sizeof(char) * (strlen(conf_path) + 1));
                 assert(conf->conf_path);
                 strcpy(conf->conf_path, conf_path);
+                free(conf_path);
             } else {
                 conf->conf_path = malloc(sizeof(char) * (strlen(conf_path) + 1));
                 assert(conf->conf_path);
@@ -94,6 +95,7 @@ bool conf_load(Conf conf, char *path) {
                 free(general_volume);
                 free(game_timer);
                 free(accuracy);
+                free(conf_path);
             }
         }
     } else {
@@ -107,14 +109,13 @@ bool conf_load(Conf conf, char *path) {
     return true;
 }
 bool conf_save(Conf conf, char *path) {
-    (void)conf;
-    (void)path;
-
-    // if (file.conf == true) {
-    //     destroy file.conf
-    // }
-
+    remove(path);
+    copy_file("default.conf", path);
+    set_setting(path, "volume_music", conf->music_volume);
+    set_setting(path, "volume_effects", conf->sound_volume);
+    set_setting(path, "volume_general" conf->general_volume);
+    set_setting(path, "Timer", (int)conf->timer);
+    set_setting(path, "Accuracy", (int)conf->accuracy);
     // save settings to file.conf
-
     return true;
 }
