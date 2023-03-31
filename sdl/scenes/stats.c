@@ -7,8 +7,6 @@
 
 #define PATHFILE "stats.conf"
 
-/* **************************************************************** */
-
 void stats_init(Conf conf, Scene stats, Assets assets, SDL_Renderer *ren) {
     scene_init(stats, 0, 0, 0, 0, 0, 0, 8);
     (void)conf;
