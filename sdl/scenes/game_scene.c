@@ -54,6 +54,34 @@ static void refresh_cells(Scene game, Conf conf) {
     }
 }
 
+static void select_move(Conf conf, Scene game, int dir) {
+    int selected = conf->selected;
+    int i = selected / conf->takuzu->nb_cols;
+    int j = selected % conf->takuzu->nb_cols;
+    if (dir == UP)
+        i--;
+    else if (dir == DOWN)
+        i++;
+    else if (dir == LEFT)
+        j--;
+    else if (dir == RIGHT)
+        j++;
+
+    if (i < 0)
+        i = conf->takuzu->nb_rows - 1;
+    if ((uint)i >= conf->takuzu->nb_rows)
+        i = 0;
+    if (j < 0)
+        j = conf->takuzu->nb_cols - 1;
+    if ((uint)j >= conf->takuzu->nb_cols)
+        j = 0;
+
+    game->cell_b[conf->selected]->hovered = false;
+    game->cell_b[conf->selected]->hovered = false;
+    conf->selected = i * conf->takuzu->nb_cols + j;
+    game->cell_b[conf->selected]->hovered = true;
+}
+
 void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Renderer *ren, SDL_Rect win_rect) {
     if (scenes[GAME]->is_active == false)
         return;
@@ -124,24 +152,29 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
 
     // Cells
     for (int i = 0; i < scenes[GAME]->nb_cell; i++) {
-        if (scenes[GAME]->cell_b[i]->selected) {
-            if (default_pressed(scenes[GAME]->default_b[0], input, win_rect, assets) || key_down(input, SDLK_w)) {
-                game_play_move(conf->takuzu, i / conf->takuzu->nb_cols, i % conf->takuzu->nb_cols, (square)CELL_BLUE);
-                refresh_cells(scenes[GAME], conf);
-            }
-            if (default_pressed(scenes[GAME]->default_b[1], input, win_rect, assets) || key_down(input, SDLK_b)) {
-                game_play_move(conf->takuzu, i / conf->takuzu->nb_cols, i % conf->takuzu->nb_cols, (square)CELL_RED);
-                refresh_cells(scenes[GAME], conf);
-            }
-            if (default_pressed(scenes[GAME]->default_b[2], input, win_rect, assets) || key_down(input, SDLK_e)) {
-                game_play_move(conf->takuzu, i / conf->takuzu->nb_cols, i % conf->takuzu->nb_cols, (square)CELL_EMPTY);
-                refresh_cells(scenes[GAME], conf);
-            }
-        }
-
         if (scenes[GAME]->cell_b[i]->type != CELL_IMM_BLUE && scenes[GAME]->cell_b[i]->type != CELL_IMM_RED) {
+            if (conf->selected == i) {
+                if (default_pressed(scenes[GAME]->default_b[0], input, win_rect, assets) || key_down(input, SDLK_w)) {
+                    game_play_move(conf->takuzu, i / conf->takuzu->nb_cols, i % conf->takuzu->nb_cols,
+                                   (square)CELL_BLUE);
+                    refresh_cells(scenes[GAME], conf);
+                }
+                if (default_pressed(scenes[GAME]->default_b[1], input, win_rect, assets) || key_down(input, SDLK_b)) {
+                    game_play_move(conf->takuzu, i / conf->takuzu->nb_cols, i % conf->takuzu->nb_cols,
+                                   (square)CELL_RED);
+                    refresh_cells(scenes[GAME], conf);
+                }
+                if (default_pressed(scenes[GAME]->default_b[2], input, win_rect, assets) || key_down(input, SDLK_e)) {
+                    game_play_move(conf->takuzu, i / conf->takuzu->nb_cols, i % conf->takuzu->nb_cols,
+                                   (square)CELL_EMPTY);
+                    refresh_cells(scenes[GAME], conf);
+                }
+            }
+
             if (conf->hover)
-                cell_hovered(scenes[GAME]->cell_b[i], input, win_rect, assets);
+                if (cell_hovered(scenes[GAME]->cell_b[i], input, win_rect, assets))
+                    conf->selected = i;
+            printf("Selected: %d\n", conf->selected);
 
             if (game_has_error(conf->takuzu, i / conf->takuzu->nb_rows, i % conf->takuzu->nb_cols) && conf->errors) {
                 scenes[GAME]->cell_b[i]->has_error = true;
@@ -154,5 +187,17 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
                                scenes[GAME]->cell_b[i]->type);
             }
         }
+    }
+
+    if (conf->selected != -1) {
+        if (key_down(input, SDLK_LEFT))
+            select_move(conf, scenes[GAME], LEFT);
+        if (key_down(input, SDLK_RIGHT))
+            select_move(conf, scenes[GAME], RIGHT);
+        if (key_down(input, SDLK_UP))
+            select_move(conf, scenes[GAME], UP);
+        if (key_down(input, SDLK_DOWN))
+            select_move(conf, scenes[GAME], DOWN);
+        scenes[GAME]->cell_b[conf->selected]->hovered = true;
     }
 }

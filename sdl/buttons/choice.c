@@ -30,7 +30,7 @@ Choice choice_create(SDL_Rect hitbox, char **choices, int nb_choice, int default
     assert(button->choices);
 
     SDL_Rect label_hitbox;
-    label_hitbox.w = strlen(choices[default_choice]) * (4 * hitbox.w / 100);
+    label_hitbox.w = strlen(choices[default_choice]) * (3 * hitbox.w / 100);
     label_hitbox.x = hitbox.x + (hitbox.w / 2) - (hitbox.w / 2);
     label_hitbox.y = hitbox.y;
     label_hitbox.h = 80 * hitbox.h / 100;

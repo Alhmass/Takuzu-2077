@@ -133,6 +133,9 @@ static void sprite_init(Assets a, SDL_Renderer *ren) {
     ST(a, STATS_BG) = IMG_LoadTexture(ren, "assets/img/sprites/stats_bg.png");
     if (!ST(a, STATS_BG))
         ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
+    ST(a, CURSOR) = IMG_LoadTexture(ren, "assets/img/sprites/cursor.png");
+    if (!ST(a, CURSOR))
+        ERROR("Error: IMG_LoadTexture (%s)", SDL_GetError());
 }
 
 /* ************************************************************************* */

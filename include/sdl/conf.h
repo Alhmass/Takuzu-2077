@@ -7,8 +7,8 @@
 #include <assert.h>
 #include <stdbool.h>
 
-#include "game.h"
 #include "file.h"
+#include "game.h"
 
 /* **************************************************************** */
 
@@ -25,6 +25,7 @@ struct Conf_s {
     bool hover;
     bool timer;
     bool accuracy;
+    int selected;
     char *save_path;
     char *conf_path;
 
@@ -46,6 +47,6 @@ void conf_delete(Conf conf);
 
 void default_conf(Conf conf);
 bool conf_load(Conf conf, char *path);
-bool conf_save(Conf conf, char *path);
+// bool conf_save(Conf conf, char *path);
 
 #endif /* CONF_H */

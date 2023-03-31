@@ -17,7 +17,17 @@
 
 /******************************** Sprite Textures ********************************/
 
-enum sprite_assets { MAIN_BG, GAME_BG, SETTINGS_BG, SOUNDS_BG, GRAPHICS_BG, CONTROLS_BG, STATS_BG, SPRITE_COUNT };
+enum sprite_assets {
+    MAIN_BG,
+    GAME_BG,
+    SETTINGS_BG,
+    SOUNDS_BG,
+    GRAPHICS_BG,
+    CONTROLS_BG,
+    STATS_BG,
+    CURSOR,
+    SPRITE_COUNT
+};
 
 /******************************** Button Textures ********************************/
 

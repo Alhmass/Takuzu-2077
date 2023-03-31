@@ -26,12 +26,12 @@ int main(int argc, char* argv[]) {
     // Play sounds in a separate thread
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0)
         ERROR("Error: Mix_OpenAudio (%s)", SDL_GetError());
-    Mix_Volume(0, 10);   // Music
-    Mix_Volume(-1, 10);  // Sounds
+    Mix_Volume(0, 50 * 20 / 100);   // Music
+    Mix_Volume(-1, 20 * 20 / 100);  // Sounds
 
     /* create window and renderer */
     SDL_Window* win = SDL_CreateWindow(APP_NAME, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
-                                       SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+                                       SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (!win)
         ERROR("Error: SDL_CreateWindow (%s)", SDL_GetError());
     SDL_Renderer* ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -39,6 +39,7 @@ int main(int argc, char* argv[]) {
         ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE);
     if (!ren)
         ERROR("Error: SDL_CreateRenderer (%s)", SDL_GetError());
+    SDL_ShowCursor(SDL_DISABLE);
 
     /* initialize the environment */
     Env* env = init(win, ren, argc, argv);

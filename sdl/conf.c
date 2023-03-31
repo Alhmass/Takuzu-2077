@@ -16,6 +16,7 @@ Conf conf_init() {
     conf->hover = true;
     conf->timer = true;
     conf->accuracy = true;
+    conf->selected = -1;
     conf->save_path = NULL;
     conf->conf_path = NULL;
 
@@ -108,14 +109,14 @@ bool conf_load(Conf conf, char *path) {
     // load settings from file.conf
     return true;
 }
-bool conf_save(Conf conf, char *path) {
-    remove(path);
-    copy_file("default.conf", path);
-    set_setting(path, "volume_music", conf->music_volume);
-    set_setting(path, "volume_effects", conf->sound_volume);
-    set_setting(path, "volume_general" conf->general_volume);
-    set_setting(path, "Timer", (int)conf->timer);
-    set_setting(path, "Accuracy", (int)conf->accuracy);
-    // save settings to file.conf
-    return true;
-}
+// bool conf_save(Conf conf, char *path) {
+//     remove(path);
+//     copy_file("default.conf", path);
+//     set_setting(path, "volume_music", conf->music_volume);
+//     set_setting(path, "volume_effects", conf->sound_volume);
+//     set_setting(path, "volume_general" conf->general_volume);
+//     set_setting(path, "Timer", (int)conf->timer);
+//     set_setting(path, "Accuracy", (int)conf->accuracy);
+//     // save settings to file.conf
+//     return true;
+// }

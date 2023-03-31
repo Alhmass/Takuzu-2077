@@ -54,6 +54,13 @@ void render(SDL_Window *win, SDL_Renderer *ren, Env *env) {
     for (int i = 0; i < NB_SCENES; i++) {
         scene_render(SCENE(env, i), i, env->assets, env->ren, env->win_rect, env->input);
     }
+
+    // render the cursor
+    SDL_Rect cursor = {0, 0, 40, 40};
+    scale_rect(cursor, env->win_rect);
+    cursor.x = env->input->mouse_pos.x - cursor.w / 6;
+    cursor.y = env->input->mouse_pos.y - cursor.h / 6;
+    SDL_RenderCopy(ren, ST(env->assets, CURSOR), NULL, &cursor);
 }
 
 /* **************************************************************** */
