@@ -150,6 +150,7 @@ void conf_load(Conf conf, char *path) {
         default_conf(conf);
 }
 bool conf_save(Conf conf, char *path) {
+    (void)path;
     char buf[256];
     if (sprintf(buf, "%d", conf->music_volume) < 0)
         return false;
@@ -179,4 +180,5 @@ bool conf_save(Conf conf, char *path) {
         return (false);
     if (!set_setting("general.conf", "game_effects", buf))
         return (false);
+    return (true);
 }
