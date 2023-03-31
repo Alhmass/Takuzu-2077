@@ -48,7 +48,9 @@ static int get_set_size(char *path, int line) {
     char setting[256];
     assert(file);
     fseek(file, get_pos(file, line - 1), SEEK_SET);
-    fscanf(file, "%s %s", buffer, setting);
+    if (fscanf(file, "%s %s", buffer, setting) == EOF) {
+        return -1;
+    }
     close_file(file);
     return strlen(setting);
 }
@@ -78,7 +80,8 @@ char *get_setting(char *path, char *setting) {
     FILE *file = open_file(path);
     char *set = malloc(sizeof(char) * setting_size);
     fseek(file, get_pos(file, line - 1), SEEK_SET);
-    fscanf(file, "%s %s", buf, set);
+    if (fscanf(file, "%s %s", buf, set) == EOF)
+        return NULL;
     close_file(file);
     return (set);
 }

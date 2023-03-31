@@ -45,8 +45,9 @@ typedef struct Conf_s *Conf;
 Conf conf_init();
 void conf_delete(Conf conf);
 
-void default_conf(Conf conf);
+bool default_conf(Conf conf);
 bool conf_load(Conf conf, char *path);
+bool get_conf(Conf conf);
 // bool conf_save(Conf conf, char *path);
 
 #endif /* CONF_H */
