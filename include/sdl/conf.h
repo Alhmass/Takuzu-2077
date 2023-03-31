@@ -15,26 +15,36 @@
 struct Conf_s {
     game takuzu;
 
-    /****** Sounds ******/
+    // Sounds
     int music_volume;
     int sound_volume;
     int general_volume;
+    int mouse_hover;
+    int mouse_click;
+    int game_music;
+    int game_effects;
 
-    /****** Game ******/
+    // Graphics
+    bool fullscreen;
+    char *resolution;
+    bool rtx;
+
+    // Game
     bool errors;
     bool hover;
     bool timer;
     bool accuracy;
-    int selected;
+    int timer_h;
+    int timer_m;
+    int timer_s;
+    float accuracy_percent;
+
+    // Status - non persistent settings
     char *save_path;
     char *conf_path;
-
-    /****** Graphics ******/
-    int fullscreen;
     SDL_Rect window_size;
-
-    /****** Status ******/
     int last_scene;
+    int selected;
     bool quit;
 };
 

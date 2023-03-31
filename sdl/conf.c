@@ -6,27 +6,21 @@ Conf conf_init() {
     Conf conf = malloc(sizeof(struct Conf_s));
     assert(conf);
 
-    // Sounds
-    conf->sound_volume = 50 * 20 / 100;
-    conf->music_volume = 20 * 20 / 100;
-    conf->general_volume = 100;
+    conf->takuzu = NULL;
 
-    // Game
-    conf->errors = true;
-    conf->hover = true;
-    conf->timer = true;
-    conf->accuracy = true;
-    conf->selected = -1;
-    conf->save_path = NULL;
-    conf->conf_path = NULL;
+    // Sounds
 
     // Graphics
-    conf->fullscreen = 0;
-    conf->window_size = (SDL_Rect){0, 0, 1600, 900};
 
-    // Status
-    conf->last_scene = 0;
-    conf->quit = false;
+    // Game
+
+    // Non persistent settings
+    // conf->save_path;
+    // conf->conf_path;
+    // conf->window_size;
+    // conf->last_scene;
+    // conf->selected;
+    // conf->quit;
     return conf;
 }
 
