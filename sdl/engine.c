@@ -26,11 +26,9 @@ Env *init(SDL_Window *win, SDL_Renderer *ren, int argc, char *argv[]) {
     Env *env = env_init(win, ren);
 
     if (argc > 1) {
-        if (!conf_load(env->conf, argv[1]))
-            conf_load(env->conf, "saves/game/default.txt");
-    } else {
+        conf_load(env->conf, argv[1]);
+    } else
         conf_load(env->conf, "saves/game/default.txt");
-    }
 
     void (*init_list[])(Conf conf, Scene scene, Assets assets, SDL_Renderer * ren) = {
         main_init,   game_init,     create_init,   editor_init, saved_init,   custom_init,

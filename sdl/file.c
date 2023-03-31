@@ -73,7 +73,6 @@ char *get_setting(char *path, char *setting) {
     assert(path);
     assert(setting);
     int line = get_line_nb(path, setting);
-    printf("set:%s\n", setting);
     assert(line >= 0);
     int setting_size = get_set_size(path, line);
     assert(setting_size >= 0);

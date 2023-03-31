@@ -55,9 +55,9 @@ typedef struct Conf_s *Conf;
 Conf conf_init();
 void conf_delete(Conf conf);
 
-bool default_conf(Conf conf);
-bool conf_load(Conf conf, char *path);
-bool get_conf(Conf conf);
+void default_conf(Conf conf);
+void conf_load(Conf conf, char *path);
+void conf_game_load(Conf conf);
 // bool conf_save(Conf conf, char *path);
 
 #endif /* CONF_H */

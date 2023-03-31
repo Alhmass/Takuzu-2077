@@ -66,7 +66,35 @@ void conf_delete(Conf conf) {
     free(conf);
 }
 
-bool default_conf(Conf conf) {
+void conf_game_load(Conf conf) {
+    char *errors = get_setting(conf->conf_path, "errors");
+    char *hover = get_setting(conf->conf_path, "hover");
+    char *timer = get_setting(conf->conf_path, "timer_mode");
+    char *accuracy_mode = get_setting(conf->conf_path, "accuracy_mode");
+    char *timer_h = get_setting(conf->conf_path, "timer_h");
+    char *timer_m = get_setting(conf->conf_path, "timer_m");
+    char *timer_s = get_setting(conf->conf_path, "timer_s");
+    char *accuracy_percent = get_setting(conf->conf_path, "accuracy_percent");
+
+    assert(errors);
+    assert(hover);
+    assert(timer);
+    assert(accuracy_mode);
+    assert(timer_h);
+    assert(timer_m);
+    assert(timer_s);
+    assert(accuracy_percent);
+    conf->errors = (bool)atoi(errors);
+    conf->hover = (bool)atoi(hover);
+    conf->timer = (bool)atoi(timer);
+    conf->accuracy = (bool)atoi(accuracy_mode);
+    conf->timer_h = atoi(timer_h);
+    conf->timer_m = atoi(timer_m);
+    conf->timer_s = atoi(timer_s);
+    conf->accuracy_percent = atof(accuracy_percent);
+}
+
+void default_conf(Conf conf) {
     // copy "default.txt" to save path
     char *default_path = "saves/game/default.txt";
     conf->save_path = malloc(sizeof(char) * (strlen(default_path) + 1));
@@ -82,17 +110,13 @@ bool default_conf(Conf conf) {
     conf->takuzu = game_default();
     FILE *conf_file = fopen(default_conf, "r");
     if (!conf_file)
-        copy_file("stats.txt", default_conf);
-    else {
+        copy_file("template.conf", default_conf);
+    else
         fclose(conf_file);
-    }
-    return true;
+    conf_game_load(conf);
 }
 
-bool conf_load(Conf conf, char *path) {
-    (void)conf;
-    (void)path;
-
+void conf_load(Conf conf, char *path) {
     if (strcmp(path, "saves/game/default.txt") != 0) {
         conf->takuzu = game_load(path);
         if (conf->takuzu == NULL) {
@@ -120,14 +144,14 @@ bool conf_load(Conf conf, char *path) {
                 assert(conf->conf_path);
                 strcpy(conf->conf_path, conf_path);
             }
+            conf_game_load(conf);
         }
-    } else {
+    } else
         default_conf(conf);
-    }
-
-    return true;
 }
 bool conf_save(Conf conf, char *path) {
+    (void)conf;
+    (void)conf;
     // char buf[256];
     // remove(path);
     // copy_file("default.conf", path);
