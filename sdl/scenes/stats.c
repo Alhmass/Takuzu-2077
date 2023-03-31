@@ -56,7 +56,8 @@ void stats_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Ren
     scenes[STATS]->text[4] = text_set_text(scenes[STATS]->text[4], get_setting(PATHFILE, "12x12"), assets, ren);
     scenes[STATS]->text[5] = text_set_text(scenes[STATS]->text[5], get_setting(PATHFILE, "nb_solved"), assets, ren);
     scenes[STATS]->text[6] = text_set_text(scenes[STATS]->text[6], get_setting(PATHFILE, "total_time"), assets, ren);
-    scenes[STATS]->text[7] = text_set_text(scenes[STATS]->text[7], get_setting(PATHFILE, "overall_accuracy"), assets, ren);
+    scenes[STATS]->text[7] =
+        text_set_text(scenes[STATS]->text[7], get_setting(PATHFILE, "overall_accuracy"), assets, ren);
 
     SDL_Rect hitbox = {418, 67, 142, 28};
     hitbox = scale_rect(hitbox, win_rect);
