@@ -150,3 +150,17 @@ bool set_value(char *path, int line, int value) {
     free(new_line);
     return res;
 }
+
+void copy_file(char *path, char *new_file) {
+    FILE *f = fopen(path, "rb");
+    FILE *n = fopen(new_file, "wb");
+    assert(f);
+    assert(n);
+    char buffer[256];
+
+    while (fgets(buffer, sizeof(buffer), f)) {
+        fputs(buffer, n);
+    }
+    close_file(f);
+    close_file(n);
+}

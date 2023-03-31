@@ -63,6 +63,38 @@ bool conf_load(Conf conf, char *path) {
             conf->save_path = malloc(sizeof(char) * (strlen(path) + 1));
             assert(conf->save_path);
             strcpy(conf->save_path, path);
+            // Load custom conf if exists
+            char *first = strtok(path, ".");
+            char *conf_path = malloc(sizeof(char) * (strlen(first) + 5));
+            assert(conf_path);
+            strcpy(conf_path, first);
+            strcat(conf_path, ".conf");
+            FILE *conf_file = fopen(conf_path, "r");
+            if (!conf_file) {
+                copy_file("conf.txt", conf_path);
+                conf->conf_path = malloc(sizeof(char) * (strlen(conf_path) + 1));
+                assert(conf->conf_path);
+                strcpy(conf->conf_path, conf_path);
+            } else {
+                conf->conf_path = malloc(sizeof(char) * (strlen(conf_path) + 1));
+                assert(conf->conf_path);
+                strcpy(conf->conf_path, conf_path);
+                char *music_volume = get_setting(conf_path, "volume_music");
+                char *sound_volume = get_setting(conf_path, "volume_effects");
+                char *general_volume = get_setting(conf_path, "volume_general");
+                char *game_timer = get_setting(conf_path, "Timer");
+                char *accuracy = get_setting(conf_path, "Accuracy");
+                conf->music_volume = atoi(music_volume);
+                conf->sound_volume = atoi(sound_volume);
+                conf->general_volume = atoi(general_volume);
+                conf->timer = atoi(game_timer);
+                conf->accuracy = atoi(accuracy);
+                free(music_volume);
+                free(sound_volume);
+                free(general_volume);
+                free(game_timer);
+                free(accuracy);
+            }
         }
     } else {
         default_conf(conf);
