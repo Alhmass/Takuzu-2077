@@ -60,6 +60,8 @@ void render(SDL_Window *win, SDL_Renderer *ren, Env *env) {
     scale_rect(cursor, env->win_rect);
     cursor.x = env->input->mouse_pos.x - cursor.w / 6;
     cursor.y = env->input->mouse_pos.y - cursor.h / 6;
+    if (env->conf->solved)
+        SDL_RenderCopy(ren, ST(env->assets, END), NULL, NULL);
     SDL_RenderCopy(ren, ST(env->assets, CURSOR), NULL, &cursor);
 }
 

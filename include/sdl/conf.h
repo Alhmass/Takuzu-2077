@@ -45,6 +45,7 @@ struct Conf_s {
     SDL_Rect window_size;
     int last_scene;
     int selected;
+    bool solved;
     bool quit;
 };
 

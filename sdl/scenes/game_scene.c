@@ -23,14 +23,17 @@ void game_init(Conf conf, Scene game, Assets assets, SDL_Renderer *ren) {
 
     // Switches
     SDL_Rect switch_hitbox[4] = {{1619, 90, 239, 43}, {1619, 158, 239, 43}, {1619, 226, 239, 43}, {1619, 295, 239, 43}};
-    for (int i = 0; i < 4; i++) game->switch_b[i] = switch_create(switch_hitbox[i], true);
+    game->switch_b[0] = switch_create(switch_hitbox[0], conf->errors);
+    game->switch_b[1] = switch_create(switch_hitbox[1], conf->hover);
+    game->switch_b[2] = switch_create(switch_hitbox[2], conf->timer);
+    game->switch_b[3] = switch_create(switch_hitbox[3], conf->accuracy);
 
     // Cells
     int cell_size =
         (conf->takuzu->nb_cols > conf->takuzu->nb_rows) ? 900 / conf->takuzu->nb_cols : 900 / conf->takuzu->nb_rows;
 
     SDL_Rect offset;
-    offset.x = 610 + (450 - cell_size * conf->takuzu->nb_cols / 2);
+    offset.x = 612 + (450 - cell_size * conf->takuzu->nb_cols / 2);
     offset.y = 110 + (450 - cell_size * conf->takuzu->nb_rows / 2);
     offset = scale_rect(offset, conf->window_size);
     SDL_Rect cell_hitbox = {offset.x, offset.y, cell_size, cell_size};
@@ -199,4 +202,9 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
             select_move(conf, scenes[GAME], DOWN);
         scenes[GAME]->cell_b[conf->selected]->hovered = true;
     }
+
+    if (game_is_over(conf->takuzu))
+        conf->solved = true;
+    else
+        conf->solved = false;
 }

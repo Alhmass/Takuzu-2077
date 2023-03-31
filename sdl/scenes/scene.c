@@ -58,7 +58,7 @@ void scene_render(Scene scene, int type, Assets assets, SDL_Renderer *ren, SDL_R
     if (scene->is_active == true) {
         if (type == MAIN)
             SDL_RenderCopy(ren, assets->sprite_texture[MAIN_BG], NULL, NULL);
-        else if (type == GAME || type == CREATE || type == EDITOR || type == CUSTOM || type == SAVED)
+        else if (type == GAME)
             SDL_RenderCopy(ren, assets->sprite_texture[GAME_BG], NULL, NULL);
         else if (type == SOUNDS) {
             SDL_RenderCopy(ren, assets->sprite_texture[SOUNDS_BG], NULL, NULL);

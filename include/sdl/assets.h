@@ -26,6 +26,7 @@ enum sprite_assets {
     CONTROLS_BG,
     STATS_BG,
     CURSOR,
+    END,
     SPRITE_COUNT
 };
 

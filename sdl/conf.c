@@ -30,6 +30,7 @@ Conf conf_init() {
     conf->mouse_click = (bool)atoi(mouse_click);
     conf->game_music = (bool)atoi(game_music);
     conf->game_effects = (bool)atoi(game_effects);
+
     // Graphics
     char *fullscreen = get_setting("general.conf", "fullscreen");
     char *resolution = get_setting("general.conf", "resolution");
@@ -40,6 +41,7 @@ Conf conf_init() {
     conf->fullscreen = (bool)atoi(fullscreen);
     conf->resolution = resolution;
     conf->rtx = (bool)atoi(rtx);
+
     // Game
 
     // Non persistent settings
@@ -48,7 +50,10 @@ Conf conf_init() {
     conf->window_size = (SDL_Rect){0, 0, 1600, 900};
     conf->last_scene = 0;
     conf->selected = 0;
+    conf->solved = false;
     conf->quit = false;
+
+    // Free
     free(music_volume);
     free(sound_volume);
     free(general_volume);
