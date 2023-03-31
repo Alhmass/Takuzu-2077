@@ -41,24 +41,24 @@ Env *env_init(SDL_Window *win, SDL_Renderer *ren) {
 void env_update(Env *env, SDL_Event *event) {
     // Window Update
 
-    // SDL_GetWindowPosition(env->win, &WIN_X(env), &WIN_Y(env));
-    // SDL_GetWindowSize(env->win, &WIN_W(env), &WIN_H(env));
+    SDL_GetWindowPosition(env->win, &WIN_X(env), &WIN_Y(env));
+    SDL_GetWindowSize(env->win, &WIN_W(env), &WIN_H(env));
 
-    if (env->conf->fullscreen) {
-        SDL_SetWindowFullscreen(env->win, SDL_WINDOW_FULLSCREEN_DESKTOP);
-        SDL_DisplayMode DM;
-        SDL_GetCurrentDisplayMode(0, &DM);
-        WIN_W(env) = DM.w;
-        WIN_H(env) = DM.h;
-        env->conf->window_size.w = WIN_W(env);
-        env->conf->window_size.h = WIN_H(env);
-    } else {
-        SDL_SetWindowFullscreen(env->win, 0);
-        WIN_W(env) = env->conf->window_size.w;
-        WIN_H(env) = env->conf->window_size.h;
-        SDL_SetWindowSize(env->win, WIN_W(env), WIN_H(env));
-        SDL_SetWindowPosition(env->win, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-    }
+    // if (env->conf->fullscreen) {
+    //     SDL_SetWindowFullscreen(env->win, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    //     SDL_DisplayMode DM;
+    //     SDL_GetCurrentDisplayMode(0, &DM);
+    //     WIN_W(env) = DM.w;
+    //     WIN_H(env) = DM.h;
+    //     env->conf->window_size.w = WIN_W(env);
+    //     env->conf->window_size.h = WIN_H(env);
+    // } else {
+    //     SDL_SetWindowFullscreen(env->win, 0);
+    //     WIN_W(env) = env->conf->window_size.w;
+    //     WIN_H(env) = env->conf->window_size.h;
+    //     SDL_SetWindowSize(env->win, WIN_W(env), WIN_H(env));
+    //     SDL_SetWindowPosition(env->win, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+    // }
 
     input_update(env->input, event);
 }

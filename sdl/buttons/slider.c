@@ -87,7 +87,7 @@ bool slider_dragged(Slider button, Input input, Assets assets, SDL_Renderer *ren
         button->value =
             (button->cursor_scaled.x - button->scaled.x) * 100 / (button->scaled.w - button->cursor_scaled.w);
 
-        char label[7];
+        char label[5];
         sprintf(label, "%d", button->value);
         if (strlen(label) == 1) {
             char temp[7];
