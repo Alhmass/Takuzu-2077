@@ -174,7 +174,6 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
             if (conf->hover)
                 if (cell_hovered(scenes[GAME]->cell_b[i], input, win_rect, assets))
                     conf->selected = i;
-            printf("Selected: %d\n", conf->selected);
 
             if (game_has_error(conf->takuzu, i / conf->takuzu->nb_rows, i % conf->takuzu->nb_cols) && conf->errors) {
                 scenes[GAME]->cell_b[i]->has_error = true;

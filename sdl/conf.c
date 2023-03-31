@@ -85,7 +85,7 @@ bool conf_load(Conf conf, char *path) {
     (void)conf;
     (void)path;
 
-    if (strcmp(path, "default.conf") != 0) {
+    if (strcmp(path, "saves/game/default.txt") != 0) {
         conf->takuzu = game_load(path);
         if (conf->takuzu == NULL) {
             default_conf(conf);
@@ -119,7 +119,6 @@ bool conf_load(Conf conf, char *path) {
         default_conf(conf);
     }
 
-    // load settings from file.conf
     return true;
 }
 bool conf_save(Conf conf, char *path) {
@@ -146,6 +145,5 @@ bool conf_save(Conf conf, char *path) {
         return false;
     if (!set_setting(path, "Accuracy", buf))
         return false;
-    // save settings to file.conf
     return true;
 }

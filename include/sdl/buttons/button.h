@@ -19,6 +19,12 @@
 
 /* **************************************************************** */
 
+/**
+ * @brief scale a rect based on the current window size, default resolution is 1920x1080
+ * @param rect the rectangle to scale
+ * @param win_rect the current window size
+ * @return SDL_Rect
+ */
 SDL_Rect scale_rect(SDL_Rect rect, SDL_Rect win_rect);
 
 #endif /* BUTTON_H */
