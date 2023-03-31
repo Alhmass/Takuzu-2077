@@ -17,6 +17,7 @@ struct Cell_s {
     int type;
     bool has_error;
 
+    bool selected;
     bool hovered;
 };
 

@@ -15,6 +15,7 @@ Cell cell_create(SDL_Rect hitbox, int type) {
 
     button->type = type;
     button->has_error = false;
+    button->selected = false;
     button->hovered = false;
 
     return button;
@@ -30,7 +31,7 @@ void cell_render(Cell button, Assets assets, SDL_Renderer *ren, SDL_Rect win_rec
     if (button->has_error)
         SDL_RenderCopy(ren, BT(assets, CELL, CELL_ERROR), NULL, &button->scaled);
 
-    if (button->hovered)
+    if (button->hovered || button->selected)
         SDL_RenderCopy(ren, BT(assets, CELL, CELL_HOVER), NULL, &button->scaled);
 }
 
@@ -66,12 +67,14 @@ bool cell_hovered(Cell button, Input input, SDL_Rect win_rect, Assets assets) {
 
     if (is_hovered(button->scaled, input)) {
         if (button->hovered == false) {
-            // play hover sound
+            // Mix_PlayChannel(-1, assets->sounds[HOVER_SOUND], 0);
             (void)assets;
         }
+        button->selected = true;
         button->hovered = true;
         return true;
     }
+    button->selected = false;
     button->hovered = false;
     return false;
 }

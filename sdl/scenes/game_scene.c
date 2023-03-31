@@ -1,5 +1,7 @@
 #include "game_scene.h"
 
+#include <unistd.h>
+
 #include "button.h"
 #include "engine.h"
 #include "env.h"
@@ -84,9 +86,12 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
     }
 
     if (default_pressed(scenes[GAME]->default_b[8], input, win_rect, assets) || key_down(input, SDLK_l)) {
-        game_delete(conf->takuzu);
-        conf->takuzu = game_load(conf->save_path);
-        refresh_cells(scenes[GAME], conf);
+        if (access(conf->save_path, F_OK) != -1) {
+            game_delete(conf->takuzu);
+            conf->takuzu = game_load(conf->save_path);
+            refresh_cells(scenes[GAME], conf);
+            return;
+        }
     }
 
     if (default_pressed(scenes[GAME]->default_b[9], input, win_rect, assets) || key_down(input, SDLK_u)) {
@@ -119,7 +124,25 @@ void game_process(Conf conf, Scene *scenes, Input input, Assets assets, SDL_Rend
 
     // Cells
     for (int i = 0; i < scenes[GAME]->nb_cell; i++) {
+        if (scenes[GAME]->cell_b[i]->selected) {
+            if (default_pressed(scenes[GAME]->default_b[0], input, win_rect, assets) || key_down(input, SDLK_w)) {
+                game_play_move(conf->takuzu, i / conf->takuzu->nb_cols, i % conf->takuzu->nb_cols, (square)CELL_BLUE);
+                refresh_cells(scenes[GAME], conf);
+            }
+            if (default_pressed(scenes[GAME]->default_b[1], input, win_rect, assets) || key_down(input, SDLK_b)) {
+                game_play_move(conf->takuzu, i / conf->takuzu->nb_cols, i % conf->takuzu->nb_cols, (square)CELL_RED);
+                refresh_cells(scenes[GAME], conf);
+            }
+            if (default_pressed(scenes[GAME]->default_b[2], input, win_rect, assets) || key_down(input, SDLK_e)) {
+                game_play_move(conf->takuzu, i / conf->takuzu->nb_cols, i % conf->takuzu->nb_cols, (square)CELL_EMPTY);
+                refresh_cells(scenes[GAME], conf);
+            }
+        }
+
         if (scenes[GAME]->cell_b[i]->type != CELL_IMM_BLUE && scenes[GAME]->cell_b[i]->type != CELL_IMM_RED) {
+            if (conf->hover)
+                cell_hovered(scenes[GAME]->cell_b[i], input, win_rect, assets);
+
             if (game_has_error(conf->takuzu, i / conf->takuzu->nb_rows, i % conf->takuzu->nb_cols) && conf->errors) {
                 scenes[GAME]->cell_b[i]->has_error = true;
             } else {
