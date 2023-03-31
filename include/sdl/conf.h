@@ -19,10 +19,10 @@ struct Conf_s {
     int music_volume;
     int sound_volume;
     int general_volume;
-    int mouse_hover;
-    int mouse_click;
-    int game_music;
-    int game_effects;
+    bool mouse_hover;
+    bool mouse_click;
+    bool game_music;
+    bool game_effects;
 
     // Graphics
     bool fullscreen;
