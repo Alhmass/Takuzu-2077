@@ -150,30 +150,33 @@ void conf_load(Conf conf, char *path) {
         default_conf(conf);
 }
 bool conf_save(Conf conf, char *path) {
-    (void)conf;
-    (void)conf;
-    // char buf[256];
-    // remove(path);
-    // copy_file("default.conf", path);
-    // if (sprintf(buf, "%d", conf->music_volume) < 0)
-    //     return false;
-    // if (!set_setting(path, "volume_music", buf))
-    //     return false;
-    // if (sprintf(buf, "%d", conf->sound_volume) < 0)
-    //     return false;
-    // if (!set_setting(path, "volume_effects", buf))
-    //     return false;
-    // if (sprintf(buf, "%d", conf->general_volume) < 0)
-    //     return false;
-    // if (!set_setting(path, "volume_general", buf))
-    //     return false;
-    // if (sprintf(buf, "%d", conf->timer) < 0)
-    //     return false;
-    // if (!set_setting(path, "Timer", buf))
-    //     return false;
-    // if (sprintf(buf, "%d", conf->accuracy) < 0)
-    //     return false;
-    // if (!set_setting(path, "Accuracy", buf))
-    //     return false;
-    return true;
+    char buf[256];
+    if (sprintf(buf, "%d", conf->music_volume) < 0)
+        return false;
+    if (!set_setting("general.conf", "music_volume", buf))
+        return false;
+    if (sprintf(buf, "%d", conf->sound_volume) < 0)
+        return false;
+    if (!set_setting("general.conf", "sound_volume", buf))
+        return false;
+    if (sprintf(buf, "%d", conf->general_volume) < 0)
+        return false;
+    if (!set_setting("general.conf", "general_volume", buf))
+        return false;
+    if (sprintf(buf, "%d", conf->mouse_hover) < 0)
+        return false;
+    if (!set_setting("general.conf", "mouse_hover", buf))
+        return false;
+    if (sprintf(buf, "%d", conf->mouse_click) < 0)
+        return false;
+    if (!set_setting("general.conf", "mouse_click", buf))
+        return false;
+    if (sprintf(buf, "%d", conf->game_music) < 0)
+        return (false);
+    if (!set_setting("general.conf", "game_music", buf))
+        return (false);
+    if (sprintf(buf, "%d", conf->game_effects) < 0)
+        return (false);
+    if (!set_setting("general.conf", "game_effects", buf))
+        return (false);
 }
