@@ -5,6 +5,8 @@
 #include "file.h"
 #include "input.h"
 
+/* **************************************************************** */
+
 #define PATHFILE "stats.conf"
 
 void stats_init(Conf conf, Scene stats, Assets assets, SDL_Renderer *ren) {
