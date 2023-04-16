@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 
     /* create window and renderer */
     SDL_Window* win = SDL_CreateWindow(APP_NAME, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
-                                       SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+                                       SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (!win)
         ERROR("Error: SDL_CreateWindow (%s)", SDL_GetError());
     SDL_Renderer* ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
