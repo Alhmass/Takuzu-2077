@@ -11,18 +11,6 @@ body {
         font-family: $rajdhani;
         color: $light-blue;
         text-shadow: 0 0 30px $light-blue;
-        padding-top: 1em;
-    }
-
-    canvas {
-        border-radius: 10px;
-        background: rgba($blue, 0);
-        outline: 8px solid rgba($light-blue, 0.8);
-        box-shadow: 0 0 30px 20px rgba($light-blue, 0.4);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: $red;
+        margin: 0.5em 0;
     }
 }

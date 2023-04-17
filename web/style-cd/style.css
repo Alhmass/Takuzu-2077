@@ -187,6 +187,25 @@ input {
   border: none;
 }
 
+.game_container {
+  width: 50%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.game_container canvas {
+  border-radius: 10px;
+  background: rgba(0, 184, 255, 0);
+  outline: 5px solid #90F5F9;
+  -webkit-box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
+          box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
+  color: #BF2F20;
+}
+
 body {
   background-image: url("../../assets/img/background.png");
   background-repeat: no-repeat;
@@ -200,20 +219,7 @@ body #title {
   font-family: "Rajdhani";
   color: #90F5F9;
   text-shadow: 0 0 30px #90F5F9;
-  padding-top: 1em;
-}
-body canvas {
-  border-radius: 10px;
-  background: rgba(0, 184, 255, 0);
-  outline: 8px solid rgba(144, 245, 249, 0.8);
-  -webkit-box-shadow: 0 0 30px 20px rgba(144, 245, 249, 0.4);
-          box-shadow: 0 0 30px 20px rgba(144, 245, 249, 0.4);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  color: #BF2F20;
+  margin: 0.5em 0;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,14 @@
+.game_container {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+
+    canvas {
+        border-radius: 10px;
+        background: rgba($blue, 0);
+        outline: 5px solid $light-blue;
+        box-shadow: 0 0 15px 20px rgba($black, 0.4);
+        color: $red;
+    }
+}
