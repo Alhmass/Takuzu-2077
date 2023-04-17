@@ -11,7 +11,6 @@
 
     <!-- ********************* html ********************* -->
 
-    <h1 id="title">Takuzu 2077</h1>
     <div class="page_container">
         <div class="buttons_container">
             <button class="blue_cell" onclick="blue()">BLUE CELL</button>
@@ -22,14 +21,19 @@
             <button class="restart_game" onclick="restart()">RESTART GAME</button>
             <button class="solve_game" onclick="solve()">SOLVE GAME</button>
         </div>
+
         <div class="game_container">
-            <canvas id='game-canvas'></canvas>
+            <canvas id='game-canvas' width="700" height="700"></canvas>
         </div>
-        <div class="switch_container">
+
+        <div class="right_container">
             <button class="sounds_switch" onclick="sounds_switch()">SOUNDS</button>
             <button class="music_switch" onclick="music_switch()">MUSIC</button>
         </div>
+
+        <button class="logo" onclick="logo()"></button>
     </div>
+
     <pre id="result"></pre>
 
     <!-- ********************* script ********************* -->

@@ -186,12 +186,21 @@ input {
   background-size: contain;
   border: none;
 }
+.buttons_container .logo {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/img/logo.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  border: none;
+}
 
 .page_container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-bottom: 3em;
+  padding-top: 3em;
 }
 .page_container .buttons_container {
   width: 25% !important;
@@ -225,13 +234,11 @@ input {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 0 2em;
+  padding: 2em 2em;
 }
 .page_container .game_container canvas {
-  max-width: 100%;
-  max-height: 100%;
   border-radius: 10px;
-  background: rgba(0, 184, 255, 0);
+  background: rgba(6, 4, 13, 0);
   outline: 5px solid #90F5F9;
   -webkit-box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
           box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
@@ -245,15 +252,7 @@ body {
   background-position: center;
   background-attachment: fixed;
 }
-body #title {
-  text-align: center;
-  font-size: 3.125em;
-  font-family: "Rajdhani";
-  color: #90F5F9;
-  text-shadow: 0 0 30px #90F5F9;
-  margin: 0.5em 0;
-}
-body .switch_container {
+body .right_container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -267,16 +266,23 @@ body .switch_container {
   padding: 1.5em 1em;
   width: 25%;
 }
-body .switch_container button {
+body .right_container button {
   font-family: "Rajdhani";
   color: #90F5F9;
   margin-bottom: 5em;
   cursor: pointer;
-}
-body .switch_container button {
   width: 100%;
   height: 50px;
   background-image: url("../../assets/img/switch/on.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  border: none;
+}
+body .logo {
+  padding-top: 5em;
+  padding-right: 5em;
+  background-image: url("../../assets/img/logo.png");
   background-repeat: no-repeat;
   background-color: transparent;
   background-size: contain;

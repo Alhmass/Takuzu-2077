@@ -1,8 +1,6 @@
 Module.onRuntimeInitialized = () => { start(); }
 
 var canvas = document.getElementById('game-canvas');
-canvas.width = window.innerWidth / 100 * 30;
-canvas.height = window.innerWidth / 100 * 30;
 
 /* ******************** assets ******************** */
 
@@ -41,10 +39,10 @@ var IMM_RED = 4;
 var CURSOR_X = -100;
 var CURSOR_Y = -100;
 
-var CANVA_X = 0;
-var CANVA_Y = 0;
-var CANVA_W = 0;
-var CANVA_H = 0;
+var CANVA_X = canvas.offsetLeft;
+var CANVA_Y = canvas.offsetTop;
+var CANVA_W = canvas.width;
+var CANVA_H = canvas.height;
 
 var CTX = canvas.getContext('2d');
 
@@ -58,6 +56,8 @@ window.addEventListener('load', windowLoad);              // window load
 canvas.addEventListener('click', canvasLeftClick);        // left click event
 canvas.addEventListener('contextmenu', canvasRightClick); // right click event
 canvas.addEventListener('mousemove', canvasMouseMove);    // mouse move event
+canvas.addEventListener('windowresize', windowLoad);      // window resize event
+canvas.addEventListener('zoom', windowLoad);              // zoom event (ctrl + scroll)
 
 /* ******************** event callback ******************** */
 
@@ -100,8 +100,12 @@ function process() {
     CTX = canvas.getContext('2d');
     CANVA_X = canvas.offsetLeft;
     CANVA_Y = canvas.offsetTop;
+    canvas.width = (800 * 100 / 1920) * (window.innerWidth) / 100;
+    // canvas.height = (800 * 100 / 1080) * (window.innerHeight) / 100;
+    canvas.height = canvas.width;
     CANVA_W = canvas.width;
     CANVA_H = canvas.height;
+
     CTX.clearRect(0, 0, CANVA_W, CANVA_H);
 
     // Game Update
