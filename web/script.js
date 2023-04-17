@@ -1,6 +1,8 @@
 Module.onRuntimeInitialized = () => { start(); }
 
 var canvas = document.getElementById('game-canvas');
+canvas.width = window.innerWidth / 100 * 30;
+canvas.height = window.innerWidth / 100 * 30;
 
 /* ******************** assets ******************** */
 

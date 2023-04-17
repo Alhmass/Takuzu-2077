@@ -12,25 +12,25 @@
     <!-- ********************* html ********************* -->
 
     <h1 id="title">Takuzu 2077</h1>
-    <div class="game_container">
-        <canvas id='game-canvas' width="800px" height="800px"></canvas>
+    <div class="page_container">
+        <div class="buttons_container">
+            <button class="blue_cell" onclick="blue()">BLUE CELL</button>
+            <button class="red_cell" onclick="red()">RED CELL</button>
+            <button class="empty_cell" onclick="empty()">EMPTY CELL</button>
+            <button class="undo" onclick="undo()">UNDO MOVE</button>
+            <button class="redo" onclick="redo()">REDO MOVE</button>
+            <button class="restart_game" onclick="restart()">RESTART GAME</button>
+            <button class="solve_game" onclick="solve()">SOLVE GAME</button>
+        </div>
+        <div class="game_container">
+            <canvas id='game-canvas'></canvas>
+        </div>
+        <div class="switch_container">
+            <button class="sounds_switch" onclick="sounds_switch()">SOUNDS</button>
+            <button class="music_switch" onclick="music_switch()">MUSIC</button>
+        </div>
     </div>
     <pre id="result"></pre>
-
-    <div class="buttons_container">
-        <button class="blue_cell" onclick="blue()">BLUE CELL</button>
-        <button class="red_cell" onclick="red()">RED CELL</button>
-        <button class="empty_cell" onclick="empty()">EMPTY CELL</button>
-        <button class="undo" onclick="undo()">UNDO MOVE</button>
-        <button class="redo" onclick="redo()">REDO MOVE</button>
-        <button class="restart_game" onclick="restart()">RESTART GAME</button>
-        <button class="solve_game" onclick="solve()">SOLVE GAME</button>
-    </div>
-
-    <div class="switch_container">
-        <button class="sounds_switch" onclick="sounds_switch()">SOUNDS</button>
-        <button class="music_switch" onclick="music_switch()">MUSIC</button>
-    </div>
 
     <!-- ********************* script ********************* -->
     <script type="text/javascript" src="game.js"></script>
