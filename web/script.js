@@ -112,7 +112,6 @@ function process() {
     CANVA_X = canvas.offsetLeft;
     CANVA_Y = canvas.offsetTop;
     canvas.width = (800 * 100 / 1920) * (window.innerWidth) / 100;
-    // canvas.height = (800 * 100 / 1080) * (window.innerHeight) / 100;
     canvas.height = canvas.width;
     CANVA_W = canvas.width;
     CANVA_H = canvas.height;
@@ -146,6 +145,14 @@ function printGame() {
             if (error && (square == BLUE || square == RED))
                 CTX.drawImage(cell_error, col * cell_width, row * cell_height, cell_width, cell_height);
         }
+    }
+
+    if (Module._is_over(GAME)) {
+        canvas.style.boxShadow = "0 0 30px 20px rgba(111, 255, 147, 0.5)";
+        canvas.style.outline = "5px solid rgba(111, 255, 147, 1)";
+    } else {
+        canvas.style.boxShadow = "0 0 30px 20px rgba(6, 4, 13, 0.4)";
+        canvas.style.outline = "5px solid rgba(144, 245, 249, 1)";
     }
 
     CTX.drawImage(cursor, CURSOR_X, CURSOR_Y, 50, 50);

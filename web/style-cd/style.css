@@ -206,7 +206,7 @@ input {
   width: 25% !important;
 }
 .page_container .buttons_container button {
-  color: #90F5F9;
+  color: #90f5f9;
   font-family: "Rajdhani";
   font-size: 1.25em;
   cursor: pointer;
@@ -267,7 +267,7 @@ input {
   position: absolute;
   top: -1.5em;
   left: 40%;
-  color: #90F5F9;
+  color: #90f5f9;
   font-family: "Rajdhani";
   font-size: 2.5em;
   margin-bottom: 0.5em;
@@ -286,10 +286,11 @@ input {
 .page_container .game_container canvas {
   border-radius: 10px;
   background: rgba(6, 4, 13, 0);
-  outline: 5px solid #90F5F9;
+  outline: 5px solid #90f5f9;
   -webkit-box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
           box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
   color: #BF2F20;
+  cursor: none;
 }
 
 body {
@@ -298,6 +299,10 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 body .switch_container {
   display: -webkit-box;
@@ -315,7 +320,7 @@ body .switch_container {
 }
 body .switch_container button {
   width: 100%;
-  height: 50px;
+  height: 8%;
   background-repeat: no-repeat;
   background-color: transparent;
   background-size: contain;

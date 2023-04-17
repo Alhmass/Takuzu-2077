@@ -4,6 +4,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    user-select: none;
 
     .switch_container {
         display: flex;
@@ -14,24 +15,11 @@ body {
 
         button {
             width: 100%;
-            height: 50px;
-            // background-image: $switch_on;
+            height: 8%;
             background-repeat: no-repeat;
             background-color: transparent;
             background-size: contain;
             border: none;
         }
     }
-
-    // .logo {
-    //     padding-top: 5em;
-    //     padding-right: 5em;
-    //     // width: 100%;
-    //     // height: 100%;
-    //     background-image: url("../../assets/img/logo.png");
-    //     background-repeat: no-repeat;
-    //     background-color: transparent;
-    //     background-size: contain;
-    //     border: none;
-    // }
 }
