@@ -10,10 +10,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "game.h"
-#include "game_aux.h"
-#include "game_ext.h"
-// #include "game_tools.h"
+#include "takuzu.h"
 
 /* ******************** Game V1 & V2 API ******************** */
 
@@ -56,24 +53,41 @@ bool is_immutable(cgame g, uint i, uint j) { return game_is_immutable(g, i, j); 
 EMSCRIPTEN_KEEPALIVE
 int has_error(cgame g, uint i, uint j) { return game_has_error(g, i, j); }
 
+EMSCRIPTEN_KEEPALIVE
+void undo(game g) { game_undo(g); }
+
+EMSCRIPTEN_KEEPALIVE
+void redo(game g) { game_redo(g); }
+
 /* ******************** Game Tools API ******************** */
 
-// EMSCRIPTEN_KEEPALIVE
-// bool solve(game g) { return game_solve(g); }
+EMSCRIPTEN_KEEPALIVE
+bool solve(game g) { return game_solve(g); }
 
-// EMSCRIPTEN_KEEPALIVE
-// uint nb_solutions(cgame g) { return game_nb_solutions(g); }
+EMSCRIPTEN_KEEPALIVE
+uint nb_solutions(cgame g) { return game_nb_solutions(g); }
 
-// EMSCRIPTEN_KEEPALIVE
-// void undo(game g) { game_undo(g); }
+EMSCRIPTEN_KEEPALIVE
+solver solver_new(game g, bool unique) { return solver_new(g, unique); }
 
-// EMSCRIPTEN_KEEPALIVE
-// void redo(game g) { game_redo(g); }
+EMSCRIPTEN_KEEPALIVE
+void solver_delete(solver s) { solver_delete(s); }
 
-// EMSCRIPTEN_KEEPALIVE
-// game new_random(uint nb_rows, uint nb_cols, bool wrapping, bool uniq) {
-//     srand(time(NULL));  // random seed
-//     return game_random(nb_rows, nb_cols, wrapping, uniq, false);
-// }
+EMSCRIPTEN_KEEPALIVE
+void find_solutions(game g, solver s, uint pos) { find_solutions(g, s, pos); }
+
+EMSCRIPTEN_KEEPALIVE
+bool is_word_solution(game g, solver s) { return is_word_solution(g, s); }
+
+EMSCRIPTEN_KEEPALIVE
+void copy_solution(game g, csolver s) { copy_solution(g, s); }
+
+/* ******************** Game Other ******************** */
+
+EMSCRIPTEN_KEEPALIVE
+game new_random(uint nb_rows, uint nb_cols, bool wrapping, bool uniq) {
+    srand(time(NULL));  // random seed
+    return game_random(nb_rows, nb_cols, wrapping, uniq, false);
+}
 
 // EOF

@@ -21,6 +21,7 @@
 #include "game_aux.h"
 #include "game_ext.h"
 #include "game_private.h"
+#include "game_random.h"
 #include "game_struct.h"
 #include "queue.h"
 
