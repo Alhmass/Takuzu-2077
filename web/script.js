@@ -4,24 +4,44 @@ var canvas = document.getElementById('game-canvas');
 
 /* ******************** assets ******************** */
 
-// load mario image
 var cursor = new Image();
 cursor.src = "assets/img/cursor.png";
+
+var cell_blue = new Image();
+cell_blue.src = "assets/img/cell/blue.png";
+var cell_imm_blue = new Image();
+cell_imm_blue.src = "assets/img/cell/imm_blue.png";
+var cell_red = new Image();
+cell_red.src = "assets/img/cell/red.png";
+var cell_imm_red = new Image();
+cell_imm_red.src = "assets/img/cell/imm_red.png";
+var cell_empty = new Image();
+cell_empty.src = "assets/img/cell/empty.png";
+var cell_hover = new Image();
+cell_hover.src = "assets/img/cell/hover.png";
+var cell_error = new Image();
+cell_error.src = "assets/img/cell/error.png";
+
+
+var rajdhani = new FontFace('Rajdhani', 'url(assets/fonts/Rajdhani-SemiBold.ttf)');
+rajdhani.load().then(function (loaded_face) {
+    document.fonts.add(loaded_face);
+});
+
+/* ******************** variables ******************** */
 
 // initial position in canvas
 var cursorX = 0;
 var cursorY = 0;
-var cursorW = 50;
-var cursorH = 50;
 
-var squareX = 0;
-var squareY = 0;
+// var squareX = 0;
+// var squareY = 0;
 
 /* ******************** register events ******************** */
 
 window.addEventListener('load', windowLoad);              // window load
 canvas.addEventListener('click', canvasLeftClick);        // left click event
-canvas.addEventListener('contextmenu', canvasRightClick); // right click event
+canvas.addEventListener('contextmenu', canvasLeftClick); // right click event
 
 /* ******************** event callback ******************** */
 
@@ -52,74 +72,61 @@ function windowLoad() {
 
 /* ******************** game grid ******************** */
 
-function printGame(g) {
-    var text = "";
-    var nb_rows = Module._nb_rows(g);
-    var nb_cols = Module._nb_cols(g);
+function printGame(game) {
+    var ctx = canvas.getContext('2d');
+    var width = canvas.width;
+    var height = canvas.height;
+    ctx.clearRect(0, 0, width, height);
+
+    var nb_rows = Module._nb_rows(game);
+    var nb_cols = Module._nb_cols(game);
+    var cell_width = width / nb_cols;
+    var cell_height = height / nb_rows;
+
     for (var row = 0; row < nb_rows; row++) {
         for (var col = 0; col < nb_cols; col++) {
-            var square = Module._get_square(g, row, col);
-            var immutable = Module._is_immutable(g, row, col);
-            var empty = Module._is_empty(g, row, col);
-            // var error = Module._has_error(g, row, col);
+            var square = Module._get_square(game, row, col);
+            var immutable = Module._is_immutable(game, row, col);
+            var empty = Module._is_empty(game, row, col);
+            var error = Module._has_error(game, row, col);
             if (empty)
-                text += " ";
+                ctx.drawImage(cell_empty, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
             else if (square == 3)
-                text += "W";
+                ctx.drawImage(cell_imm_blue, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
             else if (square == 4)
-                text += "B";
+                ctx.drawImage(cell_imm_red, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
             else if (square == 1)
-                text += "w";
+                ctx.drawImage(cell_blue, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
             else if (square == 2)
-                text += "b";
-            else text += "?";
+                ctx.drawImage(cell_red, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
+            if (error)
+                ctx.drawImage(cell_error, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
         }
-        text += "\n";
     }
 
     // put this text in <div> element with ID 'result'
     var elm = document.getElementById('result');
-    elm.innerHTML = text;
 }
 
 /* ******************** canvas drawing ******************** */
 
 function drawCanvas() {
     var ctx = canvas.getContext('2d');
-    var width = canvas.width;
-    var height = canvas.height;
-    var offsetX = canvas.offsetLeft;
-    var offsetY = canvas.offsetTop;
+    // var width = canvas.width;
+    // var height = canvas.height;
+    // ctx.clearRect(0, 0, width, height);
 
-    // clear canvas
-    ctx.clearRect(0, 0, width, height);
-
-    // draw a white square at (squareX, squareY) position
-    ctx.save();
-    ctx.fillStyle = 'white';
-    ctx.fillRect(squareX - 20, squareY - 20, 40, 40);
-    ctx.restore();
-
-    // draw a centered text
-    ctx.save();
-    ctx.font = 'bold 20px Arial';
-    ctx.fillStyle = 'cyan';
-    ctx.textBaseline = 'middle';
-    ctx.textAlign = 'center';
-    ctx.fillText("Hello World!", width / 2, height / 2);
-    ctx.restore();
-
-    ctx.drawImage(cursor, cursorX, cursorY, cursorW, cursorH);
+    ctx.drawImage(cursor, cursorX, cursorY, 50, 50);
 }
 
 /* ******************** start ******************** */
 
 function start() {
     console.log("call start routine");
-    var g = Module._new_default();
     const LIGHTBULB = 1;
-    Module._play_move(g, 0, 0, LIGHTBULB);
-    printGame(g);
-    Module._delete(g);
+    // Module._play_move(game, 0, 0, LIGHTBULB);
+    var game = Module._new_default();
+    printGame(game);
+    Module._delete(game);
 }
 
