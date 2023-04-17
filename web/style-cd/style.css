@@ -154,17 +154,17 @@ body {
 body #title {
   text-align: center;
   font-size: 3.125em;
-  font-family: 'Press Start 2P', cursive;
-  color: #90f5f9;
-  text-shadow: 0 0 30px rgba(144, 245, 249, 0.5);
+  font-family: 'Press Start 2P', monospace;
+  color: #90F5F9;
+  text-shadow: 0 0 30px #90F5F9;
   padding-top: 1em;
 }
 body canvas {
   border-radius: 10px;
   background: rgba(0, 184, 255, 0.1);
-  outline: 4px solid #90f5f9;
-  -webkit-box-shadow: 0 0 30px 20px rgba(6, 4, 13, 0.4);
-          box-shadow: 0 0 30px 20px rgba(6, 4, 13, 0.4);
+  outline: 4px solid #90F5F9;
+  -webkit-box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
+          box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
   position: absolute;
   top: 50%;
   left: 50%;
