@@ -61,21 +61,19 @@ canvas.addEventListener('mousemove', canvasMouseMove);    // mouse move event
 
 function canvasLeftClick(event) {
     event.preventDefault();
-    console.log("left click at position:", event.offsetX, event.offsetY);
     CURSOR_X = event.offsetX - 8;
     CURSOR_Y = event.offsetY - 8;
     process();
-    play_move(0);   // EMPTY -> BLUE -> RED
+    play_move(3);   // EMPTY -> BLUE -> RED
     printGame();
 }
 
 function canvasRightClick(event) {
     event.preventDefault();
-    console.log("right click at position:", event.offsetX, event.offsetY);
     CURSOR_X = event.offsetX - 8;
     CURSOR_Y = event.offsetY - 8;
     process();
-    play_move(1);   // EMPTY -> RED -> BLUE
+    play_move(4);   // EMPTY -> RED -> BLUE
     printGame();
 }
 
@@ -89,7 +87,6 @@ function canvasMouseMove(event) {
 }
 
 function windowLoad() {
-    console.log("window load");
     process();
     printGame();
 }
@@ -113,8 +110,6 @@ function process() {
 function printGame() {
     var cell_width = CANVA_W / COLS;
     var cell_height = CANVA_H / ROWS;
-    console.log("width:", cell_width, "height:", cell_height);
-    console.log("rows:", ROWS, "cols:", COLS);
 
     for (var row = 0; row < ROWS; row++) {
         for (var col = 0; col < COLS; col++) {
@@ -147,17 +142,18 @@ function play_move(mode) {
     var row = Math.floor(CURSOR_Y * ROWS / CANVA_H);
 
     var square = Module._get_square(GAME, row, col);
-    if (mode == 0) {
+    if (mode == 3) {
         square++;
         if (square > RED)
             square = EMPTY;
-    } else {
+    } else if (mode == 4) {
         square--;
         if (square < EMPTY)
             square = RED;
+    } else {
+        square = mode;
     }
 
-    console.log("play move at position:", row, col);
     if (!Module._is_immutable(GAME, row, col))
         Module._play_move(GAME, row, col, square);
 }
@@ -168,6 +164,16 @@ function hover() {
 
     CTX.drawImage(cell_hover, col * CANVA_W / COLS, row * CANVA_H / ROWS, CANVA_W / COLS, CANVA_H / ROWS);
 }
+
+/* ******************** Button Functions ******************** */
+
+function restart() { process(); Module._restart(GAME); printGame(); }
+function undo() { process(); Module._undo(GAME); printGame(); }
+function redo() { process(); Module._redo(GAME); printGame(); }
+function solve() { process(); Module._solve(GAME); printGame(); }
+function blue() { process(); play_move(BLUE); printGame(); }
+function red() { process(); play_move(RED); printGame(); }
+function empty() { process(); play_move(EMPTY); printGame(); }
 
 /* ******************** start ******************** */
 
