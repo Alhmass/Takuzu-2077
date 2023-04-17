@@ -3,28 +3,24 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="game.css">
 </head>
 
 <body>
 
     <!-- ********************* html ********************* -->
 
-    <h1>Demo Game Web</h1>
+    <h1 id="title">Takuzu 2077</h1>
 
-    <p>This demo shows you the basics to call our game routines using a
-    JavaScript module based on Wasm technology... Here, the default game is
-    created at startup and then it is printed as text within a <em>pre</em>
-    element.</p>
+    <canvas id='game-canvas' width="800px" height="800px"></canvas>
 
     <pre id="result"></pre>
 
-    <hr>
-    <p><em>aurelien.esnard@u-bordeaux.fr, 2023.</em></p>
-
     <!-- ********************* script ********************* -->
 
-    <script src="game.js"></script>
-    <script src="demo.js"> </script>
+    <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 
 </body>
 

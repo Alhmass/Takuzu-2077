@@ -1,0 +1,26 @@
+body {
+    background-image: url("assets/img/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#title {
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Press Start 2P', cursive;
+    color: rgb(144, 245, 249);
+    text-shadow: 0 0 30px rgba(144, 245, 249, 0.5);
+}
+
+canvas {
+    border-radius: 10px;
+    background: rgba(0, 184, 255, 0.1);
+    outline: 4px solid rgb(144, 245, 249);
+    box-shadow: 0 0 30px 20px rgba(6, 4, 13, 0.4);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
