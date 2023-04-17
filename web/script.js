@@ -2,6 +2,17 @@ Module.onRuntimeInitialized = () => { start(); }
 
 var canvas = document.getElementById('game-canvas');
 
+function classToggle() {
+    this.classList.toggle('on');
+    this.classList.toggle('off');
+}
+const buttons = document.querySelectorAll('.switch');
+
+// Add a click event listener to each button
+buttons.forEach((button) => {
+    button.addEventListener('click', classToggle);
+});
+
 /* ******************** assets ******************** */
 
 var cursor = new Image();

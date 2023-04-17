@@ -9,10 +9,15 @@
         button {
             color: $light-blue;
             font-family: $rajdhani;
+            font-size: size(20);
             cursor: pointer;
             position: relative;
             width: 100% !important;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 300px;
 
             &:hover {
                 &::before {
@@ -28,6 +33,46 @@
                     left: 0;
                     top: 0;
                 }
+            }
+        }
+    }
+
+    .switch_container {
+        justify-content: center;
+
+        .logo {
+            margin-bottom: 3em;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .on {
+            background-image: $switch_on;
+        }
+
+        .off {
+            background-image: $switch_off;
+        }
+
+        button {
+            position: relative;
+            margin-bottom: 5em;
+            cursor: pointer;
+            max-width: 300px !important;
+
+            .switch_title {
+                position: absolute;
+                top: -1.5em;
+                left: 40%;
+                color: $light-blue;
+                font-family: $rajdhani;
+                font-size: size(40);
+                margin-bottom: 0.5em;
+                text-align: center;
             }
         }
     }

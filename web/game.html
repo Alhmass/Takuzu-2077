@@ -13,25 +13,23 @@
 
     <div class="page_container">
         <div class="buttons_container">
-            <button class="blue_cell" onclick="blue()">BLUE CELL</button>
-            <button class="red_cell" onclick="red()">RED CELL</button>
-            <button class="empty_cell" onclick="empty()">EMPTY CELL</button>
-            <button class="undo" onclick="undo()">UNDO MOVE</button>
-            <button class="redo" onclick="redo()">REDO MOVE</button>
-            <button class="restart_game" onclick="restart()">RESTART GAME</button>
-            <button class="solve_game" onclick="solve()">SOLVE GAME</button>
+            <button class="blue_cell" onclick="blue()"><span>BLUE CELL</span></button>
+            <button class="red_cell" onclick="red()"><span>RED CELL</span></button>
+            <button class="empty_cell" onclick="empty()"><span>EMPTY CELL</span></button>
+            <button class="undo" onclick="undo()"><span>UNDO MOVE</span></button>
+            <button class="redo" onclick="redo()"><span>REDO MOVE</span></button>
+            <button class="restart_game" onclick="restart()"><span>RESTART GAME</span></button>
+            <button class="solve_game" onclick="solve()"><span>SOLVE GAME</span></button>
         </div>
 
         <div class="game_container">
             <canvas id='game-canvas' width="700" height="700"></canvas>
         </div>
-
-        <div class="right_container">
-            <button class="sounds_switch" onclick="sounds_switch()">SOUNDS</button>
-            <button class="music_switch" onclick="music_switch()">MUSIC</button>
+        <div class="switch_container">
+            <a class="logo" href="#"><img src="assets/img/logo.png" alt="logo-takuzu"></a>
+            <button class="switch on" onclick="sounds_switch()"><span class="switch_title">SOUNDS</span></button>
+            <button class="switch on" onclick="music_switch()"><span class="switch_title">MUSIC</span></button>
         </div>
-
-        <button class="logo" onclick="logo()"></button>
     </div>
 
     <pre id="result"></pre>
