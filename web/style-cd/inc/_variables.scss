@@ -2,7 +2,17 @@
 // Fonts
 // -----------
 
-
+@font-face {
+    font-family: 'Rajdhani';
+    src: url('../../../assets/fonts/Rajdhani-SemiBold.eot');
+    src: url('../../../assets/fonts/Rajdhani-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../../../assets/fonts/Rajdhani-SemiBold.woff2') format('woff2'),
+        url('../../../assets/fonts/Rajdhani-SemiBold.woff') format('woff'),
+        url('../../../assets/fonts/Rajdhani-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
 
 // -----------
 // Variables
