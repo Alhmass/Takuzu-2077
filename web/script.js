@@ -30,103 +30,149 @@ rajdhani.load().then(function (loaded_face) {
 
 /* ******************** variables ******************** */
 
-// initial position in canvas
-var cursorX = 0;
-var cursorY = 0;
+var EMPTY = 0;
+var BLUE = 1;
+var RED = 2;
+var IMM_BLUE = 3;
+var IMM_RED = 4;
 
-// var squareX = 0;
-// var squareY = 0;
+var CURSOR_X = -100;
+var CURSOR_Y = -100;
+
+var CANVA_X = 0;
+var CANVA_Y = 0;
+var CANVA_W = 0;
+var CANVA_H = 0;
+
+var CTX = canvas.getContext('2d');
+
+var GAME = null;
+var ROWS = 0;
+var COLS = 0;
 
 /* ******************** register events ******************** */
 
 window.addEventListener('load', windowLoad);              // window load
 canvas.addEventListener('click', canvasLeftClick);        // left click event
-canvas.addEventListener('contextmenu', canvasLeftClick); // right click event
+canvas.addEventListener('contextmenu', canvasRightClick); // right click event
+canvas.addEventListener('mousemove', canvasMouseMove);    // mouse move event
 
 /* ******************** event callback ******************** */
 
 function canvasLeftClick(event) {
-    event.preventDefault(); // prevent default context menu to appear...
-    // get relative cursor position in canvas
+    event.preventDefault();
     console.log("left click at position:", event.offsetX, event.offsetY);
-    // update position of cursor image used by drawCanvas()
-    cursorX = event.offsetX - 8;
-    cursorY = event.offsetY - 8;
-    drawCanvas();
+    CURSOR_X = event.offsetX - 8;
+    CURSOR_Y = event.offsetY - 8;
+    process();
+    play_move(0);   // EMPTY -> BLUE -> RED
+    printGame();
 }
 
 function canvasRightClick(event) {
-    event.preventDefault(); // prevent default context menu to appear...
-    // get relative cursor position in canvas
+    event.preventDefault();
     console.log("right click at position:", event.offsetX, event.offsetY);
-    // update position of mario image used by drawCanvas()
-    squareX = event.offsetX;
-    squareY = event.offsetY;
-    drawCanvas();
+    CURSOR_X = event.offsetX - 8;
+    CURSOR_Y = event.offsetY - 8;
+    process();
+    play_move(1);   // EMPTY -> RED -> BLUE
+    printGame();
+}
+
+function canvasMouseMove(event) {
+    event.preventDefault();
+    CURSOR_X = event.offsetX - 8;
+    CURSOR_Y = event.offsetY - 8;
+    process();
+    hover();
+    printGame();
 }
 
 function windowLoad() {
     console.log("window load");
-    drawCanvas();
+    process();
+    printGame();
 }
 
-/* ******************** game grid ******************** */
+/* ******************** PROCESS ******************** */
 
-function printGame(game) {
-    var ctx = canvas.getContext('2d');
-    var width = canvas.width;
-    var height = canvas.height;
-    ctx.clearRect(0, 0, width, height);
+function process() {
+    // Canva Update
+    CTX = canvas.getContext('2d');
+    CANVA_X = canvas.offsetLeft;
+    CANVA_Y = canvas.offsetTop;
+    CANVA_W = canvas.width;
+    CANVA_H = canvas.height;
+    CTX.clearRect(0, 0, CANVA_W, CANVA_H);
 
-    var nb_rows = Module._nb_rows(game);
-    var nb_cols = Module._nb_cols(game);
-    var cell_width = width / nb_cols;
-    var cell_height = height / nb_rows;
+    // Game Update
+    ROWS = Module._nb_rows(GAME);
+    COLS = Module._nb_cols(GAME);
+}
 
-    for (var row = 0; row < nb_rows; row++) {
-        for (var col = 0; col < nb_cols; col++) {
-            var square = Module._get_square(game, row, col);
-            var immutable = Module._is_immutable(game, row, col);
-            var empty = Module._is_empty(game, row, col);
-            var error = Module._has_error(game, row, col);
-            if (empty)
-                ctx.drawImage(cell_empty, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
-            else if (square == 3)
-                ctx.drawImage(cell_imm_blue, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
-            else if (square == 4)
-                ctx.drawImage(cell_imm_red, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
-            else if (square == 1)
-                ctx.drawImage(cell_blue, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
-            else if (square == 2)
-                ctx.drawImage(cell_red, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
-            if (error)
-                ctx.drawImage(cell_error, col * cell_width, row * cell_height, width / nb_cols, height / nb_rows);
+function printGame() {
+    var cell_width = CANVA_W / COLS;
+    var cell_height = CANVA_H / ROWS;
+    console.log("width:", cell_width, "height:", cell_height);
+    console.log("rows:", ROWS, "cols:", COLS);
+
+    for (var row = 0; row < ROWS; row++) {
+        for (var col = 0; col < COLS; col++) {
+            var square = Module._get_square(GAME, row, col);
+            var error = Module._has_error(GAME, row, col);
+            if (square == EMPTY)
+                CTX.drawImage(cell_empty, col * cell_width, row * cell_height, cell_width, cell_height);
+            else if (square == BLUE)
+                CTX.drawImage(cell_blue, col * cell_width, row * cell_height, cell_width, cell_height);
+            else if (square == RED)
+                CTX.drawImage(cell_red, col * cell_width, row * cell_height, cell_width, cell_height);
+            else if (square == IMM_BLUE)
+                CTX.drawImage(cell_imm_blue, col * cell_width, row * cell_height, cell_width, cell_height);
+            else if (square == IMM_RED)
+                CTX.drawImage(cell_imm_red, col * cell_width, row * cell_height, cell_width, cell_height);
+
+            if (error && (square == BLUE || square == RED))
+                CTX.drawImage(cell_error, col * cell_width, row * cell_height, cell_width, cell_height);
         }
     }
+
+    CTX.drawImage(cursor, CURSOR_X, CURSOR_Y, 50, 50);
 
     // put this text in <div> element with ID 'result'
     var elm = document.getElementById('result');
 }
 
-/* ******************** canvas drawing ******************** */
+function play_move(mode) {
+    var col = Math.floor(CURSOR_X * COLS / CANVA_W);
+    var row = Math.floor(CURSOR_Y * ROWS / CANVA_H);
 
-function drawCanvas() {
-    var ctx = canvas.getContext('2d');
-    // var width = canvas.width;
-    // var height = canvas.height;
-    // ctx.clearRect(0, 0, width, height);
+    var square = Module._get_square(GAME, row, col);
+    if (mode == 0) {
+        square++;
+        if (square > RED)
+            square = EMPTY;
+    } else {
+        square--;
+        if (square < EMPTY)
+            square = RED;
+    }
 
-    ctx.drawImage(cursor, cursorX, cursorY, 50, 50);
+    console.log("play move at position:", row, col);
+    if (!Module._is_immutable(GAME, row, col))
+        Module._play_move(GAME, row, col, square);
+}
+
+function hover() {
+    var col = Math.floor(CURSOR_X * COLS / CANVA_W);
+    var row = Math.floor(CURSOR_Y * ROWS / CANVA_H);
+
+    CTX.drawImage(cell_hover, col * CANVA_W / COLS, row * CANVA_H / ROWS, CANVA_W / COLS, CANVA_H / ROWS);
 }
 
 /* ******************** start ******************** */
 
 function start() {
     console.log("call start routine");
-    const LIGHTBULB = 1;
-    // Module._play_move(game, 0, 0, LIGHTBULB);
-    var game = Module._new_default();
-    printGame(game);
-    Module._delete(game);
+    GAME = Module._new_default();
 }
 
