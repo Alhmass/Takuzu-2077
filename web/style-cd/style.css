@@ -174,10 +174,10 @@ input {
   padding: 1.5em 1em;
   width: 28%;
   font-family: "Rajdhani";
-  color: #90F5F9;
+  color: #00B8FF;
 }
 .buttons_container button {
-  margin-top: -11em;
+  margin-bottom: 5em;
   width: 350px;
   height: 50px;
   background-image: url("../../assets/img/button/blue_dark.png");
@@ -220,6 +220,32 @@ body #title {
   color: #90F5F9;
   text-shadow: 0 0 30px #90F5F9;
   margin: 0.5em 0;
+}
+body .switch_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10em 10em;
+  width: 28%;
+  font-family: "Rajdhani";
+  color: #90F5F9;
+}
+body .switch_container button {
+  margin-top: -11em;
+  width: 350px;
+  height: 50px;
+  background-image: url("../../assets/img/switch/on.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  border: none;
 }
 
 /*# sourceMappingURL=style.css.map */
