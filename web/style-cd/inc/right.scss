@@ -6,11 +6,35 @@
     padding: 1.5em 1em;
     align-items: center;
     justify-content: center;
+    z-index: 999;
+
+
+    .hamburger-menu {
+        display: none;
+        width: 6vh;
+        height: 6vh;
+        position: absolute;
+        top: 10%;
+        align-self: flex-end;
+        margin: 0 1em;
+        background-image: url("../../assets/img/burger.svg");
+        background-repeat: no-repeat;
+        background-color: transparent;
+        background-size: contain;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        opacity: 0.8;
+
+        @include media(tablette) {
+            display: block;
+        }
+    }
 
     @include media(tablette) {
         width: 100%;
         padding: 1em 0;
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
 
     .switch_container {
@@ -19,6 +43,8 @@
 
         @include media(tablette) {
             justify-content: flex-end;
+            display: none;
+            margin: 1em 0;
         }
 
         .on {
@@ -40,10 +66,6 @@
 
             @include media(desktop) {
                 font-size: size(30);
-            }
-
-            @include media(tablette) {
-                display: none;
             }
         }
 

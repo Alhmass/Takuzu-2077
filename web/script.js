@@ -122,6 +122,8 @@ function process() {
     CANVA_X = canvas.offsetLeft;
     CANVA_Y = canvas.offsetTop;
     canvas.width = (800 * 100 / 1920) * (window.innerWidth) / 100;
+    if (window.innerWidth <= 1024)
+        canvas.width *= 2;
     canvas.height = canvas.width;
     CANVA_W = canvas.width;
     CANVA_H = canvas.height;
@@ -299,6 +301,27 @@ const buttons = document.querySelectorAll('.switch');
 // Add a click event listener to each button
 buttons.forEach((button) => {
     button.addEventListener('click', classToggle);
+});
+
+/* *********** Menu Functions ********************** */
+const button = document.getElementsByClassName('hamburger-menu')[0];
+const element = document.getElementsByClassName('menu-header')[0];
+const switchs = document.getElementsByClassName('switch-container');
+
+button.addEventListener('click', function () {
+    if (element.classList.contains('display-menu')) {
+        element.classList.remove('display-menu');
+        const switchcontainer = document.querySelectorAll('.switch_container');
+        switchcontainer.forEach((swit) => {
+            swit.style.display = 'none';
+        });
+    } else {
+        element.classList.add('display-menu');
+        const switchcontainer = document.querySelectorAll('.switch_container');
+        switchcontainer.forEach((swit) => {
+            swit.style.display = 'flex';
+        });
+    }
 });
 
 var MUSIC_TOGGLE = false;
