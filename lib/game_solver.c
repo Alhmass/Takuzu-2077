@@ -13,8 +13,8 @@ solver solver_new(game g, bool unique) {
     assert(s->coords);
 
     uint index = 0;
-    for (uint i = 0; i < g->nb_cols; i++) {
-        for (uint j = 0; j < g->nb_rows; j++) {
+    for (uint j = 0; j < g->nb_rows; j++) {
+        for (uint i = 0; i < g->nb_cols; i++) {
             if (game_get_square(g, i, j) != S_IMMUTABLE_ZERO && game_get_square(g, i, j) != S_IMMUTABLE_ONE) {
                 s->coords[index] = malloc(sizeof(struct coordinates_s));
                 COORDS_I(s, index) = i;

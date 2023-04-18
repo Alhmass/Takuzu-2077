@@ -16,3 +16,9 @@ custom_build/
 
 # Solution Inputs
 moves.txt
+
+# web
+libgame.a
+game.wasm
+wrapper.o
+game.js

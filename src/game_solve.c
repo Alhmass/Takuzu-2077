@@ -11,6 +11,7 @@ int main(int ac, char **av) {
 
     if (strcmp(av[1], "-s") == 0) {
         game g = game_load(av[2]);
+        game_print(g);
         if (game_solve(g)) {
             if (ac == 4)
                 game_save(g, av[3]);

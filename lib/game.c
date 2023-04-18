@@ -176,9 +176,9 @@ int game_has_error(cgame g, uint i, uint j) {
     // check number of ones and zeros in col j
     nb_zeros = _count_in_col(g, 0, j);
     nb_ones = _count_in_col(g, 1, j);
-    if ((num == 0) && (nb_zeros > (g->nb_cols / 2)))
+    if ((num == 0) && (nb_zeros > (g->nb_rows / 2)))
         return 2;
-    if ((num == 1) && (nb_ones > (g->nb_cols / 2)))
+    if ((num == 1) && (nb_ones > (g->nb_rows / 2)))
         return 2;
 
     // check three consecutive in row i

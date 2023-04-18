@@ -23,7 +23,6 @@
 #include "game_private.h"
 #include "game_random.h"
 #include "game_struct.h"
-#include "queue.h"
 
 /* Game Solver Headers */
 #include "game_solver.h"
