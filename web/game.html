@@ -18,15 +18,17 @@
 </head>
 
 <body>
+    <audio id="menu_audio" src="assets/music/game.mp3"></audio>
     <div class="page_container">
         <div class="left_container">
-            <button class="blue_cell" onclick="blue()"><span>BLUE CELL</span></button>
-            <button class="red_cell" onclick="red()"><span>RED CELL</span></button>
-            <button class="empty_cell" onclick="empty()"><span>EMPTY CELL</span></button>
-            <button class="undo" onclick="undo()"><span>UNDO MOVE</span></button>
-            <button class="redo" onclick="redo()"><span>REDO MOVE</span></button>
-            <button class="restart_game" onclick="restart()"><span>RESTART GAME</span></button>
-            <button class="solve_game" onclick="solve()"><span>SOLVE GAME</span></button>
+            <button class="blue_cell" onclick="blue()" onmouseover="hover_effect()"><span>BLUE CELL</span></button>
+            <button class="red_cell" onclick="red()" onmouseover="hover_effect()"><span>RED CELL</span></button>
+            <button class="empty_cell" onclick="empty()" onmouseover="hover_effect()"><span>EMPTY CELL</span></button>
+            <button class="undo" onclick="undo()" onmouseover="hover_effect()"><span>UNDO MOVE</span></button>
+            <button class="redo" onclick="redo()" onmouseover="hover_effect()"><span>REDO MOVE</span></button>
+            <button class="restart_game" onclick="restart()" onmouseover="hover_effect()"><span>RESTART
+                    GAME</span></button>
+            <button class="solve_game" onclick="solve()" onmouseover="hover_effect()"><span>SOLVE GAME</span></button>
         </div>
 
         <div class="center_container"><canvas id='game-canvas'></canvas></div>
@@ -35,8 +37,12 @@
             <a class="logo" href="https://gitlab.emi.u-bordeaux.fr/pt2/teams/tm01/takuzu-01c" target="_blank">
                 <img src="assets/img/logo.png" alt="logo-takuzu">
             </a>
-            <button class="switch on" onclick="sounds_switch()"><span class="switch_title">SOUNDS</span></button>
-            <button class="switch on" onclick="music_switch()"><span class="switch_title">MUSIC</span></button>
+            <button class="switch off" onclick="sounds_switch()"><span class="switch_title">SOUNDS</span></button>
+            <button class="switch off" onclick="music_switch()"><span class="switch_title">MUSIC</span></button>
+            <button class="switch on" id="hover_switch" onclick="hover_switch()"><span
+                    class="switch_title">HOVER</span></button>
+            <button class="switch on" id="error_switch" onclick="error_switch()"><span
+                    class="switch_title">ERRORS</span></button>
         </div>
     </div>
 
