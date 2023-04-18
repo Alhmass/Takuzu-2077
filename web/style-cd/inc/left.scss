@@ -1,0 +1,51 @@
+.left_container {
+    width: 25% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5em 1em;
+    font-family: $rajdhani;
+    color: $blue;
+    padding-top: 5%;
+
+    button {
+        position: relative;
+        display: flex;
+        width: 100% !important;
+        height: 1.7em;
+        // fit buttons insde the container
+        margin-bottom: 2.5em;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+        color: $light-blue;
+        font-family: $rajdhani;
+        font-size: size(30);
+
+        border: none;
+        background-image: url("../../assets/img/button/blue_dark.png");
+        background-repeat: no-repeat;
+        background-color: transparent;
+        background-size: contain;
+        background-position: center;
+        cursor: pointer;
+
+        &:hover {
+            &::before {
+                width: 100%;
+                height: 100%;
+                content: "";
+                background-image: url("../../assets/img/button/blue_hover.png");
+                background-repeat: no-repeat;
+                background-color: transparent;
+                background-size: contain;
+                background-position: center;
+                border: none;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+}

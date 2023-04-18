@@ -160,7 +160,34 @@ input {
           appearance: none;
 }
 
-.buttons_container {
+.center_container {
+  width: 50% !important;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.center_container canvas {
+  border-radius: 1em;
+  background: rgba(6, 4, 13, 0);
+  outline: 5em solid #90f5f9;
+  -webkit-box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
+          box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
+  color: #BF2F20;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: none;
+}
+
+.left_container {
+  width: 25% !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -172,59 +199,37 @@ input {
       -ms-flex-align: center;
           align-items: center;
   padding: 1.5em 1em;
-  width: 28%;
   font-family: "Rajdhani";
   color: #00B8FF;
+  padding-top: 5%;
 }
-.buttons_container button {
-  margin-bottom: 3em;
-  width: 350px;
-  height: 50px;
-  background-image: url("../../assets/img/button/blue_dark.png");
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-size: contain;
-  border: none;
-}
-.buttons_container .logo {
-  width: 100%;
-  height: 100%;
-  background-image: url("../../assets/img/logo.png");
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-size: contain;
-  border: none;
-}
-
-.page_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding-top: 3em;
-}
-.page_container .buttons_container {
-  width: 25% !important;
-}
-.page_container .buttons_container button {
-  color: #90f5f9;
-  font-family: "Rajdhani";
-  font-size: 1.25em;
-  cursor: pointer;
+.left_container button {
   position: relative;
-  width: 100% !important;
-  text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100% !important;
+  height: 1.7em;
+  margin-bottom: 2.5em;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  max-width: 300px;
+  text-align: center;
+  color: #90f5f9;
+  font-family: "Rajdhani";
+  font-size: 1.875em;
+  border: none;
+  background-image: url("../../assets/img/button/blue_dark.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
 }
-.page_container .buttons_container button:hover::before {
+.left_container button:hover::before {
   width: 100%;
   height: 100%;
   content: "";
@@ -232,65 +237,70 @@ input {
   background-repeat: no-repeat;
   background-color: transparent;
   background-size: contain;
+  background-position: center;
   border: none;
   position: absolute;
   left: 0;
   top: 0;
 }
-.page_container .switch_container {
+
+.right_container {
+  width: 25% !important;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1.5em 1em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
-.page_container .switch_container .logo {
-  margin-bottom: 3em;
+.right_container button {
+  width: 100%;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  border: none;
+  position: relative;
+  margin-bottom: 5em;
+  padding-left: 15%;
+  cursor: pointer;
 }
-.page_container .switch_container .logo img {
+.right_container button .switch_title {
+  position: absolute;
+  top: -90%;
+  left: 25%;
+  color: #90f5f9;
+  font-family: "Rajdhani";
+  font-size: 2.8125em;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.right_container .logo {
+  margin-bottom: 5em;
+}
+.right_container .logo img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  right: 10em;
 }
-.page_container .switch_container .on {
+.right_container .on {
   background-image: url("../../assets/img/switch/on.png");
 }
-.page_container .switch_container .off {
+.right_container .off {
   background-image: url("../../assets/img/switch/off.png");
-}
-.page_container .switch_container button {
-  position: relative;
-  margin-bottom: 5em;
-  cursor: pointer;
-  max-width: 300px !important;
-}
-.page_container .switch_container button .switch_title {
-  position: absolute;
-  top: -1.5em;
-  left: 40%;
-  color: #90f5f9;
-  font-family: "Rajdhani";
-  font-size: 2.5em;
-  margin-bottom: 0.5em;
-  text-align: center;
-}
-.page_container .game_container {
-  width: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 2em 2em;
-}
-.page_container .game_container canvas {
-  border-radius: 10px;
-  background: rgba(6, 4, 13, 0);
-  outline: 5px solid #90f5f9;
-  -webkit-box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
-          box-shadow: 0 0 15px 20px rgba(6, 4, 13, 0.4);
-  color: #BF2F20;
-  cursor: none;
 }
 
 body {
@@ -304,27 +314,18 @@ body {
       -ms-user-select: none;
           user-select: none;
 }
-body .switch_container {
+body .page_container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1.5em 1em;
-  width: 25%;
-}
-body .switch_container button {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
   width: 100%;
-  height: 8%;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-size: contain;
-  border: none;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -60,6 +60,7 @@ var CTX = canvas.getContext('2d');
 var GAME = null;
 var ROWS = 0;
 var COLS = 0;
+var CELL_DIM = 0;
 var HOVER_X = 0;
 var HOVER_Y = 0;
 
@@ -110,6 +111,15 @@ function windowLoad() {
 /* ******************** Process ******************** */
 
 function process() {
+    // Game Update
+    ROWS = Module._nb_rows(GAME);
+    COLS = Module._nb_cols(GAME);
+    if (ROWS > COLS) {
+        CELL_DIM = CANVA_H / ROWS;
+    } else {
+        CELL_DIM = CANVA_W / COLS;
+    }
+
     // Canva Update
     CTX = canvas.getContext('2d');
     CANVA_X = canvas.offsetLeft;
@@ -121,14 +131,12 @@ function process() {
 
     CTX.clearRect(0, 0, CANVA_W, CANVA_H);
 
-    // Game Update
-    ROWS = Module._nb_rows(GAME);
-    COLS = Module._nb_cols(GAME);
 }
 
 function printGame() {
     var cell_width = CANVA_W / COLS;
-    var cell_height = CANVA_H / ROWS;
+    // var cell_height = CANVA_H / ROWS;
+    var cell_height = cell_width;
 
     for (var row = 0; row < ROWS; row++) {
         for (var col = 0; col < COLS; col++) {
