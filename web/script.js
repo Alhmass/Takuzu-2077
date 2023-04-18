@@ -162,7 +162,7 @@ function printGame() {
         }
     }
 
-    if (HOVER_TOGGLE)
+    if (HOVER_TOGGLE && !PORTABLE)
         CTX.drawImage(cell_hover, SELECT_X * CANVA_W / NB_COLS, SELECT_Y * CANVA_H / NB_ROWS, CANVA_W / NB_COLS, CANVA_H / NB_ROWS);
 
     if (Module._is_over(GAME)) {
