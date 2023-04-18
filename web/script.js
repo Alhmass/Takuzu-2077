@@ -281,6 +281,12 @@ function solve() { process(); Module._solve(GAME); printGame(); }
 function blue() { process(); play_move(BLUE); printGame(); }
 function red() { process(); play_move(RED); printGame(); }
 function empty() { process(); play_move(EMPTY); printGame(); }
+function random() {
+    GAME = Module._delete(GAME);
+    GAME = Module._new_random(6, 6, false, false);
+    process();
+    printGame();
+}
 
 /* ******************** Switch Functions ******************** */
 
