@@ -142,8 +142,6 @@ function process() {
 /* ******************** Display ******************** */
 
 function printGame() {
-    console.log("DIM: " + CELL_DIM);
-
     for (var row = 0; row < NB_ROWS; row++) {
         for (var col = 0; col < NB_COLS; col++) {
             var square = Module._get_square(GAME, row, col);
