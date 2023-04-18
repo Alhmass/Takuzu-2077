@@ -1,9 +1,14 @@
 .center_container {
-    width: 50% !important;
+    width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    // padding-top: 0%;
+    @include media(tablette) {
+        width: 100%;
+    }
 
     canvas {
         border-radius: 1em;

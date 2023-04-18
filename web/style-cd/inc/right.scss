@@ -1,5 +1,5 @@
 .right_container {
-    width: 25% !important;
+    width: 25%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -7,32 +7,71 @@
     align-items: center;
     justify-content: center;
 
-    button {
+    @include media(tablette) {
         width: 100%;
-        height: 50px;
-        background-repeat: no-repeat;
-        background-color: transparent;
-        background-size: contain;
-        border: none;
-        position: relative;
-        margin-bottom: 5em;
-        padding-left: 15%;
-        cursor: pointer;
+        padding: 1em 0;
+        flex-direction: column-reverse;
+    }
+
+    .switch_container {
+        width: 100%;
+        display: flex;
+
+        @include media(tablette) {
+            justify-content: flex-end;
+        }
+
+        .on {
+            background-image: $switch_on;
+        }
+
+        .off {
+            background-image: $switch_off;
+        }
 
         .switch_title {
-            position: absolute;
-            top: -90%;
-            left: 25%;
             color: $light-blue;
             font-family: $rajdhani;
-            font-size: size(45);
+            font-size: size(40);
             text-align: center;
             align-items: center;
+            width: 30%;
+            margin-right: 0.75em;
+
+            @include media(desktop) {
+                font-size: size(30);
+            }
+
+            @include media(tablette) {
+                display: none;
+            }
+        }
+
+        button {
+            width: 60%;
+            height: 50px;
+            background-repeat: no-repeat;
+            background-color: transparent;
+            background-size: contain;
+            border: none;
+            margin-bottom: 5em;
+            padding-left: 15%;
+            cursor: pointer;
+
+            @include media(tablette) {
+                margin-bottom: 0;
+                padding-left: 0;
+            }
         }
     }
 
     .logo {
         margin-bottom: 5em;
+
+        @include media(tablette) {
+            margin-bottom: 0;
+            width: 70%;
+        }
 
         img {
             height: 100%;
@@ -40,13 +79,5 @@
             object-fit: cover;
             right: 10em;
         }
-    }
-
-    .on {
-        background-image: $switch_on;
-    }
-
-    .off {
-        background-image: $switch_off;
     }
 }

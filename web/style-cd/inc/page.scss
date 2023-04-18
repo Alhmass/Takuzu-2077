@@ -5,6 +5,7 @@ body {
     background-position: center;
     background-attachment: fixed;
     user-select: none;
+    padding-top: 2em;
 
     .page_container {
         display: flex;
@@ -12,5 +13,9 @@ body {
         justify-content: center;
         height: 100%;
         width: 100%;
+
+        @include media(tablette) {
+            flex-direction: column-reverse;
+        }
     }
 }

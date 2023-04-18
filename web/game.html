@@ -37,12 +37,22 @@
             <a class="logo" href="https://gitlab.emi.u-bordeaux.fr/pt2/teams/tm01/takuzu-01c" target="_blank">
                 <img src="assets/img/logo.png" alt="logo-takuzu">
             </a>
-            <button class="switch off" onclick="sounds_switch()"><span class="switch_title">SOUNDS</span></button>
-            <button class="switch off" onclick="music_switch()"><span class="switch_title">MUSIC</span></button>
-            <button class="switch on" id="hover_switch" onclick="hover_switch()"><span
-                    class="switch_title">HOVER</span></button>
-            <button class="switch on" id="error_switch" onclick="error_switch()"><span
-                    class="switch_title">ERRORS</span></button>
+            <div class="switch_container">
+                <span class="switch_title">SOUNDS</span>
+                <button class="switch on" onclick="sounds_switch()"></button>
+            </div>
+            <div class="switch_container">
+                <span class="switch_title">MUSIC</span>
+                <button class="switch on" onclick="music_switch()"></button>
+            </div>
+            <div class="switch_container">
+                <span class="switch_title">HOVER</span>
+                <button class="switch on" id="hover_switch" onclick="hover_switch()"></button>
+            </div>
+            <div class="switch_container">
+                <span class="switch_title">ERRORS</span>
+                <button class="switch on" id="error_switch" onclick="error_switch()">
+            </div>
         </div>
     </div>
 
