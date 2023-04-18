@@ -64,24 +64,6 @@ void redo(game g) { game_redo(g); }
 EMSCRIPTEN_KEEPALIVE
 bool solve(game g) { return game_solve(g); }
 
-EMSCRIPTEN_KEEPALIVE
-uint nb_solutions(cgame g) { return game_nb_solutions(g); }
-
-EMSCRIPTEN_KEEPALIVE
-solver solver_new(game g, bool unique) { return solver_new(g, unique); }
-
-EMSCRIPTEN_KEEPALIVE
-void solver_delete(solver s) { solver_delete(s); }
-
-EMSCRIPTEN_KEEPALIVE
-void find_solutions(game g, solver s, uint pos) { find_solutions(g, s, pos); }
-
-EMSCRIPTEN_KEEPALIVE
-bool is_word_solution(game g, solver s) { return is_word_solution(g, s); }
-
-EMSCRIPTEN_KEEPALIVE
-void copy_solution(game g, csolver s) { copy_solution(g, s); }
-
 /* ******************** Game Other ******************** */
 
 EMSCRIPTEN_KEEPALIVE

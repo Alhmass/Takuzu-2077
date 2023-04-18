@@ -13,7 +13,7 @@ buttons.forEach((button) => {
     button.addEventListener('click', classToggle);
 });
 
-/* ******************** assets ******************** */
+/* ******************** Assets ******************** */
 
 var cursor = new Image();
 cursor.src = "assets/img/cursor.png";
@@ -39,7 +39,7 @@ rajdhani.load().then(function (loaded_face) {
     document.fonts.add(loaded_face);
 });
 
-/* ******************** variables ******************** */
+/* ******************** Variables ******************** */
 
 var EMPTY = 0;
 var BLUE = 1;
@@ -60,8 +60,10 @@ var CTX = canvas.getContext('2d');
 var GAME = null;
 var ROWS = 0;
 var COLS = 0;
+var HOVER_X = 0;
+var HOVER_Y = 0;
 
-/* ******************** register events ******************** */
+/* ******************** Register Events ******************** */
 
 window.addEventListener('load', windowLoad);              // window load
 canvas.addEventListener('click', canvasLeftClick);        // left click event
@@ -69,8 +71,9 @@ canvas.addEventListener('contextmenu', canvasRightClick); // right click event
 canvas.addEventListener('mousemove', canvasMouseMove);    // mouse move event
 canvas.addEventListener('windowresize', windowLoad);      // window resize event
 canvas.addEventListener('zoom', windowLoad);              // zoom event (ctrl + scroll)
+window.addEventListener('keydown', keyDown);              // key down event
 
-/* ******************** event callback ******************** */
+/* ******************** Event Callback ******************** */
 
 function canvasLeftClick(event) {
     event.preventDefault();
@@ -104,7 +107,7 @@ function windowLoad() {
     printGame();
 }
 
-/* ******************** PROCESS ******************** */
+/* ******************** Process ******************** */
 
 function process() {
     // Canva Update
@@ -151,7 +154,7 @@ function printGame() {
         canvas.style.boxShadow = "0 0 30px 20px rgba(111, 255, 147, 0.5)";
         canvas.style.outline = "5px solid rgba(111, 255, 147, 1)";
     } else {
-        canvas.style.boxShadow = "0 0 30px 20px rgba(6, 4, 13, 0.4)";
+        canvas.style.boxShadow = "0 0 30px 20px rgba(144, 245, 249, 0.3)";
         canvas.style.outline = "5px solid rgba(144, 245, 249, 1)";
     }
 
@@ -189,6 +192,34 @@ function hover() {
     CTX.drawImage(cell_hover, col * CANVA_W / COLS, row * CANVA_H / ROWS, CANVA_W / COLS, CANVA_H / ROWS);
 }
 
+/* ******************** Keyboard Input ******************** */
+
+function keyDown(event) {
+    if (event.defaultPrevented) {
+        return; // Do nothing if the event was already processed
+    }
+
+    switch (event.key) {
+        case "ArrowUp":
+            // Do something for "up arrow" key press.
+            break;
+        case "ArrowDown":
+            // Do something for "down arrow" key press.
+            break;
+        case "ArrowLeft":
+            // Do something for "left arrow" key press.
+            break;
+        case "ArrowRight":
+            // Do something for "right arrow" key press.
+            break;
+        default:
+            return; // Quit when this doesn't handle the key event.
+    }
+
+    // Cancel the default action to avoid it being handled twice
+    event.preventDefault();
+}
+
 /* ******************** Button Functions ******************** */
 
 function restart() { process(); Module._restart(GAME); printGame(); }
@@ -199,7 +230,7 @@ function blue() { process(); play_move(BLUE); printGame(); }
 function red() { process(); play_move(RED); printGame(); }
 function empty() { process(); play_move(EMPTY); printGame(); }
 
-/* ******************** start ******************** */
+/* ******************** Start ******************** */
 
 function start() {
     console.log("call start routine");
