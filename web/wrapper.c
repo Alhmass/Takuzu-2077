@@ -18,7 +18,14 @@ EMSCRIPTEN_KEEPALIVE
 game new_default(void) { return game_default(); }
 
 EMSCRIPTEN_KEEPALIVE
-void delete(game g) { game_delete(g); }
+game new_empty_ext(uint nb_rows, uint nb_cols, bool wrapping, bool unique) {
+    return game_new_empty_ext(nb_rows, nb_cols, wrapping, unique);
+}
+
+EMSCRIPTEN_KEEPALIVE void delete(game g) { game_delete(g); }
+
+EMSCRIPTEN_KEEPALIVE
+void set_square(game g, uint i, uint j, square s) { return game_set_square(g, i, j, s); }
 
 EMSCRIPTEN_KEEPALIVE
 square get_square(cgame g, uint i, uint j) { return game_get_square(g, i, j); }

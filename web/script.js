@@ -7,6 +7,8 @@ var canvas = document.getElementById('game-canvas');
 function start() {
     console.log("call start routine");
     GAME = Module._new_default();
+    process();
+    printGame();
 }
 
 /* ******************** Assets ******************** */
@@ -37,6 +39,8 @@ rajdhani.load().then(function (loaded_face) {
 
 /* ******************** Variables ******************** */
 
+var PORTABLE = false;
+
 var EMPTY = 0;
 var BLUE = 1;
 var RED = 2;
@@ -55,9 +59,9 @@ var CANVA_H = canvas.height;
 var CTX = canvas.getContext('2d');
 
 var GAME = null;
-var NB_ROWS = 0;
-var NB_COLS = 0;
-var CELL_DIM = 0;
+var NB_ROWS = 6;
+var NB_COLS = 6;
+var CELL_DIM = CANVA_W / NB_COLS;
 var SELECT_X = 0;
 var SELECT_Y = 0;
 
@@ -108,6 +112,10 @@ function windowLoad() {
 /* ******************** Process ******************** */
 
 function process() {
+    // Responsive
+    if (window.innerWidth <= 1024)
+        PORTABLE = true;
+
     // Game Update
     NB_ROWS = Module._nb_rows(GAME);
     NB_COLS = Module._nb_cols(GAME);
@@ -122,7 +130,7 @@ function process() {
     CANVA_X = canvas.offsetLeft;
     CANVA_Y = canvas.offsetTop;
     canvas.width = (800 * 100 / 1920) * (window.innerWidth) / 100;
-    if (window.innerWidth <= 1024)
+    if (PORTABLE)
         canvas.width *= 2;
     canvas.height = canvas.width;
     CANVA_W = canvas.width;
@@ -131,28 +139,28 @@ function process() {
     CTX.clearRect(0, 0, CANVA_W, CANVA_H);
 }
 
+/* ******************** Display ******************** */
+
 function printGame() {
-    var cell_width = CANVA_W / NB_COLS;
-    // var cell_height = CANVA_H / NB_ROWS;
-    var cell_height = cell_width;
+    console.log("DIM: " + CELL_DIM);
 
     for (var row = 0; row < NB_ROWS; row++) {
         for (var col = 0; col < NB_COLS; col++) {
             var square = Module._get_square(GAME, row, col);
             var error = Module._has_error(GAME, row, col);
             if (square == EMPTY)
-                CTX.drawImage(cell_empty, col * cell_width, row * cell_height, cell_width, cell_height);
+                CTX.drawImage(cell_empty, col * CELL_DIM, row * CELL_DIM, CELL_DIM, CELL_DIM);
             else if (square == BLUE)
-                CTX.drawImage(cell_blue, col * cell_width, row * cell_height, cell_width, cell_height);
+                CTX.drawImage(cell_blue, col * CELL_DIM, row * CELL_DIM, CELL_DIM, CELL_DIM);
             else if (square == RED)
-                CTX.drawImage(cell_red, col * cell_width, row * cell_height, cell_width, cell_height);
+                CTX.drawImage(cell_red, col * CELL_DIM, row * CELL_DIM, CELL_DIM, CELL_DIM);
             else if (square == IMM_BLUE)
-                CTX.drawImage(cell_imm_blue, col * cell_width, row * cell_height, cell_width, cell_height);
+                CTX.drawImage(cell_imm_blue, col * CELL_DIM, row * CELL_DIM, CELL_DIM, CELL_DIM);
             else if (square == IMM_RED)
-                CTX.drawImage(cell_imm_red, col * cell_width, row * cell_height, cell_width, cell_height);
+                CTX.drawImage(cell_imm_red, col * CELL_DIM, row * CELL_DIM, CELL_DIM, CELL_DIM);
 
             if (error && (square == BLUE || square == RED) && ERROR_TOGGLE)
-                CTX.drawImage(cell_error, col * cell_width, row * cell_height, cell_width, cell_height);
+                CTX.drawImage(cell_error, col * CELL_DIM, row * CELL_DIM, CELL_DIM, CELL_DIM);
         }
     }
 
@@ -167,7 +175,7 @@ function printGame() {
         canvas.style.outline = "5px solid rgba(144, 245, 249, 1)";
     }
 
-    if (CURSOR_TOGGLE)
+    if (CURSOR_TOGGLE && !PORTABLE)
         CTX.drawImage(cursor, CURSOR_X, CURSOR_Y, 50, 50);
 
     // put this text in <div> element with ID 'result'
@@ -245,7 +253,7 @@ function keyDown(event) {
         case "5":
             play_move(4);
             break;
-        case "r":
+        case "t":
             restart();
             break;
         case "a":
@@ -284,7 +292,6 @@ function blue() { process(); play_move(BLUE); printGame(); }
 function red() { process(); play_move(RED); printGame(); }
 function empty() { process(); play_move(EMPTY); printGame(); }
 function random() {
-    GAME = Module._delete(GAME);
     var dim = Math.floor(Math.random() * 4) * 2 + 4;
     GAME = Module._new_random(dim, dim, false, false);
     process();
@@ -370,16 +377,18 @@ function error_switch() {
 
 /* ******************** Audio ******************** */
 
+var MASTER_VOLUME = 0.1;
+
 // Hover Effect
 var hover_sound = new Audio('assets/sounds/hover.wav');
-hover_sound.volume = 0.1;
+hover_sound.volume = MASTER_VOLUME;
 var positive_sound = new Audio('assets/sounds/positive.wav');
-positive_sound.volume = 0.1;
+positive_sound.volume = MASTER_VOLUME;
 var negative_sound = new Audio('assets/sounds/negative.wav');
-negative_sound.volume = 0.1;
+negative_sound.volume = MASTER_VOLUME;
 
 function hover_effect() { if (SOUND_TOGGLE) hover_sound.play(); }
 
 // Menu Audio
 const menu_audio = document.getElementById('menu_audio');
-menu_audio.volume = 0.1;
+menu_audio.volume = MASTER_VOLUME;
