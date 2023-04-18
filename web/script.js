@@ -283,7 +283,8 @@ function red() { process(); play_move(RED); printGame(); }
 function empty() { process(); play_move(EMPTY); printGame(); }
 function random() {
     GAME = Module._delete(GAME);
-    GAME = Module._new_random(6, 6, false, false);
+    var dim = Math.floor(Math.random() * 4) * 2 + 4;
+    GAME = Module._new_random(dim, dim, false, false);
     process();
     printGame();
 }
