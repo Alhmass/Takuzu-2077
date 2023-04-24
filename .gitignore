@@ -18,7 +18,4 @@ custom_build/
 moves.txt
 
 # web
-libgame.a
-game.wasm
 wrapper.o
-game.js
