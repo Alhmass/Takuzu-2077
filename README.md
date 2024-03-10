@@ -10,7 +10,7 @@ README - TAKUZU PROJECT
 
 ## Technologies & Tools
 
-[![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=90F5F9&color=06040D&labelColor=06040D)](https://clang.llvm.org/) [![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=90F5F9&color=06040D&labelColor=06040D)](https://ba-sh.com/fr/fr/) [![CMake](https://img.shields.io/badge/CMake-%2300599C.svg?style=for-the-badge&logo=cmake&logoColor=90F5F9&color=06040D&labelColor=06040D)](https://cmake.org/)
+[![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=90F5F9&color=06040D&labelColor=06040D)](https://clang.llvm.org/) [![CMake](https://img.shields.io/badge/CMake-%2300599C.svg?style=for-the-badge&logo=cmake&logoColor=90F5F9&color=06040D&labelColor=06040D)](https://cmake.org/) [![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=90F5F9&color=06040D&labelColor=06040D)](https://ba-sh.com/fr/fr/)
 
 [![HTML](https://img.shields.io/badge/HTML-%2300599C.svg?style=for-the-badge&logo=html5&logoColor=e3d902&color=06040D&labelColor=06040D)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![CSS](https://img.shields.io/badge/CSS-%2300599C.svg?style=for-the-badge&logo=css3&logoColor=e3d902&color=06040D&labelColor=06040D)](https://developer.mozilla.org/en-US/docs/Web/CSS) [![SASS](https://img.shields.io/badge/SASS-%2300599C.svg?style=for-the-badge&logo=sass&logoColor=e3d902&color=06040D&labelColor=06040D)](https://sass-lang.com/) [![JavaScript](https://img.shields.io/badge/JavaScript-%2300599C.svg?style=for-the-badge&logo=javascript&logoColor=e3d902&color=06040D&labelColor=06040D)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![WebAssembly](https://img.shields.io/badge/WebAssembly-%2300599C.svg?style=for-the-badge&logo=webassembly&logoColor=e3d902&color=06040D&labelColor=06040D)](https://webassembly.org/)
 
@@ -37,7 +37,7 @@ git clone https://github.com/TLacault/takuzu.git
 git clone git@github.com:TLacault/takuzu.git
 ```
 
-## Prequisite
+## Dependencies
 
 * **CMake**
 * **SDL2**
