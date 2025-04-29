@@ -28,13 +28,13 @@ README - TAKUZU PROJECT
 * **Clone with HTML**
 
 ```
-git clone https://github.com/TLacault/takuzu.git
+git clone https://github.com/Alhmass/Takuzu-2077.git
 ```
 
 * **Clone with SSH**
 
 ```
-git clone git@github.com:TLacault/takuzu.git
+git clone git@github.com:Alhmass/Takuzu-2077.git
 ```
 
 ## Dependencies
@@ -58,8 +58,6 @@ mkdir build; cd build; cmake ..; make
 ```
 ./game_sdl
 ```
-
-* **Play the demo version online** [here](https://tim-lacault.emi.u-bordeaux.fr/web-ub01c/game.html)
 
 ## Contact
 * **Tim Lacault - tim.lacault@etu.u-bordeaux.fr**
